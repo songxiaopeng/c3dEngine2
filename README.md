@@ -1,4 +1,6 @@
 c3dEngine2
 ==========
 
-c3dEngine is not very good, i want make a better one.
+c3dEngine is not very good, i want make a better one.  
+  
+this project is under construction (not available yet).  

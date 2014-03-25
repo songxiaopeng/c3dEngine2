@@ -1,0 +1,120 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Chinese (Simplified, PRC) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MENU2 MENU
+BEGIN
+    POPUP "开关"
+    BEGIN
+        MENUITEM "作弊（开放所有技能）",                  ID_cheat
+        MENUITEM "阴影",                          ID_shadow, CHECKED
+        MENUITEM "反射（扭结中心的球体）",                 ID_reflect
+        MENUITEM "分量图(color,depth,stencil)",    ID_components
+        MENUITEM "雾（目前此项无效）",                   ID_fog, GRAYED
+    END
+    POPUP "帮助"
+    BEGIN
+        MENUITEM "键盘（操作）",                      ID_keymos
+        MENUITEM "游戏规则",                        ID_rules
+        MENUITEM "关于",                          ID_about
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+ID_about_dlg DIALOGEX 0, 0, 164, 118
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "关于：重组3D IV：梁上菌子"
+FONT 10, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,64,104,30,10
+    PUSHBUTTON      "Cancel",IDCANCEL,125,104,30,10,NOT WS_VISIBLE
+    DEFPUSHBUTTON   "项目主页 : \r\nhttp://code.google.com/p/recombination-3d-4-on-the-beam/",ID_LINK,6,60,150,40,BS_MULTILINE,WS_EX_DLGMODALFRAME | WS_EX_STATICEDGE
+    CTEXT           "重组3D IV：梁上菌子 5.3版\r\n\r\nby wantnon\r\n\r\n2012-10-23",IDC_STATIC,21,8,116,45
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    ID_about_dlg, DIALOG
+    BEGIN
+        LEFTMARGIN, 6
+        RIGHTMARGIN, 163
+        TOPMARGIN, 3
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // Chinese (Simplified, PRC) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

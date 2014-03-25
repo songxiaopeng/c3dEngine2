@@ -1,0 +1,221 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{0db6bd7c-e769-4a64-bbc8-2e286ca9fb74}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{95b1d1e5-279e-4207-a51d-1659fdf9cdec}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{a7e0fa3b-9258-47f9-bcb2-773bf4a5e9e3}</UniqueIdentifier>
+      <Extensions>ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe</Extensions>
+    </Filter>
+    <Filter Include="c3dEngine">
+      <UniqueIdentifier>{61b7ecb0-bf99-439e-97e7-1ebcbcdb6ad7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="c3dEngine\win32">
+      <UniqueIdentifier>{5a127f7c-357c-4cf1-90c0-bcd5cf704e56}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="c3dEngine\win32\AL">
+      <UniqueIdentifier>{c940551b-bef4-415c-b327-d14f4f73217c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="c3dEngine\win32\appFrame">
+      <UniqueIdentifier>{af576b23-10e9-450e-b803-8e0e88088d82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="c3dEngine\win32\GL">
+      <UniqueIdentifier>{02fda5ea-9a66-4f93-8402-8ec3c32cb2ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="c3dEngine\win32\libpng">
+      <UniqueIdentifier>{11714456-8ef5-4601-af21-76477c96004a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="c3dEngine\win32\zlib">
+      <UniqueIdentifier>{52a3c5ee-c99b-477a-9ebd-32b04c857a0a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="lesson7.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="myh.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="globals.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mathEx.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="paint.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="texture.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fbxmodel.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\c3dEngine\platform\win32\appFrame\mainWindow.cpp">
+      <Filter>c3dEngine\win32\appFrame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\c3dEngine\platform\win32\appFrame\mainWindowFuncs.cpp">
+      <Filter>c3dEngine\win32\appFrame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\c3dEngine\platform\win32\appFrame\mainWindowGlobal.cpp">
+      <Filter>c3dEngine\win32\appFrame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\c3dEngine\platform\win32\c3dALPlatformDepend.cpp">
+      <Filter>c3dEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\c3dEngine\platform\win32\c3dDeviceAndOSInfoPlatformDepend.cpp">
+      <Filter>c3dEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\c3dEngine\platform\win32\c3dDocumentsPlatformDepend.cpp">
+      <Filter>c3dEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\c3dEngine\platform\win32\c3dImage.cpp">
+      <Filter>c3dEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\c3dEngine\platform\win32\c3dPathPlatformDepend.cpp">
+      <Filter>c3dEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\c3dEngine\platform\win32\c3dProgramPlatformDepend.cpp">
+      <Filter>c3dEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\c3dEngine\platform\win32\c3dTexturePlatformDepend.cpp">
+      <Filter>c3dEngine</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="classes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="func.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="model_base.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="myh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="texture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="glext.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="logic.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="initGame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="paint.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mesh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="indexVBO.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="globals.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="fbxmodel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mathEx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\c3dEngine\platform\win32\AL\al.h">
+      <Filter>c3dEngine\win32\AL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\c3dEngine\platform\win32\AL\alc.h">
+      <Filter>c3dEngine\win32\AL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\c3dEngine\platform\win32\AL\alut.h">
+      <Filter>c3dEngine\win32\AL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\c3dEngine\platform\win32\AL\efx-creative.h">
+      <Filter>c3dEngine\win32\AL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\c3dEngine\platform\win32\AL\EFX-Util.h">
+      <Filter>c3dEngine\win32\AL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\c3dEngine\platform\win32\AL\efx.h">
+      <Filter>c3dEngine\win32\AL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\c3dEngine\platform\win32\AL\xram.h">
+      <Filter>c3dEngine\win32\AL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\c3dEngine\platform\win32\appFrame\mainWindowFuncs.h">
+      <Filter>c3dEngine\win32\appFrame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\c3dEngine\platform\win32\appFrame\mainWindowGlobal.h">
+      <Filter>c3dEngine\win32\appFrame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\c3dEngine\platform\win32\OGLES\GL\GLAUX.H">
+      <Filter>c3dEngine\win32\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\c3dEngine\platform\win32\OGLES\GL\glew.h">
+      <Filter>c3dEngine\win32\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\c3dEngine\platform\win32\OGLES\GL\glext.h">
+      <Filter>c3dEngine\win32\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\c3dEngine\platform\win32\OGLES\GL\glut.h">
+      <Filter>c3dEngine\win32\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\c3dEngine\platform\win32\OGLES\GL\glxew.h">
+      <Filter>c3dEngine\win32\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\c3dEngine\platform\win32\OGLES\GL\wglew.h">
+      <Filter>c3dEngine\win32\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\c3dEngine\platform\win32\zlib\zconf.h">
+      <Filter>c3dEngine\win32\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\c3dEngine\platform\win32\zlib\zlib.h">
+      <Filter>c3dEngine\win32\zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\c3dEngine\platform\win32\libpng\png.h">
+      <Filter>c3dEngine\win32\libpng</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\c3dEngine\platform\win32\libpng\pngconf.h">
+      <Filter>c3dEngine\win32\libpng</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\c3dEngine\platform\win32\c3dALPlatformDepend.h">
+      <Filter>c3dEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\c3dEngine\platform\win32\c3dDeviceAndOSInfoPlatformDepend.h">
+      <Filter>c3dEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\c3dEngine\platform\win32\c3dDocumentsPlatformDepend.h">
+      <Filter>c3dEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\c3dEngine\platform\win32\c3dImage.h">
+      <Filter>c3dEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\c3dEngine\platform\win32\c3dPathPlatformDepend.h">
+      <Filter>c3dEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\c3dEngine\platform\win32\c3dProgramPlatformDepend.h">
+      <Filter>c3dEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\c3dEngine\platform\win32\c3dTexturePlatformDepend.h">
+      <Filter>c3dEngine</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Script1.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>
