@@ -14,9 +14,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "35DF643B138C40D500FF9459"
-               BuildableName = "c3d_singleCell.app"
-               BlueprintName = "c3d_singleCell"
-               ReferencedContainer = "container:c3d_singleCell.xcodeproj">
+               BuildableName = "c3d.app"
+               BlueprintName = "c3d"
+               ReferencedContainer = "container:c3d.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -41,9 +41,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "35DF643B138C40D500FF9459"
-            BuildableName = "c3d_singleCell.app"
-            BlueprintName = "c3d_singleCell"
-            ReferencedContainer = "container:c3d_singleCell.xcodeproj">
+            BuildableName = "c3d.app"
+            BlueprintName = "c3d"
+            ReferencedContainer = "container:c3d.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -60,9 +60,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "35DF643B138C40D500FF9459"
-            BuildableName = "c3d_singleCell.app"
-            BlueprintName = "c3d_singleCell"
-            ReferencedContainer = "container:c3d_singleCell.xcodeproj">
+            BuildableName = "c3d.app"
+            BlueprintName = "c3d"
+            ReferencedContainer = "container:c3d.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
