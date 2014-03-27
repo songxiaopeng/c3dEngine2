@@ -1,0 +1,326 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <SccProjectName />
+    <SccLocalPath />
+    <ProjectName>c3d</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>.\Release\</OutDir>
+    <IntDir>.\Release\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(IncludePath)</IncludePath>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
+    <EmbedManifest>false</EmbedManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>.\Debug\</OutDir>
+    <IntDir>.\Debug\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+    <EmbedManifest>false</EmbedManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <StringPooling>true</StringPooling>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <Optimization>MaxSpeed</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;NDEBUG =1;_WINDOWS;DEBUG = 0;C3D_PLATFORM_IOS = 0;C3D_PLATFORM_WIN32 = 1;C3D_TARGET_PLATFORM = 1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>.\Release\</AssemblerListingLocation>
+      <BrowseInformation>true</BrowseInformation>
+      <PrecompiledHeaderOutputFile>.\Release\c3d.pch</PrecompiledHeaderOutputFile>
+      <ObjectFileName>.\Release\</ObjectFileName>
+      <ProgramDataBaseFileName>.\Release\</ProgramDataBaseFileName>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
+      <OmitFramePointers>true</OmitFramePointers>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\c3dEngine;$(ProjectDir)..\..\..\c3dEngine\core;$(ProjectDir)..\..\..\c3dEngine\common;$(ProjectDir)..\..\..\c3dEngine\platform\win32;$(ProjectDir)..\..\..\c3dEngine\platform\win32\OGLES;$(ProjectDir);$(ProjectDir)..\..\..\extension;$(ProjectDir)..\..\..\extension\geometry;$(ProjectDir)..\..\..\extension\octree;$(ProjectDir)..\..\..\extension\terrain;$(ProjectDir)..\code;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MinimalRebuild>false</MinimalRebuild>
+      <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Midl>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <TypeLibraryName>.\Release\c3d.tlb</TypeLibraryName>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <TargetEnvironment>Win32</TargetEnvironment>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x1009</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Release\c3d.bsc</OutputFile>
+    </Bscmake>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <SubSystem>Windows</SubSystem>
+      <OutputFile>.\Release\c3d.exe</OutputFile>
+      <AdditionalDependencies>wininet.lib;opengl32.lib;glu32.lib;glew32.lib;odbc32.lib;odbccp32.lib;openal32.lib;alut.lib;libzlib.lib;libpng.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+      <AdditionalLibraryDirectories>$(ProjectDir)..\..\..\c3dEngine\platform\win32\libraries;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <PreLinkEvent>
+      <Command>if not exist "$(OutDir)" mkdir "$(OutDir)"
+xcopy /Y /Q "$(ProjectDir)..\..\..\c3dEngine\platform\win32\libraries\*.*" "$(OutDir)"
+
+</Command>
+    </PreLinkEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <Optimization>Disabled</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>Level3</WarningLevel>
+      <MinimalRebuild>true</MinimalRebuild>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;DEBUG=1;C3D_PLATFORM_IOS = 0;C3D_PLATFORM_WIN32 = 1;C3D_TARGET_PLATFORM = 1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>.\Debug\</AssemblerListingLocation>
+      <BrowseInformation>true</BrowseInformation>
+      <PrecompiledHeaderOutputFile>.\Debug\c3d.pch</PrecompiledHeaderOutputFile>
+      <ObjectFileName>.\Debug\</ObjectFileName>
+      <ProgramDataBaseFileName>.\Debug\</ProgramDataBaseFileName>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\c3dEngine;$(ProjectDir)..\..\..\c3dEngine\core;$(ProjectDir)..\..\..\c3dEngine\common;$(ProjectDir)..\..\..\c3dEngine\platform\win32;$(ProjectDir)..\..\..\c3dEngine\platform\win32\OGLES;$(ProjectDir);$(ProjectDir)..\..\..\extension;$(ProjectDir)..\..\..\extension\geometry;$(ProjectDir)..\..\..\extension\octree;$(ProjectDir)..\..\..\extension\terrain;$(ProjectDir)..\code;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
+    </ClCompile>
+    <Midl>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <TypeLibraryName>.\Debug\c3d.tlb</TypeLibraryName>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <TargetEnvironment>Win32</TargetEnvironment>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x1009</Culture>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Debug\c3d.bsc</OutputFile>
+    </Bscmake>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OutputFile>.\Debug\c3d.exe</OutputFile>
+      <AdditionalDependencies>wininet.lib;opengl32.lib;glu32.lib;glew32.lib;odbc32.lib;odbccp32.lib;openal32.lib;alut.lib;libzlib.lib;libpng.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)..\..\..\c3dEngine\platform\win32\libraries;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <PreLinkEvent>
+      <Command>if not exist "$(OutDir)" mkdir "$(OutDir)"
+xcopy /Y /Q "$(ProjectDir)..\..\..\c3dEngine\platform\win32\libraries\*.*" "$(OutDir)"
+
+</Command>
+    </PreLinkEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\c3dEngine\common\c3dCommonFunc.cpp" />
+    <ClCompile Include="..\..\..\c3dEngine\common\c3dPathFunc.cpp" />
+    <ClCompile Include="..\..\..\c3dEngine\core\c3dActor.cpp" />
+    <ClCompile Include="..\..\..\c3dEngine\core\c3dActorSet.cpp" />
+    <ClCompile Include="..\..\..\c3dEngine\core\c3dALBuffer.cpp" />
+    <ClCompile Include="..\..\..\c3dEngine\core\c3dALdebug.cpp" />
+    <ClCompile Include="..\..\..\c3dEngine\core\c3dALSource.cpp" />
+    <ClCompile Include="..\..\..\c3dEngine\core\c3dAppState.cpp" />
+    <ClCompile Include="..\..\..\c3dEngine\core\c3dAssert.cpp" />
+    <ClCompile Include="..\..\..\c3dEngine\core\c3dAudioCache.cpp" />
+    <ClCompile Include="..\..\..\c3dEngine\core\c3dAutoreleasePool.cpp" />
+    <ClCompile Include="..\..\..\c3dEngine\core\c3dCamera.cpp" />
+    <ClCompile Include="..\..\..\c3dEngine\core\c3dDefine.cpp" />
+    <ClCompile Include="..\..\..\c3dEngine\core\c3dDeviceAndOSInfo.cpp" />
+    <ClCompile Include="..\..\..\c3dEngine\core\c3dDocuments.cpp" />
+    <ClCompile Include="..\..\..\c3dEngine\core\c3dFbo.cpp" />
+    <ClCompile Include="..\..\..\c3dEngine\core\c3dFileUtils.cpp" />
+    <ClCompile Include="..\..\..\c3dEngine\core\c3dGeoMath.cpp" />
+    <ClCompile Include="..\..\..\c3dEngine\core\c3dGestureAnalyzer.cpp" />
+    <ClCompile Include="..\..\..\c3dEngine\core\c3dGLdebug.cpp" />
+    <ClCompile Include="..\..\..\c3dEngine\core\c3dGLMath.cpp" />
+    <ClCompile Include="..\..\..\c3dEngine\core\c3dIDtriangle.cpp" />
+    <ClCompile Include="..\..\..\c3dEngine\core\c3dIndexVBO.cpp" />
+    <ClCompile Include="..\..\..\c3dEngine\core\c3dLight.cpp" />
+    <ClCompile Include="..\..\..\c3dEngine\core\c3dLog.cpp" />
+    <ClCompile Include="..\..\..\c3dEngine\core\c3dMaterial.cpp" />
+    <ClCompile Include="..\..\..\c3dEngine\core\c3dMath.cpp" />
+    <ClCompile Include="..\..\..\c3dEngine\core\c3dMatrix.cpp" />
+    <ClCompile Include="..\..\..\c3dEngine\core\c3dMesh.cpp" />
+    <ClCompile Include="..\..\..\c3dEngine\core\c3dMeshData.cpp" />
+    <ClCompile Include="..\..\..\c3dEngine\core\c3dModel.cpp" />
+    <ClCompile Include="..\..\..\c3dEngine\core\c3dModelMatStack.cpp" />
+    <ClCompile Include="..\..\..\c3dEngine\core\c3dNode.cpp" />
+    <ClCompile Include="..\..\..\c3dEngine\core\c3dObject.cpp" />
+    <ClCompile Include="..\..\..\c3dEngine\core\c3dPlane.cpp" />
+    <ClCompile Include="..\..\..\c3dEngine\core\c3dProgram.cpp" />
+    <ClCompile Include="..\..\..\c3dEngine\core\c3dProgramCache.cpp" />
+    <ClCompile Include="..\..\..\c3dEngine\core\c3dRange.cpp" />
+    <ClCompile Include="..\..\..\c3dEngine\core\c3dRect.cpp" />
+    <ClCompile Include="..\..\..\c3dEngine\core\c3dSceneManger.cpp" />
+    <ClCompile Include="..\..\..\c3dEngine\core\c3dSpan.cpp" />
+    <ClCompile Include="..\..\..\c3dEngine\core\c3dSubMesh.cpp" />
+    <ClCompile Include="..\..\..\c3dEngine\core\c3dTexture.cpp" />
+    <ClCompile Include="..\..\..\c3dEngine\core\c3dTextureCache.cpp" />
+    <ClCompile Include="..\..\..\c3dEngine\core\c3dTimeCounter.cpp" />
+    <ClCompile Include="..\..\..\c3dEngine\core\c3dTouchSequence.cpp" />
+    <ClCompile Include="..\..\..\c3dEngine\core\c3dTransform.cpp" />
+    <ClCompile Include="..\..\..\c3dEngine\core\c3dVector.cpp" />
+    <ClCompile Include="..\..\..\c3dEngine\core\c3dVertex.cpp" />
+    <ClCompile Include="..\..\..\c3dEngine\platform\win32\appFrame\mainWindow.cpp" />
+    <ClCompile Include="..\..\..\c3dEngine\platform\win32\appFrame\mainWindowFuncs.cpp" />
+    <ClCompile Include="..\..\..\c3dEngine\platform\win32\appFrame\mainWindowGlobal.cpp" />
+    <ClCompile Include="..\..\..\c3dEngine\platform\win32\c3dALPlatformDepend.cpp" />
+    <ClCompile Include="..\..\..\c3dEngine\platform\win32\c3dDeviceAndOSInfoPlatformDepend.cpp" />
+    <ClCompile Include="..\..\..\c3dEngine\platform\win32\c3dDocumentsPlatformDepend.cpp" />
+    <ClCompile Include="..\..\..\c3dEngine\platform\win32\c3dImage.cpp" />
+    <ClCompile Include="..\..\..\c3dEngine\platform\win32\c3dPathPlatformDepend.cpp" />
+    <ClCompile Include="..\..\..\c3dEngine\platform\win32\c3dProgramPlatformDepend.cpp" />
+    <ClCompile Include="..\..\..\c3dEngine\platform\win32\c3dTexturePlatformDepend.cpp" />
+    <ClCompile Include="..\..\..\extension\geometry\geoMath.cpp" />
+    <ClCompile Include="..\..\..\extension\octree\octree.cpp" />
+    <ClCompile Include="..\..\..\extension\octree\triangleWithNorm.cpp" />
+    <ClCompile Include="..\..\..\extension\terrain\terrain.cpp" />
+    <ClCompile Include="..\code\box.cpp" />
+    <ClCompile Include="..\code\globalVars.cpp" />
+    <ClCompile Include="..\code\initGame.cpp" />
+    <ClCompile Include="..\code\passUnifoCallBack.cpp" />
+    <ClCompile Include="..\code\programSetUp.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Script1.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\c3dEngine\common\c3dAL.h" />
+    <ClInclude Include="..\..\..\c3dEngine\common\c3dCommonFunc.h" />
+    <ClInclude Include="..\..\..\c3dEngine\common\c3dGL.h" />
+    <ClInclude Include="..\..\..\c3dEngine\common\c3dPathFunc.h" />
+    <ClInclude Include="..\..\..\c3dEngine\core\c3dActor.h" />
+    <ClInclude Include="..\..\..\c3dEngine\core\c3dActorSet.h" />
+    <ClInclude Include="..\..\..\c3dEngine\core\c3dALBuffer.h" />
+    <ClInclude Include="..\..\..\c3dEngine\core\c3dALdebug.h" />
+    <ClInclude Include="..\..\..\c3dEngine\core\c3dALSource.h" />
+    <ClInclude Include="..\..\..\c3dEngine\core\c3dAppState.h" />
+    <ClInclude Include="..\..\..\c3dEngine\core\c3dAssert.h" />
+    <ClInclude Include="..\..\..\c3dEngine\core\c3dAudioCache.h" />
+    <ClInclude Include="..\..\..\c3dEngine\core\c3dAutoreleasePool.h" />
+    <ClInclude Include="..\..\..\c3dEngine\core\c3dCamera.h" />
+    <ClInclude Include="..\..\..\c3dEngine\core\c3dDefine.h" />
+    <ClInclude Include="..\..\..\c3dEngine\core\c3dDeviceAndOSInfo.h" />
+    <ClInclude Include="..\..\..\c3dEngine\core\c3dDocuments.h" />
+    <ClInclude Include="..\..\..\c3dEngine\core\c3dFbo.h" />
+    <ClInclude Include="..\..\..\c3dEngine\core\c3dFileUtils.h" />
+    <ClInclude Include="..\..\..\c3dEngine\core\c3dGeoMath.h" />
+    <ClInclude Include="..\..\..\c3dEngine\core\c3dGestureAnalyzer.h" />
+    <ClInclude Include="..\..\..\c3dEngine\core\c3dGLdebug.h" />
+    <ClInclude Include="..\..\..\c3dEngine\core\c3dGLMath.h" />
+    <ClInclude Include="..\..\..\c3dEngine\core\c3dIDtriangle.h" />
+    <ClInclude Include="..\..\..\c3dEngine\core\c3dIndexVBO.h" />
+    <ClInclude Include="..\..\..\c3dEngine\core\c3dLight.h" />
+    <ClInclude Include="..\..\..\c3dEngine\core\c3dLog.h" />
+    <ClInclude Include="..\..\..\c3dEngine\core\c3dMaterial.h" />
+    <ClInclude Include="..\..\..\c3dEngine\core\c3dMath.h" />
+    <ClInclude Include="..\..\..\c3dEngine\core\c3dMatrix.h" />
+    <ClInclude Include="..\..\..\c3dEngine\core\c3dMesh.h" />
+    <ClInclude Include="..\..\..\c3dEngine\core\c3dMeshData.h" />
+    <ClInclude Include="..\..\..\c3dEngine\core\c3dModel.h" />
+    <ClInclude Include="..\..\..\c3dEngine\core\c3dModelMatStack.h" />
+    <ClInclude Include="..\..\..\c3dEngine\core\c3dNode.h" />
+    <ClInclude Include="..\..\..\c3dEngine\core\c3dObject.h" />
+    <ClInclude Include="..\..\..\c3dEngine\core\c3dPlane.h" />
+    <ClInclude Include="..\..\..\c3dEngine\core\c3dProgram.h" />
+    <ClInclude Include="..\..\..\c3dEngine\core\c3dProgramCache.h" />
+    <ClInclude Include="..\..\..\c3dEngine\core\c3dRange.h" />
+    <ClInclude Include="..\..\..\c3dEngine\core\c3dRect.h" />
+    <ClInclude Include="..\..\..\c3dEngine\core\c3dSceneManger.h" />
+    <ClInclude Include="..\..\..\c3dEngine\core\c3dSpan.h" />
+    <ClInclude Include="..\..\..\c3dEngine\core\c3dSubMesh.h" />
+    <ClInclude Include="..\..\..\c3dEngine\core\c3dTexture.h" />
+    <ClInclude Include="..\..\..\c3dEngine\core\c3dTextureCache.h" />
+    <ClInclude Include="..\..\..\c3dEngine\core\c3dTimeCounter.h" />
+    <ClInclude Include="..\..\..\c3dEngine\core\c3dTouchSequence.h" />
+    <ClInclude Include="..\..\..\c3dEngine\core\c3dTransform.h" />
+    <ClInclude Include="..\..\..\c3dEngine\core\c3dVector.h" />
+    <ClInclude Include="..\..\..\c3dEngine\core\c3dVertex.h" />
+    <ClInclude Include="..\..\..\c3dEngine\platform\win32\AL\al.h" />
+    <ClInclude Include="..\..\..\c3dEngine\platform\win32\AL\alc.h" />
+    <ClInclude Include="..\..\..\c3dEngine\platform\win32\AL\alut.h" />
+    <ClInclude Include="..\..\..\c3dEngine\platform\win32\AL\efx-creative.h" />
+    <ClInclude Include="..\..\..\c3dEngine\platform\win32\AL\EFX-Util.h" />
+    <ClInclude Include="..\..\..\c3dEngine\platform\win32\AL\efx.h" />
+    <ClInclude Include="..\..\..\c3dEngine\platform\win32\AL\xram.h" />
+    <ClInclude Include="..\..\..\c3dEngine\platform\win32\appFrame\mainWindowFuncs.h" />
+    <ClInclude Include="..\..\..\c3dEngine\platform\win32\appFrame\mainWindowGlobal.h" />
+    <ClInclude Include="..\..\..\c3dEngine\platform\win32\c3dALPlatformDepend.h" />
+    <ClInclude Include="..\..\..\c3dEngine\platform\win32\c3dDeviceAndOSInfoPlatformDepend.h" />
+    <ClInclude Include="..\..\..\c3dEngine\platform\win32\c3dDocumentsPlatformDepend.h" />
+    <ClInclude Include="..\..\..\c3dEngine\platform\win32\c3dImage.h" />
+    <ClInclude Include="..\..\..\c3dEngine\platform\win32\c3dPathPlatformDepend.h" />
+    <ClInclude Include="..\..\..\c3dEngine\platform\win32\c3dProgramPlatformDepend.h" />
+    <ClInclude Include="..\..\..\c3dEngine\platform\win32\c3dTexturePlatformDepend.h" />
+    <ClInclude Include="..\..\..\c3dEngine\platform\win32\libpng\png.h" />
+    <ClInclude Include="..\..\..\c3dEngine\platform\win32\libpng\pngconf.h" />
+    <ClInclude Include="..\..\..\c3dEngine\platform\win32\OGLES\GL\glew.h" />
+    <ClInclude Include="..\..\..\c3dEngine\platform\win32\OGLES\GL\glext.h" />
+    <ClInclude Include="..\..\..\c3dEngine\platform\win32\OGLES\GL\glut.h" />
+    <ClInclude Include="..\..\..\c3dEngine\platform\win32\OGLES\GL\glxew.h" />
+    <ClInclude Include="..\..\..\c3dEngine\platform\win32\OGLES\GL\wglew.h" />
+    <ClInclude Include="..\..\..\c3dEngine\platform\win32\zlib\zconf.h" />
+    <ClInclude Include="..\..\..\c3dEngine\platform\win32\zlib\zlib.h" />
+    <ClInclude Include="..\..\..\extension\geometry\geoMath.h" />
+    <ClInclude Include="..\..\..\extension\octree\octree.h" />
+    <ClInclude Include="..\..\..\extension\octree\triangleWithNorm.h" />
+    <ClInclude Include="..\..\..\extension\terrain\terrain.h" />
+    <ClInclude Include="..\code\box.h" />
+    <ClInclude Include="..\code\globalVars.h" />
+    <ClInclude Include="..\code\initGame.h" />
+    <ClInclude Include="..\code\passUnifoCallBack.h" />
+    <ClInclude Include="..\code\programSetUp.h" />
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -50,7 +50,10 @@ public:
     }
     bool init(){
         if(Cc3dNode::init()==false)return false;
-        //default material
+		//default texture
+		Cc3dTexture*texture=Cc3dTextureCache::sharedTextureCache()->addImage("c3dEngineResource/tex/white.png",GL_CLAMP_TO_EDGE,GL_CLAMP_TO_EDGE);
+		setTexture(texture);
+		//default material
         Cc3dMaterial*material=new Cc3dMaterial();
         material->init();
         material->autorelease();
@@ -184,8 +187,8 @@ public:
     void submitVertex(GLenum usage);
     void submitIndex(GLenum usage);
     void clearMeshData();
-    void addVertex(const float pos[3],const float texCoord[2],const float norm[3]);
-    void addIDtri(int ID0,int ID1,int ID2);
+    void addVertex(const Cc3dVertex&vertex);
+    void addIDtri(const Cc3dIDTriangle&IDtri);
 
  
 

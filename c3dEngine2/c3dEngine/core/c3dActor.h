@@ -101,6 +101,13 @@ public:
     void addMesh(Cc3dMesh*mesh);
     void submitVertex(GLenum usage);
     void submitIndex(GLenum usage);
+	void submit(GLenum usage){
+		submitVertex(usage);
+		submitIndex(usage);
+	}
+	void genVBOBuffers(){
+		m_model->genVBOBuffers();
+	}
 
 };
 

@@ -273,9 +273,9 @@ vector<CtriangleWithNorm> Coctree::getCollisionTriangleList(const Cc3dVector4&c,
             Cc3dVertex&v0=this->getMesh()->getSubMeshByIndex(IDtriEx->getSubMeshID())->getSubMeshData()->vlist[IDtriEx->getIDtri().vID[0]];
             Cc3dVertex&v1=this->getMesh()->getSubMeshByIndex(IDtriEx->getSubMeshID())->getSubMeshData()->vlist[IDtriEx->getIDtri().vID[1]];
             Cc3dVertex&v2=this->getMesh()->getSubMeshByIndex(IDtriEx->getSubMeshID())->getSubMeshData()->vlist[IDtriEx->getIDtri().vID[2]];
-            Cc3dVector4 pos0=v0.getPos().toV4(1);
-            Cc3dVector4 pos1=v1.getPos().toV4(1);
-            Cc3dVector4 pos2=v2.getPos().toV4(1);
+            Cc3dVector4 pos0=v0.getPos();
+            Cc3dVector4 pos1=v1.getPos();
+            Cc3dVector4 pos2=v2.getPos();
             Cc3dVector4 norm=IDtriEx->getNorm();
             CtriangleWithNorm triWithNorm(pos0,pos1,pos2,norm);
             triWithNormList.push_back(triWithNorm);
@@ -354,9 +354,9 @@ Cc3dRange Coctree::getRangeOfIDtrisWithTags(const vector<int>&tagList)const{
         int meshID=pIDtriEx->getSubMeshID();
         int vID[3]={pIDtriEx->getIDtri().vID[0],pIDtriEx->getIDtri().vID[1],pIDtriEx->getIDtri().vID[2]};
         Cc3dVector4 v[3];//三角形三个顶点
-        v[0]=this->getMesh()->getSubMeshByIndex(meshID)->getSubMeshData()->vlist[vID[0]].getPos().toV4(1);
-        v[1]=this->getMesh()->getSubMeshByIndex(meshID)->getSubMeshData()->vlist[vID[1]].getPos().toV4(1);
-        v[2]=this->getMesh()->getSubMeshByIndex(meshID)->getSubMeshData()->vlist[vID[2]].getPos().toV4(1);
+        v[0]=this->getMesh()->getSubMeshByIndex(meshID)->getSubMeshData()->vlist[vID[0]].getPos();
+        v[1]=this->getMesh()->getSubMeshByIndex(meshID)->getSubMeshData()->vlist[vID[1]].getPos();
+        v[2]=this->getMesh()->getSubMeshByIndex(meshID)->getSubMeshData()->vlist[vID[2]].getPos();
         for(int j=0;j<3;j++){
             if(v[j].x()<xmin)xmin=v[j].x();
             if(v[j].x()>xmax)xmax=v[j].x();
@@ -403,7 +403,7 @@ void Coctree::makeOctree()
             int nv=(int)submesh.getSubMeshData()->vlist.size();
             for(int j=0;j<nv;j++){
                 Cc3dVertex&v=submesh.getSubMeshData()->vlist[j];
-                Cc3dVector3 pos=v.getPos();
+                Cc3dVector4 pos=v.getPos();
                 if(pos.x()<xmin)xmin=pos.x();
                 if(pos.x()>xmax)xmax=pos.x();
                 if(pos.y()<ymin)ymin=pos.y();
@@ -446,9 +446,9 @@ void Coctree::makeOctree()
             Cc3dVertex&v0=subMesh.getSubMeshData()->vlist[IDtri.vID[0]];
             Cc3dVertex&v1=subMesh.getSubMeshData()->vlist[IDtri.vID[1]];
             Cc3dVertex&v2=subMesh.getSubMeshData()->vlist[IDtri.vID[2]];
-            Cc3dVector4 pos0=v0.getPos().toV4(1);
-            Cc3dVector4 pos1=v1.getPos().toV4(1);
-            Cc3dVector4 pos2=v2.getPos().toV4(1);
+            Cc3dVector4 pos0=v0.getPos();
+            Cc3dVector4 pos1=v1.getPos();
+            Cc3dVector4 pos2=v2.getPos();
             Cc3dVector4 norm=calculateNormOfTri(pos0,pos1,pos2);
             pIDtriEx->setNorm(norm);
             //将pIDtriEx添加到pRoot->pIDtriExList

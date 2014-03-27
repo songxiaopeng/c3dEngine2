@@ -17,10 +17,10 @@ using namespace std;
 #include "c3dObject.h"
 class Cc3dSubMeshData:public Cc3dObject{
 public:
-    vector<Cc3dVertex> vlist;
+    vector<Cc3dVertex> vlist; 
     vector<Cc3dIDTriangle> IDtriList;
-    void addVertex(const float pos[3],const float texCoord[2],const float norm[3]);
-    void addIDtri(int ID0,int ID1,int ID2);
+    void addVertex(const Cc3dVertex&vertex);
+    void addIDtri(const Cc3dIDTriangle&IDtri);
     void clear(){
         vlist.clear();
         IDtriList.clear();

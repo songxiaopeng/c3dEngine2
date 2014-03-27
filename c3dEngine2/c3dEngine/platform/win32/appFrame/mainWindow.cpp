@@ -290,7 +290,7 @@ int WINAPI WinMain(	HINSTANCE	hInstance,			// Instance
 	float width = Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo()->getScreenSize().x()+2*frameBoarder;
 	float height = Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo()->getScreenSize().y()+2*frameBoarder+captionHeight;
 	cout<<"window size:"<<width<<" "<<height<<endl;
-	if (!CreateGLWindow((LPCWSTR)_T("super single cell"),width,height,nbit_colorDepth,nbit_zDepth))
+	if (!CreateGLWindow((LPCWSTR)_T("c3d"),width,height,nbit_colorDepth,nbit_zDepth))
 	{
 		return 0;									// Quit If Window Was Not Created
 	}

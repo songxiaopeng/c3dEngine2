@@ -14,8 +14,10 @@ void c3dDefaultShadersSetup(){
     {
         string programName="shader_texColorOnly";
         Cc3dProgram*program=Cc3dProgramCache::sharedProgramCache()->createProgram(programFolder+"/"+programName+".vert", programFolder+"/"+programName+".frag", programName);
-        program->attachUniform("projectionModelview");
-        program->attachUniform("Texture");
+        program->attachUniform("projMat");
+		program->attachUniform("modelMat");
+		program->attachUniform("viewMat");
+        program->attachUniform("texture");
     }
     //
     {
@@ -30,9 +32,10 @@ void c3dDefaultPassUnifoCallback(Cc3dNode*node, Cc3dProgram*program){
     Cc3dMatrix4 modelMat=Cc3dModelMatStack::sharedModelMatStack()->getTopMat();
     Cc3dMatrix4 projMat=node->getCamera()->calculateProjectionMat();
     Cc3dMatrix4 viewMat=node->getCamera()->calculateViewMat();
-    Cc3dMatrix4 PVMmat=projMat*viewMat*modelMat;
-    program->passUnifoValue1i("Texture", 0);//texture attach point 0
-    program->passUnifoValueMatrixNfv("projectionModelview", PVMmat.getArray(), PVMmat.getArrayLen());
+    program->passUnifoValue1i("texture", 0);//texture attach point 0
+    program->passUnifoValueMatrixNfv("projMat", projMat.getArray(), projMat.getArrayLen());
+	program->passUnifoValueMatrixNfv("modelMat", modelMat.getArray(), modelMat.getArrayLen());
+	program->passUnifoValueMatrixNfv("viewMat", viewMat.getArray(), viewMat.getArrayLen());
 }
 
 void Cc3dNode::visitUpdate(){

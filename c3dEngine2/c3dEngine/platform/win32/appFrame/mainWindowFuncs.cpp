@@ -112,6 +112,7 @@ void render(HDC hDC){
 
 	//----openal状态
 	alDistanceModel(AL_INVERSE_DISTANCE_CLAMPED);//设置距离模型
+    alListenerf(AL_GAIN, 1.0);//set listener gain
 
     //----opengl状态
     glEnable(GL_BLEND);
@@ -120,9 +121,9 @@ void render(HDC hDC){
     glEnable(GL_VERTEX_PROGRAM_POINT_SIZE);// Enable point size by default on windows.
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glClearColor(0, 0, 0, 0);//指定清理color buffers时所用的颜色，默认值为(0,0,0,0),见:http://msdn.microsoft.com/en-us/library/windows/desktop/dd318377(v=vs.85).aspx
-    glEnableVertexAttribArray(ATTRIB_LOC_position_local);
+    glEnableVertexAttribArray(ATTRIB_LOC_position);
     glEnableVertexAttribArray(ATTRIB_LOC_texCoord);
-    glEnableVertexAttribArray(ATTRIB_LOC_normal_local);
+    glEnableVertexAttribArray(ATTRIB_LOC_normal);
     glEnableVertexAttribArray(ATTRIB_LOC_texCoord2);
 	
 	//----开启垂直同步，限制帧率为每秒60帧

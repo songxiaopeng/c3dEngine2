@@ -1,17 +1,15 @@
-//-------------------------------------
-// do not use chinese in comment
-//-------------------------------------
-//attribute pass from vbo or va
-attribute vec3 position_local;
-attribute vec2 texCoordIn;
 
-//matrixs pass from outside
-uniform mat4 projectionModelview;
+attribute vec4 a_position;
+attribute vec2 a_texCoord;
+
+uniform mat4 projMat;
+uniform mat4 modelMat;
+uniform mat4 viewMat;
 
 //pass to fragment shader
-varying vec2 texCoordOut;
+varying vec2 v_texCoord;
 
 void main(void) {
-    gl_Position = projectionModelview* vec4(position_local,1);
-    texCoordOut = texCoordIn;
+    gl_Position = projMat*viewMat*modelMat*a_position;
+    v_texCoord = a_texCoord;
 }

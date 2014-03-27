@@ -165,7 +165,7 @@ bool Cterrain::init(const string&heightMapFileName,const Cc3dRect&rect,float hei
     submesh->init();
     submesh->setTexture(texture);
     submesh->getIndexVBO()->genBuffers();
-    this->getMesh()->addMesh(submesh);
+    this->getMesh()->addSubMesh(submesh);
     //make submesh
     makeMesh();
     
@@ -251,9 +251,9 @@ void Cterrain::makeUp(int jmin,int jmax,int imin,int imax)
                     //  p[0]--p[1]
                     
                     //添加到submesh
-                    this->getMesh()->getSubMeshByIndex(0)->addIDtri(imin*(int)markmat[0].size()+jmin,
+                    this->getMesh()->getSubMeshByIndex(0)->addIDtri(Cc3dIDTriangle(imin*(int)markmat[0].size()+jmin,
                                                  imin*(int)markmat[0].size()+jmax,
-                                                 imin*(int)markmat[0].size()+jmid);
+                                                 imin*(int)markmat[0].size()+jmid));
                 }
             }
             //看下方同尺寸区域中心是否mark
@@ -266,9 +266,9 @@ void Cterrain::makeUp(int jmin,int jmax,int imin,int imax)
                     //  p[0]--p[2]
                     //    \    /
                     //     p[1]
-                    this->getMesh()->getSubMeshByIndex(0)->addIDtri(imax*(int)markmat[0].size()+jmin,
+                    this->getMesh()->getSubMeshByIndex(0)->addIDtri(Cc3dIDTriangle(imax*(int)markmat[0].size()+jmin,
                                                  imax*(int)markmat[0].size()+jmid,
-                                                 imax*(int)markmat[0].size()+jmax);
+                                                 imax*(int)markmat[0].size()+jmax));
                     
                 }
             }
@@ -284,9 +284,9 @@ void Cterrain::makeUp(int jmin,int jmax,int imin,int imax)
                     //  p[1]   |
                     //      \  |
                     //        p[2]
-                    this->getMesh()->getSubMeshByIndex(0)->addIDtri(imin*(int)markmat[0].size()+jmin,
+                    this->getMesh()->getSubMeshByIndex(0)->addIDtri(Cc3dIDTriangle(imin*(int)markmat[0].size()+jmin,
                                                  imid*(int)markmat[0].size()+jmin,
-                                                 imax*(int)markmat[0].size()+jmin);
+                                                 imax*(int)markmat[0].size()+jmin));
                 }
             }
             //看右方同尺寸区域中心是否mark
@@ -301,9 +301,9 @@ void Cterrain::makeUp(int jmin,int jmax,int imin,int imax)
                     //         |   p[2]
                     //         |  /
                     //        p[1]
-                    this->getMesh()->getSubMeshByIndex(0)->addIDtri(imin*(int)markmat[0].size()+jmax,
+                    this->getMesh()->getSubMeshByIndex(0)->addIDtri(Cc3dIDTriangle(imin*(int)markmat[0].size()+jmax,
                                                  imax*(int)markmat[0].size()+jmax,
-                                                 imid*(int)markmat[0].size()+jmax);
+                                                 imid*(int)markmat[0].size()+jmax));
                 }
             }
             
@@ -375,8 +375,8 @@ void Cterrain::showAndMark(int jmin,int jmax,int imin,int imax,int curDepth)
             const int ID1=vIDMat_imax+jmin;
             const int ID2=vIDMat_imax+jmax;
             const int ID3=vIDMat_imin+jmax;
-            this->getMesh()->getSubMeshByIndex(0)->addIDtri(ID0, ID1, ID2);
-            this->getMesh()->getSubMeshByIndex(0)->addIDtri(ID0, ID2, ID3);
+            this->getMesh()->getSubMeshByIndex(0)->addIDtri(Cc3dIDTriangle(ID0, ID1, ID2));
+            this->getMesh()->getSubMeshByIndex(0)->addIDtri(Cc3dIDTriangle(ID0, ID2, ID3));
         }
     }
 }

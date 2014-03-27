@@ -56,8 +56,8 @@ const float c3d_PI=3.14159265358979323846264338327950288;
 
 
 //??????????????????xcode???????(????GLKit)?????
-const GLint ATTRIB_LOC_position_local=0;
-const GLint ATTRIB_LOC_normal_local=1;
+const GLint ATTRIB_LOC_position=0;
+const GLint ATTRIB_LOC_normal=1;
 const GLint ATTRIB_LOC_color=2;
 const GLint ATTRIB_LOC_texCoord=3;
 const GLint ATTRIB_LOC_texCoord2=4;

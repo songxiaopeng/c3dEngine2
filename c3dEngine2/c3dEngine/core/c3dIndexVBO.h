@@ -47,7 +47,7 @@ public:
 		m_vertexCount=vertexCount;
 		if(m_vertexCount==0)return;
         glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
-        glBufferData(GL_ARRAY_BUFFER, sizeof(float)*m_vertexCount*(3+2+3+2), &vlist[0], usage);
+        glBufferData(GL_ARRAY_BUFFER, sizeof(float)*m_vertexCount*(4+2+4+2), &vlist[0], usage);
         glBindBuffer(GL_ARRAY_BUFFER, 0);
         
         
@@ -57,7 +57,7 @@ public:
 		m_vertexCount=vertexCount;
 		if(m_vertexCount==0)return;
         glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
-        glBufferData(GL_ARRAY_BUFFER, m_vertexCount*sizeof(float)*(3+2+3+2), vertexArray, usage);
+        glBufferData(GL_ARRAY_BUFFER, m_vertexCount*sizeof(float)*(4+2+4+2), vertexArray, usage);
         glBindBuffer(GL_ARRAY_BUFFER, 0);
         
         
@@ -91,14 +91,14 @@ public:
     static void setPointers()
 	//specify each attribute's format, must put after bindVertexBuffer
     {
-        const int posStep=3;
+        const int posStep=4;
         const int texCoordStep=2;
-        const int normStep=3;
+        const int normStep=4;
         const int texCoord2Step=2;
         const int step=posStep+texCoordStep+normStep+texCoord2Step;
-        glVertexAttribPointer(ATTRIB_LOC_position_local, posStep, GL_FLOAT, GL_FALSE, sizeof(float)*step,0);
+        glVertexAttribPointer(ATTRIB_LOC_position, posStep, GL_FLOAT, GL_FALSE, sizeof(float)*step,0);
         glVertexAttribPointer(ATTRIB_LOC_texCoord, texCoordStep, GL_FLOAT, GL_FALSE,sizeof(float)*step, (GLvoid*) (sizeof(float)* posStep));
-        glVertexAttribPointer(ATTRIB_LOC_normal_local, normStep, GL_FLOAT, GL_FALSE, sizeof(float)*step, (GLvoid*) (sizeof(float) * (posStep+texCoordStep)));
+        glVertexAttribPointer(ATTRIB_LOC_normal, normStep, GL_FLOAT, GL_FALSE, sizeof(float)*step, (GLvoid*) (sizeof(float) * (posStep+texCoordStep)));
         glVertexAttribPointer(ATTRIB_LOC_texCoord2, texCoord2Step, GL_FLOAT, GL_FALSE, sizeof(float)*step, (GLvoid*) (sizeof(float) * (posStep+texCoordStep+normStep)));
         
     }
@@ -114,11 +114,13 @@ public:
 
     void drawIndexBuffer(GLenum mode=GL_TRIANGLES)
     {
+		
         //draw index buffer
         if(m_indexCount!=0){
             assert(m_vertexCount!=0);
             //if m_indexCount!=0 but m_vertexCount==0, may means forget to submit before draw
         }
+		//cout<<"m_indexCount:"<<m_indexCount<<endl;
         glDrawElements(mode,m_indexCount,GL_UNSIGNED_INT, 0);
         //the last parameter must be one of GL_UNSIGNED_BYTE, GL_UNSIGNED_SHORT, or GL_UNSIGNED_INT.
 		//even the index type is int, we should use GL_UNSIGNED_INT

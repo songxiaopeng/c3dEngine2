@@ -109,6 +109,14 @@ public:
     void addMesh(Cc3dMesh*mesh);
     void submitVertex(GLenum usage);
     void submitIndex(GLenum usage);
+	void genVBOBuffers(){
+		int n=(int)m_meshList.size();
+        for(int i=0;i<n;i++){
+            Cc3dMesh*p=m_meshList[i];
+            if(p==NULL)continue;
+            p->genVBOBuffers();
+        }
+	}
 
 };
 

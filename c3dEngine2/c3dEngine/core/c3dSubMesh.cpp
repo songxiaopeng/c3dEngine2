@@ -23,9 +23,9 @@ void Cc3dSubMesh::submitIndex(GLenum usage){
 void Cc3dSubMesh::clearMeshData(){
     m_subMeshData->clear();
 }
-void Cc3dSubMesh::addVertex(const float pos[3],const float texCoord[2],const float norm[3]){
-    m_subMeshData->addVertex(pos, texCoord, norm);
+void Cc3dSubMesh::addVertex(const Cc3dVertex&vertex){
+    m_subMeshData->addVertex(vertex);
 }
-void Cc3dSubMesh::addIDtri(int ID0,int ID1,int ID2){
-    m_subMeshData->addIDtri(ID0, ID1, ID2);
+void Cc3dSubMesh::addIDtri(const Cc3dIDTriangle&IDtri){
+    m_subMeshData->addIDtri(IDtri);
 }

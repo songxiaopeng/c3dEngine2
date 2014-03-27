@@ -14,7 +14,7 @@ Cc3dRange Cc3dMesh::getRange()const {
         int nv=(int)m_subMeshList[i]->getSubMeshData()->vlist.size();
         for(int j=0;j<nv;j++){
             const Cc3dVertex&v=m_subMeshList[i]->getSubMeshData()->vlist[j];
-            const Cc3dVector3&pos=v.getPos();
+            const Cc3dVector4&pos=v.getPos();
             if(pos.x()<xmin)xmin=pos.x();
             if(pos.x()>xmax)xmax=pos.x();
             if(pos.y()<ymin)ymin=pos.y();
@@ -26,17 +26,6 @@ Cc3dRange Cc3dMesh::getRange()const {
     Cc3dRange range;
     range.init(xmin, xmax, ymin, ymax, zmin, zmax);
     return range;
-}
-void Cc3dMesh::scale_modifyVertexDirectly(float kx,float ky,float kz){//以直接修改顶点的方式进行放缩
-    int nSubMesh=(int)m_subMeshList.size();
-    for(int i=0;i<nSubMesh;i++){
-        int nv=(int)m_subMeshList[i]->getSubMeshData()->vlist.size();
-        for(int j=0;j<nv;j++){
-            Cc3dVertex&v=m_subMeshList[i]->getSubMeshData()->vlist[j];
-            const Cc3dVector3&pos=v.getPos();
-            v.setPos(Cc3dVector3(pos.x()*kx, pos.y()*ky, pos.z()*kz));
-        }
-    }
 }
 
 
@@ -128,7 +117,7 @@ void Cc3dMesh::submitIndex(GLenum usage){
         if(psubMesh)psubMesh->submitIndex(usage);
     }
 }
-void Cc3dMesh::addMesh(Cc3dSubMesh*submesh){
+void Cc3dMesh::addSubMesh(Cc3dSubMesh*submesh){
     assert(submesh);
     m_subMeshList.push_back(submesh);
     //submesh->setName("?");

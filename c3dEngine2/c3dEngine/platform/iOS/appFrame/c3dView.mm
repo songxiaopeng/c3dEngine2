@@ -169,6 +169,7 @@ using namespace std;
     srand(time(0));
     //----openal状态
     alDistanceModel(AL_INVERSE_DISTANCE_CLAMPED);//设置距离模型
+    alListenerf(AL_GAIN, 1.0);//set listener gain
     //----opengl状态
     glEnable(GL_BLEND);
     glEnable(GL_DEPTH_TEST);
