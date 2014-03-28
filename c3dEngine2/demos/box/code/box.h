@@ -10,8 +10,7 @@
 #define __HelloOpenGL__box__
 
 #include <iostream>
-#include "c3dActor.h"
-
+#include "c3d.h"
 class Cbox:public Cc3dActor
 {
 protected:

@@ -1,6 +1,7 @@
 //attribute
 attribute vec4 a_position;
 attribute vec4 a_normal;
+attribute vec4 a_color;
 attribute vec2 a_texCoord;
 
 
@@ -48,7 +49,7 @@ void main(void) {
     vec4 specularColor= vec4(pf*vec3(specularML),1.0);
     //----set varying
     //the final alpha is equal to diffuseColor.a
-    v_mainColor = vec4(vec3(ambientColor)+vec3(diffuseColor),diffuseColor.a);
+    v_mainColor = vec4(vec3(ambientColor)+vec3(diffuseColor)*vec3(a_color),diffuseColor.a*a_color.a);
     float secondaryColorAlpha=pf;
     v_secondaryColor=vec4(vec3(specularColor),secondaryColorAlpha);
     v_texCoord = a_texCoord;

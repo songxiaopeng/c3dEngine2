@@ -163,7 +163,6 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\c3dEngine\platform\win32\libraries\*.*" "$(Ou
     <ClCompile Include="..\..\..\c3dEngine\common\c3dCommonFunc.cpp" />
     <ClCompile Include="..\..\..\c3dEngine\common\c3dPathFunc.cpp" />
     <ClCompile Include="..\..\..\c3dEngine\core\c3dActor.cpp" />
-    <ClCompile Include="..\..\..\c3dEngine\core\c3dActorSet.cpp" />
     <ClCompile Include="..\..\..\c3dEngine\core\c3dALBuffer.cpp" />
     <ClCompile Include="..\..\..\c3dEngine\core\c3dALdebug.cpp" />
     <ClCompile Include="..\..\..\c3dEngine\core\c3dALSource.cpp" />
@@ -233,12 +232,12 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\c3dEngine\platform\win32\libraries\*.*" "$(Ou
     <ResourceCompile Include="Script1.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\c3dEngine\c3d.h" />
     <ClInclude Include="..\..\..\c3dEngine\common\c3dAL.h" />
     <ClInclude Include="..\..\..\c3dEngine\common\c3dCommonFunc.h" />
     <ClInclude Include="..\..\..\c3dEngine\common\c3dGL.h" />
     <ClInclude Include="..\..\..\c3dEngine\common\c3dPathFunc.h" />
     <ClInclude Include="..\..\..\c3dEngine\core\c3dActor.h" />
-    <ClInclude Include="..\..\..\c3dEngine\core\c3dActorSet.h" />
     <ClInclude Include="..\..\..\c3dEngine\core\c3dALBuffer.h" />
     <ClInclude Include="..\..\..\c3dEngine\core\c3dALdebug.h" />
     <ClInclude Include="..\..\..\c3dEngine\core\c3dALSource.h" />

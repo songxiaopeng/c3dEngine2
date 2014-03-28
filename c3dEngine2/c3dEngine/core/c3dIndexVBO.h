@@ -47,22 +47,22 @@ public:
 		m_vertexCount=vertexCount;
 		if(m_vertexCount==0)return;
         glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
-        glBufferData(GL_ARRAY_BUFFER, sizeof(float)*m_vertexCount*(4+2+4+2), &vlist[0], usage);
+        glBufferData(GL_ARRAY_BUFFER, sizeof(float)*m_vertexCount*(4+2+4+4+2), &vlist[0], usage);
         glBindBuffer(GL_ARRAY_BUFFER, 0);
         
         
     }
-    void submitVertex(int vertexCount,const float vertexArray[],GLenum usage)
+ /*   void submitVertex(int vertexCount,const float vertexArray[],GLenum usage)
     {
 		m_vertexCount=vertexCount;
 		if(m_vertexCount==0)return;
         glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
-        glBufferData(GL_ARRAY_BUFFER, m_vertexCount*sizeof(float)*(4+2+4+2), vertexArray, usage);
+        glBufferData(GL_ARRAY_BUFFER, m_vertexCount*sizeof(float)*(4+2+4+4+2), vertexArray, usage);
         glBindBuffer(GL_ARRAY_BUFFER, 0);
         
         
     }
-
+	*/
     
     void submitIndex(const vector<Cc3dIDTriangle> &IDtriList,GLenum usage)
     {
@@ -94,12 +94,14 @@ public:
         const int posStep=4;
         const int texCoordStep=2;
         const int normStep=4;
+		const int colorStep=4;
         const int texCoord2Step=2;
-        const int step=posStep+texCoordStep+normStep+texCoord2Step;
+        const int step=posStep+texCoordStep+normStep+colorStep+texCoord2Step;
         glVertexAttribPointer(ATTRIB_LOC_position, posStep, GL_FLOAT, GL_FALSE, sizeof(float)*step,0);
         glVertexAttribPointer(ATTRIB_LOC_texCoord, texCoordStep, GL_FLOAT, GL_FALSE,sizeof(float)*step, (GLvoid*) (sizeof(float)* posStep));
         glVertexAttribPointer(ATTRIB_LOC_normal, normStep, GL_FLOAT, GL_FALSE, sizeof(float)*step, (GLvoid*) (sizeof(float) * (posStep+texCoordStep)));
-        glVertexAttribPointer(ATTRIB_LOC_texCoord2, texCoord2Step, GL_FLOAT, GL_FALSE, sizeof(float)*step, (GLvoid*) (sizeof(float) * (posStep+texCoordStep+normStep)));
+		glVertexAttribPointer(ATTRIB_LOC_color, colorStep, GL_FLOAT, GL_FALSE, sizeof(float)*step, (GLvoid*) (sizeof(float) * (posStep+texCoordStep+normStep)));
+        glVertexAttribPointer(ATTRIB_LOC_texCoord2, texCoord2Step, GL_FLOAT, GL_FALSE, sizeof(float)*step, (GLvoid*) (sizeof(float) * (posStep+texCoordStep+normStep+colorStep)));
         
     }
 

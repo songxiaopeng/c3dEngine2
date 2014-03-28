@@ -51,9 +51,6 @@
     <ClCompile Include="..\..\..\c3dEngine\core\c3dActor.cpp">
       <Filter>c3dEngine</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\c3dEngine\core\c3dActorSet.cpp">
-      <Filter>c3dEngine</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\c3dEngine\core\c3dALBuffer.cpp">
       <Filter>c3dEngine</Filter>
     </ClCompile>
@@ -269,9 +266,6 @@
       <Filter>c3dEngine</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\c3dEngine\core\c3dActor.h">
-      <Filter>c3dEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\c3dEngine\core\c3dActorSet.h">
       <Filter>c3dEngine</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\c3dEngine\core\c3dALBuffer.h">
@@ -510,6 +504,9 @@
     </ClInclude>
     <ClInclude Include="..\code\programSetUp.h">
       <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\c3dEngine\c3d.h">
+      <Filter>c3dEngine</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

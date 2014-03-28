@@ -12,37 +12,40 @@ void Cbox::makeBox(float d,string texFilePath){
 	Cc3dSubMesh*subMesh=new Cc3dSubMesh();
 	subMesh->autorelease();
 	subMesh->init();
+	//--color
+	Cc3dVector4 color[8]={Cc3dVector4(1,0,0,1),Cc3dVector4(0,1,0,1),Cc3dVector4(0,0,1,1),Cc3dVector4(0,1,1,1),
+						  Cc3dVector4(1,0,1,1),Cc3dVector4(1,1,0,1),Cc3dVector4(1,0.5,0,1),Cc3dVector4(0,0.5,1,1)};
 	//--vertex
 	//front face
-	subMesh->addVertex(Cc3dVertex(Cc3dVector4(-d,+d,+d,1),Cc3dVector2(0,0),Cc3dVector4(0,0,1,0)));//0
-	subMesh->addVertex(Cc3dVertex(Cc3dVector4(-d,-d,+d,1),Cc3dVector2(0,1),Cc3dVector4(0,0,1,0)));//1
-	subMesh->addVertex(Cc3dVertex(Cc3dVector4(+d,-d,+d,1),Cc3dVector2(1,1),Cc3dVector4(0,0,1,0)));//2
-	subMesh->addVertex(Cc3dVertex(Cc3dVector4(+d,+d,+d,1),Cc3dVector2(1,0),Cc3dVector4(0,0,1,0)));//3
+	subMesh->addVertex(Cc3dVertex(Cc3dVector4(-d,+d,+d,1),Cc3dVector2(0,0),Cc3dVector4(0,0,1,0),color[0]));//0
+	subMesh->addVertex(Cc3dVertex(Cc3dVector4(-d,-d,+d,1),Cc3dVector2(0,1),Cc3dVector4(0,0,1,0),color[1]));//1
+	subMesh->addVertex(Cc3dVertex(Cc3dVector4(+d,-d,+d,1),Cc3dVector2(1,1),Cc3dVector4(0,0,1,0),color[2]));//2
+	subMesh->addVertex(Cc3dVertex(Cc3dVector4(+d,+d,+d,1),Cc3dVector2(1,0),Cc3dVector4(0,0,1,0),color[3]));//3
 	//back face
-	subMesh->addVertex(Cc3dVertex(Cc3dVector4(-d,+d,-d,1),Cc3dVector2(0,0),Cc3dVector4(0,0,-1,0)));//4
-	subMesh->addVertex(Cc3dVertex(Cc3dVector4(+d,+d,-d,1),Cc3dVector2(0,1),Cc3dVector4(0,0,-1,0)));//5
-	subMesh->addVertex(Cc3dVertex(Cc3dVector4(+d,-d,-d,1),Cc3dVector2(1,1),Cc3dVector4(0,0,-1,0)));//6
-	subMesh->addVertex(Cc3dVertex(Cc3dVector4(-d,-d,-d,1),Cc3dVector2(1,0),Cc3dVector4(0,0,-1,0)));//7
+	subMesh->addVertex(Cc3dVertex(Cc3dVector4(-d,+d,-d,1),Cc3dVector2(0,0),Cc3dVector4(0,0,-1,0),color[4]));//4
+	subMesh->addVertex(Cc3dVertex(Cc3dVector4(+d,+d,-d,1),Cc3dVector2(0,1),Cc3dVector4(0,0,-1,0),color[5]));//5
+	subMesh->addVertex(Cc3dVertex(Cc3dVector4(+d,-d,-d,1),Cc3dVector2(1,1),Cc3dVector4(0,0,-1,0),color[6]));//6
+	subMesh->addVertex(Cc3dVertex(Cc3dVector4(-d,-d,-d,1),Cc3dVector2(1,0),Cc3dVector4(0,0,-1,0),color[7]));//7
 	//up face
-	subMesh->addVertex(Cc3dVertex(Cc3dVector4(-d,+d,-d,1),Cc3dVector2(0,0),Cc3dVector4(0,1,0,0)));//8
-	subMesh->addVertex(Cc3dVertex(Cc3dVector4(-d,+d,+d,1),Cc3dVector2(0,1),Cc3dVector4(0,1,0,0)));//9
-	subMesh->addVertex(Cc3dVertex(Cc3dVector4(+d,+d,+d,1),Cc3dVector2(1,1),Cc3dVector4(0,1,0,0)));//10
-	subMesh->addVertex(Cc3dVertex(Cc3dVector4(+d,+d,-d,1),Cc3dVector2(1,0),Cc3dVector4(0,1,0,0)));//11
+	subMesh->addVertex(Cc3dVertex(Cc3dVector4(-d,+d,-d,1),Cc3dVector2(0,0),Cc3dVector4(0,1,0,0),color[4]));//8
+	subMesh->addVertex(Cc3dVertex(Cc3dVector4(-d,+d,+d,1),Cc3dVector2(0,1),Cc3dVector4(0,1,0,0),color[0]));//9
+	subMesh->addVertex(Cc3dVertex(Cc3dVector4(+d,+d,+d,1),Cc3dVector2(1,1),Cc3dVector4(0,1,0,0),color[3]));//10
+	subMesh->addVertex(Cc3dVertex(Cc3dVector4(+d,+d,-d,1),Cc3dVector2(1,0),Cc3dVector4(0,1,0,0),color[5]));//11
 	//down face
-	subMesh->addVertex(Cc3dVertex(Cc3dVector4(-d,-d,-d,1),Cc3dVector2(0,0),Cc3dVector4(0,-1,0,0)));//12
-	subMesh->addVertex(Cc3dVertex(Cc3dVector4(+d,-d,-d,1),Cc3dVector2(0,1),Cc3dVector4(0,-1,0,0)));//13
-	subMesh->addVertex(Cc3dVertex(Cc3dVector4(+d,-d,+d,1),Cc3dVector2(1,1),Cc3dVector4(0,-1,0,0)));//14
-	subMesh->addVertex(Cc3dVertex(Cc3dVector4(-d,-d,+d,1),Cc3dVector2(1,0),Cc3dVector4(0,-1,0,0)));//15
+	subMesh->addVertex(Cc3dVertex(Cc3dVector4(-d,-d,-d,1),Cc3dVector2(0,0),Cc3dVector4(0,-1,0,0),color[7]));//12
+	subMesh->addVertex(Cc3dVertex(Cc3dVector4(+d,-d,-d,1),Cc3dVector2(0,1),Cc3dVector4(0,-1,0,0),color[6]));//13
+	subMesh->addVertex(Cc3dVertex(Cc3dVector4(+d,-d,+d,1),Cc3dVector2(1,1),Cc3dVector4(0,-1,0,0),color[2]));//14
+	subMesh->addVertex(Cc3dVertex(Cc3dVector4(-d,-d,+d,1),Cc3dVector2(1,0),Cc3dVector4(0,-1,0,0),color[1]));//15
 	//left face
-	subMesh->addVertex(Cc3dVertex(Cc3dVector4(-d,+d,-d,1),Cc3dVector2(0,0),Cc3dVector4(-1,0,0,0)));//16
-	subMesh->addVertex(Cc3dVertex(Cc3dVector4(-d,-d,-d,1),Cc3dVector2(0,1),Cc3dVector4(-1,0,0,0)));//17
-	subMesh->addVertex(Cc3dVertex(Cc3dVector4(-d,-d,+d,1),Cc3dVector2(1,1),Cc3dVector4(-1,0,0,0)));//18
-	subMesh->addVertex(Cc3dVertex(Cc3dVector4(-d,-d,+d,1),Cc3dVector2(1,0),Cc3dVector4(-1,0,0,0)));//19
+	subMesh->addVertex(Cc3dVertex(Cc3dVector4(-d,+d,-d,1),Cc3dVector2(0,0),Cc3dVector4(-1,0,0,0),color[4]));//16
+	subMesh->addVertex(Cc3dVertex(Cc3dVector4(-d,-d,-d,1),Cc3dVector2(0,1),Cc3dVector4(-1,0,0,0),color[7]));//17
+	subMesh->addVertex(Cc3dVertex(Cc3dVector4(-d,-d,+d,1),Cc3dVector2(1,1),Cc3dVector4(-1,0,0,0),color[1]));//18
+	subMesh->addVertex(Cc3dVertex(Cc3dVector4(-d,+d,+d,1),Cc3dVector2(1,0),Cc3dVector4(-1,0,0,0),color[0]));//19
 	//right face
-	subMesh->addVertex(Cc3dVertex(Cc3dVector4(+d,+d,+d,1),Cc3dVector2(0,0),Cc3dVector4(1,0,0,0)));//20
-	subMesh->addVertex(Cc3dVertex(Cc3dVector4(+d,-d,+d,1),Cc3dVector2(0,1),Cc3dVector4(1,0,0,0)));//21
-	subMesh->addVertex(Cc3dVertex(Cc3dVector4(+d,-d,-d,1),Cc3dVector2(1,1),Cc3dVector4(1,0,0,0)));//22
-	subMesh->addVertex(Cc3dVertex(Cc3dVector4(+d,+d,-d,1),Cc3dVector2(1,0),Cc3dVector4(1,0,0,0)));//23
+	subMesh->addVertex(Cc3dVertex(Cc3dVector4(+d,+d,+d,1),Cc3dVector2(0,0),Cc3dVector4(1,0,0,0),color[3]));//20
+	subMesh->addVertex(Cc3dVertex(Cc3dVector4(+d,-d,+d,1),Cc3dVector2(0,1),Cc3dVector4(1,0,0,0),color[2]));//21
+	subMesh->addVertex(Cc3dVertex(Cc3dVector4(+d,-d,-d,1),Cc3dVector2(1,1),Cc3dVector4(1,0,0,0),color[6]));//22
+	subMesh->addVertex(Cc3dVertex(Cc3dVector4(+d,+d,-d,1),Cc3dVector2(1,0),Cc3dVector4(1,0,0,0),color[5]));//23
 	//--IDTriangles
 	//front face
 	subMesh->addIDtri(Cc3dIDTriangle(0,1,2));

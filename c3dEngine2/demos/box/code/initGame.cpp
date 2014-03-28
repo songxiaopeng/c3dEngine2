@@ -7,14 +7,9 @@
 //
 
 #include "initGame.h"
-
-#include "c3dDeviceAndOSInfo.h"
-#include "c3dRange.h"
-#include "globalVars.h"
-#include "c3dAL.h"
-#include "c3dActor.h"
-#include "c3dSceneManger.h"
+#include "c3d.h"
 #include "box.h"
+#include "globalVars.h"
 #include "passUnifoCallBack.h"
 #include "programSetUp.h"
 void initGame(){

@@ -124,6 +124,7 @@ void render(HDC hDC){
     glEnableVertexAttribArray(ATTRIB_LOC_position);
     glEnableVertexAttribArray(ATTRIB_LOC_texCoord);
     glEnableVertexAttribArray(ATTRIB_LOC_normal);
+	glEnableVertexAttribArray(ATTRIB_LOC_color);
     glEnableVertexAttribArray(ATTRIB_LOC_texCoord2);
 	
 	//----开启垂直同步，限制帧率为每秒60帧
