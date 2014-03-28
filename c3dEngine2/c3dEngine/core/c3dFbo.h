@@ -12,17 +12,7 @@
 #include <iostream>
 using namespace std;
 
-#if (C3D_TARGET_PLATFORM == C3D_PLATFORM_WIN32) 
-	#include "GL/glew.h"
-	#include "GL/glut.h"
-	#include "GL/gl.h"
-	#include "GL/glext.h"
-	#include "GL/glu.h"
-	#include "GL/glut.h"
-#else
-    #include <OpenGLES/ES2/gl.h>
-	#include <OpenGLES/ES2/glext.h>
-#endif
+#include "c3dGL.h"
 #include "c3dTexture.h"
 class Cc3dFbo:public Cc3dObject
 {
