@@ -29,7 +29,6 @@
 		57C77BAF18E45334009820B6 /* c3dCommonFunc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57C77AEC18E45333009820B6 /* c3dCommonFunc.cpp */; };
 		57C77BB018E45334009820B6 /* c3dPathFunc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57C77AEF18E45333009820B6 /* c3dPathFunc.cpp */; };
 		57C77BB118E45334009820B6 /* c3dActor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57C77AF218E45333009820B6 /* c3dActor.cpp */; };
-		57C77BB218E45334009820B6 /* c3dActorSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57C77AF418E45333009820B6 /* c3dActorSet.cpp */; };
 		57C77BB318E45334009820B6 /* c3dALBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57C77AF618E45333009820B6 /* c3dALBuffer.cpp */; };
 		57C77BB418E45334009820B6 /* c3dALdebug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57C77AF818E45333009820B6 /* c3dALdebug.cpp */; };
 		57C77BB518E45334009820B6 /* c3dALSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57C77AFA18E45333009820B6 /* c3dALSource.cpp */; };
@@ -107,6 +106,7 @@
 		35DF6444138C40D500FF9459 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		35DF645D138C427700FF9459 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		35DF645F138C427E00FF9459 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		576C78B018E55CE400AF83A2 /* c3d.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = c3d.h; sourceTree = "<group>"; };
 		57C77ACA18E45302009820B6 /* c3d-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "c3d-Info.plist"; sourceTree = "<group>"; };
 		57C77ACB18E45302009820B6 /* c3d-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "c3d-Prefix.pch"; sourceTree = "<group>"; };
 		57C77ACD18E45302009820B6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -131,8 +131,6 @@
 		57C77AF018E45333009820B6 /* c3dPathFunc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = c3dPathFunc.h; sourceTree = "<group>"; };
 		57C77AF218E45333009820B6 /* c3dActor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c3dActor.cpp; sourceTree = "<group>"; };
 		57C77AF318E45333009820B6 /* c3dActor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = c3dActor.h; sourceTree = "<group>"; };
-		57C77AF418E45333009820B6 /* c3dActorSet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c3dActorSet.cpp; sourceTree = "<group>"; };
-		57C77AF518E45333009820B6 /* c3dActorSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = c3dActorSet.h; sourceTree = "<group>"; };
 		57C77AF618E45333009820B6 /* c3dALBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c3dALBuffer.cpp; sourceTree = "<group>"; };
 		57C77AF718E45333009820B6 /* c3dALBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = c3dALBuffer.h; sourceTree = "<group>"; };
 		57C77AF818E45333009820B6 /* c3dALdebug.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c3dALdebug.cpp; sourceTree = "<group>"; };
@@ -360,6 +358,7 @@
 		57C77AE918E45333009820B6 /* c3dEngine */ = {
 			isa = PBXGroup;
 			children = (
+				576C78B018E55CE400AF83A2 /* c3d.h */,
 				57C77AEA18E45333009820B6 /* common */,
 				57C77AF118E45333009820B6 /* core */,
 				57C77B5018E45333009820B6 /* platform */,
@@ -386,8 +385,6 @@
 			children = (
 				57C77AF218E45333009820B6 /* c3dActor.cpp */,
 				57C77AF318E45333009820B6 /* c3dActor.h */,
-				57C77AF418E45333009820B6 /* c3dActorSet.cpp */,
-				57C77AF518E45333009820B6 /* c3dActorSet.h */,
 				57C77AF618E45333009820B6 /* c3dALBuffer.cpp */,
 				57C77AF718E45333009820B6 /* c3dALBuffer.h */,
 				57C77AF818E45333009820B6 /* c3dALdebug.cpp */,
@@ -716,7 +713,6 @@
 				57C77BC918E45334009820B6 /* c3dMath.cpp in Sources */,
 				57C77BE118E45334009820B6 /* c3dView.mm in Sources */,
 				57C77BC418E45334009820B6 /* c3dIDtriangle.cpp in Sources */,
-				57C77BB218E45334009820B6 /* c3dActorSet.cpp in Sources */,
 				57C77C1B18E45348009820B6 /* octree.cpp in Sources */,
 				57C77BD518E45334009820B6 /* c3dRect.cpp in Sources */,
 				57C77BD418E45334009820B6 /* c3dRange.cpp in Sources */,

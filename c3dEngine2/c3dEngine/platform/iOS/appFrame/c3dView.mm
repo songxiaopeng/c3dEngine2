@@ -179,6 +179,7 @@ using namespace std;
     glEnableVertexAttribArray(ATTRIB_LOC_position);
     glEnableVertexAttribArray(ATTRIB_LOC_texCoord);
     glEnableVertexAttribArray(ATTRIB_LOC_normal);
+    glEnableVertexAttribArray(ATTRIB_LOC_color);
     glEnableVertexAttribArray(ATTRIB_LOC_texCoord2);
     //----查询版本信息
     const GLubyte* s= glGetString(GL_SHADING_LANGUAGE_VERSION);
