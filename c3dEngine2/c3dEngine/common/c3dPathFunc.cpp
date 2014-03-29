@@ -57,8 +57,8 @@ vector<string> splitStrInTwoByLastDot(const string&str)
 }
 
 vector<string> splitStrInTwoByLastBar(const string&str)
-//part1 and prat2 do not contain the spliat-"/"
-//if there is no "/" in str, then part1=str and part2=""
+//part1 and prat2 do not contain the spliat-'/' or '\\' 
+//if there is no '/' or '\\' in str, then part1=str and part2=""
 {
     string part1="";
     string part2="";
@@ -66,7 +66,7 @@ vector<string> splitStrInTwoByLastBar(const string&str)
     int i_lastBar=-1;
     int len=(int)str.size();
     for(int i=len-1;i>=0;i--){
-        if(str[i]=='/'){
+        if(str[i]=='/'||str[i]=='\\'){
             i_lastBar=i;
             break;
         }

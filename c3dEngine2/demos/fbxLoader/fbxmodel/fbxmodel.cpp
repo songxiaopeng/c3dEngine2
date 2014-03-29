@@ -176,7 +176,7 @@
 	void Cmodelfbx::triangulate_loadTextures_preprocess(){
 		cout<<"----------------------------fbxFileName:"<<fbxFileName<<endl;
         TriangulateRecursive(lScene->GetRootNode());// Convert mesh, NURBS and patch into triangle mesh
-		loadTextures(fbxFileName);
+//		loadTextures(fbxFileName);
 	/*	//get smoothInfo
 		{
 			//set me true to compute smoothing info from normals
@@ -208,7 +208,7 @@
 		//每个材质对应一个subMesh
 		{
 			
-			//获得材质索引表
+			//获得材质索引表（各多边形对应的材质索引）
 			FbxLayerElementArrayTemplate<int>* lMaterialIndice = NULL;
 			{
 				if (lMesh->GetElementMaterial())
@@ -279,29 +279,40 @@
 				}
 			}
 			//-------------
-			//求材质索引最大值
-			int maxMaterialIndex=-1;
+			//求材质索引集
+			vector<int> materialIndexSet;
 			for(int i=0;i<MaterialIndiceCount;i++){
-				int curMaterialIndex=lMaterialIndice->GetAt(i);
-				if(curMaterialIndex>maxMaterialIndex){
-					maxMaterialIndex=curMaterialIndex;
+				int MaterialIndex=lMaterialIndice->GetAt(i);
+				bool isExist=false;
+				for(int j=0;j<(int)materialIndexSet.size();j++){
+					if(materialIndexSet[j]==MaterialIndex){
+						isExist=true;
+						break;
+					}
+				}//got isExist
+				if(isExist==false){
+					materialIndexSet.push_back(MaterialIndex);
 				}
-			}//得到maxMaterialIndex
-			if(maxMaterialIndex==-1){
-				cout<<"error: maxMaterialIndex==-1"<<endl;
-				return;
-			}
+			}//got materialIndexSet
+			int materialIndexSetSize=(int)materialIndexSet.size();
+
 			//生成subMesh列表（每个材质生成一个subMesh）
 			vector<Cc3dSubMesh*> subMeshList;
-			for(int i=0;i<MaterialIndiceCount;i++){
+			for(int i=0;i<materialIndexSetSize;i++){
 				Cc3dSubMesh*subMesh=new Cc3dSubMesh();
 				subMesh->autorelease();
 				subMesh->init();
 				subMeshList.push_back(subMesh);
 			}
 			//为各subMesh填充纹理
-			for(int i=0;i<MaterialIndiceCount;i++){
-				int lMaterialIndex=lMaterialIndice->GetAt(i);
+			string modelFolderPath;
+			{
+				modelFolderPath=fbxFileName;
+				vector<string> strList=splitStrInTwoByLastBar(modelFolderPath);
+				modelFolderPath=strList[0];
+			}//got modelFolderPath
+			for(int i=0;i<materialIndexSetSize;i++){
+				int lMaterialIndex=materialIndexSet[i];
 				Cc3dTexture* texture=NULL;
 				const FbxSurfaceMaterial * lMaterial = pNode->GetMaterial(lMaterialIndex);
 				const char * pPropertyName=FbxSurfaceMaterial::sDiffuse;
@@ -311,11 +322,20 @@
 					const int lTextureCount = lProperty.GetSrcObjectCount(FbxFileTexture::ClassId);
 					if (lTextureCount)
 					{
-						const FbxFileTexture* lTexture = lProperty.GetSrcObject(FBX_TYPE(FbxFileTexture), 0);
-						if (lTexture && lTexture->GetUserDataPtr(userDataIndex_texture))
-						{
-							texture = (static_cast<Cc3dTexture *>(lTexture->GetUserDataPtr(userDataIndex_texture)));
+						const FbxFileTexture* lFileTexture = lProperty.GetSrcObject(FBX_TYPE(FbxFileTexture), 0);
+						// Try to load the texture from absolute path
+						string fullPath=lFileTexture->GetFileName();
+						vector<string> strList=splitStrInTwoByLastBar(fullPath);
+						assert((int)strList.size()==2);
+						string texFileName=strList[1];
+						string texPath=modelFolderPath+"/"+texFileName;
+						//以filename生成纹理
+						texture=Cc3dTextureCache::sharedTextureCache()->addImage(texPath.c_str());
+						if(texture==NULL){
+							cout<<"error: create texture failed! "<<endl;
+							assert(false);
 						}
+
 					}
 				}//got texture
 				assert(texture);
@@ -326,7 +346,18 @@
 			for (int i = 0; i < triangleCount; i++)
 			{
 				//当前多边形号：i
-				Cc3dSubMesh*subMesh=subMeshList[i];
+				//...
+				//当前多边形材质索引
+				int lMaterialIndex;
+				if(i<MaterialIndiceCount){//如果i对lMaterialIndice不越界
+					lMaterialIndex=lMaterialIndice->GetAt(i);
+				}else{//如果i对lMaterialIndice越界
+					//这种情况是允许的，例如对于某些只有一幅贴图的情况，尽管多边形数量有很多，
+					//但是得到的lMaterialIndice可能只有一个元素（指向材质0）
+					lMaterialIndex=0;
+				}//得到lMaterialIndex
+				//当前subMesh
+				Cc3dSubMesh*subMesh=subMeshList[lMaterialIndex];
 				//----获得uv
 				FbxVector2 uv0;
 				FbxVector2 uv1;
@@ -685,20 +716,7 @@ void Cmodelfbx::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool pComp
 		DestroySdkObjects(lSdkManager);//删除manager
 	}
 	void Cmodelfbx::destroyAllUserData(){
-		//清除用户保存的纹理句柄和纹理索引
-		{
-			const int lTextureCount = lScene->GetTextureCount();
-			for (int lTextureIndex = 0; lTextureIndex < lTextureCount; ++lTextureIndex)
-			{
-				FbxTexture * lTexture = lScene->GetTexture(lTextureIndex);
-				FbxFileTexture * lFileTexture = FbxCast<FbxFileTexture>(lTexture);
-				if (lFileTexture && lFileTexture->GetUserDataPtr(userDataIndex_texture))
-				{
-					GLuint* texture =(static_cast<GLuint *>(lFileTexture->GetUserDataPtr(userDataIndex_texture)));
-					delete texture;
-				}
-			}
-		}
+		
 		//清楚递归用户数据
 		clearUserDataRecursive(lScene->GetRootNode());
 	}
@@ -882,11 +900,17 @@ void Cmodelfbx::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool pComp
 		*/
 
 	}
-	
+	/*
 	void Cmodelfbx::loadTextures(const char * pFbxFileName)
 	//将各纹理文件的路径从lScene提取出来
-	//然后通过textureManager提交到GPU，并将显存句柄保存到textureManager
 	{
+		string modelFolderPath;
+		{
+			modelFolderPath=pFbxFileName;
+			vector<string> strList=splitStrInTwoByLastBar(modelFolderPath);
+			modelFolderPath=strList[0];
+		}//got modelFolderPath
+		
 		 // Load the textures into GPU, only for file texture now
         const int lTextureCount = lScene->GetTextureCount();
         for (int lTextureIndex = 0; lTextureIndex < lTextureCount; ++lTextureIndex)
@@ -896,75 +920,14 @@ void Cmodelfbx::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool pComp
             if (lFileTexture && !lFileTexture->GetUserDataPtr())
             {
                 // Try to load the texture from absolute path
-				const char* tfilename=lFileTexture->GetFileName();
-                string filename =tfilename; 
-				//将后缀名改为.bmp
-				int len=(int)filename.size();
-				int iDot=-1;
-				for(int i=len-1;i>=0;i--){
-					if(filename[i]=='.'){
-						iDot=i;
-						break;
-					}
-				}
-				if(iDot==-1){//没找到'.'
-					cout<<"无效的文件名!"<<endl;
-			//		return;
-				}else{//找到'.'
-					filename=filename.substr(0,iDot);
-					filename+=".bmp";
-				}//后缀名已改为.bmp
-				//将前面的路径名都删除，只剩下文件名
-				{
-					//找最后一个\或/
-					int iBar=-1;
-					int len=(int)filename.size();
-					for(int i=len-1;i>=0;i--){
-						if(filename[i]=='\\'||filename[i]=='/'){
-							iBar=i;
-							break;
-						}
-					}
-					if(iBar==-1){//没找到\或/
-						//说明没有，现在就是符合要求的
-					}else{//找到\或/
-						//将\或/及其前面的字符都去掉
-						filename=filename.substr(iBar+1,len-(iBar+1));
-					}
-				
-				}
-				//添加自己目录的路径名
-				{
-
-					string pathPerfix="data\\model_fbx\\";
-					//从fbxFileName中提取最后一级文件名(并且要把.fbx去掉)，存到tstr
-					string tstr=fbxFileName;
-					{
-						//找最后一个\或/
-						int iBar=-1;
-						int len=(int)tstr.size();
-						for(int i=len-1;i>=0;i--){
-							if(tstr[i]=='\\'||tstr[i]=='/'){
-								iBar=i;
-								break;
-							}
-						}
-						if(iBar==-1){//没找到\或/
-							//说明没有，现在就是符合要求的
-						}else{//找到\或/
-							//将\或/及其前面的字符都去掉
-							tstr=tstr.substr(iBar+1,len-(iBar+1));
-						}
-						//将tstr的最后四个字符(一定是.fbx)去掉
-						tstr=tstr.substr(0,(int)tstr.size()-4);
-					}//得到tstr
-					pathPerfix+=tstr;
-					pathPerfix+="\\";
-					filename=pathPerfix+filename;
-				}//得到完整的纹理路径名filename
-//				cout<<filename<<endl;
+				string fullPath=lFileTexture->GetFileName();
+				vector<string> strList=splitStrInTwoByLastBar(fullPath);
+				assert((int)strList.size()==2);
+				string texFileName=strList[1];
+				string texPath=modelFolderPath+"/"+texFileName;
+				cout<<"texPath:"<<texPath<<endl;
 				//以filename生成纹理
-				Cc3dTexture*texture=Cc3dTextureCache::sharedTextureCache()->addImage(filename.c_str());
+				Cc3dTexture*texture=Cc3dTextureCache::sharedTextureCache()->addImage(texPath.c_str());
 				if(texture){
 					//将此纹理的显存句柄以用户数据的形式保存回到lFileTexture(即lTexture)
                     lFileTexture->SetUserDataPtr(userDataIndex_texture,texture);
@@ -976,49 +939,10 @@ void Cmodelfbx::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool pComp
             }
 			
         }
-		//检查是否有重复纹理路径
-		{
-			bool nonSame=true;//是否均不相同
-			const int lTextureCount = lScene->GetTextureCount();
-			if(lTextureCount<=1){//如果纹理数小于等于1
-				
-			}else{//如果纹理数大于1
-			
-				for (int i = 0; i < lTextureCount; i++)
-			    {
-			        FbxTexture * lTexture = lScene->GetTexture(i);
-					Cc3dTexture* texture=(static_cast<Cc3dTexture*>(lTexture->GetUserDataPtr(userDataIndex_texture)));
-					string texPath_i=texture->getFilePath();
-					//用texPath_i与其之后的各path_j比较，如果有相同者，则说明有重复
-					for(int j=i+1;j<lTextureCount;j++){
-						FbxTexture * lTexture = lScene->GetTexture(j);
-						Cc3dTexture* texture=(static_cast<Cc3dTexture*>(lTexture->GetUserDataPtr(userDataIndex_texture)));
-						string texPath_j=texture->getFilePath();
-						//texPath_i与texPath_j比较
-						if(texPath_i==texPath_j){
-							cout<<"纹理路径重复!"<<endl;
-							cout<<texPath_i<<" "<<texPath_j<<endl;
-					//		system("pause");
-							nonSame=false;
-							break;
-						}
-					}
-					if(nonSame==false)break;
-				}
-			
-			}//得到nonSame
-			if(nonSame){
-				cout<<pFbxFileName<<" 纹理路径无重复"<<endl;
-			}else{
-				cout<<pFbxFileName<<" 纹理路径有重复!"<<endl;
-		//		system("pause");
-			}
-			
-
-		}
+	
 	
 	}
-	
+	*/
     // Triangulate all NURBS, patch and mesh under this node recursively.
     void Cmodelfbx::TriangulateRecursive(FbxNode* pNode)
     {

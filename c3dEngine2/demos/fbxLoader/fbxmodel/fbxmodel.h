@@ -35,8 +35,6 @@ const int userDataIndex_clusterDeformation=5;
 const int userDataIndex_clusterWeight=6;
 const int userDataIndex_clusterCount=7;
 const int userDataIndex_hasSkin=8;
-//lFileTexture上的userData
-const int userDataIndex_texture=0;
 //pCluster上的userData
 const int userDataIndex_clusterRelativeInitPosition=0;
 class Cmodelfbx:public Cc3dActor
@@ -84,7 +82,7 @@ public:
 	void selectAnimation(int iAnimationStack);
 	void animationAdvance_rollback(int dms);
 	void drawSkin(FbxNode*pNode,FbxVector4*lVertexArray,FbxVector4*lNormalArray);
-	void loadTextures(const char * pFbxFileName);
+//	void loadTextures(const char * pFbxFileName);
 	//-----------------------------------------------------------------------------------------------
 	// Deform the vertex array in classic linear way.简化版本
 	void ComputeLinearDeformation_simplify(FbxAMatrix& pGlobalPosition, 
