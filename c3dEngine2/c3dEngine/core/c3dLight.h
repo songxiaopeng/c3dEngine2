@@ -25,8 +25,8 @@ public:
     Cc3dLight(){
         m_pos.init(0,0,0,1);
         m_diffuse.init(1,1,1,1);
-        m_ambient.init(0,0,0,1);
-        m_specular.init(1,1,1,1);
+        m_ambient.init(1,1,1,1);
+        m_specular.init(0,0,0,1);
     }
     ~Cc3dLight(){
         int nLightViewCamera=(int)m_lightViewCameraList.size();

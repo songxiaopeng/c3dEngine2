@@ -56,7 +56,7 @@ void main(void){
 
     //----get normal in world space
 
-    vec4 norm_world = vec4(normalize(vec3(normMat*a_normal)),0.0);
+    vec4 norm_world = normMat*a_normal;
 
     //----get pos in world space
 
@@ -74,7 +74,7 @@ void main(void){
 
     //----calculate ambient color
 
-    vec4 ambientColor=vec4(vec3(ambientML),1.0);
+    vec4 ambientColor=ambientML;
 
     //----calculate specular color
 

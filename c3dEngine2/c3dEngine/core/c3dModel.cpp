@@ -22,7 +22,7 @@ void Cc3dModel::submitVertex(GLenum usage){
         int nSubMesh=(int)mesh->getSubMeshCount();
         for(int j=0;j<nSubMesh;j++){
             Cc3dSubMesh*psubMesh=mesh->getSubMeshByIndex(j);
-            psubMesh->getIndexVBO()->submitVertex(psubMesh->getSubMeshData()->vlist, usage);
+            psubMesh->getIndexVBO()->submitVertex(psubMesh->getSubMeshData()->getvlist(), usage);
         }
     }
     
@@ -34,7 +34,7 @@ void Cc3dModel::submitIndex(GLenum usage){
         int nSubMesh=(int)mesh->getSubMeshCount();
         for(int j=0;j<nSubMesh;j++){
             Cc3dSubMesh*psubMesh=mesh->getSubMeshByIndex(j);
-            psubMesh->getIndexVBO()->submitIndex(psubMesh->getSubMeshData()->IDtriList, usage);
+            psubMesh->getIndexVBO()->submitIndex(psubMesh->getSubMeshData()->getIDtriList(), usage);
         }
     }
     

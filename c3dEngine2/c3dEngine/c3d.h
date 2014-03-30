@@ -11,6 +11,7 @@
 
 #include "c3dAL.h"
 #include "c3dGL.h"
+#include "c3dGlobalTimer.h"
 #include "c3dDeviceAndOSInfo.h"
 #include "c3dActor.h"
 #include "c3dSceneManger.h"

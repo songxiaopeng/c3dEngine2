@@ -76,7 +76,7 @@ public:
     void setHeightScale(float value){m_heightScale=value;}
     float getHeightScale()const{return m_heightScale;}
     const Cc3dRange&getRange()const{return m_range;}
-    void update(const Cc3dCamera&camera);
+    void updateTerrain(const Cc3dCamera&camera);
     float getHAndNormal(float x,float z,Cc3dVector4&norm)const;
     float getH(float x,float z)const ;
 protected:

@@ -99,6 +99,12 @@ public:
         
     }
     void addMesh(Cc3dMesh*mesh);
+	Cc3dMesh* getMeshByIndex(int index){
+		return m_model->getMeshByIndex(index);
+	}
+	int getMeshCount(){
+		return m_model->getMeshCount();
+	}
     void submitVertex(GLenum usage);
     void submitIndex(GLenum usage);
 	void submit(GLenum usage){

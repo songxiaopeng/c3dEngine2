@@ -11,14 +11,14 @@
 #include "c3dVector.h"
 
 void Cc3dSubMesh::submit(GLenum usage){
-    this->m_indexVBO->submitVertex(this->getSubMeshData()->vlist, usage);
-    this->m_indexVBO->submitIndex(this->getSubMeshData()->IDtriList , usage);
+    this->m_indexVBO->submitVertex(this->getSubMeshData()->getvlist(), usage);
+    this->m_indexVBO->submitIndex(this->getSubMeshData()->getIDtriList() , usage);
 }
 void Cc3dSubMesh::submitVertex(GLenum usage){
-    this->m_indexVBO->submitVertex(this->getSubMeshData()->vlist, usage);
+    this->m_indexVBO->submitVertex(this->getSubMeshData()->getvlist(), usage);
 }
 void Cc3dSubMesh::submitIndex(GLenum usage){
-    this->m_indexVBO->submitIndex(this->getSubMeshData()->IDtriList , usage);
+    this->m_indexVBO->submitIndex(this->getSubMeshData()->getIDtriList() , usage);
 }
 void Cc3dSubMesh::clearMeshData(){
     m_subMeshData->clear();

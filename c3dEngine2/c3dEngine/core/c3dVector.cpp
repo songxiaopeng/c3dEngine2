@@ -45,7 +45,7 @@ void Cc3dVector2::init(const float array[2]){
     }
 }
 void Cc3dVector2::print(){
-    C3DLOG("Cc3dVector2: %f,%f",m_array[0],m_array[1]);
+    c3dLog("Cc3dVector2: %f,%f",m_array[0],m_array[1]);
 }
 Cc3dVector3 Cc3dVector2::toV3(float z)const{
     return Cc3dVector3(x(),y(),z);
@@ -96,7 +96,7 @@ void Cc3dVector4::init(const float array[4]){
     }
 }
 void Cc3dVector4::print(){
-    C3DLOG("Cc3dVector4: %f,%f,%f,%f",m_array[0],m_array[1],m_array[2],m_array[3]);
+    c3dLog("Cc3dVector4: %f,%f,%f,%f",m_array[0],m_array[1],m_array[2],m_array[3]);
 }
 Cc3dVector2 Cc3dVector4::toV2()const{
     return Cc3dVector2(x(),y());
@@ -146,7 +146,7 @@ void Cc3dVector3::init(const float array[3]){
     }
 }
 void Cc3dVector3::print(){
-    C3DLOG("Cc3dVector3: %f,%f,%f",m_array[0],m_array[1],m_array[2]);
+    c3dLog("Cc3dVector3: %f,%f,%f",m_array[0],m_array[1],m_array[2]);
 }
 Cc3dVector2 Cc3dVector3::toV2()const{
     return Cc3dVector2(x(),y());

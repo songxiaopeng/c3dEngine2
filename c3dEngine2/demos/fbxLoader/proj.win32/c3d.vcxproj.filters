@@ -249,6 +249,9 @@
     <ClCompile Include="..\fbxmodel\fbxmodel.cpp">
       <Filter>fbxmodel</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\c3dEngine\core\c3dGlobalTimer.cpp">
+      <Filter>c3dEngine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Script1.rc">
@@ -516,6 +519,9 @@
     </ClInclude>
     <ClInclude Include="..\fbxmodel\fbxmodel.h">
       <Filter>fbxmodel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\c3dEngine\core\c3dGlobalTimer.h">
+      <Filter>c3dEngine</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

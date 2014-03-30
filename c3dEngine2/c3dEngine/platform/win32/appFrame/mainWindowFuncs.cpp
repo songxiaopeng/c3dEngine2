@@ -101,6 +101,8 @@ void render(HDC hDC){
 
  }
  void initWithFrame(){
+	//----start global timer
+	Cc3dGlobalTimer::sharedGlobalTimer()->start();
 	//----Ëæ»úÊý
     srand(time(0));
 	
@@ -170,6 +172,7 @@ void render(HDC hDC){
     
     C3DCHECK_GL_ERROR_DEBUG();
     C3DCHECK_AL_ERROR_DEBUG();
+
  }
  void initOpenAL(){
 	//initialize OpenAL and clear the error bit.

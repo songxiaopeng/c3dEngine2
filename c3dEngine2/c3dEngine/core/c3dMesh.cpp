@@ -11,9 +11,9 @@ Cc3dRange Cc3dMesh::getRange()const {
     float zmax=-c3d_INF;
     int nSubMesh=(int)m_subMeshList.size();
     for(int i=0;i<nSubMesh;i++){
-        int nv=(int)m_subMeshList[i]->getSubMeshData()->vlist.size();
+        int nv=(int)m_subMeshList[i]->getSubMeshData()->getvlist().size();
         for(int j=0;j<nv;j++){
-            const Cc3dVertex&v=m_subMeshList[i]->getSubMeshData()->vlist[j];
+            const Cc3dVertex&v=m_subMeshList[i]->getVertexByIndex(j);//getSubMeshData()->vlist[j];
             const Cc3dVector4&pos=v.getPos();
             if(pos.x()<xmin)xmin=pos.x();
             if(pos.x()>xmax)xmax=pos.x();
@@ -125,22 +125,22 @@ void Cc3dMesh::addSubMesh(Cc3dSubMesh*submesh){
     
 }
 
-void Cc3dMesh::releaseIDtriList()//释放psubMeshList中各submesh的IDtriList
+void Cc3dMesh::releaseIDtriList()//释放subMeshList中各submesh的IDtriList
 {
     int nSubMesh=(int)m_subMeshList.size();
     for(int i=0;i<nSubMesh;i++){
         Cc3dSubMesh&submesh=*m_subMeshList[i];
-        vector<Cc3dIDTriangle>(submesh.getSubMeshData()->IDtriList).swap(submesh.getSubMeshData()->IDtriList);
+		submesh.getSubMeshData()->swapReleaseIDtriList();
     }
     
     
 }
-void Cc3dMesh::releasevList()//释放psubMeshList中各submesh的vlist
+void Cc3dMesh::releasevList()//释放subMeshList中各submesh的vlist
 {
     int nSubMesh=(int)m_subMeshList.size();
     for(int i=0;i<nSubMesh;i++){
         Cc3dSubMesh&submesh=*m_subMeshList[i];
-        vector<Cc3dVertex>(submesh.getSubMeshData()->vlist).swap(submesh.getSubMeshData()->vlist);
+		submesh.getSubMeshData()->swapReleasevlist();
     }
 }
 

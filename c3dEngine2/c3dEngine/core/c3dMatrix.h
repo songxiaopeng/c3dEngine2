@@ -42,6 +42,8 @@ public:
     vector<float> convertToVector()const;
     Cc3dMatrix4 operator*(const Cc3dMatrix4&mat)const;
     Cc3dVector4 operator*(const Cc3dVector4&v)const;
+	Cc3dMatrix4 operator*(float k)const;
+	Cc3dMatrix4 operator+(const Cc3dMatrix4&mat)const;
     void print();
 private:
     void initMembers();

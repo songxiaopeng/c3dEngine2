@@ -180,6 +180,7 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\c3dEngine\platform\win32\libraries\*.*" "$(Ou
     <ClCompile Include="..\..\..\c3dEngine\core\c3dGestureAnalyzer.cpp" />
     <ClCompile Include="..\..\..\c3dEngine\core\c3dGLdebug.cpp" />
     <ClCompile Include="..\..\..\c3dEngine\core\c3dGLMath.cpp" />
+    <ClCompile Include="..\..\..\c3dEngine\core\c3dGlobalTimer.cpp" />
     <ClCompile Include="..\..\..\c3dEngine\core\c3dIDtriangle.cpp" />
     <ClCompile Include="..\..\..\c3dEngine\core\c3dIndexVBO.cpp" />
     <ClCompile Include="..\..\..\c3dEngine\core\c3dLight.cpp" />
@@ -256,6 +257,7 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\c3dEngine\platform\win32\libraries\*.*" "$(Ou
     <ClInclude Include="..\..\..\c3dEngine\core\c3dGestureAnalyzer.h" />
     <ClInclude Include="..\..\..\c3dEngine\core\c3dGLdebug.h" />
     <ClInclude Include="..\..\..\c3dEngine\core\c3dGLMath.h" />
+    <ClInclude Include="..\..\..\c3dEngine\core\c3dGlobalTimer.h" />
     <ClInclude Include="..\..\..\c3dEngine\core\c3dIDtriangle.h" />
     <ClInclude Include="..\..\..\c3dEngine\core\c3dIndexVBO.h" />
     <ClInclude Include="..\..\..\c3dEngine\core\c3dLight.h" />

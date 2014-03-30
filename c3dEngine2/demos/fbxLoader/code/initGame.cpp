@@ -21,7 +21,8 @@ void initGame(){
 		light0=new Cc3dLight();
 		light0->autorelease();
 		light0->retain();
-		light0->setPos(100,50,20);
+		light0->setPos(1000,5000,1000);//(50,200,500);
+		light0->setAmbient(0.5,0.5,0.5);
 	}
 	 //----camera2D
     {
@@ -49,8 +50,8 @@ void initGame(){
         camera->setAspect((float)Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo()->getScreenRect().getWidth()/Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo()->getScreenRect().getHeight());
         camera->setzNear(0.5);
         camera->setzFar(10000);
-        float eyePos[3]={100,50,50};
-        float eyeTg[3]={0,0,0};
+        float eyePos[3]={0,30,50};
+        float eyeTg[3]={0,30,0};
         float up[3]={0,1,0};
         camera->setEyePos(Cc3dVector3(eyePos).toV4(1));
         camera->setCenter(Cc3dVector3(eyeTg).toV4(1));
@@ -62,11 +63,12 @@ void initGame(){
 	Cmodelfbx*fbxmodel=new Cmodelfbx();
 	fbxmodel->autorelease();
 
+	fbxmodel->setInterval(1.0/60);
 	fbxmodel->Init_and_load("fbxLoader_resource/girl/girl.fbx");
 
 	fbxmodel->triangulate_loadTextures_preprocess();
-	fbxmodel->setTime(0);
-	fbxmodel->selectAnimation(0);
+	fbxmodel->bakeAnimation();
+	
 
 	fbxmodel->setPos(Cc3dVector4(0,0,0,1));
 	fbxmodel->setLight(light0);

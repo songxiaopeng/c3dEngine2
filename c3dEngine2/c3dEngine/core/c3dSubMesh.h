@@ -58,7 +58,7 @@ public:
         material->init();
         material->autorelease();
         setMaterial(material);
-        //default meshData
+        //default subMeshData
         Cc3dSubMeshData*meshData=new Cc3dSubMeshData();
         meshData->init();
         meshData->autorelease();
@@ -189,6 +189,10 @@ public:
     void clearMeshData();
     void addVertex(const Cc3dVertex&vertex);
     void addIDtri(const Cc3dIDTriangle&IDtri);
+	Cc3dVertex getVertexByIndex(int index){return m_subMeshData->getVertexByIndex(index);}
+	void setVertexByIndex(int index,const Cc3dVertex&vertex){m_subMeshData->setVertexByIndex(index,vertex);}
+	Cc3dIDTriangle getIDtriByIndex(int index){return m_subMeshData->getIDtriByIndex(index);}
+
 
  
 

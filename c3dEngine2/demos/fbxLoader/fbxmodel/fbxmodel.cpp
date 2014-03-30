@@ -1,6 +1,28 @@
 #include "fbxmodel.h"
 
-	
+Cc3dMatrix4 FbxAMatrixToCc3dMatrix4(const FbxAMatrix&m){
+	//设m为FbxAMatrix
+	//double*pm=(double*)m
+	//则pm完全等同于opengl中的double[16],遵从如下布局:
+	// pm[0] pm[4] pm[8]  pm[12]
+	// pm[1] pm[5] pm[9]  pm[13]
+	// pm[2] pm[6] pm[10] pm[14]
+	// pm[3] pm[7] pm[11] pm[15]
+	//其中(pm[12],pm[13],pm[14],pm[15])为平移分量(x,y,z,1)
+	//而如果不进行类型转化，直接使用m，则：
+	//               m[0][0] m[0][1] m[0][2] m[0][3]  pm[0]  pm[1]  pm[2]  pm[3]
+	// FbxAMatrix m= m[1][0] m[1][1] m[1][2] m[1][3]= pm[4]  pm[5]  pm[6]  pm[7]
+	//				 m[2][0] m[2][1] m[2][2] m[2][3]  pm[8]  pm[9]  pm[10] pm[11]
+	//               m[3][0] m[3][1] m[3][2] m[3][3]  pm[12] pm[13] pm[14] pm[15]
+	//注意此处pm矩阵与上面的pm矩阵行列正好相反
+	const double*pm=(const double*)m;
+	Cc3dMatrix4 mat(pm[0],pm[1],pm[2],pm[3],//col1
+					pm[4],pm[5],pm[6],pm[7],//col2
+					pm[8],pm[9],pm[10],pm[11],//col3
+					pm[12],pm[13],pm[14],pm[15]);//col4
+	return mat;
+
+}
 	
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//初始化
@@ -187,23 +209,23 @@
 			GetSmoothing(lSdkManager, lScene->GetRootNode(), lComputeFromNormals, lConvertToSmoothingGroup);
 		
 		}*/
-		makeSubMeshSetForEachNode(lScene->GetRootNode(),userDataIndex_idSubMeshSet);
-		makeOtherUserForEachNode(lScene->GetRootNode(),userDataIndex_UV,userDataIndex_Norm);
+		makeSubMeshSetForEachNode(lScene->GetRootNode());
+		makeOtherUserForEachNode(lScene->GetRootNode());
 		
 	
 
 	}
-	void Cmodelfbx::makeSubMeshSetForThisNode(FbxNode* pNode,int userDataIndex){
-		cout<<"nodeName:"<<pNode->GetName()<<endl;
+	void Cmodelfbx::makeSubMeshSetForThisNode(FbxNode* pNode){
 		FbxMesh*lMesh=pNode->GetMesh();
+		const int lVertexCount = lMesh->GetControlPointsCount();
 		if(!lMesh){
 			cout<<"error: lMesh==NULL!"<<endl;
 			return;
 		}
-		Cc3dMesh*mesh=new Cc3dMesh();
+		Cc3dSkinMesh*mesh=new Cc3dSkinMesh();
 		mesh->autorelease();
-		//将mesh添加到lMesh节点
-		lMesh->SetUserDataPtr(userDataIndex,mesh);
+		mesh->setName(pNode->GetName());
+		mesh->setFbxMeshPtr(lMesh);
 		//制作mesh
 		//每个材质对应一个subMesh
 		{
@@ -226,6 +248,10 @@
 				cout<<"error: MaterialIndiceCount==0 !"<<endl;
 				return;
 			}
+			//获得材质映射模式
+			FbxGeometryElement::EMappingMode lMaterialMappingMode = FbxGeometryElement::eNone;
+			lMaterialMappingMode = lMesh->GetElementMaterial()->GetMappingMode();
+			
 	
 			//-------------------------------判断uv映射模式及获得lUVName
 			const char * lUVName = NULL;
@@ -235,17 +261,15 @@
 				//是否有uv
 				bool mHasUV = lMesh->GetElementUVCount() > 0;
 				if(mHasUV==false){
-					cout<<"没有uv!"<<endl;
-					return;
+					cout<<"error: there is no uv!"<<endl;
+					assert(false);
 				}else{
 					//uv映射模式
 					const FbxGeometryElementUV * lUVElement = lMesh->GetElementUV(0);
 					FbxGeometryElement::EMappingMode lUVMappingMode=lUVElement->GetMappingMode();
 					if(lUVMappingMode!=FbxGeometryElement::eByPolygonVertex){
-						cout<<"error:uv映射模式不是eByPolygonVertex，目前尚不支持其它模式!"<<endl;
-						system("pause");
-						exit(0);
-						return;
+						cout<<"error: currently, only uv mapping mode : eByPolygonVertex is supported!"<<endl;
+						assert(false);
 					}else{
 						//获得uvSet名称
 						lMesh->GetUVSetNames(lUVNames);
@@ -254,7 +278,7 @@
 							lUVName = lUVNames[0];
 						}else{
 							cout<<"lUVName==NULL!"<<endl;
-							return;
+							assert(false);
 						}
 					}	
 				}
@@ -268,14 +292,12 @@
 				if (lNormalMappingMode == FbxGeometryElement::eNone)
 				{
 					cout<<"error:没有法向数据!"<<endl;
-					system("pause");
-					exit(0);
+					assert(false);
 				}
 				if (mHasNormal && lNormalMappingMode != FbxGeometryElement::eByPolygonVertex)
 				{
 					cout<<"error:norm映射模式不是eByPolygonVertex，目前尚不支持其它模式!"<<endl;
-					system("pause");
-					exit(0);
+					assert(false);
 				}
 			}
 			//-------------
@@ -297,9 +319,9 @@
 			int materialIndexSetSize=(int)materialIndexSet.size();
 
 			//生成subMesh列表（每个材质生成一个subMesh）
-			vector<Cc3dSubMesh*> subMeshList;
+			vector<Cc3dSkinSubMesh*> subMeshList;
 			for(int i=0;i<materialIndexSetSize;i++){
-				Cc3dSubMesh*subMesh=new Cc3dSubMesh();
+				Cc3dSkinSubMesh*subMesh=new Cc3dSkinSubMesh();
 				subMesh->autorelease();
 				subMesh->init();
 				subMeshList.push_back(subMesh);
@@ -329,7 +351,8 @@
 						assert((int)strList.size()==2);
 						string texFileName=strList[1];
 						string texPath=modelFolderPath+"/"+texFileName;
-						//以filename生成纹理
+						//cout<<"texPath:"<<texPath<<endl;
+						//以texPath生成纹理
 						texture=Cc3dTextureCache::sharedTextureCache()->addImage(texPath.c_str());
 						if(texture==NULL){
 							cout<<"error: create texture failed! "<<endl;
@@ -339,25 +362,31 @@
 					}
 				}//got texture
 				assert(texture);
-				subMeshList[i]->setTexture(texture);
+				subMeshList[lMaterialIndex]->setTexture(texture);
 			}
 			//遍历各多边形,填充到subMesh
+			vector<vector<_CmeshIDvID> > vertexDupList;
+			vertexDupList.resize(lVertexCount);//support controlPointID is continuous (it is right)
 			const int triangleCount = lMesh->GetPolygonCount();
 			for (int i = 0; i < triangleCount; i++)
 			{
 				//当前多边形号：i
 				//...
-				//当前多边形材质索引
-				int lMaterialIndex;
-				if(i<MaterialIndiceCount){//如果i对lMaterialIndice不越界
-					lMaterialIndex=lMaterialIndice->GetAt(i);
-				}else{//如果i对lMaterialIndice越界
-					//这种情况是允许的，例如对于某些只有一幅贴图的情况，尽管多边形数量有很多，
-					//但是得到的lMaterialIndice可能只有一个元素（指向材质0）
-					lMaterialIndex=0;
-				}//得到lMaterialIndex
-				//当前subMesh
-				Cc3dSubMesh*subMesh=subMeshList[lMaterialIndex];
+				//----顶点
+				int controlPointID0=lMesh->GetPolygonVertex(i,0);
+				int controlPointID1=lMesh->GetPolygonVertex(i,1);
+				int controlPointID2=lMesh->GetPolygonVertex(i,2);
+				// Sometimes, the mesh can have less points than at the time of the skinning
+				// because a smooth operator was active when skinning but has been deactivated during export.
+				if (controlPointID0 >= lVertexCount)continue;
+				if (controlPointID1 >= lVertexCount)continue;
+				if (controlPointID2 >= lVertexCount)continue;
+				FbxVector4 pos0=lMesh->GetControlPoints()[controlPointID0];
+				FbxVector4 pos1=lMesh->GetControlPoints()[controlPointID1];
+				FbxVector4 pos2=lMesh->GetControlPoints()[controlPointID2];
+				pos0[3]=1;
+				pos1[3]=1;
+				pos2[3]=1;
 				//----获得uv
 				FbxVector2 uv0;
 				FbxVector2 uv1;
@@ -375,32 +404,51 @@
 				norm0[3]=0;
 				norm1[3]=0;
 				norm2[3]=0;
-				//----顶点
-				FbxVector4 pos0=lMesh->GetControlPoints()[lMesh->GetPolygonVertex(i,0)];
-				FbxVector4 pos1=lMesh->GetControlPoints()[lMesh->GetPolygonVertex(i,1)];
-				FbxVector4 pos2=lMesh->GetControlPoints()[lMesh->GetPolygonVertex(i,2)];
-				pos0[3]=1;
-				pos1[3]=1;
-				pos2[3]=1;
+				//当前多边形材质索引
+				//ref to "Layer element for mapping materials (FbxSurfaceMaterial) to a geometry" in fbxlayer.h
+				int lMaterialIndex=0;
+				if(lMaterialMappingMode == FbxGeometryElement::eByPolygon){
+					lMaterialIndex=lMaterialIndice->GetAt(i);
+				}else if( lMaterialMappingMode == FbxGeometryElement::eAllSame){
+					lMaterialIndex=0;
+				}else{
+					cout<<"error: unknown material mapping mode!"<<endl;
+					assert(false);
+				}//得到lMaterialIndex
+				//用材质索引作为meshID
+				int meshID=lMaterialIndex;
+				//当前subMesh
+				Cc3dSubMesh*subMesh=subMeshList[meshID];
 				//----由uv,norm,pos合成顶点
-				Cc3dVertex vertex0(Cc3dVector4(pos0[0],pos0[1],pos0[2],pos0[3]),Cc3dVector2(uv0[0],uv0[1]),Cc3dVector4(norm0[0],norm0[1],norm0[2],norm0[3]));
-				Cc3dVertex vertex1(Cc3dVector4(pos1[0],pos1[1],pos1[2],pos1[3]),Cc3dVector2(uv1[0],uv1[1]),Cc3dVector4(norm1[0],norm1[1],norm1[2],norm1[3]));
-				Cc3dVertex vertex2(Cc3dVector4(pos2[0],pos2[1],pos2[2],pos2[3]),Cc3dVector2(uv2[0],uv2[1]),Cc3dVector4(norm2[0],norm2[1],norm2[2],norm2[3]));
+				Cc3dVertex vertex0(Cc3dVector4(pos0[0],pos0[1],pos0[2],pos0[3]),Cc3dVector2(uv0[0],1-uv0[1]),Cc3dVector4(norm0[0],norm0[1],norm0[2],norm0[3]));
+				Cc3dVertex vertex1(Cc3dVector4(pos1[0],pos1[1],pos1[2],pos1[3]),Cc3dVector2(uv1[0],1-uv1[1]),Cc3dVector4(norm1[0],norm1[1],norm1[2],norm1[3]));
+				Cc3dVertex vertex2(Cc3dVector4(pos2[0],pos2[1],pos2[2],pos2[3]),Cc3dVector2(uv2[0],1-uv2[1]),Cc3dVector4(norm2[0],norm2[1],norm2[2],norm2[3]));
 				//----addIDtri first
-				int ID0=subMesh->getSubMeshData()->vlist.size();
-				int ID1=subMesh->getSubMeshData()->vlist.size()+1;
-				int ID2=subMesh->getSubMeshData()->vlist.size()+2;
-				subMesh->addIDtri(Cc3dIDTriangle(ID0,ID1,ID2));
+				int vID0=subMesh->getSubMeshData()->getVertexCount();//vlist.size();
+				int vID1=vID0+1;
+				int vID2=vID0+2;
+				subMesh->addIDtri(Cc3dIDTriangle(vID0,vID1,vID2));
 				//----addVertex second (must after addIDtri)
 				subMesh->addVertex(vertex0);
 				subMesh->addVertex(vertex1);
 				subMesh->addVertex(vertex2);
+				//----make vertexDupList
+				vertexDupList[controlPointID0].push_back(_CmeshIDvID(meshID,vID0));
+				vertexDupList[controlPointID1].push_back(_CmeshIDvID(meshID,vID1));
+				vertexDupList[controlPointID2].push_back(_CmeshIDvID(meshID,vID2));
+				
+			}
+			//backup subMeshData for all subMeshes
+			int nSubMesh=(int)subMeshList.size();
+			for(int i=0;i<nSubMesh;i++){
+				subMeshList[i]->backupSubMeshData();
 			}
 			//将subMeshList中所有mesh添加到mesh
-			int nSubMesh=(int)subMeshList.size();
 			for(int i=0;i<nSubMesh;i++){
 				mesh->addSubMesh(subMeshList[i]);
 			}
+			//将vertexDupList添加到mesh
+			mesh->setVertexDupList(vertexDupList);
 		}
 		//将mesh添加到this
 		this->addMesh(mesh);
@@ -409,19 +457,19 @@
 		
 
 	}
-	void Cmodelfbx::makeSubMeshSetForEachNode(FbxNode* pNode,int userDataIndex)
+	void Cmodelfbx::makeSubMeshSetForEachNode(FbxNode* pNode)
 	{
 		FbxNodeAttribute* lNodeAttribute = pNode->GetNodeAttribute();
 		if (lNodeAttribute//有属性节点
 			&&lNodeAttribute->GetAttributeType() == FbxNodeAttribute::eMesh//且属性节点为的类型为eMesh
 			)//为pNode制作并绑定idSubMeshSet
 		{	
-			makeSubMeshSetForThisNode(pNode,userDataIndex);
+			makeSubMeshSetForThisNode(pNode);
 		}
 		const int lChildCount = pNode->GetChildCount();
 		for (int lChildIndex = 0; lChildIndex < lChildCount; ++lChildIndex)
 		{
-			makeSubMeshSetForEachNode(pNode->GetChild(lChildIndex),userDataIndex);
+			makeSubMeshSetForEachNode(pNode->GetChild(lChildIndex));
 		}
 	}
 	bool Cmodelfbx::getHasDeformer(FbxMesh*lMesh){
@@ -434,7 +482,7 @@
 		return lHasSkin;
 	}
 
-	void Cmodelfbx::makeOtherUserForThisNode(FbxNode* pNode,int userDataIndex_uv,int userDataIndex_norm){
+	void Cmodelfbx::makeOtherUserForThisNode(FbxNode* pNode){
 		//获得mesh
 		FbxMesh*lMesh=pNode->GetMesh();
 		if(!lMesh){
@@ -445,19 +493,10 @@
 		const int triangleCount = lMesh->GetPolygonCount();
 		//获得顶点个数
 		const int lVertexCount = lMesh->GetControlPointsCount();
-		//为pUVs和pNorms开辟空间
-		float*pUVs=new float[triangleCount*3*2];//(pUVs[6*i],pUVs[6*i+1])为i号三角形第一个顶点的uv坐标
-									   	  //(pUVs[6*i+2],pUVs[6*i+3])为i号三角形第二个顶点的uv坐标
-										  //(pUVs[6*i+4],pUVs[6*i+5])为i号三角形第三个顶点的uv坐标
-		FbxVector4*pNorms=new FbxVector4[triangleCount*3];//pNorms[3*i]为i号三角形第一个顶点的norm
-															//pNorms[3*i+1]为i号三角形第二个顶点的norm
-															//pNorms[3*i+2]为i号三角形第三个顶点的norm
 		//为clusterCount,hasSkin开辟空间
 		int*pClusterCount=new int;
 		bool*pHasSkin=new bool;
-		//为lVertexArray，lNormalArray，lClusterDeformation，lClusterWeight开辟空间
-		FbxVector4* lVertexArray= NULL;
-		FbxVector4* lNormalArray= NULL;
+		//为lClusterDeformation，lClusterWeight开辟空间
 		FbxAMatrix* lClusterDeformation=NULL;
 		double* lClusterWeight=NULL;
 		//开辟空间
@@ -467,8 +506,6 @@
 			}else{//lVertexCount!=0
 				//仅当有蒙皮时才生成（为的是不破坏原数据，否则可以直接用原始数据的引用）
 				if(getHasDeformer(lMesh)){
-					lVertexArray = new FbxVector4[lVertexCount];
-					lNormalArray = new FbxVector4[3*triangleCount];
 					lClusterDeformation = new FbxAMatrix[lVertexCount];
 					lClusterWeight = new double[lVertexCount];
 				}
@@ -476,12 +513,8 @@
 		}
 
 		//添加到lMesh节点
-		lMesh->SetUserDataPtr(userDataIndex_uv,pUVs);
-		lMesh->SetUserDataPtr(userDataIndex_norm,pNorms);
 		lMesh->SetUserDataPtr(userDataIndex_clusterCount,pClusterCount);
 		lMesh->SetUserDataPtr(userDataIndex_hasSkin,pHasSkin);
-		lMesh->SetUserDataPtr(userDataIndex_Vertex_deformed,lVertexArray);
-		lMesh->SetUserDataPtr(userDataIndex_Normal_deformed,lNormalArray);
 		lMesh->SetUserDataPtr(userDataIndex_clusterDeformation,lClusterDeformation);
 		lMesh->SetUserDataPtr(userDataIndex_clusterWeight,lClusterWeight);
 		//填充pCLusterCount
@@ -499,93 +532,7 @@
 		{
 			*pHasSkin=getHasDeformer(lMesh);//此处不严谨
 		}
-		//填充pUVs和pNorms
-		{
-			//-------------------------------判断uv映射模式及获得lUVName
-			const char * lUVName = NULL;
-			FbxStringList lUVNames;//这个不能放到下面的括号里面去，因为将来lUVName是要指向lUVNames[0]的
-			//如果lUVNames放在了下面的括号里面，括号结束时lUVName被析构，造成lUVName成空引用
-			{
-				//是否有uv
-				bool mHasUV = lMesh->GetElementUVCount() > 0;
-				if(mHasUV==false){
-					cout<<"没有uv!"<<endl;
-					return;
-				}else{
-					//uv映射模式
-					const FbxGeometryElementUV * lUVElement = lMesh->GetElementUV(0);
-					FbxGeometryElement::EMappingMode lUVMappingMode=lUVElement->GetMappingMode();
-					if(lUVMappingMode!=FbxGeometryElement::eByPolygonVertex){
-						cout<<"error:uv映射模式不是eByPolygonVertex，目前尚不支持其它模式!"<<endl;
-						system("pause");
-						exit(0);
-						return;
-					}else{
-						//获得uvSet名称
-						lMesh->GetUVSetNames(lUVNames);
-						if (lUVNames.GetCount())
-						{
-							lUVName = lUVNames[0];
-						}else{
-							cout<<"lUVName==NULL!"<<endl;
-							return;
-						}
-					}	
-				}
-			}//得到lUVName
-			//cout<<"lUVName:"<<lUVName<<endl;
-			//---------------------填充pUVs
-			FbxVector2 lCurrentUV;//临时uv
-			const int triangleCount = lMesh->GetPolygonCount();
-			for (int i = 0; i < triangleCount; i++)
-			{
-				//----填充pUVs
-				lMesh->GetPolygonVertexUV(i, 0, lUVName, lCurrentUV);
-				pUVs[6*i]=static_cast<float>(lCurrentUV[0]);
-				pUVs[6*i+1]=static_cast<float>(lCurrentUV[1]);
-			
-				lMesh->GetPolygonVertexUV(i, 1, lUVName, lCurrentUV);
-				pUVs[6*i+2]=static_cast<float>(lCurrentUV[0]);
-				pUVs[6*i+3]=static_cast<float>(lCurrentUV[1]);
-				
-				lMesh->GetPolygonVertexUV(i, 2, lUVName, lCurrentUV);
-				pUVs[6*i+4]=static_cast<float>(lCurrentUV[0]);
-				pUVs[6*i+5]=static_cast<float>(lCurrentUV[1]);
-			}
-			//---------------------判断norm映射模式
-			bool mHasNormal = lMesh->GetElementNormalCount() > 0;
-			if (mHasNormal)
-			{
-				FbxGeometryElement::EMappingMode lNormalMappingMode = lMesh->GetElementNormal(0)->GetMappingMode();
-				if (lNormalMappingMode == FbxGeometryElement::eNone)
-				{
-					cout<<"error:没有法向数据!"<<endl;
-					system("pause");
-					exit(0);
-				}
-				if (mHasNormal && lNormalMappingMode != FbxGeometryElement::eByPolygonVertex)
-				{
-					cout<<"error:norm映射模式不是eByPolygonVertex，目前尚不支持其它模式!"<<endl;
-					system("pause");
-					exit(0);
-				}
-			}
-			//---------------------求顶点法向量(填充pNorms)
-	//		memset(pNorms, 0, triangleCount*3 * sizeof(FbxVector4));//首先全部初始化为0
-			for (int i = 0; i < triangleCount; i++)
-			{
-				FbxVector4 norm0;
-				FbxVector4 norm1;
-				FbxVector4 norm2;
-				lMesh->GetPolygonVertexNormal(i, 0, norm0);
-				lMesh->GetPolygonVertexNormal(i, 1, norm1);
-				lMesh->GetPolygonVertexNormal(i, 2, norm2);
-				pNorms[3*i]=norm0;
-				pNorms[3*i+1]=norm1;
-				pNorms[3*i+2]=norm2;
-			}
-
-		}
+	
 	}
 
 	//get mesh smoothing info
@@ -694,18 +641,18 @@ void Cmodelfbx::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool pComp
     }
 }
 
-	void Cmodelfbx::makeOtherUserForEachNode(FbxNode* pNode,int userDataIndex_uv,int userDataIndex_norm){
+	void Cmodelfbx::makeOtherUserForEachNode(FbxNode* pNode){
 		FbxNodeAttribute* lNodeAttribute = pNode->GetNodeAttribute();
 		if (lNodeAttribute//有属性节点
 			&&lNodeAttribute->GetAttributeType() == FbxNodeAttribute::eMesh//且属性节点为的类型为eMesh
 			)//为pNode制作并绑定idSubMeshSet
 		{	
-			makeOtherUserForThisNode(pNode,userDataIndex_uv,userDataIndex_norm);
+			makeOtherUserForThisNode(pNode);
 		}
 		const int lChildCount = pNode->GetChildCount();
 		for (int lChildIndex = 0; lChildIndex < lChildCount; ++lChildIndex)
 		{
-			makeOtherUserForEachNode(pNode->GetChild(lChildIndex),userDataIndex_uv,userDataIndex_norm);
+			makeOtherUserForEachNode(pNode->GetChild(lChildIndex));
 		}
 	}
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -729,18 +676,6 @@ void Cmodelfbx::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool pComp
 			)
 		{	
 			FbxMesh*lMesh=pNode->GetMesh();
-			//销毁UV
-			float*pUVs=(static_cast<float*>(lMesh->GetUserDataPtr(userDataIndex_UV)));
-			if(pUVs!=NULL)delete []pUVs;
-			//销毁Norm
-			FbxVector4*pNorms=(static_cast<FbxVector4*>(lMesh->GetUserDataPtr(userDataIndex_Norm)));
-			if(pNorms!=NULL)delete []pNorms;
-			//销毁Vertex_deformed
-			FbxVector4* lVertexArray=(static_cast<FbxVector4*>(lMesh->GetUserDataPtr(userDataIndex_Vertex_deformed)));
-			if(lVertexArray!=NULL)delete []lVertexArray;
-			//销毁Norm_deformed
-			FbxVector4* lNormalArray=(static_cast<FbxVector4*>(lMesh->GetUserDataPtr(userDataIndex_Normal_deformed)));
-			if(lNormalArray!=NULL)delete []lNormalArray;
 			//销毁clusterDeformation
 			FbxAMatrix*lClusterDeformation=(static_cast<FbxAMatrix*>(lMesh->GetUserDataPtr(userDataIndex_clusterDeformation)));
 			if(lClusterDeformation!=NULL)delete []lClusterDeformation;
@@ -781,78 +716,86 @@ void Cmodelfbx::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool pComp
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//绘制
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	void Cmodelfbx::setTime(int t_MilliSecond){
-		Time.SetMilliSeconds(t_MilliSecond);
-	}
-	void Cmodelfbx::selectAnimation(int iAnimationStack){
+	void Cmodelfbx::bakeAnimation(){
+		cout<<"--------------------------------------------"<<endl;
+		//animStack
 		FbxArray<FbxString*> mAnimStackNameArray;
 		lScene->FillAnimStackNameArray(mAnimStackNameArray);
 		const int lAnimStackCount = mAnimStackNameArray.GetCount();
-		if(iAnimationStack<0||iAnimationStack>=lAnimStackCount){
-			cout<<"error: 无效的iAnimationStack值!"<<endl;
-			//销毁mAnimStackNameArray
-			FbxArrayDelete(mAnimStackNameArray);
-			return;
-		}
-		// select the base layer from the animation stack
-		lCurrentAnimationStack = lScene->FindMember(FBX_TYPE(FbxAnimStack), mAnimStackNameArray[iAnimationStack]->Buffer());
-		if (lCurrentAnimationStack == NULL)
-		{
-			// this is a problem. The anim stack should be found in the scene!
-			cout<<"erorr: 未发现AnimationStack!"<<endl;
-			//销毁mAnimStackNameArray
-			FbxArrayDelete(mAnimStackNameArray);
-			return;
-		}
-		//设置当前AnimationStack为lCurrentAnimationStack
-		lScene->GetEvaluator()->SetContext(lCurrentAnimationStack);
-		//计算此动画的起止时间
-		{
-			FbxTime mStart,mStop;//起止时间（临时使用）
-			FbxTakeInfo* lCurrentTakeInfo = lScene->GetTakeInfo(*(mAnimStackNameArray[iAnimationStack]));
-			if (lCurrentTakeInfo)
+		for(int i=0;i<lAnimStackCount;i++){
+			int animStackIndex=i;
+	
+			// select the base layer from the animation stack
+			FbxAnimStack *lCurrentAnimationStack;
+			lCurrentAnimationStack = lScene->FindMember(FBX_TYPE(FbxAnimStack), mAnimStackNameArray[animStackIndex]->Buffer());
+			if (lCurrentAnimationStack == NULL)
 			{
-				mStart = lCurrentTakeInfo->mLocalTimeSpan.GetStart();
-				mStop = lCurrentTakeInfo->mLocalTimeSpan.GetStop();
-		//		cout<<"mStart:"<<mStart.GetMilliSeconds()<<endl;
-		//		cout<<"mStop:"<<mStop.GetMilliSeconds()<<endl;
-
-
-			}else{
-				cout<<"没有得到CurrentTakeInfo"<<endl;
+				// this is a problem. The anim stack should be found in the scene!
+				//销毁mAnimStackNameArray
+				FbxArrayDelete(mAnimStackNameArray);
+				assert(false);
 			}
-			if(lCurrentTakeInfo==NULL//没得到lCurrentTakeInfo
-				||mStart.GetMilliSeconds()<0//或者由lCurrentTakeInfo中得到的Start为负值
-				)
+			//设置当前AnimationStack为lCurrentAnimationStack
+			lScene->GetEvaluator()->SetContext(lCurrentAnimationStack);
+			//计算此动画的起止时间
+			FbxTime startTime,stopTime;
 			{
-				// Take the time line value
-				FbxTimeSpan lTimeLineTimeSpan;
-				lScene->GetGlobalSettings().GetTimelineDefaultTimeSpan(lTimeLineTimeSpan);
+				
+				FbxTakeInfo* lCurrentTakeInfo = lScene->GetTakeInfo(*(mAnimStackNameArray[animStackIndex]));
+				if (lCurrentTakeInfo)
+				{
+					startTime = lCurrentTakeInfo->mLocalTimeSpan.GetStart();
+					stopTime = lCurrentTakeInfo->mLocalTimeSpan.GetStop();
+				}
+				if(lCurrentTakeInfo==NULL||startTime.GetMilliSeconds()<0)//没得到lCurrentTakeInfo或者由lCurrentTakeInfo中得到的Start为负值
+				{
+					if(lCurrentTakeInfo==NULL){
+						cout<<"warning:no currentTakeInfo! take the time line value instead"<<endl;
+					}
+					if(lCurrentTakeInfo&&startTime.GetMilliSeconds()<0){
+						cout<<"warning:value in currentTakeInfo is negative! take the time line value instead"<<endl;
+					}
+					
+					// Take the time line value
+					FbxTimeSpan lTimeLineTimeSpan;
+					lScene->GetGlobalSettings().GetTimelineDefaultTimeSpan(lTimeLineTimeSpan);
 
-				mStart = lTimeLineTimeSpan.GetStart();
-				mStop  = lTimeLineTimeSpan.GetStop();
-			}//得到mStart和mStop
-			StartTime=mStart;
-			StopTime=mStop;
+					startTime = lTimeLineTimeSpan.GetStart();
+					stopTime  = lTimeLineTimeSpan.GetStop();
+				}//得到startTime和stopTime
+			}
+			//	cout<<"startTime:"<<startTime.GetMilliSeconds()<<endl;
+			//	cout<<"stopTime:"<<stopTime.GetMilliSeconds()<<endl;
+			//	cout<<"StartTime:"<<StartTime.GetSecondDouble()<<endl;
+			//	cout<<"StopTime:"<<StopTime.GetSecondDouble()<<endl;
+			//
+			//create aniLayer info
+			Cc3dAniLayerInfo*aniLayerInfo=new Cc3dAniLayerInfo();
+			aniLayerInfo->autorelease();
+			aniLayerInfo->setInterval(this->m_interval);
+			aniLayerInfo->setStartTime((float)startTime.GetMilliSeconds()/1000);
+			aniLayerInfo->setEndTime((float)stopTime.GetMilliSeconds()/1000);
+			aniLayerInfo->setCurTime(aniLayerInfo->getStartTime());
+			//calculate animation frames of this aniLayer
+			FbxTime dTime;
+			dTime.SetMilliSeconds(aniLayerInfo->getInterval()*1000);
+			FbxTime curTime=startTime;
+		//	cout<<"dTime:"<<dTime.GetMilliSeconds()<<endl;
+			while(1){
+				if(curTime>stopTime){
+					this->updateSkin(stopTime,lCurrentAnimationStack,animStackIndex);
+					break;
+				}
+				this->updateSkin(curTime,lCurrentAnimationStack,animStackIndex);
+				curTime+=dTime;
+			}
+			//add aniLayerInfo to this actor
+			this->addAniLayerInfo(aniLayerInfo);
 		}
-	//	cout<<"StartTime:"<<StartTime.GetMilliSeconds()<<endl;
-	//	cout<<"StopTime:"<<StopTime.GetMilliSeconds()<<endl;
-	//	cout<<"StartTime:"<<StartTime.GetSecondDouble()<<endl;
-	//	cout<<"StopTime:"<<StopTime.GetSecondDouble()<<endl;
-		//将Time置为与StartTime一致
-		Time=StartTime;
 		//销毁mAnimStackNameArray
 		FbxArrayDelete(mAnimStackNameArray);
+	}
 
-	}
-	void Cmodelfbx::animationAdvance_rollback(int dms){//动画前进dms毫秒，如果超出长度就绕回
-		FbxTime dTime;
-		dTime.SetMilliSeconds(dms);
-		Time+=dTime;
-		if(Time>StopTime){
-			Time=StartTime;
-		}	
-	}
 	
 	void Cmodelfbx::drawSkin(FbxNode*pNode,FbxVector4*lVertexArray,FbxVector4*lNormalArray){
 	/*	if(lVertexArray==NULL)return;
@@ -967,12 +910,8 @@ void Cmodelfbx::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool pComp
         }
     }
 
-	void Cmodelfbx::show(){
-	//	cout<<"--------"<<endl;
-		glColor3f(1,1,1);
-		//整体旋转fbx场景
-		glPushMatrix();
-		//绘制fbx场景
+	void Cmodelfbx::updateSkin(FbxTime&Time,FbxAnimStack *lCurrentAnimationStack,int animStackIndex){
+		//更新fbx场景
 		{
 			if(lCurrentAnimationStack!=NULL){
 				//获得mCurrentAnimLayer
@@ -988,11 +927,9 @@ void Cmodelfbx::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool pComp
 				}
 				//定义lDummyGlobalPosition
 				FbxAMatrix lDummyGlobalPosition;//模型的世界位置（默认构造为单位矩阵）
-				DrawNodeRecursive(lScene->GetRootNode(), Time, mCurrentAnimLayer, lDummyGlobalPosition,lPose);
+				DrawNodeRecursive(lScene->GetRootNode(), Time, mCurrentAnimLayer,animStackIndex, lDummyGlobalPosition,lPose);
 			}
 		}
-		//消栈
-		glPopMatrix();
 	
 	}
 	
@@ -1002,7 +939,7 @@ void Cmodelfbx::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool pComp
 	// If the node is part of the given pose for the current scene,
 	// it will be drawn at the position specified in the pose, Otherwise
 	// it will be drawn at the given time.
-	void Cmodelfbx::DrawNodeRecursive(FbxNode* pNode, FbxTime& pTime, FbxAnimLayer* pAnimLayer,
+	void Cmodelfbx::DrawNodeRecursive(FbxNode* pNode, FbxTime& pTime, FbxAnimLayer* pAnimLayer,int animStackIndex,
 		FbxAMatrix& pParentGlobalPosition, FbxPose* pPose)
 	{
 		FbxAMatrix lGlobalPosition = GetGlobalPosition(pNode, pTime,pPose, &pParentGlobalPosition);
@@ -1014,13 +951,13 @@ void Cmodelfbx::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool pComp
 			  FbxAMatrix lGeometryOffset = GetGeometry(pNode);
 			  FbxAMatrix lGlobalOffPosition = lGlobalPosition * lGeometryOffset;
 
-			DrawNode(pNode, pTime, pAnimLayer, pParentGlobalPosition,lGlobalOffPosition,pPose);
+			DrawNode(pNode, pTime, pAnimLayer,animStackIndex, pParentGlobalPosition,lGlobalOffPosition,pPose);
 		}
 
 		const int lChildCount = pNode->GetChildCount();
 		for (int lChildIndex = 0; lChildIndex < lChildCount; ++lChildIndex)
 		{
-			DrawNodeRecursive(pNode->GetChild(lChildIndex), pTime, pAnimLayer, lGlobalPosition,pPose);
+			DrawNodeRecursive(pNode->GetChild(lChildIndex), pTime, pAnimLayer,animStackIndex, lGlobalPosition,pPose);
 		}
 	}
 	
@@ -1111,6 +1048,7 @@ void Cmodelfbx::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool pComp
 	void Cmodelfbx::DrawNode(FbxNode* pNode, 
 		FbxTime& pTime, 
 		FbxAnimLayer* pAnimLayer,
+		int animStackIndex,
 		FbxAMatrix& pParentGlobalPosition,
 		FbxAMatrix& pGlobalPosition,
 		FbxPose* pPose)
@@ -1125,7 +1063,7 @@ void Cmodelfbx::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool pComp
 			case FbxNodeAttribute::eMesh:
 				// NURBS and patch have been converted into triangluation meshes.
 				{
-					DrawMesh(pNode, pTime, pAnimLayer, pGlobalPosition, pPose);
+					DrawMesh(pNode, pTime, pAnimLayer,animStackIndex, pGlobalPosition, pPose);
 				}
 				break;
 		/*
@@ -1193,7 +1131,7 @@ void Cmodelfbx::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool pComp
 	//mesh
 	///////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Draw the vertices of a mesh.
-	void Cmodelfbx::DrawMesh(FbxNode* pNode, FbxTime& pTime, FbxAnimLayer* pAnimLayer,
+	void Cmodelfbx::DrawMesh(FbxNode* pNode, FbxTime& pTime, FbxAnimLayer* pAnimLayer,int animStackIndex,
 		FbxAMatrix& pGlobalPosition, FbxPose* pPose)
 	{
 		FbxMesh* lMesh = pNode->GetMesh();
@@ -1205,62 +1143,61 @@ void Cmodelfbx::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool pComp
 			return;
 		}
 		//获得hasSkin
-		bool*pHasSkin=(static_cast<bool*>(lMesh->GetUserDataPtr(userDataIndex_hasSkin)));
-		//获得变形顶点和法线列表
-		FbxVector4* lVertexArray=NULL;
-		FbxVector4* lNormalArray=NULL;
-		if(*pHasSkin){//如果有skin
-			//获取顶点列表
-			lVertexArray=(static_cast<FbxVector4*>(lMesh->GetUserDataPtr(userDataIndex_Vertex_deformed)));
-			//拷贝原始数据
-			memcpy(lVertexArray, lMesh->GetControlPoints(), lVertexCount * sizeof(FbxVector4));
-			//获取法线列表
-			lNormalArray=(static_cast<FbxVector4*>(lMesh->GetUserDataPtr(userDataIndex_Normal_deformed)));;
-			//拷贝原始数据
-			FbxVector4*lNormalArray_original=(static_cast<FbxVector4*>(lMesh->GetUserDataPtr(userDataIndex_Norm)));
-			memcpy(lNormalArray, lNormalArray_original, triangleCount*3 * sizeof(FbxVector4));
-		}else{//如果没有skin
-			//直接使用原始数据的引用
-			lVertexArray = lMesh->GetControlPoints();
-			lNormalArray = (static_cast<FbxVector4*>(lMesh->GetUserDataPtr(userDataIndex_Norm)));
-		}
-		
-		//填充变形顶点和法线列表
-		if (*pHasSkin)//如果有skin
+		bool HasSkin=getHasDeformer(lMesh);
+		//获得CLusterCount
+		int ClusterCount = 0;
 		{
-			//获得clusterCount
-			int*pClusterCount=(static_cast<int*>(lMesh->GetUserDataPtr(userDataIndex_clusterCount)));
-			if (*pClusterCount)
+			//we need to get the number of clusters
+			const int lSkinCount = lMesh->GetDeformerCount(FbxDeformer::eSkin);
+			
+			for (int lSkinIndex = 0; lSkinIndex < lSkinCount; ++lSkinIndex)
+			{
+				ClusterCount += ((FbxSkin *)(lMesh->GetDeformer(lSkinIndex, FbxDeformer::eSkin)))->GetClusterCount();
+			}//得到lClusterCount
+
+		}
+
+		//填充变形顶点和法线列表
+		if (HasSkin)//如果有skin
+		{
+			if (ClusterCount)
 			{
 				// Deform the vertex array with the skin deformer.
-				ComputeSkinDeformation(pGlobalPosition, lMesh, pTime, lVertexArray,lNormalArray,pPose);
+				ComputeSkinDeformation(pGlobalPosition, lMesh, pTime, pPose,animStackIndex);
 			}
 
 
 		}
-		glPushMatrix();
-		glMultMatrixd((const double*)pGlobalPosition);
-		//画蒙皮
-		{
-			drawSkin(pNode,lVertexArray,lNormalArray);
-		}
-		glPopMatrix();
-
 	}
 	// Deform the vertex array according to the links contained in the mesh and the skinning type.
 	void Cmodelfbx::ComputeSkinDeformation(FbxAMatrix& pGlobalPosition, 
 		FbxMesh* pMesh, 
 		FbxTime& pTime, 
-		FbxVector4* pVertexArray,
-		FbxVector4* pNormalArray,
-		FbxPose* pPose)
+		FbxPose* pPose,
+		int animStackIndex)
 	{
 		FbxSkin * lSkinDeformer = (FbxSkin *)pMesh->GetDeformer(0, FbxDeformer::eSkin);
 		FbxSkin::EType lSkinningType = lSkinDeformer->GetSkinningType();
 
+
 		if(lSkinningType == FbxSkin::eLinear || lSkinningType == FbxSkin::eRigid)
 		{
-			ComputeLinearDeformation_simplify(pGlobalPosition, pMesh, pTime, pVertexArray,pNormalArray, pPose);
+			Cc3dSkinMesh* mesh=(Cc3dSkinMesh*)this->findSkinMeshByFbxMeshPtr(pMesh);
+			assert(mesh);
+			if(mesh->getSkin()==NULL){
+				Cc3dMatrix4 globalPositionMat=FbxAMatrixToCc3dMatrix4(pGlobalPosition);
+			//	globalPositionMat.print();
+				mesh->setRTSmat(globalPositionMat);
+				Cc3dSkin*skin=new Cc3dSkin();
+				skin->autorelease();
+				skin->setSkinType(lSkinningType);
+				mesh->setSkin(skin);
+			}
+			
+			
+		
+
+			ComputeLinearDeformation_simplify(pGlobalPosition, pMesh, pTime, pPose,animStackIndex);
 		//	//如果想适用于最广的情况，应该用下面这句，但效率会有所降低
 		//	ComputeLinearDeformation_unsimplify(pGlobalPosition, pMesh, pTime, pVertexArray,pNormalArray, pPose);
 			
@@ -1302,9 +1239,8 @@ void Cmodelfbx::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool pComp
 	void Cmodelfbx::ComputeLinearDeformation_simplify(FbxAMatrix& pGlobalPosition, 
 		FbxMesh* pMesh, 
 		FbxTime& pTime, 
-		FbxVector4* pVertexArray,
-		FbxVector4* pNormalArray,
-		FbxPose* pPose)
+		FbxPose* pPose,
+		int animStackIndex)
 	{
 		
 		//下面花括号中的内容只在调试时开放
@@ -1324,11 +1260,7 @@ void Cmodelfbx::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool pComp
 			}
 		}
 		int lVertexCount = pMesh->GetControlPointsCount();
-		FbxAMatrix*lClusterDeformation=(static_cast<FbxAMatrix*>(pMesh->GetUserDataPtr(userDataIndex_clusterDeformation)));
-		memset(lClusterDeformation, 0, lVertexCount * sizeof(FbxAMatrix));
-
-		double*lClusterWeight=(static_cast<double*>(pMesh->GetUserDataPtr(userDataIndex_clusterWeight)));
-		memset(lClusterWeight, 0, lVertexCount * sizeof(double));
+	
 
 		// For all skins and all clusters, accumulate their deformation and weight
 		// on each vertices and store them in lClusterDeformation and lClusterWeight.
@@ -1352,66 +1284,49 @@ void Cmodelfbx::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool pComp
 
 				FbxAMatrix lVertexTransformMatrix;
 				ComputeClusterDeformation(pGlobalPosition, pMesh, lCluster, lVertexTransformMatrix, pTime, pPose);
-				               
+				
 				int lVertexIndexCount = lCluster->GetControlPointIndicesCount();
 				int* clusterControlPointIndices=lCluster->GetControlPointIndices();//cluster的顶点索引表
 				double* clusterControlPointWeights= lCluster->GetControlPointWeights();//cluster的顶点权重表
-				for (int k = 0; k < lVertexIndexCount; ++k) 
-				{            
-					int lIndex = clusterControlPointIndices[k];
 
-					// Sometimes, the mesh can have less points than at the time of the skinning
-					// because a smooth operator was active when skinning but has been deactivated during export.
-					if (lIndex >= lVertexCount)
-						continue;
+				
+				Cc3dSkinMesh* mesh=(Cc3dSkinMesh*)this->findSkinMeshByFbxMeshPtr(pMesh);
+				assert(mesh);
+				bool exist=true;
+				if(lClusterIndex>=(int)mesh->getSkin()->getClusterCount()){//cluster not exist
+					exist=false;
+					//create cluster
+					Cc3dSkinCluster*cluster=new Cc3dSkinCluster();
+					cluster->autorelease();
+					mesh->getSkin()->addCluster(cluster);
+					assert((int)mesh->getSkin()->getClusterCount()==lClusterIndex+1);
+				}
+				Cc3dSkinCluster*cluster=mesh->getSkin()->getClusterByIndex(lClusterIndex);
+				
+				int clusterAniLayerCount=cluster->getAniLayerCount();
+				if(animStackIndex>=clusterAniLayerCount){//aniLayer not exist
+					exist=false;
+					//create aniLayer
+					Cc3dAniLayer*aniLayer=new Cc3dAniLayer();
+					aniLayer->autorelease();
+					cluster->addAniLayer(aniLayer);
+					assert((int)cluster->getAniLayerCount()==animStackIndex+1);
+				}
+		//		cout<<"exist:"<<exist<<endl;
+				Cc3dAniLayer*aniLayer=cluster->getAniLayerByIndex(animStackIndex);
+				Cc3dMatrix4 vertexTransformMat=FbxAMatrixToCc3dMatrix4(lVertexTransformMatrix);
+				aniLayer->addAniFrame(Cc3dAniFrame(vertexTransformMat,(float)pTime.GetMilliSeconds()/1000));
+				if(cluster->getVertexIndexCount()==0){
+					cluster->setVertexIndexList(clusterControlPointIndices,lVertexIndexCount);
+					cluster->setVertexWeightList(clusterControlPointWeights,lVertexIndexCount);
+				}
+		//		cout<<"clusterIndex,aniLayerIndex,frameIndex:"<<lClusterIndex<<" "<<cluster->getAniLayerCount()-1<<" "<<aniLayer->getVertexTransformMatCount()<<endl;
+				
 
-					double lWeight = clusterControlPointWeights[k];
-
-					if (lWeight == 0.0)
-					{
-						continue;
-					}
-
-					// Compute the influence of the link on the vertex.
-					FbxAMatrix lInfluence = lVertexTransformMatrix;
-					MatrixScale(lInfluence, lWeight);//得到lInfluence矩阵，即本cluster(相关联的骨骼)的变换矩阵乘以其对此节权重
-					{
-						// Add to the sum of the deformations on the vertex.
-						MatrixAdd(lClusterDeformation[lIndex], lInfluence);
-
-						// Add to the sum of weights to either normalize or complete the vertex.
-						lClusterWeight[lIndex] += lWeight;
-					}
-				}//For each vertex			
+				              
 			}//lClusterCount
 		}
-
-		//Actually deform each vertices here by information stored in lClusterDeformation and lClusterWeight
-		for (int i = 0; i < lVertexCount; i++) 
-		{
-			// Deform the vertex if there was at least a link with an influence on the vertex,
-			if (lClusterWeight[i] != 0.0) 
-			{
-				//变换顶点
-				{
-					pVertexArray[i] = lClusterDeformation[i].MultT(pVertexArray[i]);
-					
-				}
-			
-			} 
-		}
-		int polygonCount=pMesh->GetPolygonCount();
-		for(int i=0;i<polygonCount;i++){
-			//遍历三个顶点
-			for(int j=0;j<3;j++){
-				int vID=pMesh->GetPolygonVertex(i,j);//当前顶点ID
-			//	cout<<"i j:"<<i<<" "<<j<<endl;
-				//变换法向量
-				if(lClusterWeight[vID] != 0.0){
-					prodv_lastRow0001_wZero(lClusterDeformation[vID],pNormalArray[3*i+j],pNormalArray[3*i+j]);
-				}
-			}
-		}
+		
 	}
 	
 	void Cmodelfbx::prodv_lastRow0001_wZero(const FbxAMatrix&matrix,const FbxVector4&in,FbxVector4&out)

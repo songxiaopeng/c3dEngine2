@@ -179,7 +179,7 @@ bool Cterrain::init(const string&heightMapFileName,const Cc3dRect&rect,float hei
     //所以总共有BMPHEIGHT*BMPWIDTH*2+(BMPHEIGHT*(BMPWIDTH-1)+BMPWIDTH*(BMPHEIGHT-1))个三角形
     int bmpHeight=(int)landMat.size();
     int bmpWidth=(int)landMat[0].size();
-    this->getMesh()->getSubMeshByIndex(0)->getSubMeshData()->IDtriList.reserve(bmpHeight*bmpWidth*2+(bmpHeight*(bmpWidth-1)+bmpWidth*(bmpHeight-1)));
+    this->getMesh()->getSubMeshByIndex(0)->getSubMeshData()->reserveIDtriList(bmpHeight*bmpWidth*2+(bmpHeight*(bmpWidth-1)+bmpWidth*(bmpHeight-1)));//IDtriList.reserve(bmpHeight*bmpWidth*2+(bmpHeight*(bmpWidth-1)+bmpWidth*(bmpHeight-1)));
     return true;
     
 }
@@ -206,14 +206,14 @@ void Cterrain::makeMesh(){
             *(vertexArray+i*(int)markmat[0].size()*(3+2+3+2)+j*(3+2+3+2)+9)=(z-m_range.getMinZ())/m_range.getSpanZ();//alpha map texCoord t
         }
     }
-    this->getMesh()->getSubMeshByIndex(0)->getSubMeshData()->vlist.clear();
+    this->getMesh()->getSubMeshByIndex(0)->getSubMeshData()->clearvlist();//vlist.clear();
     for(int i=0;i<nVertex;i++){
         Cc3dVertex vertex;
         vertex.setPos(vertexArray+i*nStep);
         vertex.setTexCoord(vertexArray+i*nStep+3);
         vertex.setNorm(vertexArray+i*nStep+3+2);
         vertex.setTexCoord2(vertexArray+i*nStep+3+2+3);
-        this->getMesh()->getSubMeshByIndex(0)->getSubMeshData()->vlist.push_back(vertex);
+        this->getMesh()->getSubMeshByIndex(0)->addVertex(vertex);//getSubMeshData()->vlist.push_back(vertex);
     }
     //释放vertexArray
     delete []vertexArray;
@@ -382,7 +382,7 @@ void Cterrain::showAndMark(int jmin,int jmax,int imin,int imax,int curDepth)
 }
 
 
-void Cterrain::update(const Cc3dCamera&camera){
+void Cterrain::updateTerrain(const Cc3dCamera&camera){
 
     //清除四叉树上的标记
     int nMarked=(int)markedElementIndexList.size();
@@ -393,7 +393,7 @@ void Cterrain::update(const Cc3dCamera&camera){
     //清空markedElementIndexList
     markedElementIndexList.clear();
     //清空model_ground的indexList
-    this->getMesh()->getSubMeshByIndex(0)->getSubMeshData()->IDtriList.clear();
+    this->getMesh()->getSubMeshByIndex(0)->getSubMeshData()->clearIDtriList();//IDtriList.clear();
     //渲染四叉树并对节点的分割情况作标记
     showAndMark(0,(int)markmat.size()-1,0,(int)markmat[0].size()-1,1);//进入第一层（根节点规定为第一层）
     //修补缝隙

@@ -41,7 +41,11 @@ void c3dDefaultPassUnifoCallback(Cc3dNode*node, Cc3dProgram*program){
 void Cc3dNode::visitUpdate(){
     if(this->getIsDoUpdateRecursively()){
         if(this->getIsDoUpdate()){
-            this->update();
+			double curTime=Cc3dGlobalTimer::sharedGlobalTimer()->getTimeFromStart();
+			double lastUpdateTime=m_lastUpdateTime;
+			double dt=max(0,curTime-lastUpdateTime);
+            this->update(dt);
+			m_lastUpdateTime=curTime;
         }
         
         //sort children by their visitDrawOrder

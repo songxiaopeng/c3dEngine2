@@ -21,8 +21,20 @@ void Cc3dTransform::setRmat(const Cc3dMatrix4&Rmat){
     m_RTmat.setAt(14, z);
 }
 
-void Cc3dTransform::setRTmat(const Cc3dMatrix4&mat){
-    m_RTmat=mat;
+void Cc3dTransform::setRTmat(const Cc3dMatrix4&RTmat){
+    m_RTmat=RTmat;
+}
+void Cc3dTransform::setRTSmat(const Cc3dMatrix4&RTSmat){
+	Cc3dVector4 scaleVector=extractScaleFromRTSmat(RTSmat);
+	assert(scaleVector.x()!=0);
+	assert(scaleVector.y()!=0);
+	assert(scaleVector.z()!=0);
+	assert(scaleVector.w()==1);//assume no scale on w
+	Cc3dMatrix4 scaleReverse=calculateScaleMatrix(scaleVector.x(),scaleVector.y(),scaleVector.z(),scaleVector.w());
+	Cc3dMatrix4 RTmat=RTSmat*scaleReverse;
+	this->setRTmat(RTmat);
+	this->setScale(scaleVector.x(),scaleVector.y(),scaleVector.z());
+
 }
 Cc3dVector4 Cc3dTransform::getPos()const{
     Cc3dVector4 pos(m_RTmat.getAt(12),m_RTmat.getAt(13),m_RTmat.getAt(14),1);

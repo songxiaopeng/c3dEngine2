@@ -20,7 +20,8 @@ Cc3dMatrix4 calculateViewMatrixInverse(const Cc3dVector4&eyePos,const Cc3dVector
 Cc3dMatrix4 calculateViewMatrix(const Cc3dVector4&eyePos,const Cc3dVector4&center,const Cc3dVector4&up);
 Cc3dMatrix4 calculateRotationMatrix(const Cc3dVector4&axis,float cosA,float sinA);
 Cc3dMatrix4 calculateTranslateMatrix(const Cc3dVector4&translate);
-Cc3dMatrix4 calculateScaleMatrix(float kx,float ky,float kz);
+Cc3dVector4 extractScaleFromRTSmat(const Cc3dMatrix4&mat);
+Cc3dMatrix4 calculateScaleMatrix(float kx,float ky,float kz,float kw=1);
 Cc3dMatrix4 calculatePerspectiveProjectionMatrix(float fovy,float aspect,float zNear,float zFar);
 Cc3dMatrix4 calculateOrthoProjectionMatrix(float left,float right,float bottom,float top,float near,float far);
 Cc3dVector4 convertFromViewportSpaceToWorldSpace(const Cc3dVector4&winPos,const Cc3dMatrix4&projectionViewInverse,const Cc3dRect&viewport);

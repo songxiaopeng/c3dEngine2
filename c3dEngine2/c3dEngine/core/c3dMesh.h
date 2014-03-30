@@ -38,11 +38,15 @@ public:
         return m_subMeshList[index];
     }
     vector<Cc3dSubMesh*> getSubMeshList()const{return m_subMeshList;}
-    void removeMeshByIndex(int index){
+    void removeSubMeshByIndex(int index){
         assert(index>=0&&index<(int)m_subMeshList.size());
         m_subMeshList[index]->removeFromParent();
         m_subMeshList.erase(m_subMeshList.begin()+index);
     }
+	Cc3dSubMesh* getSubMeshByIndex(int index){
+		assert(index>=0&&index<(int)m_subMeshList.size());
+		return m_subMeshList[index];
+	}
     Cc3dRange getRange()const ;
     void scale_modifyVertexDirectly(float kx,float ky,float kz);
 

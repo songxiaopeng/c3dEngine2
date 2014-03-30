@@ -89,6 +89,14 @@ Cc3dMatrix4 calculateRotationMatrix(const Cc3dVector4&axis,float cosA,float sinA
     };
     return Cc3dMatrix4(rotMat);
 }
+Cc3dVector4 extractScaleFromRTSmat(const Cc3dMatrix4&mat){
+	float scaleX=getLength(Cc3dVector4(mat.getAt(0),mat.getAt(1),mat.getAt(2),mat.getAt(3)));
+	float scaleY=getLength(Cc3dVector4(mat.getAt(4),mat.getAt(5),mat.getAt(6),mat.getAt(7)));
+	float scaleZ=getLength(Cc3dVector4(mat.getAt(8),mat.getAt(9),mat.getAt(10),mat.getAt(11)));
+	float scaleW=mat.getAt(15);
+	return Cc3dVector4(scaleX,scaleY,scaleZ,scaleW);
+}
+
 Cc3dMatrix4 calculateTranslateMatrix(const Cc3dVector4&translate){
     assert(translate.w()==0);
     //1 0 0 dx
@@ -106,7 +114,7 @@ Cc3dMatrix4 calculateTranslateMatrix(const Cc3dVector4&translate){
     };
     return Cc3dMatrix4(TMat);
 }
-Cc3dMatrix4 calculateScaleMatrix(float kx,float ky,float kz){
+Cc3dMatrix4 calculateScaleMatrix(float kx,float ky,float kz,float kw){
     //1 0 0 0
     //0 1 0 0
     //0 0 1 0
@@ -115,7 +123,7 @@ Cc3dMatrix4 calculateScaleMatrix(float kx,float ky,float kz){
         kx,0,0,0,//col 1
         0,ky,0,0,
         0,0,kz,0,
-        0,0,0,1
+        0,0,0,kw
     };
     return Cc3dMatrix4(SMat);
 }

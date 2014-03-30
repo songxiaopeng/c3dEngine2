@@ -28,7 +28,8 @@ public:
     virtual~Cc3dTransform(){}
     Cc3dMatrix4 getRTmat()const{return m_RTmat;}
     void setRmat(const Cc3dMatrix4&Rmat);
-    void setRTmat(const Cc3dMatrix4&mat);
+    void setRTmat(const Cc3dMatrix4&RTmat);
+	void setRTSmat(const Cc3dMatrix4&RTSmat);
     Cc3dMatrix4*getRTmatPointer(){return &m_RTmat;}
     float getScaleX()const{return m_scaleX;}
     float getScaleY()const{return m_scaleY;}

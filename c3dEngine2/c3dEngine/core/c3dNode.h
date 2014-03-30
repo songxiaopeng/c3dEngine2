@@ -19,6 +19,7 @@ using namespace std;
 #include "c3dCamera.h"
 #include "c3dLight.h"
 #include "c3dProgramCache.h"
+#include "c3dGlobalTimer.h"
 class Cc3dNode;
 typedef void(*c3dPassUnifoCallbackPtr)(Cc3dNode*, Cc3dProgram*);
 extern string c3dDefaultProgramName;
@@ -42,6 +43,7 @@ public:
         m_isRemoveOnNextFrame=false;
         m_isVisibleRecursively=true;
         m_isDoUpdateRecursively=true;
+		m_lastUpdateTime=0;
     }
     virtual~Cc3dNode(){
        // cout<<"析构:"<<m_name<<endl;
@@ -202,7 +204,7 @@ public:
     string getName()const{return m_name;}
     virtual void draw(){
     }
-    virtual void update(){
+    virtual void update(float dt){
     }
 
     virtual void visitDraw();
@@ -233,6 +235,7 @@ public:
     Cc3dTransform*getTransformPointer(){return &m_transform;};
     bool getIsRemoveOnNextFrame()const{return m_isRemoveOnNextFrame;}
     void setIsRemoveOnNextFrame(bool value){m_isRemoveOnNextFrame=value;};
+	void setRTSmat(const Cc3dMatrix4&RTSmat){m_transform.setRTSmat(RTSmat);}
 protected:
     int getChildIndexInChildList(Cc3dNode*node){//return -1 if failed
         int nchild=(int)m_childList.size();
@@ -264,7 +267,7 @@ protected:
     c3dPassUnifoCallbackPtr m_passUnifoCallback;
     Cc3dLight*m_light;
     bool m_isRemoveOnNextFrame;
-    
+    double m_lastUpdateTime;//second
 };
 //compare function object for stable_sort
 //http://www.codeproject.com/Articles/38381/STL-Sort-Comparison-Function
