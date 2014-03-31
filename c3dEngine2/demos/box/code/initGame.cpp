@@ -21,6 +21,7 @@ void initGame(){
 		light0->autorelease();
 		light0->retain();
 		light0->setPos(100,50,20);
+		light0->setAmbient(0.5,0.5,0.5);
 	}
 	 //----camera2D
     {

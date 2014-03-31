@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "c3d", "c3d.vcxproj", "{A1F30691-6271-E33C-EB2D-25A1367E31F0}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "c3d", "c3d.vcxproj", "{DED02BB7-3CBB-7888-6366-71C322267BC3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,10 +9,10 @@ Global
 		Release|Win32 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A1F30691-6271-E33C-EB2D-25A1367E31F0}.Debug|Win32.ActiveCfg = Debug|Win32
-		{A1F30691-6271-E33C-EB2D-25A1367E31F0}.Debug|Win32.Build.0 = Debug|Win32
-		{A1F30691-6271-E33C-EB2D-25A1367E31F0}.Release|Win32.ActiveCfg = Release|Win32
-		{A1F30691-6271-E33C-EB2D-25A1367E31F0}.Release|Win32.Build.0 = Release|Win32
+		{DED02BB7-3CBB-7888-6366-71C322267BC3}.Debug|Win32.ActiveCfg = Debug|Win32
+		{DED02BB7-3CBB-7888-6366-71C322267BC3}.Debug|Win32.Build.0 = Debug|Win32
+		{DED02BB7-3CBB-7888-6366-71C322267BC3}.Release|Win32.ActiveCfg = Release|Win32
+		{DED02BB7-3CBB-7888-6366-71C322267BC3}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

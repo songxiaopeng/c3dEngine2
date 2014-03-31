@@ -24,18 +24,12 @@ Cc3dMatrix4 FbxAMatrixToCc3dMatrix4(const FbxAMatrix&m){
 
 }
 	
-	/////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	//初始化
-	/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	void Cmodelfbx::Init_and_load(char* _fbxFileName){
 		fbxFileName=_fbxFileName;
-		cout<<"加载\"";
-		cout<<fbxFileName;
-		cout<<"\":";
+		cout<<"load "<<fbxFileName<<endl;
 		//加载fbx场景
 		InitializeSdkObjects(lSdkManager,lScene);
 		LoadScene(lSdkManager,lScene,fbxFileName);
-		cout<<"完成!"<<endl;
 	}
 	void Cmodelfbx::InitializeSdkObjects(FbxManager*& pSdkManager, FbxScene*& pScene)
 	{
@@ -50,7 +44,7 @@ Cc3dMatrix4 FbxAMatrixToCc3dMatrix4(const FbxAMatrix&m){
 		}
 		else
 		{
-//系统自带语句			FBXSDK_printf("FBX SDK version %s\n\n", pSdkManager->GetVersion());
+			FBXSDK_printf("FBX SDK version %s\n\n", pSdkManager->GetVersion());
 		}
 
 		// create an IOSettings object
@@ -91,14 +85,14 @@ Cc3dMatrix4 FbxAMatrixToCc3dMatrix4(const FbxAMatrix&m){
 
 		if( !lImportStatus )
 		{
-//系统自带语句			FBXSDK_printf("Call to FbxImporter::Initialize() failed.\n");
-//系统自带语句			FBXSDK_printf("Error returned: %s\n\n", lImporter->GetLastErrorString());
+			FBXSDK_printf("Call to FbxImporter::Initialize() failed.\n");
+			FBXSDK_printf("Error returned: %s\n\n", lImporter->GetLastErrorString());
 
 			if (lImporter->GetLastErrorID() == FbxIOBase::eFileVersionNotSupportedYet ||
 				lImporter->GetLastErrorID() == FbxIOBase::eFileVersionNotSupportedAnymore)
 			{
-//系统自带语句				FBXSDK_printf("FBX version number for this FBX SDK is %d.%d.%d\n", lSDKMajor, lSDKMinor, lSDKRevision);
-//系统自带语句				FBXSDK_printf("FBX version number for file %s is %d.%d.%d\n\n", pFilename, lFileMajor, lFileMinor, lFileRevision);
+				FBXSDK_printf("FBX version number for this FBX SDK is %d.%d.%d\n", lSDKMajor, lSDKMinor, lSDKRevision);
+				FBXSDK_printf("FBX version number for file %s is %d.%d.%d\n\n", pFilename, lFileMajor, lFileMinor, lFileRevision);
 			}
 
 			return false;
@@ -106,39 +100,39 @@ Cc3dMatrix4 FbxAMatrixToCc3dMatrix4(const FbxAMatrix&m){
 
 
 
-//系统自带语句		FBXSDK_printf("FBX version number for this FBX SDK is %d.%d.%d\n", lSDKMajor, lSDKMinor, lSDKRevision);
+		FBXSDK_printf("FBX version number for this FBX SDK is %d.%d.%d\n", lSDKMajor, lSDKMinor, lSDKRevision);
 
 		if (lImporter->IsFBX())
 		{
-//系统自带语句			FBXSDK_printf("FBX version number for file %s is %d.%d.%d\n\n", pFilename, lFileMajor, lFileMinor, lFileRevision);
+			FBXSDK_printf("FBX version number for file %s is %d.%d.%d\n\n", pFilename, lFileMajor, lFileMinor, lFileRevision);
 
 			// From this point, it is possible to access animation stack information without
 			// the expense of loading the entire file.
 
-//系统自带语句			FBXSDK_printf("Animation Stack Information\n");
+			FBXSDK_printf("Animation Stack Information\n");
 
 			lAnimStackCount = lImporter->GetAnimStackCount();
 
-//系统自带语句			FBXSDK_printf("    Number of Animation Stacks: %d\n", lAnimStackCount);
-//系统自带语句			FBXSDK_printf("    Current Animation Stack: \"%s\"\n", lImporter->GetActiveAnimStackName().Buffer());
-//系统自带语句			FBXSDK_printf("\n");
+			FBXSDK_printf("    Number of Animation Stacks: %d\n", lAnimStackCount);
+			FBXSDK_printf("    Current Animation Stack: \"%s\"\n", lImporter->GetActiveAnimStackName().Buffer());
+			FBXSDK_printf("\n");
 
 			for(i = 0; i < lAnimStackCount; i++)
 			{
 				FbxTakeInfo* lTakeInfo = lImporter->GetTakeInfo(i);
 
-//系统自带语句				FBXSDK_printf("    Animation Stack %d\n", i);
-//系统自带语句				FBXSDK_printf("         Name: \"%s\"\n", lTakeInfo->mName.Buffer());
-//系统自带语句				FBXSDK_printf("         Description: \"%s\"\n", lTakeInfo->mDescription.Buffer());
+				FBXSDK_printf("    Animation Stack %d\n", i);
+				FBXSDK_printf("         Name: \"%s\"\n", lTakeInfo->mName.Buffer());
+				FBXSDK_printf("         Description: \"%s\"\n", lTakeInfo->mDescription.Buffer());
 
 				// Change the value of the import name if the animation stack should be imported 
 				// under a different name.
-//系统自带语句				FBXSDK_printf("         Import Name: \"%s\"\n", lTakeInfo->mImportName.Buffer());
+				FBXSDK_printf("         Import Name: \"%s\"\n", lTakeInfo->mImportName.Buffer());
 
 				// Set the value of the import state to false if the animation stack should be not
 				// be imported. 
-//系统自带语句				FBXSDK_printf("         Import State: %s\n", lTakeInfo->mSelect ? "true" : "false");
-//系统自带语句				FBXSDK_printf("\n");
+				FBXSDK_printf("         Import State: %s\n", lTakeInfo->mSelect ? "true" : "false");
+				FBXSDK_printf("\n");
 			}
 
 			// Set the import states. By default, the import states are always set to 
@@ -192,13 +186,8 @@ Cc3dMatrix4 FbxAMatrixToCc3dMatrix4(const FbxAMatrix&m){
 		if (pSdkManager) pSdkManager->Destroy();
 		pSdkManager = NULL;
 	}
-	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	//预处理
-	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	void Cmodelfbx::triangulate_loadTextures_preprocess(){
-		cout<<"----------------------------fbxFileName:"<<fbxFileName<<endl;
         TriangulateRecursive(lScene->GetRootNode());// Convert mesh, NURBS and patch into triangle mesh
-//		loadTextures(fbxFileName);
 	/*	//get smoothInfo
 		{
 			//set me true to compute smoothing info from normals
@@ -210,7 +199,6 @@ Cc3dMatrix4 FbxAMatrixToCc3dMatrix4(const FbxAMatrix&m){
 		
 		}*/
 		makeSubMeshSetForEachNode(lScene->GetRootNode());
-		makeOtherUserForEachNode(lScene->GetRootNode());
 		
 	
 
@@ -482,60 +470,9 @@ Cc3dMatrix4 FbxAMatrixToCc3dMatrix4(const FbxAMatrix&m){
 		return lHasSkin;
 	}
 
-	void Cmodelfbx::makeOtherUserForThisNode(FbxNode* pNode){
-		//获得mesh
-		FbxMesh*lMesh=pNode->GetMesh();
-		if(!lMesh){
-			cout<<"error: lMesh==NULL!"<<endl;
-			return;
-		}
-		//获得多边形个数
-		const int triangleCount = lMesh->GetPolygonCount();
-		//获得顶点个数
-		const int lVertexCount = lMesh->GetControlPointsCount();
-		//为clusterCount,hasSkin开辟空间
-		int*pClusterCount=new int;
-		bool*pHasSkin=new bool;
-		//为lClusterDeformation，lClusterWeight开辟空间
-		FbxAMatrix* lClusterDeformation=NULL;
-		double* lClusterWeight=NULL;
-		//开辟空间
-		{
-			if (lVertexCount == 0){
-				//各指针均保持为NULL
-			}else{//lVertexCount!=0
-				//仅当有蒙皮时才生成（为的是不破坏原数据，否则可以直接用原始数据的引用）
-				if(getHasDeformer(lMesh)){
-					lClusterDeformation = new FbxAMatrix[lVertexCount];
-					lClusterWeight = new double[lVertexCount];
-				}
-			}
-		}
 
-		//添加到lMesh节点
-		lMesh->SetUserDataPtr(userDataIndex_clusterCount,pClusterCount);
-		lMesh->SetUserDataPtr(userDataIndex_hasSkin,pHasSkin);
-		lMesh->SetUserDataPtr(userDataIndex_clusterDeformation,lClusterDeformation);
-		lMesh->SetUserDataPtr(userDataIndex_clusterWeight,lClusterWeight);
-		//填充pCLusterCount
-		{
-			//we need to get the number of clusters
-			const int lSkinCount = lMesh->GetDeformerCount(FbxDeformer::eSkin);
-			int lClusterCount = 0;
-			for (int lSkinIndex = 0; lSkinIndex < lSkinCount; ++lSkinIndex)
-			{
-				lClusterCount += ((FbxSkin *)(lMesh->GetDeformer(lSkinIndex, FbxDeformer::eSkin)))->GetClusterCount();
-			}//得到lClusterCount
-			*pClusterCount=lClusterCount;
-		}
-		//填充pHasSkin
-		{
-			*pHasSkin=getHasDeformer(lMesh);//此处不严谨
-		}
-	
-	}
 
-	//get mesh smoothing info
+//get mesh smoothing info
 //set pCompute true to compute smoothing from normals by default 
 //set pConvertToSmoothingGroup true to convert hard/soft edge info to smoothing group info by default
 void Cmodelfbx::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool pCompute, bool pConvertToSmoothingGroup)
@@ -580,7 +517,6 @@ void Cmodelfbx::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool pComp
         FbxGeometryElementSmoothing* lSmoothingElement = lMesh->GetElementSmoothing();
         if(lSmoothingElement)
         {
-		//	system("pause");
             //mapping mode is by edge. The mesh usually come from Maya, because Maya can set hard/soft edges.
             //we can get smoothing info(which edges are soft, which edges are hard) by retrieving each edge. 
             if( lSmoothingElement->GetMappingMode() == FbxGeometryElement::eByEdge )
@@ -600,7 +536,7 @@ void Cmodelfbx::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool pComp
 
                     //Got smoothing of each vertex.
                     int lSmoothingFlag = lSmoothingElement->GetDirectArray().GetAt(lSmoothingIndex);
-              //      FBXSDK_printf("hard/soft value for edge[%d]: %d \n", lEdgeIndex, lSmoothingFlag);
+                    FBXSDK_printf("hard/soft value for edge[%d]: %d \n", lEdgeIndex, lSmoothingFlag);
                     //add your custom code here, to output smoothing or get them into a list, such as KArrayTemplate<int>
                     //. . .
                 }//end for lEdgeIndex
@@ -641,83 +577,10 @@ void Cmodelfbx::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool pComp
     }
 }
 
-	void Cmodelfbx::makeOtherUserForEachNode(FbxNode* pNode){
-		FbxNodeAttribute* lNodeAttribute = pNode->GetNodeAttribute();
-		if (lNodeAttribute//有属性节点
-			&&lNodeAttribute->GetAttributeType() == FbxNodeAttribute::eMesh//且属性节点为的类型为eMesh
-			)//为pNode制作并绑定idSubMeshSet
-		{	
-			makeOtherUserForThisNode(pNode);
-		}
-		const int lChildCount = pNode->GetChildCount();
-		for (int lChildIndex = 0; lChildIndex < lChildCount; ++lChildIndex)
-		{
-			makeOtherUserForEachNode(pNode->GetChild(lChildIndex));
-		}
-	}
-	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	//清除userData
-	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	void Cmodelfbx::destroyAllUserData_and_manager(){
-		destroyAllUserData();//删除用户自定义数据
+	void Cmodelfbx::destroyManager(){
 		DestroySdkObjects(lSdkManager);//删除manager
 	}
-	void Cmodelfbx::destroyAllUserData(){
-		
-		//清楚递归用户数据
-		clearUserDataRecursive(lScene->GetRootNode());
-	}
-	
-	void Cmodelfbx::clearUserDataRecursive(FbxNode* pNode)
-	{
-		FbxNodeAttribute* lNodeAttribute = pNode->GetNodeAttribute();
-		if (lNodeAttribute//有属性节点
-			&&lNodeAttribute->GetAttributeType() == FbxNodeAttribute::eMesh//且属性节点为的类型为eMesh
-			)
-		{	
-			FbxMesh*lMesh=pNode->GetMesh();
-			//销毁clusterDeformation
-			FbxAMatrix*lClusterDeformation=(static_cast<FbxAMatrix*>(lMesh->GetUserDataPtr(userDataIndex_clusterDeformation)));
-			if(lClusterDeformation!=NULL)delete []lClusterDeformation;
-			//销毁clusterWeight
-			double*lClusterWeight=(static_cast<double*>(lMesh->GetUserDataPtr(userDataIndex_clusterWeight)));
-			if(lClusterWeight!=NULL)delete []lClusterWeight;
-			//销毁clusterCount
-			int*pClusterCount=(static_cast<int*>(lMesh->GetUserDataPtr(userDataIndex_clusterCount)));
-			if(pClusterCount!=NULL)delete pClusterCount;
-			//销毁hasSkin
-			bool*pHasSkin=(static_cast<bool*>(lMesh->GetUserDataPtr(userDataIndex_hasSkin)));
-			if(pHasSkin!=NULL)delete pHasSkin;
-			//销毁所有cluster的用户数据
-			FbxMesh* pMesh = pNode->GetMesh();
-			{
-				int lSkinCount = pMesh->GetDeformerCount(FbxDeformer::eSkin);
-				for ( int lSkinIndex=0; lSkinIndex<lSkinCount; ++lSkinIndex)
-				{
-					FbxSkin * lSkinDeformer = (FbxSkin *)pMesh->GetDeformer(lSkinIndex, FbxDeformer::eSkin);
-
-					int lClusterCount = lSkinDeformer->GetClusterCount();
-					for ( int lClusterIndex=0; lClusterIndex<lClusterCount; ++lClusterIndex)
-					{
-						FbxCluster* pCluster = lSkinDeformer->GetCluster(lClusterIndex);
-						FbxAMatrix *plClusterRelativeInitPosition=(static_cast<FbxAMatrix*>(pCluster->GetUserDataPtr(userDataIndex_clusterRelativeInitPosition)));
-						if(plClusterRelativeInitPosition!=NULL)delete plClusterRelativeInitPosition;
-						
-					}
-				}
-			}
-		}
-		const int lChildCount = pNode->GetChildCount();
-		for (int lChildIndex = 0; lChildIndex < lChildCount; ++lChildIndex)
-		{
-			clearUserDataRecursive(pNode->GetChild(lChildIndex));
-		}
-	}
-	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	//绘制
-	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	void Cmodelfbx::bakeAnimation(){
-		cout<<"--------------------------------------------"<<endl;
 		//animStack
 		FbxArray<FbxString*> mAnimStackNameArray;
 		lScene->FillAnimStackNameArray(mAnimStackNameArray);
@@ -780,7 +643,6 @@ void Cmodelfbx::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool pComp
 			FbxTime dTime;
 			dTime.SetMilliSeconds(aniLayerInfo->getInterval()*1000);
 			FbxTime curTime=startTime;
-		//	cout<<"dTime:"<<dTime.GetMilliSeconds()<<endl;
 			while(1){
 				if(curTime>stopTime){
 					this->updateSkin(stopTime,lCurrentAnimationStack,animStackIndex);
@@ -797,95 +659,7 @@ void Cmodelfbx::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool pComp
 	}
 
 	
-	void Cmodelfbx::drawSkin(FbxNode*pNode,FbxVector4*lVertexArray,FbxVector4*lNormalArray){
-	/*	if(lVertexArray==NULL)return;
-
-		FbxMesh*lMesh=pNode->GetMesh();
-		
-		//画各subMesh
-		CidSubMeshSet*pIdSubMeshSet=(static_cast<CidSubMeshSet*>(lMesh->GetUserDataPtr(userDataIndex_idSubMeshSet)));
-		float*pUVs=(static_cast<float*>(lMesh->GetUserDataPtr(userDataIndex_UV)));
-		const int nidSubMesh=(int)pIdSubMeshSet->idSubMeshList.size();
-		for(int i=0;i<nidSubMesh;i++){
-			CidSubMesh&idSubMesh=pIdSubMeshSet->idSubMeshList[i];
-			//画idSubMesh
-			//绑定纹理
-			glBindTexture(GL_TEXTURE_2D,idSubMesh.texture);
-			glBegin(GL_TRIANGLES);
-			//画各三角形
-			int j=0;
-			int jMul3=0;
-			int nTriangle=(int)idSubMesh.polygenIndexList.size();
-			for(;j<nTriangle;j++){
-				const int triangleIndex=idSubMesh.polygenIndexList[j];
-				//画triangleIndex号三角形
-				//获得三顶点
-				const int ID0=idSubMesh.vIDList[jMul3++];
-				const int ID1=idSubMesh.vIDList[jMul3++];
-				const int ID2=idSubMesh.vIDList[jMul3++];
-				//求uv
-				const float *u0=pUVs+triangleIndex*6;//即pUVs+triangleIndex*6
-				const float *u1=u0+2;
-				const float *u2=u0+4;
-				//画
-				glNormal3dv((double*)lNormalArray[triangleIndex*3]);
-				glTexCoord2fv(u0);glVertex3dv((double*)lVertexArray[ID0]);
-				glNormal3dv((double*)lNormalArray[triangleIndex*3+1]);
-				glTexCoord2fv(u1);glVertex3dv((double*)lVertexArray[ID1]);
-				glNormal3dv((double*)lNormalArray[triangleIndex*3+2]);
-				glTexCoord2fv(u2);glVertex3dv((double*)lVertexArray[ID2]);
-				
-			}
-			glEnd();
-
-
-		}
-		*/
-
-	}
-	/*
-	void Cmodelfbx::loadTextures(const char * pFbxFileName)
-	//将各纹理文件的路径从lScene提取出来
-	{
-		string modelFolderPath;
-		{
-			modelFolderPath=pFbxFileName;
-			vector<string> strList=splitStrInTwoByLastBar(modelFolderPath);
-			modelFolderPath=strList[0];
-		}//got modelFolderPath
-		
-		 // Load the textures into GPU, only for file texture now
-        const int lTextureCount = lScene->GetTextureCount();
-        for (int lTextureIndex = 0; lTextureIndex < lTextureCount; ++lTextureIndex)
-        {
-            FbxTexture * lTexture = lScene->GetTexture(lTextureIndex);
-            FbxFileTexture * lFileTexture = FbxCast<FbxFileTexture>(lTexture);//只是转了一下类型，其实lFileTexture就是lTexture
-            if (lFileTexture && !lFileTexture->GetUserDataPtr())
-            {
-                // Try to load the texture from absolute path
-				string fullPath=lFileTexture->GetFileName();
-				vector<string> strList=splitStrInTwoByLastBar(fullPath);
-				assert((int)strList.size()==2);
-				string texFileName=strList[1];
-				string texPath=modelFolderPath+"/"+texFileName;
-				cout<<"texPath:"<<texPath<<endl;
-				//以filename生成纹理
-				Cc3dTexture*texture=Cc3dTextureCache::sharedTextureCache()->addImage(texPath.c_str());
-				if(texture){
-					//将此纹理的显存句柄以用户数据的形式保存回到lFileTexture(即lTexture)
-                    lFileTexture->SetUserDataPtr(userDataIndex_texture,texture);
-				}else{
-					cout<<"error: create texture failed! "<<endl;
-					assert(false);
-				}
-
-            }
-			
-        }
 	
-	
-	}
-	*/
     // Triangulate all NURBS, patch and mesh under this node recursively.
     void Cmodelfbx::TriangulateRecursive(FbxNode* pNode)
     {
@@ -912,23 +686,22 @@ void Cmodelfbx::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool pComp
 
 	void Cmodelfbx::updateSkin(FbxTime&Time,FbxAnimStack *lCurrentAnimationStack,int animStackIndex){
 		//更新fbx场景
-		{
-			if(lCurrentAnimationStack!=NULL){
-				//获得mCurrentAnimLayer
-				// we assume that the first animation layer connected to the animation stack is the base layer
-				// (this is the assumption made in the FBXSDK)
-				FbxAnimLayer *mCurrentAnimLayer = lCurrentAnimationStack->GetMember(FBX_TYPE(FbxAnimLayer), 0);
-				//获得pose
-				int mPoseIndex=-1;//就想让lPose得NULL，所以设定此处为-1
-				FbxPose * lPose = NULL;
-			    if (mPoseIndex != -1)
-				{
-					 lPose = lScene->GetPose(mPoseIndex);
-				}
-				//定义lDummyGlobalPosition
-				FbxAMatrix lDummyGlobalPosition;//模型的世界位置（默认构造为单位矩阵）
-				DrawNodeRecursive(lScene->GetRootNode(), Time, mCurrentAnimLayer,animStackIndex, lDummyGlobalPosition,lPose);
+
+		if(lCurrentAnimationStack!=NULL){
+			//获得mCurrentAnimLayer
+			// we assume that the first animation layer connected to the animation stack is the base layer
+			// (this is the assumption made in the FBXSDK)
+			FbxAnimLayer *mCurrentAnimLayer = lCurrentAnimationStack->GetMember(FBX_TYPE(FbxAnimLayer), 0);
+			//获得pose
+			int mPoseIndex=-1;//就想让lPose得NULL，所以设定此处为-1
+			FbxPose * lPose = NULL;
+			if (mPoseIndex != -1)
+			{
+				lPose = lScene->GetPose(mPoseIndex);
 			}
+			//定义lDummyGlobalPosition
+			FbxAMatrix lDummyGlobalPosition;//模型的世界位置（默认构造为单位矩阵）
+			DrawNodeRecursive(lScene->GetRootNode(), Time, mCurrentAnimLayer,animStackIndex, lDummyGlobalPosition,lPose);
 		}
 	
 	}
@@ -942,6 +715,7 @@ void Cmodelfbx::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool pComp
 	void Cmodelfbx::DrawNodeRecursive(FbxNode* pNode, FbxTime& pTime, FbxAnimLayer* pAnimLayer,int animStackIndex,
 		FbxAMatrix& pParentGlobalPosition, FbxPose* pPose)
 	{
+		//{the scale component of globalPosition matrix is equals to the product of scale factors when fbx file import and export via 3dmax }
 		FbxAMatrix lGlobalPosition = GetGlobalPosition(pNode, pTime,pPose, &pParentGlobalPosition);
 
 		if (pNode->GetNodeAttribute())
@@ -1075,17 +849,17 @@ void Cmodelfbx::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool pComp
 			case FbxNodeAttribute::eSkeleton:
 				{
 					//这个在调试模型时应开启，以便观察骨骼与蒙皮是否吻合，但最终显示时应关闭以节省计算量
-		//			DrawSkeleton(pNode, pParentGlobalPosition, pGlobalPosition);
+					DrawSkeleton(pNode, pParentGlobalPosition, pGlobalPosition);
 				}
 				break;
 			case FbxNodeAttribute::eCamera:
 				{
-			//		DrawCamera(pNode, pTime, pAnimLayer, pGlobalPosition);
+					DrawCamera(pNode, pTime, pAnimLayer, pGlobalPosition);
 				}
 				break;
 			case FbxNodeAttribute::eNull:
 				{
-			//		DrawNull(pGlobalPosition);
+					DrawNull(pGlobalPosition);
 				}
 				break;*/
 			}
@@ -1157,8 +931,8 @@ void Cmodelfbx::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool pComp
 
 		}
 
-		//填充变形顶点和法线列表
-		if (HasSkin)//如果有skin
+		//{compute deformation}
+		if (HasSkin)//{if have skin}
 		{
 			if (ClusterCount)
 			{
@@ -1186,7 +960,6 @@ void Cmodelfbx::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool pComp
 			assert(mesh);
 			if(mesh->getSkin()==NULL){
 				Cc3dMatrix4 globalPositionMat=FbxAMatrixToCc3dMatrix4(pGlobalPosition);
-			//	globalPositionMat.print();
 				mesh->setRTSmat(globalPositionMat);
 				Cc3dSkin*skin=new Cc3dSkin();
 				skin->autorelease();
@@ -1235,7 +1008,7 @@ void Cmodelfbx::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool pComp
 
 
 	
-	// Deform the vertex array in classic linear way.简化版本
+	// Deform the vertex array in classic linear way.{simplified version}
 	void Cmodelfbx::ComputeLinearDeformation_simplify(FbxAMatrix& pGlobalPosition, 
 		FbxMesh* pMesh, 
 		FbxTime& pTime, 
@@ -1243,12 +1016,11 @@ void Cmodelfbx::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool pComp
 		int animStackIndex)
 	{
 		
-		//下面花括号中的内容只在调试时开放
-		{
+		{   //{we only support normalized cluster mode}
 			// All the links must have the same link mode.
 			FbxCluster::ELinkMode lClusterMode = ((FbxSkin*)pMesh->GetDeformer(0, FbxDeformer::eSkin))->GetCluster(0)->GetLinkMode();
 			if(lClusterMode!=FbxCluster::eNormalize){
-				cout<<"error:lClusterMode!=eNormalize，目前只支持eNormalize"<<endl;
+				cout<<"error: currently, only eNormalize cluster mode is supported!"<<endl;
 				assert(false);
 				//  (1) lClusterMode == FbxCluster::eNormalize:
 				//	normalized link mode, a vertex is always totally influenced by the links.
@@ -1267,7 +1039,7 @@ void Cmodelfbx::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool pComp
 		int lSkinCount = pMesh->GetDeformerCount(FbxDeformer::eSkin);
 		//其实只处理第一个skin即可
 		if(lSkinCount>1){//如果多于一个skin，给一个警报
-			cout<<"warning:含有多于一个skin，只处理第一个skin"<<endl;
+			cout<<"warning: here is more than one skin, only consider the first one."<<endl;
 			lSkinCount=1;//强制只处理第一个skin，这样节省计算量
 		}
 		
@@ -1292,9 +1064,7 @@ void Cmodelfbx::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool pComp
 				
 				Cc3dSkinMesh* mesh=(Cc3dSkinMesh*)this->findSkinMeshByFbxMeshPtr(pMesh);
 				assert(mesh);
-				bool exist=true;
 				if(lClusterIndex>=(int)mesh->getSkin()->getClusterCount()){//cluster not exist
-					exist=false;
 					//create cluster
 					Cc3dSkinCluster*cluster=new Cc3dSkinCluster();
 					cluster->autorelease();
@@ -1305,14 +1075,12 @@ void Cmodelfbx::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool pComp
 				
 				int clusterAniLayerCount=cluster->getAniLayerCount();
 				if(animStackIndex>=clusterAniLayerCount){//aniLayer not exist
-					exist=false;
 					//create aniLayer
 					Cc3dAniLayer*aniLayer=new Cc3dAniLayer();
 					aniLayer->autorelease();
 					cluster->addAniLayer(aniLayer);
 					assert((int)cluster->getAniLayerCount()==animStackIndex+1);
 				}
-		//		cout<<"exist:"<<exist<<endl;
 				Cc3dAniLayer*aniLayer=cluster->getAniLayerByIndex(animStackIndex);
 				Cc3dMatrix4 vertexTransformMat=FbxAMatrixToCc3dMatrix4(lVertexTransformMatrix);
 				aniLayer->addAniFrame(Cc3dAniFrame(vertexTransformMat,(float)pTime.GetMilliSeconds()/1000));
@@ -1320,41 +1088,12 @@ void Cmodelfbx::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool pComp
 					cluster->setVertexIndexList(clusterControlPointIndices,lVertexIndexCount);
 					cluster->setVertexWeightList(clusterControlPointWeights,lVertexIndexCount);
 				}
-		//		cout<<"clusterIndex,aniLayerIndex,frameIndex:"<<lClusterIndex<<" "<<cluster->getAniLayerCount()-1<<" "<<aniLayer->getVertexTransformMatCount()<<endl;
-				
-
 				              
 			}//lClusterCount
 		}
 		
 	}
 	
-	void Cmodelfbx::prodv_lastRow0001_wZero(const FbxAMatrix&matrix,const FbxVector4&in,FbxVector4&out)
-	//设m为FbxAMatrix
-	//double*pm=(double*)m
-	//则pm完全等同于opengl中的double[16],遵从如下布局:
-	// pm[0] pm[4] pm[8]  pm[12]
-	// pm[1] pm[5] pm[9]  pm[13]
-	// pm[2] pm[6] pm[10] pm[14]
-	// pm[3] pm[7] pm[11] pm[15]
-	//其中(pm[12],pm[13],pm[14],pm[15])为平移分量(x,y,z,1)
-	//而如果不进行类型转化，直接使用m，则：
-	//               m[0][0] m[0][1] m[0][2]   pm[0]  pm[1]  pm[2]  pm[3]
-	// FbxAMatrix m= m[0][0] m[0][1] m[0][2] = pm[4]  pm[5]  pm[6]  pm[7]
-	//				 m[0][0] m[0][1] m[0][2]   pm[8]  pm[9]  pm[10] pm[11]
-	//               m[0][0] m[0][1] m[0][2]   pm[12] pm[13] pm[14] pm[15]
-	//注意此处pm矩阵与上面的pm矩阵行列正好相反
-	{//in和out可以是同一变量
-		const double* pmatrix=(const double*)matrix;
-		const double* pin=(const double*)in;
-		double _out[4];//临时中转
-		//注意，下面用pmatrix,pin，而不要再用matrix和in
-		_out[0]=pin[0]*pmatrix[0]+pin[1]*pmatrix[4]+pin[2]*pmatrix[8];
-		_out[1]=pin[0]*pmatrix[1]+pin[1]*pmatrix[5]+pin[2]*pmatrix[9];
-		_out[2]=pin[0]*pmatrix[2]+pin[1]*pmatrix[6]+pin[2]*pmatrix[10];
-		_out[3]=0;
-		out=_out;
-	}
 
 	// Scale all the elements of a matrix.
 	void Cmodelfbx::MatrixScale(FbxAMatrix& pMatrix, double pValue)
@@ -1415,15 +1154,8 @@ void Cmodelfbx::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool pComp
 
 		FbxAMatrix lClusterRelativeInitPosition;
 		FbxAMatrix lClusterRelativeCurrentPositionInverse;
-		//计算lClusterRelativeInitPosition
+		//{calculate lClusterRelativeInitPosition}
 		{
-			//先看看能不能从用户数据中获取
-			FbxAMatrix *plClusterRelativeInitPosition=(static_cast<FbxAMatrix*>(pCluster->GetUserDataPtr(userDataIndex_clusterRelativeInitPosition)));
-			if(plClusterRelativeInitPosition){//获取成功
-		//		cout<<"succ"<<endl;
-				lClusterRelativeInitPosition=*plClusterRelativeInitPosition;
-			}else{
-		//		cout<<"fail"<<endl;
 				pCluster->GetTransformMatrix(lReferenceGlobalInitPosition);
 				//Multiply lReferenceGlobalInitPosition by Geometric Transformation
 				lReferenceGeometry = GetGeometry(pMesh->GetNode());
@@ -1432,13 +1164,8 @@ void Cmodelfbx::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool pComp
 				pCluster->GetTransformLinkMatrix(lClusterGlobalInitPosition);
 				// Compute the initial position of the link relative to the reference.
 				lClusterRelativeInitPosition = lClusterGlobalInitPosition.Inverse() * lReferenceGlobalInitPosition;
-				//将lClusterRelativeInitPosition添加到pCluster节点
-				FbxAMatrix *plClusterRelativeInitPosition=new FbxAMatrix(lClusterRelativeInitPosition);
-				pCluster->SetUserDataPtr(userDataIndex_clusterRelativeInitPosition,plClusterRelativeInitPosition);
-
-			}
 		}
-		//计算lClusterRelativeCurrentPositionInverse
+		//{calculate lClusterRelativeCurrentPositionInverse}
 		{
 			lReferenceGlobalCurrentPosition = pGlobalPosition;
 			// Get the link current global position.

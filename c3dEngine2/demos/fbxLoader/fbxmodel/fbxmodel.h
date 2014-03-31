@@ -234,7 +234,6 @@ public:
 				assert(aniLayerIndex<aniLayerCount);
 				Cc3dAniLayer*aniLayer=cluster->getAniLayerByIndex(aniLayerIndex);
 				int aniFrameCount=aniLayer->getAniFrameCount();
-		//		cout<<"aniFrameCount:"<<aniFrameCount<<endl;
 				const Cc3dAniFrame&aniFrame=aniLayer->getAniFrameByTime(time);
 				Cc3dMatrix4 vertexTransformMat=aniFrame.getVertexTransformMat();
 				float time=aniFrame.getTime();
@@ -412,14 +411,7 @@ public:
 	}
 
 };
-//用户自定义数据的索引
-//mesh上的userData
-const int userDataIndex_clusterDeformation=5;
-const int userDataIndex_clusterWeight=6;
-const int userDataIndex_clusterCount=7;
-const int userDataIndex_hasSkin=8;
-//pCluster上的userData
-const int userDataIndex_clusterRelativeInitPosition=0;
+
 class Cmodelfbx:public Cc3dSkinActor
 {
 public:
@@ -440,38 +432,28 @@ public:
 	}
 	~Cmodelfbx(){
 		
-		if(lSdkManager!=NULL)destroyAllUserData_and_manager();
+		if(lSdkManager!=NULL)destroyManager();
 	}
-	//-------------------------------------------------------------------------------------------
 	void bakeAnimation();
 	void Init_and_load(char* _fbxFileName);
 	void triangulate_loadTextures_preprocess();
 	void makeSubMeshSetForThisNode(FbxNode* pNode);
 	void makeSubMeshSetForEachNode(FbxNode* pNode);
 	bool getHasDeformer(FbxMesh*lMesh);
-	void makeOtherUserForThisNode(FbxNode* pNode);
 	void updateSkin(FbxTime&Time,FbxAnimStack *lCurrentAnimationStack,int animStackIndex);
-	void makeOtherUserForEachNode(FbxNode* pNode);
-	void destroyAllUserData_and_manager();
-	void destroyAllUserData();
-	void clearUserDataRecursive(FbxNode* pNode);
-	void prodv_lastRow0001_wZero(const FbxAMatrix&matrix,const FbxVector4&in,FbxVector4&out);
+	void destroyManager();
 	void drawSkin(FbxNode*pNode,FbxVector4*lVertexArray,FbxVector4*lNormalArray);
-//	void loadTextures(const char * pFbxFileName);
-	//-----------------------------------------------------------------------------------------------
-	// Deform the vertex array in classic linear way.简化版本
 	void ComputeLinearDeformation_simplify(FbxAMatrix& pGlobalPosition, 
 		FbxMesh* pMesh, 
 		FbxTime& pTime, 
 		FbxPose* pPose,
 		int animStackIndex);
-	// Draw the vertices of a mesh.
-	void DrawMesh(FbxNode* pNode, FbxTime& pTime, FbxAnimLayer* pAnimLayer,int animStackIndex,
-		FbxAMatrix& pGlobalPosition, FbxPose* pPose);
-	//------------------------------------------------------------------------------------------------
 	void InitializeSdkObjects(FbxManager*& pSdkManager, FbxScene*& pScene);
 	bool LoadScene(FbxManager* pSdkManager, FbxDocument* pScene,char* pFilename);
 	void DestroySdkObjects(FbxManager* &pSdkManager);
+	// Draw the vertices of a mesh.
+	void DrawMesh(FbxNode* pNode, FbxTime& pTime, FbxAnimLayer* pAnimLayer,int animStackIndex,
+		FbxAMatrix& pGlobalPosition, FbxPose* pPose);
 	//get mesh smoothing info
 	//set pCompute true to compute smoothing from normals by default 
 	//set pConvertToSmoothingGroup true to convert hard/soft edge info to smoothing group info by default

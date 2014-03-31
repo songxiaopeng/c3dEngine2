@@ -243,6 +243,9 @@
     <ClCompile Include="..\code\programSetUp.cpp">
       <Filter>code</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\c3dEngine\core\c3dGlobalTimer.cpp">
+      <Filter>c3dEngine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Script1.rc">
@@ -506,6 +509,9 @@
       <Filter>code</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\c3dEngine\c3d.h">
+      <Filter>c3dEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\c3dEngine\core\c3dGlobalTimer.h">
       <Filter>c3dEngine</Filter>
     </ClInclude>
   </ItemGroup>

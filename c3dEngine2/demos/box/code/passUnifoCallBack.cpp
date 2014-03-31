@@ -44,9 +44,9 @@ void passUnifoCallback_classicLighting(Cc3dNode*node, Cc3dProgram*program){
 	program->passUnifoValueMatrixNfv("normMat", normMat.getArray(), normMat.getArrayLen());
     program->passUnifoValueNfv("diffuseMaterial", diffuseMaterial.getArray(),diffuseMaterial.getArrayLen());
 	program->passUnifoValueNfv("diffuseLight", diffuseLight.getArray(),diffuseLight.getArrayLen());
-    program->passUnifoValueNfv("ambientMateirl", ambientMaterial.getArray(), ambientMaterial.getArrayLen());
+    program->passUnifoValueNfv("ambientMaterial", ambientMaterial.getArray(), ambientMaterial.getArrayLen());
 	program->passUnifoValueNfv("ambientLight", ambientLight.getArray(), ambientLight.getArrayLen());
-	program->passUnifoValueNfv("specularMateirl", specularMaterial.getArray(), specularMaterial.getArrayLen());
+	program->passUnifoValueNfv("specularMaterial", specularMaterial.getArray(), specularMaterial.getArrayLen());
 	program->passUnifoValueNfv("specularLight", specularLight.getArray(), specularLight.getArrayLen());
 	program->passUnifoValue1f("shininess", shininess);
 	program->passUnifoValueNfv("lightPos_world", lightPos.getArray(),lightPos.getArrayLen());
