@@ -228,7 +228,6 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\c3dEngine\platform\win32\libraries\*.*" "$(Ou
     <ClCompile Include="..\..\..\extension\octree\triangleWithNorm.cpp" />
     <ClCompile Include="..\..\..\extension\terrain\terrain.cpp" />
     <ClCompile Include="..\fbxmodel\fbxmodel.cpp" />
-    <ClCompile Include="..\projcode\box.cpp" />
     <ClCompile Include="..\projcode\globalVars.cpp" />
     <ClCompile Include="..\projcode\initGame.cpp" />
   </ItemGroup>
@@ -322,7 +321,6 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\c3dEngine\platform\win32\libraries\*.*" "$(Ou
     <ClInclude Include="..\..\..\extension\octree\triangleWithNorm.h" />
     <ClInclude Include="..\..\..\extension\terrain\terrain.h" />
     <ClInclude Include="..\fbxmodel\fbxmodel.h" />
-    <ClInclude Include="..\projcode\box.h" />
     <ClInclude Include="..\projcode\globalVars.h" />
     <ClInclude Include="..\projcode\initGame.h" />
     <ClInclude Include="..\projcode\NOTE.h" />

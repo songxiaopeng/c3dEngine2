@@ -243,9 +243,6 @@
     <ClCompile Include="..\..\..\c3dEngine\shader\c3dProgramSetUp.cpp">
       <Filter>c3dEngine</Filter>
     </ClCompile>
-    <ClCompile Include="..\projcode\box.cpp">
-      <Filter>projcode</Filter>
-    </ClCompile>
     <ClCompile Include="..\projcode\globalVars.cpp">
       <Filter>projcode</Filter>
     </ClCompile>
@@ -519,9 +516,6 @@
     </ClInclude>
     <ClInclude Include="..\..\..\c3dEngine\shader\c3dProgramSetUp.h">
       <Filter>c3dEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="..\projcode\box.h">
-      <Filter>projcode</Filter>
     </ClInclude>
     <ClInclude Include="..\projcode\globalVars.h">
       <Filter>projcode</Filter>

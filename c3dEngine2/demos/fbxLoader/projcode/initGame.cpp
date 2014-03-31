@@ -8,7 +8,6 @@
 
 #include "initGame.h"
 #include "c3d.h"
-#include "box.h"
 #include "globalVars.h"
 #include "fbxmodel.h"
 void initGame(){
