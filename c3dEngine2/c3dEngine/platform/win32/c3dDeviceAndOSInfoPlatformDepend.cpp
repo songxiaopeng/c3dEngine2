@@ -23,3 +23,28 @@ void getMemStatistics_plat(int&memUsed,int&memFree,int&memTotal){//获得内存�
 
 	C3DASSERT(false);
 }
+
+void showSystemInfo_plat(){
+	//opengl version query
+	//see: http://www.opengl.org/wiki/GlGetString
+	const GLubyte* s_gl_vendor = glGetString(GL_VENDOR); 
+	const GLubyte* s_gl_renderer = glGetString(GL_RENDERER);   
+	const GLubyte* s_gl_version =glGetString(GL_VERSION);
+	const GLubyte* s_glu_version= gluGetString(GLU_VERSION);
+	cout<<endl;
+	cout<<"OpenGL vendor: "<<s_gl_vendor<<endl; 
+	cout<<"GPU:"<<s_gl_renderer<<endl;
+	cout<<"OpenGL version: "<<s_gl_version<<endl;
+	cout<<"GLU version: "<<s_glu_version<<endl; 
+	//see if support opengl 2.0
+	if (glewIsSupported("GL_VERSION_2_0"))
+		cout<<"support openGL 2.0!"<<endl;
+	else {
+		cout<<"not support openGL 2.0!"<<endl;
+		assert(false);
+	}
+	//GLSL version
+    const GLubyte* s= glGetString(GL_SHADING_LANGUAGE_VERSION);
+    cout<<s<<endl;
+	cout<<endl;
+}

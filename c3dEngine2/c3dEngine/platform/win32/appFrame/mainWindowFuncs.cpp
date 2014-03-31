@@ -88,7 +88,14 @@ void render(HDC hDC){
 }
 
  void initWithFrame(){
+	
 	c3dInitGame();
+
+	//----开启垂直同步，限制帧率为每秒60帧 (put behind c3dInitGame())
+	typedef BOOL (APIENTRY *PFNWGLSWAPINTERVALFARPROC)( int );
+	PFNWGLSWAPINTERVALFARPROC wglSwapIntervalEXT = 0;
+	wglSwapIntervalEXT = (PFNWGLSWAPINTERVALFARPROC)wglGetProcAddress("wglSwapIntervalEXT");
+	wglSwapIntervalEXT(1);//1为开启，0为关闭
 
  }
 
