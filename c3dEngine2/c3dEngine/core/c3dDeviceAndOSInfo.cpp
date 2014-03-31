@@ -30,3 +30,7 @@ int Cc3dDeviceAndOSInfo::getSupportedMaxTextureSize(){
     glGetIntegerv(GL_MAX_TEXTURE_SIZE, &maxTextureSize);
     return maxTextureSize;
 }
+void Cc3dDeviceAndOSInfo::showSystemInfo(){
+    showSystemInfo_plat();
+}
+

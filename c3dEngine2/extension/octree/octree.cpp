@@ -270,9 +270,9 @@ vector<CtriangleWithNorm> Coctree::getCollisionTriangleList(const Cc3dVector4&c,
         int nCollisionIDtri=(int)pCollisionIDtriExList.size();
         for(int i=0;i<nCollisionIDtri;i++){
             CIDTriForOctree*IDtriEx=pCollisionIDtriExList[i];
-            Cc3dVertex&v0=this->getMesh()->getSubMeshByIndex(IDtriEx->getSubMeshID())->getVertexByIndex(IDtriEx->getIDtri().vID[0]);//getSubMeshData()->vlist[IDtriEx->getIDtri().vID[0]];
-            Cc3dVertex&v1=this->getMesh()->getSubMeshByIndex(IDtriEx->getSubMeshID())->getVertexByIndex(IDtriEx->getIDtri().vID[1]);//getSubMeshData()->vlist[IDtriEx->getIDtri().vID[1]];
-            Cc3dVertex&v2=this->getMesh()->getSubMeshByIndex(IDtriEx->getSubMeshID())->getVertexByIndex(IDtriEx->getIDtri().vID[2]);//getSubMeshData()->vlist[IDtriEx->getIDtri().vID[2]];
+            const Cc3dVertex&v0=this->getMesh()->getSubMeshByIndex(IDtriEx->getSubMeshID())->getVertexByIndex(IDtriEx->getIDtri().vID[0]);//getSubMeshData()->vlist[IDtriEx->getIDtri().vID[0]];
+            const Cc3dVertex&v1=this->getMesh()->getSubMeshByIndex(IDtriEx->getSubMeshID())->getVertexByIndex(IDtriEx->getIDtri().vID[1]);//getSubMeshData()->vlist[IDtriEx->getIDtri().vID[1]];
+            const Cc3dVertex&v2=this->getMesh()->getSubMeshByIndex(IDtriEx->getSubMeshID())->getVertexByIndex(IDtriEx->getIDtri().vID[2]);//getSubMeshData()->vlist[IDtriEx->getIDtri().vID[2]];
             Cc3dVector4 pos0=v0.getPos();
             Cc3dVector4 pos1=v1.getPos();
             Cc3dVector4 pos2=v2.getPos();
@@ -402,7 +402,7 @@ void Coctree::makeOctree()
             Cc3dSubMesh&submesh=*this->getMesh()->getSubMeshByIndex(i);
             int nv=(int)submesh.getSubMeshData()->getVertexCount();//vlist.size();
             for(int j=0;j<nv;j++){
-                Cc3dVertex&v=submesh.getVertexByIndex(j);//getSubMeshData()->vlist[j];
+                const Cc3dVertex&v=submesh.getVertexByIndex(j);//getSubMeshData()->vlist[j];
                 Cc3dVector4 pos=v.getPos();
                 if(pos.x()<xmin)xmin=pos.x();
                 if(pos.x()>xmax)xmax=pos.x();
@@ -438,14 +438,14 @@ void Coctree::makeOctree()
         Cc3dSubMesh&subMesh=*this->getMesh()->getSubMeshByIndex(i);
         int nIDtri=(int)subMesh.getSubMeshData()->getIDtriCount();//IDtriList.size();
         for(int j=0;j<nIDtri;j++){
-            Cc3dIDTriangle&IDtri=subMesh.getIDtriByIndex(j);//getSubMeshData()->IDtriList[j];
+            const Cc3dIDTriangle&IDtri=subMesh.getIDtriByIndex(j);//getSubMeshData()->IDtriList[j];
             //由IDtri生成pIDtriEx
             CIDTriForOctree*pIDtriEx=new CIDTriForOctree();
             pIDtriEx->setIDtri(IDtri);
             pIDtriEx->setSubMeshID(i);
-            Cc3dVertex&v0=subMesh.getVertexByIndex(IDtri.vID[0]);//getSubMeshData()->vlist[IDtri.vID[0]];
-            Cc3dVertex&v1=subMesh.getVertexByIndex(IDtri.vID[1]);//getSubMeshData()->vlist[IDtri.vID[1]];
-            Cc3dVertex&v2=subMesh.getVertexByIndex(IDtri.vID[2]);//getSubMeshData()->vlist[IDtri.vID[2]];
+            const Cc3dVertex&v0=subMesh.getVertexByIndex(IDtri.vID[0]);//getSubMeshData()->vlist[IDtri.vID[0]];
+            const Cc3dVertex&v1=subMesh.getVertexByIndex(IDtri.vID[1]);//getSubMeshData()->vlist[IDtri.vID[1]];
+            const Cc3dVertex&v2=subMesh.getVertexByIndex(IDtri.vID[2]);//getSubMeshData()->vlist[IDtri.vID[2]];
             Cc3dVector4 pos0=v0.getPos();
             Cc3dVector4 pos1=v1.getPos();
             Cc3dVector4 pos2=v2.getPos();
@@ -513,9 +513,9 @@ void Coctree::makeOctree_inn(CocNode*&pNode,const vector<Cc3dSubMesh*>&pmeshList
         int nIDtri=pNode->getIDtriExCount();
         for(int j=0;j<nIDtri;j++){
             CIDTriForOctree*pIDtriEx=pNode->getpIDtriExByIndex(j);
-            Cc3dVertex&v0=pmeshList[pIDtriEx->getSubMeshID()]->getVertexByIndex(pIDtriEx->getIDtri().vID[0]);//getSubMeshData()->vlist[pIDtriEx->getIDtri().vID[0]];
-            Cc3dVertex&v1=pmeshList[pIDtriEx->getSubMeshID()]->getVertexByIndex(pIDtriEx->getIDtri().vID[1]);//getSubMeshData()->vlist[pIDtriEx->getIDtri().vID[1]];
-            Cc3dVertex&v2=pmeshList[pIDtriEx->getSubMeshID()]->getVertexByIndex(pIDtriEx->getIDtri().vID[2]);//getSubMeshData()->vlist[pIDtriEx->getIDtri().vID[2]];
+            const Cc3dVertex&v0=pmeshList[pIDtriEx->getSubMeshID()]->getVertexByIndex(pIDtriEx->getIDtri().vID[0]);//getSubMeshData()->vlist[pIDtriEx->getIDtri().vID[0]];
+            const Cc3dVertex&v1=pmeshList[pIDtriEx->getSubMeshID()]->getVertexByIndex(pIDtriEx->getIDtri().vID[1]);//getSubMeshData()->vlist[pIDtriEx->getIDtri().vID[1]];
+            const Cc3dVertex&v2=pmeshList[pIDtriEx->getSubMeshID()]->getVertexByIndex(pIDtriEx->getIDtri().vID[2]);//getSubMeshData()->vlist[pIDtriEx->getIDtri().vID[2]];
             bool intersect=intersect_IDTri_AABBBox(v0.getPos().getArray(),v1.getPos().getArray(),v2.getPos().getArray(),
                                                    childRange.getMinX(),childRange.getMaxX(),
                                                    childRange.getMinY(),childRange.getMaxY(),

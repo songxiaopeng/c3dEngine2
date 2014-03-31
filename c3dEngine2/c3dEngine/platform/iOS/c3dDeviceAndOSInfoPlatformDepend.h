@@ -17,4 +17,5 @@ using namespace std;
 Cc3dVector2 getScreenSize_plat();
 Cc3dVector2 getResolutionSize_plat();
 void getMemStatistics_plat(int&memUsed,int&memFree,int&memTotal);
+void showSystemInfo_plat();
 #endif /* defined(__HelloOpenGL__c3dDeviceAndOSInfoPlatformDepend__) */

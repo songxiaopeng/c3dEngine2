@@ -15,8 +15,9 @@ using namespace std;
 #include "c3dTextureCache.h"
 #include "c3dAudioCache.h"
 #include "c3dTimeCounter.h"
-//
-#include "initGame.h"
+#include "c3dProgramSetUp.h"
+#include "c3dInitGame.h"
+
 
 
 
@@ -84,39 +85,7 @@ using namespace std;
 }
 
 
-- (void)initOpenAL {
-	ALCcontext		*newContext = NULL;
-	ALCdevice		*newDevice = NULL;
-	
-	// Create a new OpenAL Device
-	// Pass NULL to specify the system’s default output device
-	newDevice = alcOpenDevice(NULL);
-	if (newDevice != NULL)
-	{
-		// Create a new OpenAL Context
-		// The new context will render to the OpenAL Device just created
-		newContext = alcCreateContext(newDevice, 0);
-		if (newContext != NULL)
-		{
-			// Make the new context the Current OpenAL Context
-			alcMakeContextCurrent(newContext);
-					
-		}else{
-            cout<<"error:newContext==NULL!"<<endl;
-            assert(false);
-        }
-	}else{
-        cout<<"error:newDevice==NULL!"<<endl;
-        assert(false);
-    }
-	// clear any errors
-	alGetError();
 
-}
-- (void)cleanUpOpenAL {
-    TeardownOpenAL();
-
-}
 - (void)render:(CADisplayLink*)displayLink {
    
     //switch back to screen fbo
@@ -157,46 +126,15 @@ using namespace std;
 {
     self = [super initWithFrame:frame];
     assert(self);
-    //----框架
     [self setupLayer];
     [self setupContext];
     [self setupDepthBuffer];
     [self setupRenderBuffer];
     [self setupFrameBuffer];
     [self setupDisplayLink];//其中定义了render回调
-    [self initOpenAL];
-    //----随机数
-    srand(time(0));
-    //----openal状态
-    alDistanceModel(AL_INVERSE_DISTANCE_CLAMPED);//设置距离模型
-    alListenerf(AL_GAIN, 1.0);//set listener gain
-    //----opengl状态
-    glEnable(GL_BLEND);
-    glEnable(GL_DEPTH_TEST);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    glClearColor(0, 0, 0, 0);//指定清理color buffers时所用的颜色，默认值为(0,0,0,0)
-                                              //见:http://msdn.microsoft.com/en-us/library/windows/desktop/dd318377(v=vs.85).aspx
-    glEnableVertexAttribArray(ATTRIB_LOC_position);
-    glEnableVertexAttribArray(ATTRIB_LOC_texCoord);
-    glEnableVertexAttribArray(ATTRIB_LOC_normal);
-    glEnableVertexAttribArray(ATTRIB_LOC_color);
-    glEnableVertexAttribArray(ATTRIB_LOC_texCoord2);
-    //----查询版本信息
-    const GLubyte* s= glGetString(GL_SHADING_LANGUAGE_VERSION);
-    cout<<s<<endl;
-     //----获取设备信息
-    cout<<"screenSize: "<<Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo()->getScreenSize().x()<<" "<<Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo()->getScreenSize().y()<<endl;
-    cout<<"resolution: "<<Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo()->getResolutionSize().x()<<" "<<Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo()->getResolutionSize().y()<<endl;
-    //----创建默认shaderProgam
-    c3dDefaultShadersSetup();
-   
-    C3DCHECK_GL_ERROR_DEBUG();
-    C3DCHECK_AL_ERROR_DEBUG();
     
-    initGame();
+    c3dInitGame();
     
-    C3DCHECK_GL_ERROR_DEBUG();
-    C3DCHECK_AL_ERROR_DEBUG();
     return self;
 }
 -(BOOL) CheckForExtension:(NSString *)searchName

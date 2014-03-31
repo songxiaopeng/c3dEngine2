@@ -42,3 +42,36 @@ void initBuffer_plat(const string&fileNameFull,void*&data,ALuint&buffer)
         assert(false);
     }
 }
+void initOpenAL_plat(){
+    
+    ALCcontext		*newContext = NULL;
+    ALCdevice		*newDevice = NULL;
+    
+    // Create a new OpenAL Device
+    // Pass NULL to specify the system’s default output device
+    newDevice = alcOpenDevice(NULL);
+    if (newDevice != NULL)
+    {
+        // Create a new OpenAL Context
+        // The new context will render to the OpenAL Device just created
+        newContext = alcCreateContext(newDevice, 0);
+        if (newContext != NULL)
+        {
+            // Make the new context the Current OpenAL Context
+            alcMakeContextCurrent(newContext);
+            
+        }else{
+            cout<<"error:newContext==NULL!"<<endl;
+            assert(false);
+        }
+    }else{
+        cout<<"error:newDevice==NULL!"<<endl;
+        assert(false);
+    }
+    // clear any errors
+    alGetError();
+
+}
+void teardownOpenAL_plat(){
+    TeardownOpenAL();
+}

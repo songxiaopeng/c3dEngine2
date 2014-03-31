@@ -39,7 +39,7 @@ void c3dInitGame(){
     glEnable(GL_BLEND);
     glEnable(GL_DEPTH_TEST);
 	glEnable(GL_TEXTURE_2D);//on windows, do not forget this!!!
-    glEnable(GL_VERTEX_PROGRAM_POINT_SIZE);// Enable point size by default on windows.
+    ////glEnable(GL_VERTEX_PROGRAM_POINT_SIZE);// Enable point size by default on windows.(wait, it is not support on iOS!)
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glClearColor(0, 0, 0, 0);//指定清理color buffers时所用的颜色，默认值为(0,0,0,0),见:http://msdn.microsoft.com/en-us/library/windows/desktop/dd318377(v=vs.85).aspx
     glEnableVertexAttribArray(ATTRIB_LOC_position);
@@ -47,37 +47,8 @@ void c3dInitGame(){
     glEnableVertexAttribArray(ATTRIB_LOC_normal);
 	glEnableVertexAttribArray(ATTRIB_LOC_color);
     glEnableVertexAttribArray(ATTRIB_LOC_texCoord2);
-	
-	//----开启垂直同步，限制帧率为每秒60帧
-	typedef BOOL (APIENTRY *PFNWGLSWAPINTERVALFARPROC)( int );
-	PFNWGLSWAPINTERVALFARPROC wglSwapIntervalEXT = 0;
-	wglSwapIntervalEXT = (PFNWGLSWAPINTERVALFARPROC)wglGetProcAddress("wglSwapIntervalEXT");
-	wglSwapIntervalEXT(1);//1为开启，0为关闭
-    //----查询opengl版本信息
-	//详见：http://www.opengl.org/wiki/GlGetString
-	const GLubyte* s_gl_vendor = glGetString(GL_VENDOR); 
-	const GLubyte* s_gl_renderer = glGetString(GL_RENDERER);   
-	const GLubyte* s_gl_version =glGetString(GL_VERSION);
-	const GLubyte* s_glu_version= gluGetString(GLU_VERSION);
-	cout<<"OpenGL实现厂商："<<s_gl_vendor<<endl;    
-	cout<<"GPU/渲染器："<<s_gl_renderer<<endl;    
-	cout<<"OpenGL实现版本号："<<s_gl_version<<endl;    
-	cout<<"GLU版本："<<s_glu_version<<endl;   
-	//检查是否支持opengl 2.0
-	cout<<endl;
-	cout<<"检查系统是否支持openGL 2.0..."<<endl;
-	glewInit();
-	if (glewIsSupported("GL_VERSION_2_0"))
-		cout<<"系统支持openGL 2.0!"<<endl;
-	else {
-		cout<<"系统不支持openGL 2.0!"<<endl;
-		system("pause");
-		C3DASSERT(false);
-	}
-	//GLSL version
-    const GLubyte* s= glGetString(GL_SHADING_LANGUAGE_VERSION);
-    cout<<s<<endl;
-    
+	//----show system info
+    Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo()->showSystemInfo();
 	//----获取设备信息
     cout<<"screenSize: "<<Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo()->getScreenSize().x()<<" "<<Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo()->getScreenSize().y()<<endl;
     cout<<"resolution: "<<Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo()->getResolutionSize().x()<<" "<<Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo()->getResolutionSize().y()<<endl;

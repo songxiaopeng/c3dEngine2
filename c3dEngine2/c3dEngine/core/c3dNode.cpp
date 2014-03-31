@@ -34,7 +34,7 @@ void Cc3dNode::visitUpdate(){
         if(this->getIsDoUpdate()){
 			double curTime=Cc3dGlobalTimer::sharedGlobalTimer()->getTimeFromStart();
 			double lastUpdateTime=m_lastUpdateTime;
-			double dt=max(0,curTime-lastUpdateTime);
+			double dt=maxf(0,curTime-lastUpdateTime);
             this->update(dt);
 			m_lastUpdateTime=curTime;
         }

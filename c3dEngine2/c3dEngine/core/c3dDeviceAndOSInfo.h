@@ -40,5 +40,6 @@ public:
         Cc3dRect screenRect(0, 0, screenSize.x(), screenSize.y());
         return screenRect;
     }
+    void showSystemInfo();
 };
 #endif /* defined(__HelloOpenGL__c3dDeviceAndOSInfo__) */

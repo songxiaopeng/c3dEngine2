@@ -7,6 +7,7 @@
 //
 
 #include "c3dDeviceAndOSInfoPlatformDepend.h"
+#include "c3dDeviceAndOSInfo.h"
 Cc3dVector2 getScreenSize_plat(){
     CGRect rect=[[UIScreen mainScreen] bounds];
     CGSize size=rect.size;
@@ -47,4 +48,9 @@ void getMemStatistics_plat(int&memUsed,int&memFree,int&memTotal){//获得内存�
     memFree=mem_free;
     memTotal=mem_total;
     
+}
+void showSystemInfo_plat(){
+    //----version of glsl
+    const GLubyte* s= glGetString(GL_SHADING_LANGUAGE_VERSION);
+    cout<<s<<endl;
 }
