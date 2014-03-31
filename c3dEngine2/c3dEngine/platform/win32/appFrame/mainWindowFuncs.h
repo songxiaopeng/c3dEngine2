@@ -6,20 +6,8 @@
 
 #include "c3dAL.h"
 #include "c3dGL.h"
-
-//c3d
-#include "c3dGestureAnalyzer.h"
-#include "c3dSceneManger.h"
-#include "c3dAutoreleasePool.h"
-#include "c3dDeviceAndOSInfo.h"
-#include "c3dAppState.h"
-#include "c3dTextureCache.h"
-#include "c3dAudioCache.h"
-#include "c3dTimeCounter.h"
-#include "c3dAssert.h"
-#include "c3dProgramSetUp.h"
 //
-#include "initGame.h"
+#include "c3dInitGame.h"
 //
 #include "resource.h "
 //
@@ -35,9 +23,7 @@ void winSize(HWND hWnd,UINT uMsg,WPARAM wParam,LPARAM lParam);
 BOOL CALLBACK DlgProc (HWND hDlg, UINT message,WPARAM wParam, LPARAM lParam);
 void command(HWND hWnd,UINT uMsg,WPARAM wParam,LPARAM lParam);
 void render(HDC hDC);
-void initOpenGL();
-void initOpenAL();
-void teardownOpenAL();
+
 void initWithFrame();
 bool IsExtensionSupported( char* szTargetExtension ) ;
 void createAndInitConsole();

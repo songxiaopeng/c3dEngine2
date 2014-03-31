@@ -38,3 +38,12 @@ void initBuffer_plat(const string&fileNameFull,void*&data,ALuint&buffer)
 
 }
 
+void initOpenAL_plat(){
+	//initialize OpenAL and clear the error bit.
+	alutInit(NULL, 0);
+	alGetError();//clear error bit
+ 
+}
+ void teardownOpenAL_plat(){
+	alutExit();
+ }

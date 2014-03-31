@@ -14,4 +14,6 @@
 using namespace std;
 #include "c3dAL.h"
 void initBuffer_plat(const string&fileNameFull,void*&data,ALuint&buffer);
+void initOpenAL_plat();
+void teardownOpenAL_plat();
 #endif /* defined(__HelloOpenGL__c3dALPlatformDepend__) */

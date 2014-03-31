@@ -183,6 +183,7 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\c3dEngine\platform\win32\libraries\*.*" "$(Ou
     <ClCompile Include="..\..\..\c3dEngine\core\c3dGlobalTimer.cpp" />
     <ClCompile Include="..\..\..\c3dEngine\core\c3dIDtriangle.cpp" />
     <ClCompile Include="..\..\..\c3dEngine\core\c3dIndexVBO.cpp" />
+    <ClCompile Include="..\..\..\c3dEngine\core\c3dInitGame.cpp" />
     <ClCompile Include="..\..\..\c3dEngine\core\c3dLight.cpp" />
     <ClCompile Include="..\..\..\c3dEngine\core\c3dLog.cpp" />
     <ClCompile Include="..\..\..\c3dEngine\core\c3dMaterial.cpp" />
@@ -215,6 +216,7 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\c3dEngine\platform\win32\libraries\*.*" "$(Ou
     <ClCompile Include="..\..\..\c3dEngine\platform\win32\c3dALPlatformDepend.cpp" />
     <ClCompile Include="..\..\..\c3dEngine\platform\win32\c3dDeviceAndOSInfoPlatformDepend.cpp" />
     <ClCompile Include="..\..\..\c3dEngine\platform\win32\c3dDocumentsPlatformDepend.cpp" />
+    <ClCompile Include="..\..\..\c3dEngine\platform\win32\c3dGLPlatformDepend.cpp" />
     <ClCompile Include="..\..\..\c3dEngine\platform\win32\c3dImage.cpp" />
     <ClCompile Include="..\..\..\c3dEngine\platform\win32\c3dPathPlatformDepend.cpp" />
     <ClCompile Include="..\..\..\c3dEngine\platform\win32\c3dProgramPlatformDepend.cpp" />
@@ -259,6 +261,7 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\c3dEngine\platform\win32\libraries\*.*" "$(Ou
     <ClInclude Include="..\..\..\c3dEngine\core\c3dGlobalTimer.h" />
     <ClInclude Include="..\..\..\c3dEngine\core\c3dIDtriangle.h" />
     <ClInclude Include="..\..\..\c3dEngine\core\c3dIndexVBO.h" />
+    <ClInclude Include="..\..\..\c3dEngine\core\c3dInitGame.h" />
     <ClInclude Include="..\..\..\c3dEngine\core\c3dLight.h" />
     <ClInclude Include="..\..\..\c3dEngine\core\c3dLog.h" />
     <ClInclude Include="..\..\..\c3dEngine\core\c3dMaterial.h" />
@@ -297,6 +300,7 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\c3dEngine\platform\win32\libraries\*.*" "$(Ou
     <ClInclude Include="..\..\..\c3dEngine\platform\win32\c3dALPlatformDepend.h" />
     <ClInclude Include="..\..\..\c3dEngine\platform\win32\c3dDeviceAndOSInfoPlatformDepend.h" />
     <ClInclude Include="..\..\..\c3dEngine\platform\win32\c3dDocumentsPlatformDepend.h" />
+    <ClInclude Include="..\..\..\c3dEngine\platform\win32\c3dGLPlatformDepend.h" />
     <ClInclude Include="..\..\..\c3dEngine\platform\win32\c3dImage.h" />
     <ClInclude Include="..\..\..\c3dEngine\platform\win32\c3dPathPlatformDepend.h" />
     <ClInclude Include="..\..\..\c3dEngine\platform\win32\c3dProgramPlatformDepend.h" />

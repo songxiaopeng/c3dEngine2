@@ -246,6 +246,12 @@
     <ClCompile Include="..\..\..\c3dEngine\shader\c3dPassUnifoCallBack.cpp">
       <Filter>c3dEngine</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\c3dEngine\platform\win32\c3dGLPlatformDepend.cpp">
+      <Filter>c3dEngine\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\c3dEngine\core\c3dInitGame.cpp">
+      <Filter>c3dEngine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Script1.rc">
@@ -512,6 +518,12 @@
       <Filter>c3dEngine</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\c3dEngine\shader\c3dProgramSetUp.h">
+      <Filter>c3dEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\c3dEngine\platform\win32\c3dGLPlatformDepend.h">
+      <Filter>c3dEngine\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\c3dEngine\core\c3dInitGame.h">
       <Filter>c3dEngine</Filter>
     </ClInclude>
   </ItemGroup>

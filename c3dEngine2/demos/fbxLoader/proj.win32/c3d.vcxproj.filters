@@ -252,6 +252,12 @@
     <ClCompile Include="..\projcode\initGame.cpp">
       <Filter>projcode</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\c3dEngine\core\c3dInitGame.cpp">
+      <Filter>c3dEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\c3dEngine\platform\win32\c3dGLPlatformDepend.cpp">
+      <Filter>c3dEngine\win32</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Script1.rc">
@@ -524,5 +530,11 @@
       <Filter>projcode</Filter>
     </ClInclude>
     <ClInclude Include="..\projcode\NOTE.h" />
+    <ClInclude Include="..\..\..\c3dEngine\core\c3dInitGame.h">
+      <Filter>c3dEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\c3dEngine\platform\win32\c3dGLPlatformDepend.h">
+      <Filter>c3dEngine\win32</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
