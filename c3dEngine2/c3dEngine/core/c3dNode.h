@@ -20,13 +20,9 @@ using namespace std;
 #include "c3dLight.h"
 #include "c3dProgramCache.h"
 #include "c3dGlobalTimer.h"
+#include "c3dPassUnifoCallBack.h"
 class Cc3dNode;
 typedef void(*c3dPassUnifoCallbackPtr)(Cc3dNode*, Cc3dProgram*);
-extern string c3dDefaultProgramName;
-void c3dDefaultShadersSetup();
-void c3dDefaultPassUnifoCallback(Cc3dNode*node, Cc3dProgram*program);
-
-
 class Cc3dNode:public Cc3dObject{
 public:
     Cc3dNode(){
@@ -58,26 +54,7 @@ public:
             m_childList[i]->release();
         }
     }
-    bool init(){
-		Cc3dObject::init();
-        //default camera
-        Cc3dCamera*camera=new Cc3dCamera();
-        camera->init();
-        camera->autorelease();
-        setCamera(camera);
-        //default light
-        Cc3dLight*light=new Cc3dLight();
-        light->init();
-        light->autorelease();
-        setLight(light);
-        //default passUniformCallback
-        m_passUnifoCallback=c3dDefaultPassUnifoCallback;
-        //default program
-        Cc3dProgram*program=Cc3dProgramCache::sharedProgramCache()->getProgramByName(c3dDefaultProgramName);
-        setProgram(program);
-        return true;
-
-    }
+    bool init();
     void setLight(Cc3dLight*light){
         assert(light);
         if(m_light==NULL){

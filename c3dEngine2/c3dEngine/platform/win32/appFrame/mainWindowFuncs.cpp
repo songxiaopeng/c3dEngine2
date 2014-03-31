@@ -163,7 +163,7 @@ void render(HDC hDC){
     cout<<"screenSize: "<<Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo()->getScreenSize().x()<<" "<<Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo()->getScreenSize().y()<<endl;
     cout<<"resolution: "<<Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo()->getResolutionSize().x()<<" "<<Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo()->getResolutionSize().y()<<endl;
     //----´´½¨Ä¬ÈÏshaderProgam
-    c3dDefaultShadersSetup();
+    buildinProgramSetUp();
    
     C3DCHECK_GL_ERROR_DEBUG();
     C3DCHECK_AL_ERROR_DEBUG();

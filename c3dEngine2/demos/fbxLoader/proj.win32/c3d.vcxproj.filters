@@ -37,11 +37,11 @@
     <Filter Include="c3dEngine\win32\appFrame">
       <UniqueIdentifier>{a3444d3b-9e79-49cb-b20f-c54eea103842}</UniqueIdentifier>
     </Filter>
-    <Filter Include="code">
-      <UniqueIdentifier>{aa45d6eb-a19d-48c2-bf7f-fdae2f3780e1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="fbxmodel">
       <UniqueIdentifier>{467b3549-4e80-4c8d-ba74-590fd7124dfd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="projcode">
+      <UniqueIdentifier>{556508aa-0ada-4e49-8bc1-742b6a500dda}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -231,26 +231,26 @@
     <ClCompile Include="..\..\..\c3dEngine\core\c3dModel.cpp">
       <Filter>c3dEngine</Filter>
     </ClCompile>
-    <ClCompile Include="..\code\box.cpp">
-      <Filter>code</Filter>
-    </ClCompile>
-    <ClCompile Include="..\code\globalVars.cpp">
-      <Filter>code</Filter>
-    </ClCompile>
-    <ClCompile Include="..\code\initGame.cpp">
-      <Filter>code</Filter>
-    </ClCompile>
-    <ClCompile Include="..\code\passUnifoCallBack.cpp">
-      <Filter>code</Filter>
-    </ClCompile>
-    <ClCompile Include="..\code\programSetUp.cpp">
-      <Filter>code</Filter>
-    </ClCompile>
     <ClCompile Include="..\fbxmodel\fbxmodel.cpp">
       <Filter>fbxmodel</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\c3dEngine\core\c3dGlobalTimer.cpp">
       <Filter>c3dEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\c3dEngine\shader\c3dPassUnifoCallBack.cpp">
+      <Filter>c3dEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\c3dEngine\shader\c3dProgramSetUp.cpp">
+      <Filter>c3dEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\projcode\box.cpp">
+      <Filter>projcode</Filter>
+    </ClCompile>
+    <ClCompile Include="..\projcode\globalVars.cpp">
+      <Filter>projcode</Filter>
+    </ClCompile>
+    <ClCompile Include="..\projcode\initGame.cpp">
+      <Filter>projcode</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -499,21 +499,6 @@
     <ClInclude Include="..\..\..\c3dEngine\core\c3dModel.h">
       <Filter>c3dEngine</Filter>
     </ClInclude>
-    <ClInclude Include="..\code\box.h">
-      <Filter>code</Filter>
-    </ClInclude>
-    <ClInclude Include="..\code\globalVars.h">
-      <Filter>code</Filter>
-    </ClInclude>
-    <ClInclude Include="..\code\initGame.h">
-      <Filter>code</Filter>
-    </ClInclude>
-    <ClInclude Include="..\code\passUnifoCallBack.h">
-      <Filter>code</Filter>
-    </ClInclude>
-    <ClInclude Include="..\code\programSetUp.h">
-      <Filter>code</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\c3dEngine\c3d.h">
       <Filter>c3dEngine</Filter>
     </ClInclude>
@@ -523,5 +508,21 @@
     <ClInclude Include="..\..\..\c3dEngine\core\c3dGlobalTimer.h">
       <Filter>c3dEngine</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\c3dEngine\shader\c3dPassUnifoCallBack.h">
+      <Filter>c3dEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\c3dEngine\shader\c3dProgramSetUp.h">
+      <Filter>c3dEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\projcode\box.h">
+      <Filter>projcode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\projcode\globalVars.h">
+      <Filter>projcode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\projcode\initGame.h">
+      <Filter>projcode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\projcode\NOTE.h" />
   </ItemGroup>
 </Project>

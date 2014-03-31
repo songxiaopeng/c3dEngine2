@@ -23,5 +23,7 @@
 #include "c3dGestureAnalyzer.h"
 #include "c3dProgramCache.h"
 #include "c3dTextureCache.h"
+#include "c3dPassUnifoCallBack.h"
+#include "c3dProgramSetUp.h"
 
 #endif /* defined(__HelloOpenGL__c3d__) */

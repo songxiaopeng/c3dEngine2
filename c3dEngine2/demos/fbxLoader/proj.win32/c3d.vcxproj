@@ -71,7 +71,7 @@
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>true</WholeProgramOptimization>
       <OmitFramePointers>true</OmitFramePointers>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\c3dEngine;$(ProjectDir)..\..\..\c3dEngine\core;$(ProjectDir)..\..\..\c3dEngine\common;$(ProjectDir)..\..\..\c3dEngine\platform\win32;$(ProjectDir)..\..\..\c3dEngine\platform\win32\OGLES;$(ProjectDir);$(ProjectDir)..\..\..\extension;$(ProjectDir)..\..\..\extension\geometry;$(ProjectDir)..\..\..\extension\octree;$(ProjectDir)..\..\..\extension\terrain;$(ProjectDir)..\code;$(ProjectDir)..\..\..\thirdPart\FBX\FBX_win32\FbxSdk\2013.1\include;$(ProjectDir)..\fbxmodel;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\c3dEngine;$(ProjectDir)..\..\..\c3dEngine\core;$(ProjectDir)..\..\..\c3dEngine\common;$(ProjectDir)..\..\..\c3dEngine\shader;$(ProjectDir)..\..\..\c3dEngine\platform\win32;$(ProjectDir)..\..\..\c3dEngine\platform\win32\OGLES;$(ProjectDir);$(ProjectDir)..\..\..\extension;$(ProjectDir)..\..\..\extension\geometry;$(ProjectDir)..\..\..\extension\octree;$(ProjectDir)..\..\..\extension\terrain;$(ProjectDir)..\projcode;$(ProjectDir)..\..\..\thirdPart\FBX\FBX_win32\FbxSdk\2013.1\include;$(ProjectDir)..\fbxmodel;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MinimalRebuild>false</MinimalRebuild>
       <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
@@ -111,7 +111,7 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\c3dEngine\platform\win32\libraries\*.*" "$(Ou
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <InlineFunctionExpansion>Default</InlineFunctionExpansion>
       <FunctionLevelLinking>false</FunctionLevelLinking>
       <Optimization>Disabled</Optimization>
@@ -126,7 +126,7 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\c3dEngine\platform\win32\libraries\*.*" "$(Ou
       <ObjectFileName>.\Debug\</ObjectFileName>
       <ProgramDataBaseFileName>.\Debug\</ProgramDataBaseFileName>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\c3dEngine;$(ProjectDir)..\..\..\c3dEngine\core;$(ProjectDir)..\..\..\c3dEngine\common;$(ProjectDir)..\..\..\c3dEngine\platform\win32;$(ProjectDir)..\..\..\c3dEngine\platform\win32\OGLES;$(ProjectDir);$(ProjectDir)..\..\..\extension;$(ProjectDir)..\..\..\extension\geometry;$(ProjectDir)..\..\..\extension\octree;$(ProjectDir)..\..\..\extension\terrain;$(ProjectDir)..\code;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\c3dEngine;$(ProjectDir)..\..\..\c3dEngine\core;$(ProjectDir)..\..\..\c3dEngine\shader;$(ProjectDir)..\..\..\c3dEngine\common;$(ProjectDir)..\..\..\c3dEngine\platform\win32;$(ProjectDir)..\..\..\c3dEngine\platform\win32\OGLES;$(ProjectDir);$(ProjectDir)..\..\..\extension;$(ProjectDir)..\..\..\extension\geometry;$(ProjectDir)..\..\..\extension\octree;$(ProjectDir)..\..\..\extension\terrain;$(ProjectDir)..\projcode;$(ProjectDir)..\fbxmodel;$(ProjectDir)..\..\..\thirdPart\FBX\FBX_win32\FbxSdk\2013.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
     </ClCompile>
     <Midl>
@@ -149,8 +149,8 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\c3dEngine\platform\win32\libraries\*.*" "$(Ou
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OutputFile>.\Debug\c3d.exe</OutputFile>
-      <AdditionalDependencies>wininet.lib;opengl32.lib;glu32.lib;glew32.lib;odbc32.lib;odbccp32.lib;openal32.lib;alut.lib;libzlib.lib;libpng.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(ProjectDir)..\..\..\c3dEngine\platform\win32\libraries;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>fbxsdk-2013.1-mdd.lib;wininet.lib;opengl32.lib;glu32.lib;glew32.lib;odbc32.lib;odbccp32.lib;openal32.lib;alut.lib;libzlib.lib;libpng.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)..\..\..\c3dEngine\platform\win32\libraries;$(ProjectDir)..\..\..\thirdPart\FBX\FBX_win32\FbxSdk\2013.1\lib\vs2010\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PreLinkEvent>
       <Command>if not exist "$(OutDir)" mkdir "$(OutDir)"
@@ -219,16 +219,16 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\c3dEngine\platform\win32\libraries\*.*" "$(Ou
     <ClCompile Include="..\..\..\c3dEngine\platform\win32\c3dPathPlatformDepend.cpp" />
     <ClCompile Include="..\..\..\c3dEngine\platform\win32\c3dProgramPlatformDepend.cpp" />
     <ClCompile Include="..\..\..\c3dEngine\platform\win32\c3dTexturePlatformDepend.cpp" />
+    <ClCompile Include="..\..\..\c3dEngine\shader\c3dPassUnifoCallBack.cpp" />
+    <ClCompile Include="..\..\..\c3dEngine\shader\c3dProgramSetUp.cpp" />
     <ClCompile Include="..\..\..\extension\geometry\geoMath.cpp" />
     <ClCompile Include="..\..\..\extension\octree\octree.cpp" />
     <ClCompile Include="..\..\..\extension\octree\triangleWithNorm.cpp" />
     <ClCompile Include="..\..\..\extension\terrain\terrain.cpp" />
-    <ClCompile Include="..\code\box.cpp" />
-    <ClCompile Include="..\code\globalVars.cpp" />
-    <ClCompile Include="..\code\initGame.cpp" />
-    <ClCompile Include="..\code\passUnifoCallBack.cpp" />
-    <ClCompile Include="..\code\programSetUp.cpp" />
     <ClCompile Include="..\fbxmodel\fbxmodel.cpp" />
+    <ClCompile Include="..\projcode\box.cpp" />
+    <ClCompile Include="..\projcode\globalVars.cpp" />
+    <ClCompile Include="..\projcode\initGame.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Script1.rc" />
@@ -311,16 +311,17 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\c3dEngine\platform\win32\libraries\*.*" "$(Ou
     <ClInclude Include="..\..\..\c3dEngine\platform\win32\OGLES\GL\wglew.h" />
     <ClInclude Include="..\..\..\c3dEngine\platform\win32\zlib\zconf.h" />
     <ClInclude Include="..\..\..\c3dEngine\platform\win32\zlib\zlib.h" />
+    <ClInclude Include="..\..\..\c3dEngine\shader\c3dPassUnifoCallBack.h" />
+    <ClInclude Include="..\..\..\c3dEngine\shader\c3dProgramSetUp.h" />
     <ClInclude Include="..\..\..\extension\geometry\geoMath.h" />
     <ClInclude Include="..\..\..\extension\octree\octree.h" />
     <ClInclude Include="..\..\..\extension\octree\triangleWithNorm.h" />
     <ClInclude Include="..\..\..\extension\terrain\terrain.h" />
-    <ClInclude Include="..\code\box.h" />
-    <ClInclude Include="..\code\globalVars.h" />
-    <ClInclude Include="..\code\initGame.h" />
-    <ClInclude Include="..\code\passUnifoCallBack.h" />
-    <ClInclude Include="..\code\programSetUp.h" />
     <ClInclude Include="..\fbxmodel\fbxmodel.h" />
+    <ClInclude Include="..\projcode\box.h" />
+    <ClInclude Include="..\projcode\globalVars.h" />
+    <ClInclude Include="..\projcode\initGame.h" />
+    <ClInclude Include="..\projcode\NOTE.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

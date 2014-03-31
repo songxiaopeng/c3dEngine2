@@ -7,37 +7,28 @@
 //
 
 #include "c3dNode.h"
-string c3dDefaultProgramName="shader_texColorOnly";
-void c3dDefaultShadersSetup(){
-	string programFolder = "c3dEngineResource/shader";
-    //
-    {
-        string programName="shader_texColorOnly";
-        Cc3dProgram*program=Cc3dProgramCache::sharedProgramCache()->createProgram(programFolder+"/"+programName+".vert", programFolder+"/"+programName+".frag", programName);
-        program->attachUniform("projMat");
-		program->attachUniform("modelMat");
-		program->attachUniform("viewMat");
-        program->attachUniform("texture");
-    }
-    //
-    {
-        //...
-    }
-}
-void c3dDefaultPassUnifoCallback(Cc3dNode*node, Cc3dProgram*program){
-    assert(node);
-    assert(program);
-    //   C3DLOG("program name:%s",program->getName().c_str());
-    assert(program->getName()==c3dDefaultProgramName);
-    Cc3dMatrix4 modelMat=Cc3dModelMatStack::sharedModelMatStack()->getTopMat();
-    Cc3dMatrix4 projMat=node->getCamera()->calculateProjectionMat();
-    Cc3dMatrix4 viewMat=node->getCamera()->calculateViewMat();
-    program->passUnifoValue1i("texture", 0);//texture attach point 0
-    program->passUnifoValueMatrixNfv("projMat", projMat.getArray(), projMat.getArrayLen());
-	program->passUnifoValueMatrixNfv("modelMat", modelMat.getArray(), modelMat.getArrayLen());
-	program->passUnifoValueMatrixNfv("viewMat", viewMat.getArray(), viewMat.getArrayLen());
-}
 
+
+ bool Cc3dNode::init(){
+		Cc3dObject::init();
+        //default camera
+        Cc3dCamera*camera=new Cc3dCamera();
+        camera->init();
+        camera->autorelease();
+        setCamera(camera);
+        //default light
+        Cc3dLight*light=new Cc3dLight();
+        light->init();
+        light->autorelease();
+        setLight(light);
+        //default passUniformCallback
+        m_passUnifoCallback=buildinProgramPassUnifoCallback_texColorOnly;
+        //default program
+        Cc3dProgram*program=Cc3dProgramCache::sharedProgramCache()->getProgramByName("shader_texColorOnly");
+        setProgram(program);
+        return true;
+
+    }
 void Cc3dNode::visitUpdate(){
     if(this->getIsDoUpdateRecursively()){
         if(this->getIsDoUpdate()){

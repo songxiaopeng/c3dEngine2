@@ -17,6 +17,7 @@
 #include "c3dAudioCache.h"
 #include "c3dTimeCounter.h"
 #include "c3dAssert.h"
+#include "c3dProgramSetUp.h"
 //
 #include "initGame.h"
 //
