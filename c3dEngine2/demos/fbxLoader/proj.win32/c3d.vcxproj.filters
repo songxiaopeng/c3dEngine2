@@ -16,9 +16,6 @@
     <Filter Include="c3dEngine">
       <UniqueIdentifier>{61f4f26b-d698-4110-a29a-b42d040bb166}</UniqueIdentifier>
     </Filter>
-    <Filter Include="extension">
-      <UniqueIdentifier>{aa58841c-48ac-4ea0-a33f-efabec87f9b7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="c3dEngine\win32">
       <UniqueIdentifier>{812c1c98-637c-4041-93eb-85def13ed6a4}</UniqueIdentifier>
     </Filter>
@@ -37,11 +34,14 @@
     <Filter Include="c3dEngine\win32\appFrame">
       <UniqueIdentifier>{a3444d3b-9e79-49cb-b20f-c54eea103842}</UniqueIdentifier>
     </Filter>
-    <Filter Include="fbxmodel">
-      <UniqueIdentifier>{467b3549-4e80-4c8d-ba74-590fd7124dfd}</UniqueIdentifier>
-    </Filter>
     <Filter Include="projcode">
       <UniqueIdentifier>{556508aa-0ada-4e49-8bc1-742b6a500dda}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="c3dExtension">
+      <UniqueIdentifier>{0ae497fe-358a-4b84-b735-c15d3fe8baef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="c3dExtension\fbxLoader">
+      <UniqueIdentifier>{885c9e1d-7311-4084-a8c0-d3c3e104a865}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -210,18 +210,6 @@
     <ClCompile Include="..\..\..\c3dEngine\platform\win32\appFrame\mainWindowGlobal.cpp">
       <Filter>c3dEngine\win32\appFrame</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\extension\geometry\geoMath.cpp">
-      <Filter>extension</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\extension\octree\octree.cpp">
-      <Filter>extension</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\extension\octree\triangleWithNorm.cpp">
-      <Filter>extension</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\extension\terrain\terrain.cpp">
-      <Filter>extension</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\c3dEngine\core\c3dSubMesh.cpp">
       <Filter>c3dEngine</Filter>
     </ClCompile>
@@ -252,14 +240,14 @@
     <ClCompile Include="..\..\..\c3dEngine\platform\win32\c3dGLPlatformDepend.cpp">
       <Filter>c3dEngine\win32</Filter>
     </ClCompile>
-    <ClCompile Include="..\fbxmodel\c3dFbxLoader.cpp">
-      <Filter>fbxmodel</Filter>
+    <ClCompile Include="..\..\..\c3dExtension\fbxLoader\c3dFbxLoader.cpp">
+      <Filter>c3dExtension\fbxLoader</Filter>
     </ClCompile>
-    <ClCompile Include="..\fbxmodel\c3dFbxOneLoad.cpp">
-      <Filter>fbxmodel</Filter>
+    <ClCompile Include="..\..\..\c3dExtension\fbxLoader\c3dFbxOneLoad.cpp">
+      <Filter>c3dExtension\fbxLoader</Filter>
     </ClCompile>
-    <ClCompile Include="..\fbxmodel\c3dSkinActor.cpp">
-      <Filter>fbxmodel</Filter>
+    <ClCompile Include="..\..\..\c3dExtension\fbxLoader\c3dSkinActor.cpp">
+      <Filter>c3dExtension\fbxLoader</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -487,18 +475,6 @@
     <ClInclude Include="..\..\..\c3dEngine\platform\win32\AL\xram.h">
       <Filter>c3dEngine\win32\AL</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\extension\geometry\geoMath.h">
-      <Filter>extension</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\extension\octree\octree.h">
-      <Filter>extension</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\extension\octree\triangleWithNorm.h">
-      <Filter>extension</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\extension\terrain\terrain.h">
-      <Filter>extension</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\c3dEngine\core\c3dSubMesh.h">
       <Filter>c3dEngine</Filter>
     </ClInclude>
@@ -533,14 +509,17 @@
     <ClInclude Include="..\..\..\c3dEngine\platform\win32\c3dGLPlatformDepend.h">
       <Filter>c3dEngine\win32</Filter>
     </ClInclude>
-    <ClInclude Include="..\fbxmodel\c3dFbxLoader.h">
-      <Filter>fbxmodel</Filter>
+    <ClInclude Include="..\..\..\c3dExtension\fbxLoader\c3dFbxLoader.h">
+      <Filter>c3dExtension\fbxLoader</Filter>
     </ClInclude>
-    <ClInclude Include="..\fbxmodel\c3dFbxOneLoad.h">
-      <Filter>fbxmodel</Filter>
+    <ClInclude Include="..\..\..\c3dExtension\fbxLoader\c3dFbxOneLoad.h">
+      <Filter>c3dExtension\fbxLoader</Filter>
     </ClInclude>
-    <ClInclude Include="..\fbxmodel\c3dSkinActor.h">
-      <Filter>fbxmodel</Filter>
+    <ClInclude Include="..\..\..\c3dExtension\fbxLoader\c3dSkinActor.h">
+      <Filter>c3dExtension\fbxLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\c3dExtension\c3dExtension.h">
+      <Filter>c3dExtension</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -8,8 +8,8 @@
 
 #include "initGame.h"
 #include "c3d.h"
+#include "c3dExtension.h"
 #include "globalVars.h"
-#include "c3dFbxLoader.h"
 void initGame(){
 	
 

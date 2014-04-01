@@ -223,10 +223,6 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\c3dEngine\platform\win32\libraries\*.*" "$(Ou
     <ClCompile Include="..\..\..\c3dEngine\platform\win32\c3dTexturePlatformDepend.cpp" />
     <ClCompile Include="..\..\..\c3dEngine\shader\c3dPassUnifoCallBack.cpp" />
     <ClCompile Include="..\..\..\c3dEngine\shader\c3dProgramSetUp.cpp" />
-    <ClCompile Include="..\..\..\extension\geometry\geoMath.cpp" />
-    <ClCompile Include="..\..\..\extension\octree\octree.cpp" />
-    <ClCompile Include="..\..\..\extension\octree\triangleWithNorm.cpp" />
-    <ClCompile Include="..\..\..\extension\terrain\terrain.cpp" />
     <ClCompile Include="..\projcode\box.cpp" />
     <ClCompile Include="..\projcode\globalVars.cpp" />
     <ClCompile Include="..\projcode\initGame.cpp" />
@@ -316,10 +312,6 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\c3dEngine\platform\win32\libraries\*.*" "$(Ou
     <ClInclude Include="..\..\..\c3dEngine\platform\win32\zlib\zlib.h" />
     <ClInclude Include="..\..\..\c3dEngine\shader\c3dPassUnifoCallBack.h" />
     <ClInclude Include="..\..\..\c3dEngine\shader\c3dProgramSetUp.h" />
-    <ClInclude Include="..\..\..\extension\geometry\geoMath.h" />
-    <ClInclude Include="..\..\..\extension\octree\octree.h" />
-    <ClInclude Include="..\..\..\extension\octree\triangleWithNorm.h" />
-    <ClInclude Include="..\..\..\extension\terrain\terrain.h" />
     <ClInclude Include="..\projcode\box.h" />
     <ClInclude Include="..\projcode\globalVars.h" />
     <ClInclude Include="..\projcode\initGame.h" />
