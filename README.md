@@ -9,7 +9,7 @@ language: c++
   
 it is the upgrade version of c3dEngine.(c3dEngine, see: https://github.com/wantnon2/superSingleCell-c3dEngine)   
   
-as i think c3dEngine is not very good in some aspects, so trying to make a better one. i remove the 'super single cell' game demo in c3dEngine, instead, will write a series of small samples to show each feature of the engine, and at the same time, refine the engine.  
+as i think c3dEngine is not very good in some aspects, so i am trying to make a better one. i remove the 'super single cell' game demo in c3dEngine, instead, will write a series of small samples to show each feature of the engine, and at the same time, refine the engine.  
 now, the project is just start, so there is very few samples. but i will add more later.  
 currently, the fbxLoader is only available on win32.      
   
