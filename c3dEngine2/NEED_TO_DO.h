@@ -13,12 +13,13 @@
  
  解决model和Actor的setXXX函数易误用的问题（在meshList或modelList未成型之前调用会不起作用）
 
- 将sprite改名为billboard，并且解决其setPos/getPos与Cc3dNode含义不一致容易导致误用的问题
- 
  不再使用filePathShort,直接用filePath，全路径仍然用filePathFull
  
  整理extension中的代码，使其晋升为c3dExtension
  
+ 将不带参init函数放到构造函数中去调用。带参init函数则单独调用。带参init函数对不带参init函数实现覆盖。
+ 这样做的目的是使对象创建出来就是init好的（可用的），如果想通一步实现特异性的初始化，则再附加调用一个带参init函数。
+
  */
 
 

@@ -231,9 +231,6 @@
     <ClCompile Include="..\..\..\c3dEngine\core\c3dModel.cpp">
       <Filter>c3dEngine</Filter>
     </ClCompile>
-    <ClCompile Include="..\fbxmodel\fbxmodel.cpp">
-      <Filter>fbxmodel</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\c3dEngine\core\c3dGlobalTimer.cpp">
       <Filter>c3dEngine</Filter>
     </ClCompile>
@@ -254,6 +251,15 @@
     </ClCompile>
     <ClCompile Include="..\..\..\c3dEngine\platform\win32\c3dGLPlatformDepend.cpp">
       <Filter>c3dEngine\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\fbxmodel\c3dFbxLoader.cpp">
+      <Filter>fbxmodel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\fbxmodel\c3dFbxOneLoad.cpp">
+      <Filter>fbxmodel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\fbxmodel\c3dSkinActor.cpp">
+      <Filter>fbxmodel</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -505,9 +511,6 @@
     <ClInclude Include="..\..\..\c3dEngine\c3d.h">
       <Filter>c3dEngine</Filter>
     </ClInclude>
-    <ClInclude Include="..\fbxmodel\fbxmodel.h">
-      <Filter>fbxmodel</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\c3dEngine\core\c3dGlobalTimer.h">
       <Filter>c3dEngine</Filter>
     </ClInclude>
@@ -529,6 +532,15 @@
     </ClInclude>
     <ClInclude Include="..\..\..\c3dEngine\platform\win32\c3dGLPlatformDepend.h">
       <Filter>c3dEngine\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\fbxmodel\c3dFbxLoader.h">
+      <Filter>fbxmodel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\fbxmodel\c3dFbxOneLoad.h">
+      <Filter>fbxmodel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\fbxmodel\c3dSkinActor.h">
+      <Filter>fbxmodel</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,4 +1,4 @@
-#include "fbxmodel.h"
+#include "c3dFbxOneLoad.h"
 
 Cc3dMatrix4 FbxAMatrixToCc3dMatrix4(const FbxAMatrix&m){
 	//设m为FbxAMatrix
@@ -24,14 +24,14 @@ Cc3dMatrix4 FbxAMatrixToCc3dMatrix4(const FbxAMatrix&m){
 
 }
 	
-	void Cmodelfbx::Init_and_load(char* _fbxFileName){
-		fbxFileName=_fbxFileName;
+	void Cc3dFbxOneLoad::Init_and_load(const char* _fbxFileName){
+		fbxFileName=(char*)_fbxFileName;
 		cout<<"load "<<fbxFileName<<endl;
 		//加载fbx场景
 		InitializeSdkObjects(lSdkManager,lScene);
 		LoadScene(lSdkManager,lScene,fbxFileName);
 	}
-	void Cmodelfbx::InitializeSdkObjects(FbxManager*& pSdkManager, FbxScene*& pScene)
+	void Cc3dFbxOneLoad::InitializeSdkObjects(FbxManager*& pSdkManager, FbxScene*& pScene)
 	{
 		// The first thing to do is to create the FBX SDK manager which is the 
 		// object allocator for almost all the classes in the SDK.
@@ -59,7 +59,7 @@ Cc3dMatrix4 FbxAMatrixToCc3dMatrix4(const FbxAMatrix&m){
 		pScene = FbxScene::Create(pSdkManager,"");
 	}
 
-	bool Cmodelfbx::LoadScene(FbxManager* pSdkManager, FbxDocument* pScene,char* pFilename)
+	bool Cc3dFbxOneLoad::LoadScene(FbxManager* pSdkManager, FbxDocument* pScene,char* pFilename)
 	{
 #ifdef IOS_REF
 #undef  IOS_REF
@@ -178,7 +178,7 @@ Cc3dMatrix4 FbxAMatrixToCc3dMatrix4(const FbxAMatrix&m){
 		return lStatus;
 	}
 
-	void Cmodelfbx::DestroySdkObjects(FbxManager* &pSdkManager)//一定要传指针的引用，因为需要将指针置NULL
+	void Cc3dFbxOneLoad::DestroySdkObjects(FbxManager* &pSdkManager)//一定要传指针的引用，因为需要将指针置NULL
 	{
 		// Delete the FBX SDK manager. All the objects that have been allocated 
 		// using the FBX SDK manager and that haven't been explicitly destroyed 
@@ -186,24 +186,7 @@ Cc3dMatrix4 FbxAMatrixToCc3dMatrix4(const FbxAMatrix&m){
 		if (pSdkManager) pSdkManager->Destroy();
 		pSdkManager = NULL;
 	}
-	void Cmodelfbx::triangulate_loadTextures_preprocess(){
-        TriangulateRecursive(lScene->GetRootNode());// Convert mesh, NURBS and patch into triangle mesh
-	/*	//get smoothInfo
-		{
-			//set me true to compute smoothing info from normals
-			bool lComputeFromNormals = true;//false;
-			//set me true to convert hard/soft edges info to smoothing groups info
-			bool lConvertToSmoothingGroup = true;//false;
-			//get smoothing info, if there're mesh in the scene
-			GetSmoothing(lSdkManager, lScene->GetRootNode(), lComputeFromNormals, lConvertToSmoothingGroup);
-		
-		}*/
-		makeSubMeshSetForEachNode(lScene->GetRootNode());
-		
-	
-
-	}
-	void Cmodelfbx::makeSubMeshSetForThisNode(FbxNode* pNode){
+	void Cc3dFbxOneLoad::makeSubMeshSetForThisNode(FbxNode* pNode){
 		FbxMesh*lMesh=pNode->GetMesh();
 		const int lVertexCount = lMesh->GetControlPointsCount();
 		if(!lMesh){
@@ -439,13 +422,13 @@ Cc3dMatrix4 FbxAMatrixToCc3dMatrix4(const FbxAMatrix&m){
 			mesh->setVertexDupList(vertexDupList);
 		}
 		//将mesh添加到this
-		this->addMesh(mesh);
+		m_actor->addMesh(mesh);
 	
 
 		
 
 	}
-	void Cmodelfbx::makeSubMeshSetForEachNode(FbxNode* pNode)
+	void Cc3dFbxOneLoad::makeSubMeshSetForEachNode(FbxNode* pNode)
 	{
 		FbxNodeAttribute* lNodeAttribute = pNode->GetNodeAttribute();
 		if (lNodeAttribute//有属性节点
@@ -460,7 +443,7 @@ Cc3dMatrix4 FbxAMatrixToCc3dMatrix4(const FbxAMatrix&m){
 			makeSubMeshSetForEachNode(pNode->GetChild(lChildIndex));
 		}
 	}
-	bool Cmodelfbx::getHasDeformer(FbxMesh*lMesh){
+	bool Cc3dFbxOneLoad::getHasDeformer(FbxMesh*lMesh){
 		//	// If it has some deformer connection, update the vertices position
 		//	const bool lHasVertexCache = lMesh->GetDeformerCount(FbxDeformer::eVertexCache) &&
 		//		(static_cast<FbxVertexCacheDeformer*>(lMesh->GetDeformer(0, FbxDeformer::eVertexCache)))->IsActive();
@@ -475,7 +458,7 @@ Cc3dMatrix4 FbxAMatrixToCc3dMatrix4(const FbxAMatrix&m){
 //get mesh smoothing info
 //set pCompute true to compute smoothing from normals by default 
 //set pConvertToSmoothingGroup true to convert hard/soft edge info to smoothing group info by default
-void Cmodelfbx::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool pCompute, bool pConvertToSmoothingGroup)
+void Cc3dFbxOneLoad::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool pCompute, bool pConvertToSmoothingGroup)
 {
     if(!pNode || !pSdkManager)
         return;
@@ -577,10 +560,10 @@ void Cmodelfbx::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool pComp
     }
 }
 
-	void Cmodelfbx::destroyManager(){
+	void Cc3dFbxOneLoad::destroyManager(){
 		DestroySdkObjects(lSdkManager);//删除manager
 	}
-	void Cmodelfbx::bakeAnimation(){
+	void Cc3dFbxOneLoad::bakeAnimation(){
 		//animStack
 		FbxArray<FbxString*> mAnimStackNameArray;
 		lScene->FillAnimStackNameArray(mAnimStackNameArray);
@@ -629,13 +612,13 @@ void Cmodelfbx::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool pComp
 			}
 			//	cout<<"startTime:"<<startTime.GetMilliSeconds()<<endl;
 			//	cout<<"stopTime:"<<stopTime.GetMilliSeconds()<<endl;
-			//	cout<<"StartTime:"<<StartTime.GetSecondDouble()<<endl;
-			//	cout<<"StopTime:"<<StopTime.GetSecondDouble()<<endl;
+			//	cout<<"startTime:"<<startTime.GetSecondDouble()<<endl;
+			//	cout<<"stopTime:"<<stopTime.GetSecondDouble()<<endl;
 			//
 			//create aniLayer info
 			Cc3dAniLayerInfo*aniLayerInfo=new Cc3dAniLayerInfo();
 			aniLayerInfo->autorelease();
-			aniLayerInfo->setInterval(this->m_interval);
+			aniLayerInfo->setInterval(m_actor->getInterval());
 			aniLayerInfo->setStartTime((float)startTime.GetMilliSeconds()/1000);
 			aniLayerInfo->setEndTime((float)stopTime.GetMilliSeconds()/1000);
 			aniLayerInfo->setCurTime(aniLayerInfo->getStartTime());
@@ -645,14 +628,14 @@ void Cmodelfbx::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool pComp
 			FbxTime curTime=startTime;
 			while(1){
 				if(curTime>stopTime){
-					this->updateSkin(stopTime,lCurrentAnimationStack,animStackIndex);
+					updateSkin(stopTime,lCurrentAnimationStack,animStackIndex);
 					break;
 				}
 				this->updateSkin(curTime,lCurrentAnimationStack,animStackIndex);
 				curTime+=dTime;
 			}
 			//add aniLayerInfo to this actor
-			this->addAniLayerInfo(aniLayerInfo);
+			m_actor->addAniLayerInfo(aniLayerInfo);
 		}
 		//销毁mAnimStackNameArray
 		FbxArrayDelete(mAnimStackNameArray);
@@ -661,7 +644,7 @@ void Cmodelfbx::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool pComp
 	
 	
     // Triangulate all NURBS, patch and mesh under this node recursively.
-    void Cmodelfbx::TriangulateRecursive(FbxNode* pNode)
+    void Cc3dFbxOneLoad::TriangulateRecursive(FbxNode* pNode)
     {
         FbxNodeAttribute* lNodeAttribute = pNode->GetNodeAttribute();
 
@@ -684,7 +667,7 @@ void Cmodelfbx::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool pComp
         }
     }
 
-	void Cmodelfbx::updateSkin(FbxTime&Time,FbxAnimStack *lCurrentAnimationStack,int animStackIndex){
+	void Cc3dFbxOneLoad::updateSkin(FbxTime&Time,FbxAnimStack *lCurrentAnimationStack,int animStackIndex){
 		//更新fbx场景
 
 		if(lCurrentAnimationStack!=NULL){
@@ -712,7 +695,7 @@ void Cmodelfbx::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool pComp
 	// If the node is part of the given pose for the current scene,
 	// it will be drawn at the position specified in the pose, Otherwise
 	// it will be drawn at the given time.
-	void Cmodelfbx::DrawNodeRecursive(FbxNode* pNode, FbxTime& pTime, FbxAnimLayer* pAnimLayer,int animStackIndex,
+	void Cc3dFbxOneLoad::DrawNodeRecursive(FbxNode* pNode, FbxTime& pTime, FbxAnimLayer* pAnimLayer,int animStackIndex,
 		FbxAMatrix& pParentGlobalPosition, FbxPose* pPose)
 	{
 		//{the scale component of globalPosition matrix is equals to the product of scale factors when fbx file import and export via 3dmax }
@@ -739,7 +722,7 @@ void Cmodelfbx::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool pComp
 	// Get the global position of the node for the current pose.
 	// If the specified node is not part of the pose or no pose is specified, get its
 	// global position at the current time.
-	FbxAMatrix Cmodelfbx::GetGlobalPosition(FbxNode* pNode, const FbxTime& pTime,FbxPose* pPose, FbxAMatrix* pParentGlobalPosition)
+	FbxAMatrix Cc3dFbxOneLoad::GetGlobalPosition(FbxNode* pNode, const FbxTime& pTime,FbxPose* pPose, FbxAMatrix* pParentGlobalPosition)
 	{
 		FbxAMatrix lGlobalPosition;
 		bool        lPositionFound = false;
@@ -799,7 +782,7 @@ void Cmodelfbx::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool pComp
 	}
 
 	// Get the matrix of the given pose
-	FbxAMatrix Cmodelfbx::GetPoseMatrix(FbxPose* pPose, int pNodeIndex)
+	FbxAMatrix Cc3dFbxOneLoad::GetPoseMatrix(FbxPose* pPose, int pNodeIndex)
 	{
 		FbxAMatrix lPoseMatrix;
 		FbxMatrix lMatrix = pPose->GetMatrix(pNodeIndex);
@@ -810,7 +793,7 @@ void Cmodelfbx::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool pComp
 	}
 
 	// Get the geometry offset to a node. It is never inherited by the children.
-	FbxAMatrix Cmodelfbx::GetGeometry(FbxNode* pNode)
+	FbxAMatrix Cc3dFbxOneLoad  ::GetGeometry(FbxNode* pNode)
 	{
 		const FbxVector4 lT = pNode->GetGeometricTranslation(FbxNode::eSourcePivot);
 		const FbxVector4 lR = pNode->GetGeometricRotation(FbxNode::eSourcePivot);
@@ -819,7 +802,7 @@ void Cmodelfbx::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool pComp
 		return FbxAMatrix(lT, lR, lS);
 	}
 	// Draw the node following the content of it's node attribute.
-	void Cmodelfbx::DrawNode(FbxNode* pNode, 
+	void Cc3dFbxOneLoad::DrawNode(FbxNode* pNode, 
 		FbxTime& pTime, 
 		FbxAnimLayer* pAnimLayer,
 		int animStackIndex,
@@ -875,7 +858,7 @@ void Cmodelfbx::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool pComp
 	//Skeleton
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Draw a limb between the node and its parent.
-	void Cmodelfbx::DrawSkeleton(FbxNode* pNode, FbxAMatrix& pParentGlobalPosition, FbxAMatrix& pGlobalPosition)
+	void Cc3dFbxOneLoad::DrawSkeleton(FbxNode* pNode, FbxAMatrix& pParentGlobalPosition, FbxAMatrix& pGlobalPosition)
 	{
 		FbxSkeleton* lSkeleton = (FbxSkeleton*) pNode->GetNodeAttribute();
 
@@ -889,7 +872,7 @@ void Cmodelfbx::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool pComp
 			GlDrawLimbNode(pParentGlobalPosition, pGlobalPosition); 
 		}
 	}
-	void Cmodelfbx::GlDrawLimbNode(FbxAMatrix& pGlobalBasePosition, FbxAMatrix& pGlobalEndPosition)
+	void Cc3dFbxOneLoad::GlDrawLimbNode(FbxAMatrix& pGlobalBasePosition, FbxAMatrix& pGlobalEndPosition)
 	{
 		glColor3f(1.0, 0.0, 0.0);
 		glLineWidth(2.0);
@@ -905,7 +888,7 @@ void Cmodelfbx::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool pComp
 	//mesh
 	///////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Draw the vertices of a mesh.
-	void Cmodelfbx::DrawMesh(FbxNode* pNode, FbxTime& pTime, FbxAnimLayer* pAnimLayer,int animStackIndex,
+	void Cc3dFbxOneLoad::DrawMesh(FbxNode* pNode, FbxTime& pTime, FbxAnimLayer* pAnimLayer,int animStackIndex,
 		FbxAMatrix& pGlobalPosition, FbxPose* pPose)
 	{
 		FbxMesh* lMesh = pNode->GetMesh();
@@ -944,7 +927,7 @@ void Cmodelfbx::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool pComp
 		}
 	}
 	// Deform the vertex array according to the links contained in the mesh and the skinning type.
-	void Cmodelfbx::ComputeSkinDeformation(FbxAMatrix& pGlobalPosition, 
+	void Cc3dFbxOneLoad::ComputeSkinDeformation(FbxAMatrix& pGlobalPosition, 
 		FbxMesh* pMesh, 
 		FbxTime& pTime, 
 		FbxPose* pPose,
@@ -956,7 +939,7 @@ void Cmodelfbx::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool pComp
 
 		if(lSkinningType == FbxSkin::eLinear || lSkinningType == FbxSkin::eRigid)
 		{
-			Cc3dSkinMesh* mesh=(Cc3dSkinMesh*)this->findSkinMeshByFbxMeshPtr(pMesh);
+			Cc3dSkinMesh* mesh=(Cc3dSkinMesh*)m_actor->findSkinMeshByFbxMeshPtr(pMesh);
 			assert(mesh);
 			if(mesh->getSkin()==NULL){
 				Cc3dMatrix4 globalPositionMat=FbxAMatrixToCc3dMatrix4(pGlobalPosition);
@@ -1009,7 +992,7 @@ void Cmodelfbx::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool pComp
 
 	
 	// Deform the vertex array in classic linear way.{simplified version}
-	void Cmodelfbx::ComputeLinearDeformation_simplify(FbxAMatrix& pGlobalPosition, 
+	void Cc3dFbxOneLoad::ComputeLinearDeformation_simplify(FbxAMatrix& pGlobalPosition, 
 		FbxMesh* pMesh, 
 		FbxTime& pTime, 
 		FbxPose* pPose,
@@ -1062,7 +1045,7 @@ void Cmodelfbx::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool pComp
 				double* clusterControlPointWeights= lCluster->GetControlPointWeights();//cluster的顶点权重表
 
 				
-				Cc3dSkinMesh* mesh=(Cc3dSkinMesh*)this->findSkinMeshByFbxMeshPtr(pMesh);
+				Cc3dSkinMesh* mesh=(Cc3dSkinMesh*)m_actor->findSkinMeshByFbxMeshPtr(pMesh);
 				assert(mesh);
 				if(lClusterIndex>=(int)mesh->getSkin()->getClusterCount()){//cluster not exist
 					//create cluster
@@ -1096,7 +1079,7 @@ void Cmodelfbx::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool pComp
 	
 
 	// Scale all the elements of a matrix.
-	void Cmodelfbx::MatrixScale(FbxAMatrix& pMatrix, double pValue)
+	void Cc3dFbxOneLoad::MatrixScale(FbxAMatrix& pMatrix, double pValue)
 	{
 		int i,j;
 
@@ -1110,7 +1093,7 @@ void Cmodelfbx::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool pComp
 	}
 
 	// Add a value to all the elements in the diagonal of the matrix.
-	void Cmodelfbx::MatrixAddToDiagonal(FbxAMatrix& pMatrix, double pValue)
+	void Cc3dFbxOneLoad::MatrixAddToDiagonal(FbxAMatrix& pMatrix, double pValue)
 	{
 		pMatrix[0][0] += pValue;
 		pMatrix[1][1] += pValue;
@@ -1120,7 +1103,7 @@ void Cmodelfbx::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool pComp
 
 
 	// Sum two matrices element by element.
-	void Cmodelfbx::MatrixAdd(FbxAMatrix& pDstMatrix, FbxAMatrix& pSrcMatrix)
+	void Cc3dFbxOneLoad::MatrixAdd(FbxAMatrix& pDstMatrix, FbxAMatrix& pSrcMatrix)
 	{
 		int i,j;
 
@@ -1135,7 +1118,7 @@ void Cmodelfbx::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool pComp
 
 	
 //Compute the transform matrix that the cluster will transform the vertex.
-	void Cmodelfbx::ComputeClusterDeformation(FbxAMatrix& pGlobalPosition, 
+	void Cc3dFbxOneLoad::ComputeClusterDeformation(FbxAMatrix& pGlobalPosition, 
 		FbxMesh* pMesh,
 		FbxCluster* pCluster, 
 		FbxAMatrix& pVertexTransformMatrix,

@@ -9,7 +9,7 @@
 #include "initGame.h"
 #include "c3d.h"
 #include "globalVars.h"
-#include "fbxmodel.h"
+#include "c3dFbxLoader.h"
 void initGame(){
 	
 
@@ -56,27 +56,20 @@ void initGame(){
         camera->updateFrustum();
     }
 
-	//----box
-	Cmodelfbx*fbxmodel=new Cmodelfbx();
-	fbxmodel->autorelease();
-
-	fbxmodel->setInterval(1.0/60);
-	fbxmodel->Init_and_load("fbxLoader_resource/girl/girl.fbx");
-
-	fbxmodel->triangulate_loadTextures_preprocess();
-	fbxmodel->bakeAnimation();
+	//----fbx model
+	Cc3dSkinActor*actor=Cc3dFbxLoader::sharedFbxLoader()->load("fbxLoader_resource/girl/girl.fbx");
 	
+	actor->setPos(Cc3dVector4(0,0,0,1));
+	actor->setLight(light0);
+    actor->setCamera(camera);
+	actor->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("classicLighting"));
+    actor->setPassUnifoCallback(buildinProgramPassUnifoCallback_classicLighting);
 
-	fbxmodel->setPos(Cc3dVector4(0,0,0,1));
-	fbxmodel->setLight(light0);
-    fbxmodel->setCamera(camera);
-	fbxmodel->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("classicLighting"));
-    fbxmodel->setPassUnifoCallback(buildinProgramPassUnifoCallback_classicLighting);
+    actor->genVBOBuffers();
+	actor->submit(GL_STATIC_DRAW);
 
-    fbxmodel->genVBOBuffers();
-	fbxmodel->submit(GL_STATIC_DRAW);
     
 
 	//----add to scene
-    Cc3dSceneManager::sharedSceneManager()->getRoot()->addChild(fbxmodel);
+    Cc3dSceneManager::sharedSceneManager()->getRoot()->addChild(actor);
 }
