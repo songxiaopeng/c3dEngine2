@@ -87,10 +87,6 @@
 		57C77BE718E45334009820B6 /* c3dProgramPlatformDepend.mm in Sources */ = {isa = PBXBuildFile; fileRef = 57C77B6218E45333009820B6 /* c3dProgramPlatformDepend.mm */; };
 		57C77BE818E45334009820B6 /* c3dTexturePlatformDepend.mm in Sources */ = {isa = PBXBuildFile; fileRef = 57C77B6418E45333009820B6 /* c3dTexturePlatformDepend.mm */; };
 		57C77BE918E45334009820B6 /* MyOpenALSupport.c in Sources */ = {isa = PBXBuildFile; fileRef = 57C77B6618E45333009820B6 /* MyOpenALSupport.c */; };
-		57C77C1A18E45348009820B6 /* geoMath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57C77C1018E45348009820B6 /* geoMath.cpp */; };
-		57C77C1B18E45348009820B6 /* octree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57C77C1318E45348009820B6 /* octree.cpp */; };
-		57C77C1C18E45348009820B6 /* triangleWithNorm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57C77C1518E45348009820B6 /* triangleWithNorm.cpp */; };
-		57C77C1D18E45348009820B6 /* terrain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57C77C1818E45348009820B6 /* terrain.cpp */; };
 		57C77C3718E45362009820B6 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57C77C2C18E45362009820B6 /* Default-568h@2x.png */; };
 		57C77C3818E45362009820B6 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 57C77C2D18E45362009820B6 /* Default.png */; };
 		57C77C3918E45362009820B6 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57C77C2E18E45362009820B6 /* Default@2x.png */; };
@@ -251,14 +247,6 @@
 		57C77B6618E45333009820B6 /* MyOpenALSupport.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = MyOpenALSupport.c; sourceTree = "<group>"; };
 		57C77B6718E45333009820B6 /* MyOpenALSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyOpenALSupport.h; sourceTree = "<group>"; };
 		57C77B6818E45333009820B6 /* openALSupport_readme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = openALSupport_readme.h; sourceTree = "<group>"; };
-		57C77C1018E45348009820B6 /* geoMath.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = geoMath.cpp; sourceTree = "<group>"; };
-		57C77C1118E45348009820B6 /* geoMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = geoMath.h; sourceTree = "<group>"; };
-		57C77C1318E45348009820B6 /* octree.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = octree.cpp; sourceTree = "<group>"; };
-		57C77C1418E45348009820B6 /* octree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = octree.h; sourceTree = "<group>"; };
-		57C77C1518E45348009820B6 /* triangleWithNorm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = triangleWithNorm.cpp; sourceTree = "<group>"; };
-		57C77C1618E45348009820B6 /* triangleWithNorm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = triangleWithNorm.h; sourceTree = "<group>"; };
-		57C77C1818E45348009820B6 /* terrain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = terrain.cpp; sourceTree = "<group>"; };
-		57C77C1918E45348009820B6 /* terrain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = terrain.h; sourceTree = "<group>"; };
 		57C77C2C18E45362009820B6 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		57C77C2D18E45362009820B6 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		57C77C2E18E45362009820B6 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
@@ -291,7 +279,6 @@
 			children = (
 				571E909218E945DF003EE2D9 /* projcode */,
 				57C77AE918E45333009820B6 /* c3dEngine */,
-				57C77C0E18E45348009820B6 /* extension */,
 				35DF643F138C40D500FF9459 /* Frameworks */,
 				57C77C1E18E45362009820B6 /* resource */,
 				57C77C3B18E4538F009820B6 /* box_resource */,
@@ -554,46 +541,6 @@
 			path = openALSupport;
 			sourceTree = "<group>";
 		};
-		57C77C0E18E45348009820B6 /* extension */ = {
-			isa = PBXGroup;
-			children = (
-				57C77C0F18E45348009820B6 /* geometry */,
-				57C77C1218E45348009820B6 /* octree */,
-				57C77C1718E45348009820B6 /* terrain */,
-			);
-			name = extension;
-			path = ../../../extension;
-			sourceTree = "<group>";
-		};
-		57C77C0F18E45348009820B6 /* geometry */ = {
-			isa = PBXGroup;
-			children = (
-				57C77C1018E45348009820B6 /* geoMath.cpp */,
-				57C77C1118E45348009820B6 /* geoMath.h */,
-			);
-			path = geometry;
-			sourceTree = "<group>";
-		};
-		57C77C1218E45348009820B6 /* octree */ = {
-			isa = PBXGroup;
-			children = (
-				57C77C1318E45348009820B6 /* octree.cpp */,
-				57C77C1418E45348009820B6 /* octree.h */,
-				57C77C1518E45348009820B6 /* triangleWithNorm.cpp */,
-				57C77C1618E45348009820B6 /* triangleWithNorm.h */,
-			);
-			path = octree;
-			sourceTree = "<group>";
-		};
-		57C77C1718E45348009820B6 /* terrain */ = {
-			isa = PBXGroup;
-			children = (
-				57C77C1818E45348009820B6 /* terrain.cpp */,
-				57C77C1918E45348009820B6 /* terrain.h */,
-			);
-			path = terrain;
-			sourceTree = "<group>";
-		};
 		57C77C1E18E45362009820B6 /* resource */ = {
 			isa = PBXGroup;
 			children = (
@@ -693,7 +640,6 @@
 				571E910018E94610003EE2D9 /* c3dAssert.cpp in Sources */,
 				571E909B18E945DF003EE2D9 /* initGame.cpp in Sources */,
 				571E911D18E94610003EE2D9 /* c3dProgramCache.cpp in Sources */,
-				57C77C1D18E45348009820B6 /* terrain.cpp in Sources */,
 				571E910F18E94610003EE2D9 /* c3dIndexVBO.cpp in Sources */,
 				571E912318E94610003EE2D9 /* c3dTexture.cpp in Sources */,
 				571E910E18E94610003EE2D9 /* c3dIDtriangle.cpp in Sources */,
@@ -728,7 +674,6 @@
 				571E912818E94610003EE2D9 /* c3dVector.cpp in Sources */,
 				571E912918E94610003EE2D9 /* c3dVertex.cpp in Sources */,
 				57C77BE718E45334009820B6 /* c3dProgramPlatformDepend.mm in Sources */,
-				57C77C1C18E45348009820B6 /* triangleWithNorm.cpp in Sources */,
 				57C77BE818E45334009820B6 /* c3dTexturePlatformDepend.mm in Sources */,
 				571E911118E94610003EE2D9 /* c3dLog.cpp in Sources */,
 				571E912018E94610003EE2D9 /* c3dSceneManger.cpp in Sources */,
@@ -747,9 +692,7 @@
 				571E911818E94610003EE2D9 /* c3dModelMatStack.cpp in Sources */,
 				571E910118E94610003EE2D9 /* c3dAudioCache.cpp in Sources */,
 				571E910518E94610003EE2D9 /* c3dDeviceAndOSInfo.cpp in Sources */,
-				57C77C1B18E45348009820B6 /* octree.cpp in Sources */,
 				571E912618E94610003EE2D9 /* c3dTouchSequence.cpp in Sources */,
-				57C77C1A18E45348009820B6 /* geoMath.cpp in Sources */,
 				571E910D18E94610003EE2D9 /* c3dGlobalTimer.cpp in Sources */,
 				57C77BE018E45334009820B6 /* c3dAppDelegate.mm in Sources */,
 				571E90FC18E94610003EE2D9 /* c3dALBuffer.cpp in Sources */,
