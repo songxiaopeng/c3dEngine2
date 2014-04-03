@@ -19,7 +19,7 @@ How to run the project:
 for iOS project, open .xcodeproj with Xcode and run.  
 for win32 project:  
 1, install OpenAL: run OpenAL11CoreSDK.exe under OpenAL_install folder.  
-2, open .sln with vs2010 and run£¨suggest to run under release mode£©.  
+2, open .sln with vs2010 and run (suggest to run under release mode).    
   
 qq group: 338565878  
   
