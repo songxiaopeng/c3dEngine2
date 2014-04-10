@@ -27,6 +27,8 @@ screenshot:
 ![screenshot](https://raw.github.com/wantnon2/c3dEngine2/master/screenshot/screenshot1.png)  
   
 ![screenshot](https://raw.github.com/wantnon2/c3dEngine2/master/screenshot/screenshot2.png)  
+  
+![screenshot](https://raw.github.com/wantnon2/c3dEngine2/master/screenshot/screenshot3.png)  
    
 
 
