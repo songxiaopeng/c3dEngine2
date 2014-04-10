@@ -55,38 +55,38 @@ void initGame(){
         camera->updateFrustum();
     }
 
-	glPolygonMode(GL_FRONT_AND_BACK   ,GL_LINE   );
+	//glPolygonMode(GL_FRONT_AND_BACK   ,GL_LINE   );//not available on iOS
 
 	 //--ground
   
-        Cground*m_ground=new Cground();
-        m_ground->autorelease();
-        m_ground->setName("ground");
+        Cground*ground=new Cground();
+        ground->autorelease();
+        ground->setName("ground");
         
         //加载数据并生成地形
         
         //----地面
-		const float blockWidth=331.371*8.67;
-		const float blockHeight=331.371*8.67;
+		const float blockWidth=2872;
+		const float blockHeight=2872;
         //加载texture
         Cc3dTexture*texture=Cc3dTextureCache::sharedTextureCache()->addImage("terrain_resource/texture_2048x2048.png");
         //初始化ground
         Cc3dRect rect(-blockWidth/2, -blockHeight/2, blockWidth, blockHeight);
-        m_ground->init("terrain_resource/heightMap.bmp",rect,0.3,9,texture);
-        m_ground->setUVScale(1);
-        m_ground->getMesh()->setDiffuseRGB(1, 1, 1);
-        m_ground->getMesh()->setAmbient(0.2, 0.2, 0.2);
-        m_ground->setCamera(camera);
-        m_ground->setLight(light0);
-        m_ground->setPassUnifoCallback(buildinProgramPassUnifoCallback_classicLighting);
-        m_ground->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("classicLighting"));
-		m_ground->setReso(20000);//(5000);//
+        ground->init("terrain_resource/heightMap.bmp",rect,0.3,9,texture);
+        ground->setUVScale(1);
+        ground->getMesh()->setDiffuseRGB(1, 1, 1);
+        ground->getMesh()->setAmbient(0.2, 0.2, 0.2);
+        ground->setCamera(camera);
+        ground->setLight(light0);
+        ground->setPassUnifoCallback(buildinProgramPassUnifoCallback_classicLighting);
+        ground->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("classicLighting"));
+		ground->setReso(20000);//(5000);//
         //提交数据
-        m_ground->submitVertex(GL_STATIC_DRAW);
-        m_ground->getMesh()->getSubMeshByIndex(0)->clearMeshData();
+        ground->submitVertex(GL_STATIC_DRAW);
+        ground->getMesh()->getSubMeshByIndex(0)->clearMeshData();
         
     
 
 	//----add to scene
-    Cc3dSceneManager::sharedSceneManager()->getRoot()->addChild(m_ground);
+    Cc3dSceneManager::sharedSceneManager()->getRoot()->addChild(ground);
 }

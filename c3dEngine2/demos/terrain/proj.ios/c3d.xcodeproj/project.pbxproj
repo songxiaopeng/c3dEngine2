@@ -16,7 +16,6 @@
 		35DF6445138C40D500FF9459 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35DF6444138C40D500FF9459 /* CoreGraphics.framework */; };
 		35DF645E138C427700FF9459 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35DF645D138C427700FF9459 /* QuartzCore.framework */; };
 		35DF6460138C427E00FF9459 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35DF645F138C427E00FF9459 /* OpenGLES.framework */; };
-		571E909918E945DF003EE2D9 /* box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 571E909318E945DF003EE2D9 /* box.cpp */; };
 		571E909A18E945DF003EE2D9 /* globalVars.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 571E909518E945DF003EE2D9 /* globalVars.cpp */; };
 		571E909B18E945DF003EE2D9 /* initGame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 571E909718E945DF003EE2D9 /* initGame.cpp */; };
 		571E90FB18E94610003EE2D9 /* c3dActor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 571E909D18E94610003EE2D9 /* c3dActor.cpp */; };
@@ -90,8 +89,11 @@
 		57C77C3718E45362009820B6 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57C77C2C18E45362009820B6 /* Default-568h@2x.png */; };
 		57C77C3818E45362009820B6 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 57C77C2D18E45362009820B6 /* Default.png */; };
 		57C77C3918E45362009820B6 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57C77C2E18E45362009820B6 /* Default@2x.png */; };
-		57C77C3D18E4538F009820B6 /* box_resource in Resources */ = {isa = PBXBuildFile; fileRef = 57C77C3B18E4538F009820B6 /* box_resource */; };
 		57C77C3E18E4538F009820B6 /* c3dEngineResource in Resources */ = {isa = PBXBuildFile; fileRef = 57C77C3C18E4538F009820B6 /* c3dEngineResource */; };
+		57E04AF518F66F65008CE339 /* ground.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57E04AF318F66F65008CE339 /* ground.cpp */; };
+		57E04B0518F66F9D008CE339 /* terrain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57E04B0018F66F9D008CE339 /* terrain.cpp */; };
+		57E04B0918F66FF1008CE339 /* geoMath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57E04B0718F66FF1008CE339 /* geoMath.cpp */; };
+		57E04B0B18F67033008CE339 /* terrain_resource in Resources */ = {isa = PBXBuildFile; fileRef = 57E04B0A18F67033008CE339 /* terrain_resource */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -105,8 +107,6 @@
 		35DF6444138C40D500FF9459 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		35DF645D138C427700FF9459 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		35DF645F138C427E00FF9459 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
-		571E909318E945DF003EE2D9 /* box.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = box.cpp; sourceTree = "<group>"; };
-		571E909418E945DF003EE2D9 /* box.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = box.h; sourceTree = "<group>"; };
 		571E909518E945DF003EE2D9 /* globalVars.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = globalVars.cpp; sourceTree = "<group>"; };
 		571E909618E945DF003EE2D9 /* globalVars.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = globalVars.h; sourceTree = "<group>"; };
 		571E909718E945DF003EE2D9 /* initGame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = initGame.cpp; sourceTree = "<group>"; };
@@ -250,8 +250,14 @@
 		57C77C2C18E45362009820B6 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		57C77C2D18E45362009820B6 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		57C77C2E18E45362009820B6 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		57C77C3B18E4538F009820B6 /* box_resource */ = {isa = PBXFileReference; lastKnownFileType = folder; name = box_resource; path = ../../../resource/box_resource; sourceTree = "<group>"; };
 		57C77C3C18E4538F009820B6 /* c3dEngineResource */ = {isa = PBXFileReference; lastKnownFileType = folder; name = c3dEngineResource; path = ../../../resource/c3dEngineResource; sourceTree = "<group>"; };
+		57E04AF318F66F65008CE339 /* ground.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ground.cpp; sourceTree = "<group>"; };
+		57E04AF418F66F65008CE339 /* ground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ground.h; sourceTree = "<group>"; };
+		57E04B0018F66F9D008CE339 /* terrain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = terrain.cpp; sourceTree = "<group>"; };
+		57E04B0118F66F9D008CE339 /* terrain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = terrain.h; sourceTree = "<group>"; };
+		57E04B0718F66FF1008CE339 /* geoMath.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = geoMath.cpp; sourceTree = "<group>"; };
+		57E04B0818F66FF1008CE339 /* geoMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = geoMath.h; sourceTree = "<group>"; };
+		57E04B0A18F67033008CE339 /* terrain_resource */ = {isa = PBXFileReference; lastKnownFileType = folder; path = terrain_resource; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -277,11 +283,11 @@
 		35DF6431138C40D500FF9459 = {
 			isa = PBXGroup;
 			children = (
+				57E04AF618F66F9D008CE339 /* extension */,
 				571E909218E945DF003EE2D9 /* projcode */,
 				57C77AE918E45333009820B6 /* c3dEngine */,
 				35DF643F138C40D500FF9459 /* Frameworks */,
 				57C77C1E18E45362009820B6 /* resource */,
-				57C77C3B18E4538F009820B6 /* box_resource */,
 				57C77C3C18E4538F009820B6 /* c3dEngineResource */,
 				57C77AC918E45302009820B6 /* c3d */,
 				35DF643D138C40D500FF9459 /* Products */,
@@ -315,8 +321,8 @@
 		571E909218E945DF003EE2D9 /* projcode */ = {
 			isa = PBXGroup;
 			children = (
-				571E909318E945DF003EE2D9 /* box.cpp */,
-				571E909418E945DF003EE2D9 /* box.h */,
+				57E04AF318F66F65008CE339 /* ground.cpp */,
+				57E04AF418F66F65008CE339 /* ground.h */,
 				571E909518E945DF003EE2D9 /* globalVars.cpp */,
 				571E909618E945DF003EE2D9 /* globalVars.h */,
 				571E909718E945DF003EE2D9 /* initGame.cpp */,
@@ -544,6 +550,7 @@
 		57C77C1E18E45362009820B6 /* resource */ = {
 			isa = PBXGroup;
 			children = (
+				57E04B0A18F67033008CE339 /* terrain_resource */,
 				57C77C2B18E45362009820B6 /* defaultImage */,
 			);
 			name = resource;
@@ -558,6 +565,34 @@
 				57C77C2E18E45362009820B6 /* Default@2x.png */,
 			);
 			path = defaultImage;
+			sourceTree = "<group>";
+		};
+		57E04AF618F66F9D008CE339 /* extension */ = {
+			isa = PBXGroup;
+			children = (
+				57E04B0618F66FF1008CE339 /* geometry */,
+				57E04AFF18F66F9D008CE339 /* terrain */,
+			);
+			name = extension;
+			path = ../../../extension;
+			sourceTree = "<group>";
+		};
+		57E04AFF18F66F9D008CE339 /* terrain */ = {
+			isa = PBXGroup;
+			children = (
+				57E04B0018F66F9D008CE339 /* terrain.cpp */,
+				57E04B0118F66F9D008CE339 /* terrain.h */,
+			);
+			path = terrain;
+			sourceTree = "<group>";
+		};
+		57E04B0618F66FF1008CE339 /* geometry */ = {
+			isa = PBXGroup;
+			children = (
+				57E04B0718F66FF1008CE339 /* geoMath.cpp */,
+				57E04B0818F66FF1008CE339 /* geoMath.h */,
+			);
+			path = geometry;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -615,7 +650,7 @@
 				57C77C3E18E4538F009820B6 /* c3dEngineResource in Resources */,
 				57C77C3918E45362009820B6 /* Default@2x.png in Resources */,
 				57C77C3818E45362009820B6 /* Default.png in Resources */,
-				57C77C3D18E4538F009820B6 /* box_resource in Resources */,
+				57E04B0B18F67033008CE339 /* terrain_resource in Resources */,
 				57C77AD618E45302009820B6 /* MainWindow.xib in Resources */,
 				57C77AD418E45302009820B6 /* c3d-Info.plist in Resources */,
 				57C77C3718E45362009820B6 /* Default-568h@2x.png in Resources */,
@@ -634,7 +669,6 @@
 				571E910C18E94610003EE2D9 /* c3dGLMath.cpp in Sources */,
 				571E911718E94610003EE2D9 /* c3dModel.cpp in Sources */,
 				571E911918E94610003EE2D9 /* c3dNode.cpp in Sources */,
-				571E909918E945DF003EE2D9 /* box.cpp in Sources */,
 				57C77BE918E45334009820B6 /* MyOpenALSupport.c in Sources */,
 				571E912118E94610003EE2D9 /* c3dSpan.cpp in Sources */,
 				571E910018E94610003EE2D9 /* c3dAssert.cpp in Sources */,
@@ -665,12 +699,14 @@
 				571E910B18E94610003EE2D9 /* c3dGLdebug.cpp in Sources */,
 				57C77BAF18E45334009820B6 /* c3dCommonFunc.cpp in Sources */,
 				571E910418E94610003EE2D9 /* c3dDefine.cpp in Sources */,
+				57E04B0518F66F9D008CE339 /* terrain.cpp in Sources */,
 				57C77BE518E45334009820B6 /* c3dDocumentsPlatformDepend.mm in Sources */,
 				571E912718E94610003EE2D9 /* c3dTransform.cpp in Sources */,
 				571E90FB18E94610003EE2D9 /* c3dActor.cpp in Sources */,
 				571E912418E94610003EE2D9 /* c3dTextureCache.cpp in Sources */,
 				571E913618E953A8003EE2D9 /* c3dGLPlatformDepend.cpp in Sources */,
 				57C77BE318E45334009820B6 /* c3dALPlatformDepend.mm in Sources */,
+				57E04B0918F66FF1008CE339 /* geoMath.cpp in Sources */,
 				571E912818E94610003EE2D9 /* c3dVector.cpp in Sources */,
 				571E912918E94610003EE2D9 /* c3dVertex.cpp in Sources */,
 				57C77BE718E45334009820B6 /* c3dProgramPlatformDepend.mm in Sources */,
@@ -695,6 +731,7 @@
 				571E912618E94610003EE2D9 /* c3dTouchSequence.cpp in Sources */,
 				571E910D18E94610003EE2D9 /* c3dGlobalTimer.cpp in Sources */,
 				57C77BE018E45334009820B6 /* c3dAppDelegate.mm in Sources */,
+				57E04AF518F66F65008CE339 /* ground.cpp in Sources */,
 				571E90FC18E94610003EE2D9 /* c3dALBuffer.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
