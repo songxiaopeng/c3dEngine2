@@ -22,10 +22,13 @@ protected:
 	Cc3dVector4 m_color;
     Cc3dVector2 m_texCoord2;
 public:
-    Cc3dVertex(){};
+    Cc3dVertex(){
+		initMembers();
+	};
     ~Cc3dVertex(){};//used for submit to vbo, so destructor must not be virtual
     Cc3dVertex(const Cc3dVector4&pos,const Cc3dVector2&texCoord,const Cc3dVector4&norm,const Cc3dVector4&color=Cc3dVector4(1,1,1,1),const Cc3dVector2&texCoord2=Cc3dVector2(0,0)){
-        init(pos,texCoord,norm,color,texCoord2);
+        initMembers();
+		init(pos,texCoord,norm,color,texCoord2);
     }
 	void init(const Cc3dVector4&pos,const Cc3dVector2&texCoord,const Cc3dVector4&norm,const Cc3dVector4&color=Cc3dVector4(1,1,1,1),const Cc3dVector2&texCoord2=Cc3dVector2(0,0)){
 		m_pos=pos;
@@ -63,7 +66,10 @@ public:
     void setTexCoord2(const Cc3dVector2&texCoord2){
         m_texCoord2=texCoord2;
     }
-
+protected:
+	void initMembers(){
+		m_color.init(1,1,1,1);
+	}
     
 };
 

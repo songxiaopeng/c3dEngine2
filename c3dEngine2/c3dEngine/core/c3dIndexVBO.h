@@ -113,11 +113,11 @@ public:
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
     }
  
-
+	
     void drawIndexBuffer(GLenum mode=GL_TRIANGLES)
     {
 		
-        //draw index buffer
+         //draw index buffer
         if(m_indexCount!=0){
             assert(m_vertexCount!=0);
             //if m_indexCount!=0 but m_vertexCount==0, may means forget to submit before draw

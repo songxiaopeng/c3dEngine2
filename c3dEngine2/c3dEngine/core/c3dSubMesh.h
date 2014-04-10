@@ -30,6 +30,7 @@ protected:
     Cc3dMaterial*m_material;
     bool m_isWriteDepthBuffer;
     bool m_isDoDepthTest;
+	bool m_isDrawWireBox;
     Ec3dCullFace m_cullFace;
     Cc3dIndexVBO*m_indexVBO;
 public:
@@ -41,6 +42,7 @@ public:
         m_indexVBO=NULL;
         m_isWriteDepthBuffer=true;
         m_isDoDepthTest=true;
+		m_isDrawWireBox=false;
     }
     virtual~Cc3dSubMesh(){
         if(m_subMeshData)m_subMeshData->release();
@@ -159,7 +161,14 @@ public:
         m_indexVBO->bindVertexBuffer();
         Cc3dIndexVBO::setPointers();
         m_indexVBO->bindIndexBuffer();
-        m_indexVBO->drawIndexBuffer();
+		GLenum mode;
+		if(m_isDrawWireBox){
+			mode=GL_LINE_LOOP;
+		}else{
+			mode=GL_TRIANGLES;
+		}
+	//	mode=GL_LINE_STRIP_ADJACENCY;
+        m_indexVBO->drawIndexBuffer(mode);
         m_indexVBO->unbindIndexBuffer();
         m_indexVBO->unbindVertexBuffer();
 

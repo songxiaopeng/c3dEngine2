@@ -185,7 +185,7 @@ bool Cterrain::init(const string&heightMapFileName,const Cc3dRect&rect,float hei
 }
 void Cterrain::makeMesh(){
     int nVertex=(int)markmat.size()*(int)markmat[0].size();
-    int nStep=3+2+3+2;
+    int nStep=4+2+4+4+2;
     float *vertexArray=new float[nVertex*nStep];
     //填充vertexArray
     for(int i=0;i<(int)markmat.size();i++){
@@ -194,25 +194,32 @@ void Cterrain::makeMesh(){
             x=m_range.getMinX()+j*gridSize;
             y=landMat[min(i,(int)landMat.size()-1)][min(j,(int)landMat[0].size()-1)];
             z=m_range.getMinZ()+i*gridSize;
-            *(vertexArray+i*(int)markmat[0].size()*(3+2+3+2)+j*(3+2+3+2)+0)=x;
-            *(vertexArray+i*(int)markmat[0].size()*(3+2+3+2)+j*(3+2+3+2)+1)=y;
-            *(vertexArray+i*(int)markmat[0].size()*(3+2+3+2)+j*(3+2+3+2)+2)=z;
-            *(vertexArray+i*(int)markmat[0].size()*(3+2+3+2)+j*(3+2+3+2)+3)=m_uvScale*j/(int)markmat[0].size();
-            *(vertexArray+i*(int)markmat[0].size()*(3+2+3+2)+j*(3+2+3+2)+4)=m_uvScale*i/(int)markmat.size();
-            *(vertexArray+i*(int)markmat[0].size()*(3+2+3+2)+j*(3+2+3+2)+5)=normalMat[min(i,(int)landMat.size()-1)][min(j,(int)landMat[0].size()-1)].x();
-            *(vertexArray+i*(int)markmat[0].size()*(3+2+3+2)+j*(3+2+3+2)+6)=normalMat[min(i,(int)landMat.size()-1)][min(j,(int)landMat[0].size()-1)].y();
-            *(vertexArray+i*(int)markmat[0].size()*(3+2+3+2)+j*(3+2+3+2)+7)=normalMat[min(i,(int)landMat.size()-1)][min(j,(int)landMat[0].size()-1)].z();
-            *(vertexArray+i*(int)markmat[0].size()*(3+2+3+2)+j*(3+2+3+2)+8)=(x-m_range.getMinX())/m_range.getSpanX();//alpha map texCoord s
-            *(vertexArray+i*(int)markmat[0].size()*(3+2+3+2)+j*(3+2+3+2)+9)=(z-m_range.getMinZ())/m_range.getSpanZ();//alpha map texCoord t
+            *(vertexArray+i*(int)markmat[0].size()*nStep+j*nStep+0)=x;
+            *(vertexArray+i*(int)markmat[0].size()*nStep+j*nStep+1)=y;
+            *(vertexArray+i*(int)markmat[0].size()*nStep+j*nStep+2)=z;
+			*(vertexArray+i*(int)markmat[0].size()*nStep+j*nStep+3)=1;
+            *(vertexArray+i*(int)markmat[0].size()*nStep+j*nStep+4)=m_uvScale*j/(int)markmat[0].size();
+            *(vertexArray+i*(int)markmat[0].size()*nStep+j*nStep+5)=m_uvScale*i/(int)markmat.size();
+            *(vertexArray+i*(int)markmat[0].size()*nStep+j*nStep+6)=normalMat[min(i,(int)landMat.size()-1)][min(j,(int)landMat[0].size()-1)].x();
+            *(vertexArray+i*(int)markmat[0].size()*nStep+j*nStep+7)=normalMat[min(i,(int)landMat.size()-1)][min(j,(int)landMat[0].size()-1)].y();
+            *(vertexArray+i*(int)markmat[0].size()*nStep+j*nStep+8)=normalMat[min(i,(int)landMat.size()-1)][min(j,(int)landMat[0].size()-1)].z();
+			*(vertexArray+i*(int)markmat[0].size()*nStep+j*nStep+9)=0;
+			*(vertexArray+i*(int)markmat[0].size()*nStep+j*nStep+10)=1;
+            *(vertexArray+i*(int)markmat[0].size()*nStep+j*nStep+11)=1;
+            *(vertexArray+i*(int)markmat[0].size()*nStep+j*nStep+12)=1;
+			*(vertexArray+i*(int)markmat[0].size()*nStep+j*nStep+13)=1;
+            *(vertexArray+i*(int)markmat[0].size()*nStep+j*nStep+14)=(x-m_range.getMinX())/m_range.getSpanX();//alpha map texCoord s
+            *(vertexArray+i*(int)markmat[0].size()*nStep+j*nStep+15)=(z-m_range.getMinZ())/m_range.getSpanZ();//alpha map texCoord t
         }
     }
     this->getMesh()->getSubMeshByIndex(0)->getSubMeshData()->clearvlist();//vlist.clear();
     for(int i=0;i<nVertex;i++){
         Cc3dVertex vertex;
         vertex.setPos(vertexArray+i*nStep);
-        vertex.setTexCoord(vertexArray+i*nStep+3);
-        vertex.setNorm(vertexArray+i*nStep+3+2);
-        vertex.setTexCoord2(vertexArray+i*nStep+3+2+3);
+        vertex.setTexCoord(vertexArray+i*nStep+4);
+        vertex.setNorm(vertexArray+i*nStep+4+2);
+		vertex.setColor(vertexArray+i*nStep+4+2+4);
+        vertex.setTexCoord2(vertexArray+i*nStep+4+2+4+4);
         this->getMesh()->getSubMeshByIndex(0)->addVertex(vertex);//getSubMeshData()->vlist.push_back(vertex);
     }
     //释放vertexArray
@@ -353,7 +360,7 @@ void Cterrain::showAndMark(int jmin,int jmax,int imin,int imax,int curDepth)
             //求c到视点的距离
             //指数值越大，LOD效应越明显
             float d=square(this->getMesh()->getSubMeshByIndex(0)->getCamera()->getEyePos().x()-c[0])
-            +square(minf(0.6*(this->getMesh()->getSubMeshByIndex(0)->getCamera()->getEyePos().y()-c[1]),700))//Y乘以一个比1小的系数是为了让LOD对高度变化不敏感
+            +square(this->getMesh()->getSubMeshByIndex(0)->getCamera()->getEyePos().y()-c[1])//Y乘以一个比1小的系数是为了让LOD对高度变化不敏感
             +square(this->getMesh()->getSubMeshByIndex(0)->getCamera()->getEyePos().z()-c[2]);
             float e=xmax-xmin;//边长
             if(d<e*reso)needDiv=true;

@@ -63,7 +63,7 @@ public:
         m_quadtreeDepth=9;
         gridSize=0;
 		m_uvScale=1;
-		reso=15000;//10000;//5000
+		reso=20000;//15000;//10000;//5000
         m_heightScale=1;
 	}
     bool init(const string&fileNameWithExt,const Cc3dRect&rect,float heightScale,int depth,Cc3dTexture*texture);
@@ -79,6 +79,8 @@ public:
     void updateTerrain(const Cc3dCamera&camera);
     float getHAndNormal(float x,float z,Cc3dVector4&norm)const;
     float getH(float x,float z)const ;
+	float getReso(){return reso;}
+	void setReso(float _reso){reso=_reso;}
 protected:
     void makeUp(int jmin,int jmax,int imin,int imax);
     void showAndMark(int jmin,int jmax,int imin,int imax,int curDepth);
