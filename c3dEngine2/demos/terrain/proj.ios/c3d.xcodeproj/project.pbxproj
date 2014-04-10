@@ -94,6 +94,8 @@
 		57E04B0518F66F9D008CE339 /* terrain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57E04B0018F66F9D008CE339 /* terrain.cpp */; };
 		57E04B0918F66FF1008CE339 /* geoMath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57E04B0718F66FF1008CE339 /* geoMath.cpp */; };
 		57E04B0B18F67033008CE339 /* terrain_resource in Resources */ = {isa = PBXBuildFile; fileRef = 57E04B0A18F67033008CE339 /* terrain_resource */; };
+		57E04B0F18F6C7D6008CE339 /* button.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57E04B0D18F6C7D6008CE339 /* button.cpp */; };
+		57E04B1218F6C7EE008CE339 /* layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57E04B1018F6C7EE008CE339 /* layer.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -258,6 +260,10 @@
 		57E04B0718F66FF1008CE339 /* geoMath.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = geoMath.cpp; sourceTree = "<group>"; };
 		57E04B0818F66FF1008CE339 /* geoMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = geoMath.h; sourceTree = "<group>"; };
 		57E04B0A18F67033008CE339 /* terrain_resource */ = {isa = PBXFileReference; lastKnownFileType = folder; path = terrain_resource; sourceTree = "<group>"; };
+		57E04B0D18F6C7D6008CE339 /* button.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = button.cpp; sourceTree = "<group>"; };
+		57E04B0E18F6C7D6008CE339 /* button.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = button.h; sourceTree = "<group>"; };
+		57E04B1018F6C7EE008CE339 /* layer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = layer.cpp; sourceTree = "<group>"; };
+		57E04B1118F6C7EE008CE339 /* layer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = layer.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -324,6 +330,8 @@
 				57E04AF318F66F65008CE339 /* ground.cpp */,
 				57E04AF418F66F65008CE339 /* ground.h */,
 				571E909518E945DF003EE2D9 /* globalVars.cpp */,
+				57E04B1018F6C7EE008CE339 /* layer.cpp */,
+				57E04B1118F6C7EE008CE339 /* layer.h */,
 				571E909618E945DF003EE2D9 /* globalVars.h */,
 				571E909718E945DF003EE2D9 /* initGame.cpp */,
 				571E909818E945DF003EE2D9 /* initGame.h */,
@@ -570,6 +578,7 @@
 		57E04AF618F66F9D008CE339 /* extension */ = {
 			isa = PBXGroup;
 			children = (
+				57E04B0C18F6C7D6008CE339 /* ui */,
 				57E04B0618F66FF1008CE339 /* geometry */,
 				57E04AFF18F66F9D008CE339 /* terrain */,
 			);
@@ -593,6 +602,15 @@
 				57E04B0818F66FF1008CE339 /* geoMath.h */,
 			);
 			path = geometry;
+			sourceTree = "<group>";
+		};
+		57E04B0C18F6C7D6008CE339 /* ui */ = {
+			isa = PBXGroup;
+			children = (
+				57E04B0D18F6C7D6008CE339 /* button.cpp */,
+				57E04B0E18F6C7D6008CE339 /* button.h */,
+			);
+			path = ui;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -693,6 +711,7 @@
 				57C77BB018E45334009820B6 /* c3dPathFunc.cpp in Sources */,
 				571E910618E94610003EE2D9 /* c3dDocuments.cpp in Sources */,
 				571E911B18E94610003EE2D9 /* c3dPlane.cpp in Sources */,
+				57E04B1218F6C7EE008CE339 /* layer.cpp in Sources */,
 				571E911A18E94610003EE2D9 /* c3dObject.cpp in Sources */,
 				57C77AD818E45302009820B6 /* main.m in Sources */,
 				571E911E18E94610003EE2D9 /* c3dRange.cpp in Sources */,
@@ -705,6 +724,7 @@
 				571E90FB18E94610003EE2D9 /* c3dActor.cpp in Sources */,
 				571E912418E94610003EE2D9 /* c3dTextureCache.cpp in Sources */,
 				571E913618E953A8003EE2D9 /* c3dGLPlatformDepend.cpp in Sources */,
+				57E04B0F18F6C7D6008CE339 /* button.cpp in Sources */,
 				57C77BE318E45334009820B6 /* c3dALPlatformDepend.mm in Sources */,
 				57E04B0918F66FF1008CE339 /* geoMath.cpp in Sources */,
 				571E912818E94610003EE2D9 /* c3dVector.cpp in Sources */,
