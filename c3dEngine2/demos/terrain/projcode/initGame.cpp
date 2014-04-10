@@ -9,7 +9,7 @@
 #include "initGame.h"
 #include "c3d.h"
 #include "globalVars.h"
-#include "ground.h"
+#include "layer.h"
 void initGame(){
 
 	//----light
@@ -54,39 +54,11 @@ void initGame(){
         camera->setUp(Cc3dVector3(up).toV4(0));
         camera->updateFrustum();
     }
-
-	//glPolygonMode(GL_FRONT_AND_BACK   ,GL_LINE   );//not available on iOS
-
-	 //--ground
-  
-        Cground*ground=new Cground();
-        ground->autorelease();
-        ground->setName("ground");
-        
-        //加载数据并生成地形
-        
-        //----地面
-		const float blockWidth=2872;
-		const float blockHeight=2872;
-        //加载texture
-        Cc3dTexture*texture=Cc3dTextureCache::sharedTextureCache()->addImage("terrain_resource/texture_2048x2048.png");
-        //初始化ground
-        Cc3dRect rect(-blockWidth/2, -blockHeight/2, blockWidth, blockHeight);
-        ground->init("terrain_resource/heightMap.bmp",rect,0.3,9,texture);
-        ground->setUVScale(1);
-        ground->getMesh()->setDiffuseRGB(1, 1, 1);
-        ground->getMesh()->setAmbient(0.2, 0.2, 0.2);
-        ground->setCamera(camera);
-        ground->setLight(light0);
-        ground->setPassUnifoCallback(buildinProgramPassUnifoCallback_classicLighting);
-        ground->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("classicLighting"));
-		ground->setReso(20000);//(5000);//
-        //提交数据
-        ground->submitVertex(GL_STATIC_DRAW);
-        ground->getMesh()->getSubMeshByIndex(0)->clearMeshData();
-        
-    
-
+	//----layer
+	Clayer*layer=new Clayer();
+	layer->autorelease();
+	layer->init();
 	//----add to scene
-    Cc3dSceneManager::sharedSceneManager()->getRoot()->addChild(ground);
+    Cc3dSceneManager::sharedSceneManager()->getRoot()->addChild(layer);
+
 }

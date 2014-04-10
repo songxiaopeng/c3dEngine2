@@ -71,7 +71,7 @@
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>true</WholeProgramOptimization>
       <OmitFramePointers>true</OmitFramePointers>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\c3dEngine;$(ProjectDir)..\..\..\c3dEngine\core;$(ProjectDir)..\..\..\c3dEngine\shader;$(ProjectDir)..\..\..\c3dEngine\common;$(ProjectDir)..\..\..\c3dEngine\platform\win32;$(ProjectDir)..\..\..\c3dEngine\platform\win32\OGLES;$(ProjectDir);$(ProjectDir)..\..\..\extension;$(ProjectDir)..\..\..\extension\geometry;$(ProjectDir)..\..\..\extension\octree;$(ProjectDir)..\..\..\extension\terrain;$(ProjectDir)..\projcode;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\c3dEngine;$(ProjectDir)..\..\..\c3dEngine\core;$(ProjectDir)..\..\..\c3dEngine\shader;$(ProjectDir)..\..\..\c3dEngine\common;$(ProjectDir)..\..\..\c3dEngine\platform\win32;$(ProjectDir)..\..\..\c3dEngine\platform\win32\OGLES;$(ProjectDir);$(ProjectDir)..\..\..\extension;$(ProjectDir)..\..\..\extension\geometry;$(ProjectDir)..\..\..\extension\octree;$(ProjectDir)..\..\..\extension\terrain;$(ProjectDir)..\..\..\extension\ui;$(ProjectDir)..\projcode;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MinimalRebuild>false</MinimalRebuild>
       <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
@@ -181,6 +181,7 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\c3dEngine\platform\win32\libraries\*.*" "$(Ou
     <ClCompile Include="..\..\..\c3dEngine\core\c3dGLdebug.cpp" />
     <ClCompile Include="..\..\..\c3dEngine\core\c3dGLMath.cpp" />
     <ClCompile Include="..\..\..\c3dEngine\core\c3dGlobalTimer.cpp" />
+    <ClCompile Include="..\..\..\c3dEngine\core\c3dIDline.cpp" />
     <ClCompile Include="..\..\..\c3dEngine\core\c3dIDtriangle.cpp" />
     <ClCompile Include="..\..\..\c3dEngine\core\c3dIndexVBO.cpp" />
     <ClCompile Include="..\..\..\c3dEngine\core\c3dInitGame.cpp" />
@@ -224,9 +225,11 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\c3dEngine\platform\win32\libraries\*.*" "$(Ou
     <ClCompile Include="..\..\..\c3dEngine\shader\c3dPassUnifoCallBack.cpp" />
     <ClCompile Include="..\..\..\c3dEngine\shader\c3dProgramSetUp.cpp" />
     <ClCompile Include="..\..\..\extension\terrain\terrain.cpp" />
+    <ClCompile Include="..\..\..\extension\ui\button.cpp" />
     <ClCompile Include="..\projcode\globalVars.cpp" />
     <ClCompile Include="..\projcode\ground.cpp" />
     <ClCompile Include="..\projcode\initGame.cpp" />
+    <ClCompile Include="..\projcode\layer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Script1.rc" />
@@ -256,6 +259,7 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\c3dEngine\platform\win32\libraries\*.*" "$(Ou
     <ClInclude Include="..\..\..\c3dEngine\core\c3dGLdebug.h" />
     <ClInclude Include="..\..\..\c3dEngine\core\c3dGLMath.h" />
     <ClInclude Include="..\..\..\c3dEngine\core\c3dGlobalTimer.h" />
+    <ClInclude Include="..\..\..\c3dEngine\core\c3dIDline.h" />
     <ClInclude Include="..\..\..\c3dEngine\core\c3dIDtriangle.h" />
     <ClInclude Include="..\..\..\c3dEngine\core\c3dIndexVBO.h" />
     <ClInclude Include="..\..\..\c3dEngine\core\c3dInitGame.h" />
@@ -314,9 +318,11 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\c3dEngine\platform\win32\libraries\*.*" "$(Ou
     <ClInclude Include="..\..\..\c3dEngine\shader\c3dPassUnifoCallBack.h" />
     <ClInclude Include="..\..\..\c3dEngine\shader\c3dProgramSetUp.h" />
     <ClInclude Include="..\..\..\extension\terrain\terrain.h" />
+    <ClInclude Include="..\..\..\extension\ui\button.h" />
     <ClInclude Include="..\projcode\globalVars.h" />
     <ClInclude Include="..\projcode\ground.h" />
     <ClInclude Include="..\projcode\initGame.h" />
+    <ClInclude Include="..\projcode\layer.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

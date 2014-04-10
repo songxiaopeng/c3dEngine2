@@ -54,6 +54,14 @@ public:
     
     void genVBOBuffers();
   
+	void setIsWireMode(bool isWireMode){
+		int nSubMesh=(int)m_subMeshList.size();
+        for(int i=0;i<nSubMesh;i++){
+            Cc3dSubMesh*subMesh=m_subMeshList[i];
+            if(subMesh==NULL)continue;
+            subMesh->setIsWireMode(isWireMode);
+        }
+	}
     void setCullFace(Ec3dCullFace cullFace){
         int nSubMesh=(int)m_subMeshList.size();
         for(int i=0;i<nSubMesh;i++){

@@ -77,6 +77,13 @@ public:
             m_meshList[i]->setIsDoUpdateRecursively(value);
         }
     }
+	void setIsWireMode(bool value){
+		int nMesh=(int)m_meshList.size();
+        for(int i=0;i<nMesh;i++){
+            if(m_meshList[i]==NULL)continue;
+            m_meshList[i]->setIsWireMode(value);
+        }
+	}
     void setIsVisible(bool value){
         this->Cc3dNode::setIsVisible(value);
         int nMesh=(int)m_meshList.size();
@@ -102,6 +109,15 @@ public:
             Cc3dMesh*p=m_meshList[i];
             if(p==NULL)continue;
             p->setCamera(camera);
+        }
+        
+    }
+	void setIsDoDepthTest(bool value){
+		int n=(int)m_meshList.size();
+        for(int i=0;i<n;i++){
+            Cc3dMesh*p=m_meshList[i];
+            if(p==NULL)continue;
+            p->setIsDoDepthTest(value);
         }
         
     }

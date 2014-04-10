@@ -17,6 +17,7 @@ using namespace std;
 #include "c3dLight.h"
 #include "c3dVertex.h"
 #include "c3dIDtriangle.h"
+#include "c3dIDline.h"
 class Cc3dIndexVBO:public Cc3dObject
 {
 public:
@@ -24,16 +25,21 @@ public:
     GLuint indexbuffer;
     int m_vertexCount;
     int m_indexCount;
+	bool m_isWireMode;
     Cc3dIndexVBO(){
         vertexbuffer=0;
         indexbuffer=0;
         m_vertexCount=0;
         m_indexCount=0;
+		m_isWireMode=false;
     }
     virtual~ Cc3dIndexVBO(){
         if(vertexbuffer!=0)glDeleteBuffers(1,&vertexbuffer);
         if(vertexbuffer!=0)glDeleteBuffers(1,&indexbuffer);
     }
+	void setIsWireMode(bool isWireMode){
+		m_isWireMode=isWireMode;
+	}
     void genBuffers(){
         assert(vertexbuffer==0);
         assert(indexbuffer==0);
@@ -52,28 +58,43 @@ public:
         
         
     }
- /*   void submitVertex(int vertexCount,const float vertexArray[],GLenum usage)
-    {
-		m_vertexCount=vertexCount;
-		if(m_vertexCount==0)return;
-        glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
-        glBufferData(GL_ARRAY_BUFFER, m_vertexCount*sizeof(float)*(4+2+4+4+2), vertexArray, usage);
-        glBindBuffer(GL_ARRAY_BUFFER, 0);
-        
-        
-    }
-	*/
-    
+ 
     void submitIndex(const vector<Cc3dIDTriangle> &IDtriList,GLenum usage)
     {
-        int nIDtri=(int)IDtriList.size();
-        int indexCount=3*nIDtri;
-		m_indexCount=indexCount;
-		if(m_indexCount==0)return;
-        
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexbuffer);
-        glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(int)*m_indexCount, &IDtriList[0], usage);
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+		if(m_isWireMode==false){
+			int nIDtri=(int)IDtriList.size();
+			int indexCount=3*nIDtri;
+			m_indexCount=indexCount;
+			if(m_indexCount==0)return;
+			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexbuffer);
+			glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(int)*m_indexCount, &IDtriList[0], usage);
+			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+		}else{//m_isWireMode
+			//convert IDtriList to IDlineList
+			vector<Cc3dIDline> IDlineList;
+			int nIDtri=(int)IDtriList.size();
+			for(int i=0;i<nIDtri;i++){
+				const Cc3dIDTriangle&IDtri=IDtriList[i];
+				int ID0=IDtri.vID[0];
+				int ID1=IDtri.vID[1];
+				int ID2=IDtri.vID[2];
+				Cc3dIDline IDline0,IDline1,IDline2;
+				IDline0.setvID(ID0,ID1);
+				IDline1.setvID(ID1,ID2);
+				IDline2.setvID(ID2,ID0);
+				IDlineList.push_back(IDline0);
+				IDlineList.push_back(IDline1);
+				IDlineList.push_back(IDline2);
+			}//got IDlineList
+			int nIDline=(int)IDlineList.size();
+			int indexCount=2*nIDline;
+			m_indexCount=indexCount;
+			if(m_indexCount==0)return;
+			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexbuffer);
+			glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(int)*m_indexCount, &IDlineList[0], usage);
+			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+		
+		}
         
     }
     void bindVertexBuffer(){
@@ -85,7 +106,6 @@ public:
         
         glBindBuffer(GL_ARRAY_BUFFER, 0);
     }
-   
 
         
     static void setPointers()
@@ -112,9 +132,15 @@ public:
     void unbindIndexBuffer(){
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
     }
- 
-	
-    void drawIndexBuffer(GLenum mode=GL_TRIANGLES)
+	void drawIndexBuffer(){
+		if(m_isWireMode){
+			drawIndexBuffer(GL_LINES);
+		}else{
+			drawIndexBuffer(GL_TRIANGLES);
+		}
+	}
+private:
+    void drawIndexBuffer(GLenum mode)
     {
 		
          //draw index buffer

@@ -43,6 +43,9 @@
     <Filter Include="extension\terrain">
       <UniqueIdentifier>{07e9e1fd-47c9-4b0a-8314-09fe00e5dfef}</UniqueIdentifier>
     </Filter>
+    <Filter Include="extension\ui">
+      <UniqueIdentifier>{2f798aff-3623-442f-b37d-1172a2d8126a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\c3dEngine\common\c3dCommonFunc.cpp">
@@ -244,6 +247,15 @@
       <Filter>extension\terrain</Filter>
     </ClCompile>
     <ClCompile Include="..\projcode\ground.cpp">
+      <Filter>projcode</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\c3dEngine\core\c3dIDline.cpp">
+      <Filter>c3dEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\extension\ui\button.cpp">
+      <Filter>extension\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\projcode\layer.cpp">
       <Filter>projcode</Filter>
     </ClCompile>
   </ItemGroup>
@@ -509,6 +521,15 @@
       <Filter>extension\terrain</Filter>
     </ClInclude>
     <ClInclude Include="..\projcode\ground.h">
+      <Filter>projcode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\c3dEngine\core\c3dIDline.h">
+      <Filter>c3dEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\extension\ui\button.h">
+      <Filter>extension\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\projcode\layer.h">
       <Filter>projcode</Filter>
     </ClInclude>
   </ItemGroup>

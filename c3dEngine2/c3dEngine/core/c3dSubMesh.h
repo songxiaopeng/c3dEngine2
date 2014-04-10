@@ -50,6 +50,9 @@ public:
         if(m_material)m_material->release();
         if(m_indexVBO)m_indexVBO->release();
     }
+	void setIsWireMode(bool isWireMode){
+		m_indexVBO->setIsWireMode(isWireMode);
+	}
     bool init(){
         if(Cc3dNode::init()==false)return false;
 		//default texture
@@ -161,14 +164,7 @@ public:
         m_indexVBO->bindVertexBuffer();
         Cc3dIndexVBO::setPointers();
         m_indexVBO->bindIndexBuffer();
-		GLenum mode;
-		if(m_isDrawWireBox){
-			mode=GL_LINE_LOOP;
-		}else{
-			mode=GL_TRIANGLES;
-		}
-	//	mode=GL_LINE_STRIP_ADJACENCY;
-        m_indexVBO->drawIndexBuffer(mode);
+        m_indexVBO->drawIndexBuffer();
         m_indexVBO->unbindIndexBuffer();
         m_indexVBO->unbindVertexBuffer();
 

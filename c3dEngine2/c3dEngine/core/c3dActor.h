@@ -75,6 +75,9 @@ public:
         m_model->setPassUnifoCallback(callback);
         
     }
+	void setIsWireMode(bool value){
+		m_model->setIsWireMode(value);
+	}
     void setIsDoUpdate(bool value){
 		this->Cc3dNode::setIsDoUpdate(value);
         m_model->setIsDoUpdate(value);
@@ -91,6 +94,9 @@ public:
         this->Cc3dNode::setIsVisibleRecursively(value);
 		m_model->setIsVisibleRecursively(value);
     }
+	void setIsDoDepthTest(bool value){
+		m_model->setIsDoDepthTest(value);
+	}
     void setCamera(Cc3dCamera*camera){
         
         this->Cc3dNode::setCamera(camera);
