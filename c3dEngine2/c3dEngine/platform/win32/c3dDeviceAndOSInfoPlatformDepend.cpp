@@ -14,10 +14,10 @@ Cc3dVector2 getScreenSize_plat(){
 }
 Cc3dVector2 getResolutionSize_plat(){
 
-	//由于iOS上凡640x1136分辨率者只有高清，所以这里只能假装是高清以便能够使用资源
+	//由于iOS上凡640x1136分辨率者只有高清，所以这里只能假装是高清以便能够使用资源--abc
 	return Cc3dVector2(640,1136);
 }
-void getMemStatistics_plat(int&memUsed,int&memFree,int&memTotal){//获得内存统计数据
+void getMemStatistics_plat(int&memUsed,int&memFree,int&memTotal){//获得内存统计数据--abc
  
 	//no implemented yet
 

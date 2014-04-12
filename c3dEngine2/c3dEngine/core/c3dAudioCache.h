@@ -33,7 +33,7 @@ public:
         m_isRemoveUnusedBuffersAndSourcesOnNextFrame=false;
     }
     virtual ~Cc3dAudioCache(){
-        //----注意，一定要先释放source再释放buffer，否则出现al_invalid_operation错误
+        //----注意，一定要先释放source再释放buffer，否则出现al_invalid_operation错误--abc
         //销毁source
         int nSource=(int)m_sourceList.size();
         for(int i=0;i<nSource;i++){

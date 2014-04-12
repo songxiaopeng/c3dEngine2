@@ -39,7 +39,7 @@ GLuint createShader_plat(const char*shaderName,const char*ext)
 {
 	//judage shader type: vertex shader or fragment shader
 	GLuint shaderHandle=0;
-	string postFix=ext;//后缀
+	string postFix=ext;//后缀--abc
 	if(postFix == "vert"){//是顶点shader 
 		shaderHandle = glCreateShader(GL_VERTEX_SHADER);
 	}else if(postFix == "frag"){
@@ -49,7 +49,7 @@ GLuint createShader_plat(const char*shaderName,const char*ext)
 	}
 	string fileName=string(shaderName)+"."+ext;
 	string filePath=Cc3dFileUtils::sharedFileUtils()->getFullPath(fileName.c_str());
-	const char*content = textFileRead((char*)filePath.c_str());//文件内容
+	const char*content = textFileRead((char*)filePath.c_str());//文件内容--abc
 	glShaderSource(shaderHandle, 1, &content,NULL);
 	free((char*)content);
 	glCompileShader(shaderHandle);

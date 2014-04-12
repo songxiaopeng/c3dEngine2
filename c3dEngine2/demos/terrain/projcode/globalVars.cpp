@@ -9,6 +9,6 @@
 #include "globalVars.h"
 //--light
 Cc3dLight*light0=NULL;
-//--相机
+//--相机--abc
 Cc3dCamera*camera=NULL;
 Cc3dCamera*camera2D=NULL;

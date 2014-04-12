@@ -67,7 +67,7 @@ void Cbutton::setText(string imagePath_text){
 }
 void Cbutton::update(float dt){
 	
-	//backKey响应按下和抬起
+	//backKey响应按下和抬起--abc
 	if(Cc3dGestureAnalyzer::sharedGestureAnalyzer()->getIsDown()&&this->isContainPoint(Cc3dGestureAnalyzer::sharedGestureAnalyzer()->getPoint()) ){
 		this->getMeshByIndex(0)->getSubMeshByIndex(0)->setTexture(m_textureDn);
 	}else{

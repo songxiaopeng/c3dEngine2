@@ -18,7 +18,7 @@
 class Cc3dTransform
 {
 protected:
-    Cc3dMatrix4 m_RTmat;//旋转平移矩阵
+    Cc3dMatrix4 m_RTmat;//旋转平移矩阵--abc
     float m_scaleX,m_scaleY,m_scaleZ;
 public:
     Cc3dTransform(){

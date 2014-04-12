@@ -95,7 +95,7 @@ void Cc3dMesh::setIsHighlightUntransp(bool isHighlightUntransp){
         psubMesh->getMaterial()->setIsHighlightUntransp(isHighlightUntransp);
     }
 }
-void Cc3dMesh::submit(GLenum usage)//提交数据
+void Cc3dMesh::submit(GLenum usage)//提交数据--abc
 {
     int nSubMesh=(int)m_subMeshList.size();
     for(int i=0;i<nSubMesh;i++){

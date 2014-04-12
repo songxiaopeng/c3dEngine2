@@ -6,7 +6,7 @@
 #include <iostream> 
 #include <fstream>
 using namespace std;
-#include <Tchar.h>//_T()函数在此头文件
+#include <Tchar.h>//_T()函数在此头文件--abc
 #include <stdlib.h>
 #include <windows.h>
 #include <math.h>
@@ -85,7 +85,7 @@ BOOL CreateGLWindow(LPCWSTR title, int winwidth, int winheight, int nbit_colorDe
 	wc.hIcon			= LoadIcon(NULL, IDI_WINLOGO);			// Load The Default Icon
 	wc.hCursor			= LoadCursor(NULL, IDC_ARROW);			// Load The Arrow Pointer
 	wc.hbrBackground	= NULL;									// No Background Required For GL
-	wc.lpszMenuName = NULL;//MAKEINTRESOURCE(IDR_MENU2);//菜单
+	wc.lpszMenuName = NULL;//MAKEINTRESOURCE(IDR_MENU2);//菜单--abc
 	wc.lpszClassName	= _T("OpenGL");								// Set The Class Name
 
 
@@ -135,11 +135,11 @@ BOOL CreateGLWindow(LPCWSTR title, int winwidth, int winheight, int nbit_colorDe
 		0, 0, 0, 0, 0, 0,							// Color Bits Ignored
 		0,//alpha缓存位数，目前未使用alpha测试，所以置为0。若将来使用，不要忘记修改此项!!
 		0,											// Shift Bit Ignored
-		0,											// Accumulation Buffer位数
+		0,											// Accumulation Buffer位数--abc
 		0, 0, 0, 0,									// Accumulation Bits Ignored
 		nbit_zDepth,								// Z-Buffer (Depth Buffer)  
-		8,//模板缓存位数
-		0,											// Auxiliary Buffer位数
+		8,//模板缓存位数--abc
+		0,											// Auxiliary Buffer位数--abc
 		PFD_MAIN_PLANE,								// Main Drawing Layer
 		0,											// Reserved
 		0, 0, 0										// Layer Masks Ignored
@@ -268,7 +268,7 @@ int WINAPI WinMain(	HINSTANCE	hInstance,			// Instance
 					LPSTR		lpCmdLine,			// Command Line Parameters
 					int			nCmdShow)			// Window Show State
 {
-	//创建并初始化控制台
+	//创建并初始化控制台--abc
 	createAndInitConsole();
 	
 
@@ -276,11 +276,11 @@ int WINAPI WinMain(	HINSTANCE	hInstance,			// Instance
 	MSG		msg;									// Windows Message Structure
 	BOOL	done=FALSE;								// Bool Variable To Exit Loop
 
-	//标题栏高度
+	//标题栏高度--abc
 	//http://baike.baidu.com/link?url=jsZlb4o0MUkNjSDUiKiEg7yqz-PyaVPQkh8SsKCrrCmctxxNlGCy1zDe61VofSE0iN5P_aw8Dv6KD7fDi0eXh_
 	captionHeight=GetSystemMetrics(SM_CYCAPTION);
 	cout<<"captionHeight:"<<captionHeight<<endl;
-	//边框高度
+	//边框高度--abc
 	frameBoarder=GetSystemMetrics(SM_CYSIZEFRAME);
 	cout<<"frameBoarder:"<<frameBoarder<<endl;
 		
@@ -321,9 +321,9 @@ int WINAPI WinMain(	HINSTANCE	hInstance,			// Instance
 		{//--------------------------idle
 			tf=t;
 			t=clock();
-			dt=t-tf;//上一次进入idle到本次进入idle的时间间隔
-			//逻辑更新中所有的位移量都要以dt为参考进行，以保证物体移动速度与帧率无关
-			//但目前还没有实现用dt为参考
+			dt=t-tf;//上一次进入idle到本次进入idle的时间间隔--abc
+			//逻辑更新中所有的位移量都要以dt为参考进行，以保证物体移动速度与帧率无关--abc
+			//但目前还没有实现用dt为参考--abc
 			render(hDC);
 		}
 	}
@@ -331,7 +331,7 @@ int WINAPI WinMain(	HINSTANCE	hInstance,			// Instance
 	// Shutdown
 	cout<<"quit program..."<<endl;
 	teardownOpenAL();
-	FreeConsole();									// 销毁控制台
+	FreeConsole();									// 销毁控制台--abc
 	KillGLWindow();									// Kill The Window
 	return (msg.wParam);							// Exit The Program
 }

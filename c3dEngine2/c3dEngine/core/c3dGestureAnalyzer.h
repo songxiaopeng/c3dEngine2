@@ -54,27 +54,19 @@ public:
 
 
     bool getIsTapOnce(){
-		//if current is up, and the latest down is not too long from crrent time, then juged as TapOnce
+		//if there is a short touchbegan-touchend pulse not far from current time, we regard it as a tapOnce
 		double curTime=Cc3dGlobalTimer::sharedGlobalTimer()->getTimeFromStart();
-		double dTime=1.0f/60;
-        if(Cc3dTouchSequence::sharedTouchSequence()->getTouchesInTimeSpanWithType(curTime-dTime,curTime, e_c3dTouchEnd).empty()==false){
-			double latestTouchBeganTime=Cc3dTouchSequence::sharedTouchSequence()->getLatestTouchTypeTime(e_c3dTouchBegan);
-            if(curTime-latestTouchBeganTime<2){//10
-				//cout<<"isTapOnce"<<endl;
-                return true;
-            }
-        }
-        return false;
+		double latestTouchBeganTime=Cc3dTouchSequence::sharedTouchSequence()->getLatestTouchTypeTime(e_c3dTouchBegan);
+		double latestTouchEndTime=Cc3dTouchSequence::sharedTouchSequence()->getLatestTouchTypeTime(e_c3dTouchEnd);
+		double spanTimeBetweenLatestBeganAndEnd=latestTouchEndTime-latestTouchBeganTime;
+		if(spanTimeBetweenLatestBeganAndEnd>=0&&spanTimeBetweenLatestBeganAndEnd<1.0&&curTime-latestTouchEndTime<1.0f/60){
+			return true;
+		}else{
+			return false;
+		}
+
     }
-    Cc3dVector2 getTouchMoveSpeed(){
-        if(getIsDown()){
-            Cc3dVector2 currentTouchPoint=this->getPoint();
-            Cc3dVector2 earlierTouchPoint=Cc3dTouchSequence::sharedTouchSequence()->getTouchesAtEarlierTime(Cc3dGlobalTimer::sharedGlobalTimer()->getTimeFromStart())[0].getPoint();
-            return (currentTouchPoint-earlierTouchPoint)*(1.0/(0.01+Cc3dGlobalTimer::sharedGlobalTimer()->getTimeFromStart()-Cc3dTouchSequence::sharedTouchSequence()->getEarlierTime(Cc3dGlobalTimer::sharedGlobalTimer()->getTimeFromStart())));
-        }else{
-            return Cc3dVector2(0, 0);
-        }
-    }
+
     bool getIsDown()const {
 		//by compare the order of latest touchBegan and touchend to judge whether in press down state
         Cc3dTouch touchBegan=Cc3dTouchSequence::sharedTouchSequence()->getLatestTouchesWithType(e_c3dTouchBegan)[0];

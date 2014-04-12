@@ -22,7 +22,7 @@ void Cc3dFbo::attachDepthTex(Cc3dTexture*depthTexture){
     glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT,GL_TEXTURE_2D, depthTex, 0);
 	
 #if (C3D_TARGET_PLATFORM == C3D_PLATFORM_WIN32) 
-	//为了使glCheckFramebufferStatusEXT检验通过，当没有颜色纹理时要写下面两句
+	//为了使glCheckFramebufferStatusEXT检验通过，当没有颜色纹理时要写下面两句--abc
 	glDrawBuffer(GL_NONE);
 	glReadBuffer(GL_NONE);
 #else
