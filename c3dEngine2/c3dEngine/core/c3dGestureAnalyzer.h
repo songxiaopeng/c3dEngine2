@@ -10,7 +10,7 @@
 #define __HelloOpenGL__c3dGestureAnalyzer__
 #include <iostream>
 using namespace std;
-#include "c3dTimeCounter.h"
+#include "c3dGlobalTimer.h"
 #include "c3dVector.h"
 #include "c3dTouchSequence.h"
 #include "c3dDeviceAndOSInfo.h"
@@ -35,8 +35,8 @@ public:
 
     Cc3dVector2 getEarlierPoint()const{
         Cc3dTouch touch=Cc3dTouchSequence::sharedTouchSequence()->getLatestTouches()[0];
-        long time=touch.getTime();
-        long earlierTime=Cc3dTouchSequence::sharedTouchSequence()->getEarlierTime(time);
+        double time=touch.getTime();
+        double earlierTime=Cc3dTouchSequence::sharedTouchSequence()->getEarlierTime(time);
         vector<Cc3dTouch> earlierTouches=Cc3dTouchSequence::sharedTouchSequence()->getTouchesAtTime(earlierTime);
         assert(earlierTouches.empty()==false);
         Cc3dVector2 point=Cc3dVector2(earlierTouches[0].getPoint().x(),
@@ -48,16 +48,18 @@ public:
                                       Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo()->getScreenSize().y()-Cc3dTouchSequence::sharedTouchSequence()->getLatestTouchesWithType(e_c3dTouchBegan)[0].getPoint().y());
         return point;
     }
-    long getLatestTouchBeganTime()const{
+    double getLatestTouchBeganTime()const{
         return Cc3dTouchSequence::sharedTouchSequence()->getLatestTouchTypeTime(e_c3dTouchBegan);
     }
 
 
     bool getIsTapOnce(){
 		//if current is up, and the latest down is not too long from crrent time, then juged as TapOnce
-        if(Cc3dTouchSequence::sharedTouchSequence()->getTouchesAtTimeWithType(Cc3dTimeCounter::sharedTimeCounter()->getCount(), e_c3dTouchEnd).empty()==false){
-            long latestTouchBeganTime=Cc3dTouchSequence::sharedTouchSequence()->getLatestTouchTypeTime(e_c3dTouchBegan);
-            if(Cc3dTimeCounter::sharedTimeCounter()->getCount()-latestTouchBeganTime<10){//10
+		double curTime=Cc3dGlobalTimer::sharedGlobalTimer()->getTimeFromStart();
+		double dTime=1.0f/60;
+        if(Cc3dTouchSequence::sharedTouchSequence()->getTouchesInTimeSpanWithType(curTime-dTime,curTime, e_c3dTouchEnd).empty()==false){
+			double latestTouchBeganTime=Cc3dTouchSequence::sharedTouchSequence()->getLatestTouchTypeTime(e_c3dTouchBegan);
+            if(curTime-latestTouchBeganTime<2){//10
 				//cout<<"isTapOnce"<<endl;
                 return true;
             }
@@ -67,8 +69,8 @@ public:
     Cc3dVector2 getTouchMoveSpeed(){
         if(getIsDown()){
             Cc3dVector2 currentTouchPoint=this->getPoint();
-            Cc3dVector2 earlierTouchPoint=Cc3dTouchSequence::sharedTouchSequence()->getTouchesAtEarlierTime(Cc3dTimeCounter::sharedTimeCounter()->getCount())[0].getPoint();
-            return (currentTouchPoint-earlierTouchPoint)*(1.0/(0.01+Cc3dTimeCounter::sharedTimeCounter()->getCount()-Cc3dTouchSequence::sharedTouchSequence()->getEarlierTime(Cc3dTimeCounter::sharedTimeCounter()->getCount())));
+            Cc3dVector2 earlierTouchPoint=Cc3dTouchSequence::sharedTouchSequence()->getTouchesAtEarlierTime(Cc3dGlobalTimer::sharedGlobalTimer()->getTimeFromStart())[0].getPoint();
+            return (currentTouchPoint-earlierTouchPoint)*(1.0/(0.01+Cc3dGlobalTimer::sharedGlobalTimer()->getTimeFromStart()-Cc3dTouchSequence::sharedTouchSequence()->getEarlierTime(Cc3dGlobalTimer::sharedGlobalTimer()->getTimeFromStart())));
         }else{
             return Cc3dVector2(0, 0);
         }

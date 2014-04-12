@@ -21,21 +21,21 @@ class Cc3dTouch{
 public:
     Cc3dVector2 m_point;
     Ec3dTouchType m_type;
-    long m_time;
+    double m_time;
     Cc3dTouch(){
         initMembers();
     }
-    Cc3dTouch(float x,float y,Ec3dTouchType touchType, long time){
+    Cc3dTouch(float x,float y,Ec3dTouchType touchType, double time){
         initMembers();
         init(x, y, touchType, time);
     }
-    void init(float x,float y,Ec3dTouchType touchType, long time){
+    void init(float x,float y,Ec3dTouchType touchType, double time){
         m_point.init(x, y);
         m_type=touchType;
         m_time=time;
     }
     Cc3dVector2 getPoint()const{return m_point;}
-    long getTime()const{return m_time;}
+    double getTime()const{return m_time;}
     Ec3dTouchType getType()const{return m_type;}
     void print(){
         cout<<"touch: "<<m_point.x()<<" "<<m_point.y()<<" "<<m_type<<" "<<m_time<<endl;
@@ -48,7 +48,7 @@ protected:
     
 };
 const int touchSequenceMaxLength=100;
-const long timeLongLongAgo=-100000;
+const double timeLongLongAgo=-100000;
 class Cc3dTouchSequence{
 public:
     static Cc3dTouchSequence*sharedTouchSequence();
@@ -81,14 +81,14 @@ public:
         return m_touchList;
     }
     vector<Cc3dTouch> getLatestTouches(){
-        long latestTouchTime=getLatestTouchTime();
+        double latestTouchTime=getLatestTouchTime();
         return getTouchesAtTime(latestTouchTime);
     }
-    long getLatestTouchTime(){
+    double getLatestTouchTime(){
         assert(m_touchList.empty()==false);
         return m_touchList[(int)m_touchList.size()-1].getTime();
     }
-    vector<Cc3dTouch> getTouchesAtTime(long time){
+    vector<Cc3dTouch> getTouchesAtTime(double time){
         vector<Cc3dTouch> touches;
         int n=(int)m_touchList.size();
         for(int i=0;i<n;i++){
@@ -99,7 +99,7 @@ public:
         }
         return touches;
     }
-    long getLatestTouchTypeTime(Ec3dTouchType type){
+    double getLatestTouchTypeTime(Ec3dTouchType type){
         int n=(int)m_touchList.size();
         for(int i=n-1;i>=0;i--){
             const Cc3dTouch&touch=m_touchList[i];
@@ -110,10 +110,10 @@ public:
         assert(false);
     }
     vector<Cc3dTouch> getLatestTouchesWithType(Ec3dTouchType type){
-        long latestTouchBeganTime=getLatestTouchTypeTime(type);
+        double latestTouchBeganTime=getLatestTouchTypeTime(type);
         return getTouchesAtTimeWithType(latestTouchBeganTime, type);
     }
-    vector<Cc3dTouch> getTouchesAtTimeWithType(long time,Ec3dTouchType type){
+    vector<Cc3dTouch> getTouchesAtTimeWithType(double time,Ec3dTouchType type){
         vector<Cc3dTouch> touches;
         int n=(int)m_touchList.size();
         for(int i=0;i<n;i++){
@@ -124,7 +124,19 @@ public:
         }
         return touches;
     }
-    long getEarlierTime(long time){
+	vector<Cc3dTouch> getTouchesInTimeSpanWithType(double time0,double time1,Ec3dTouchType type){//time span is [time0,time1]
+		assert(time0<=time1);
+        vector<Cc3dTouch> touches;
+        int n=(int)m_touchList.size();
+        for(int i=0;i<n;i++){
+            const Cc3dTouch&touch=m_touchList[i];
+            if(touch.getTime()>=time0&&touch.getTime()<=time1&&touch.getType()==type){
+                touches.push_back(touch);
+            }
+        }
+        return touches;
+    }
+    double getEarlierTime(double time){
         assert(time>=0);
         int n=(int)m_touchList.size();
         for(int i=n-1;i>=0;i--){
@@ -135,12 +147,12 @@ public:
         }
         assert(false);
     }
-    vector<Cc3dTouch> getTouchesAtEarlierTime(long time){
-        long earlierTime=getEarlierTime(time);
+    vector<Cc3dTouch> getTouchesAtEarlierTime(double time){
+        double earlierTime=getEarlierTime(time);
         return getTouchesAtTime(earlierTime);
     }
-    vector<Cc3dTouch> getTouchesAtEarlierTimeWithType(long time,Ec3dTouchType type){
-        long earlierTime=getEarlierTime(time);
+    vector<Cc3dTouch> getTouchesAtEarlierTimeWithType(double time,Ec3dTouchType type){
+        double earlierTime=getEarlierTime(time);
         return getTouchesAtTimeWithType(earlierTime,type);
     }
     int getTouchCount()const{return (int)m_touchList.size();}
