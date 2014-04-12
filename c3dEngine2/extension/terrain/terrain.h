@@ -91,7 +91,7 @@ public:
         m_quadtreeDepth=9;
         gridSize=0;
 		m_uvScale=1;
-		reso=20000;//15000;//10000;//5000
+		reso=10;
         m_heightScale=1;
 	}
     bool init(const string&fileNameWithExt,const Cc3dRect&rect,float heightScale,int depth,Cc3dTexture*texture);

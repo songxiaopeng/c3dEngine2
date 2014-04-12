@@ -65,7 +65,7 @@ bool Clayer::init(){
 	m_ground->setLight(light0);
 	m_ground->setPassUnifoCallback(buildinProgramPassUnifoCallback_classicLighting);
 	m_ground->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("classicLighting"));
-	m_ground->setReso(20000);//
+	m_ground->setReso(20);//
 
 	//提交数据
 	m_ground->submitVertex(GL_STATIC_DRAW);

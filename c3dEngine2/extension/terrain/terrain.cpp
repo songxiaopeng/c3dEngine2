@@ -265,12 +265,11 @@ void Cterrain::getBlocks(int jmin,int jmax,int imin,int imax,int curDepth)
             needDiv=false;
         }else{//进一步判断
             //求c到视点的距离
-            //指数值越大，LOD效应越明显
-            float d=square(this->getMesh()->getSubMeshByIndex(0)->getCamera()->getEyePos().x()-c[0])
-            +square(this->getMesh()->getSubMeshByIndex(0)->getCamera()->getEyePos().y()-c[1])//Y乘以一个比1小的系数是为了让LOD对高度变化不敏感
+            float d2=square(this->getMesh()->getSubMeshByIndex(0)->getCamera()->getEyePos().x()-c[0])
+         ///   +square(this->getMesh()->getSubMeshByIndex(0)->getCamera()->getEyePos().y()-c[1])
             +square(this->getMesh()->getSubMeshByIndex(0)->getCamera()->getEyePos().z()-c[2]);
             float e=xmax-xmin;//边长
-            if(d<e*reso)needDiv=true;
+            if(d2<square(e*reso))needDiv=true;
         }//得到needDiv
         if(needDiv){//继续分
             int imid=(imin+imax)>>1;//除2
@@ -555,6 +554,18 @@ void Cterrain::blocksToIDtris_complex(){
 		int nIJsDn=(int)divIJsDn.size();
 		int nIJsLeft=(int)divIJsLeft.size();
 		int nIJsRight=(int)divIJsRight.size();
+		if(nIJsUp==2&&nIJsDn==2&&nIJsLeft==2&&nIJsRight==2){
+			//   ID0-ID1
+			//    | \ | 
+			//   ID2-ID3
+			int ID0=markmatW*imin+jmin;
+			int ID1=markmatW*imin+jmax;
+			int ID2=markmatW*imax+jmin;
+			int ID3=markmatW*imax+jmax;
+			this->getMesh()->getSubMeshByIndex(0)->addIDtri(Cc3dIDTriangle(ID0, ID2, ID3));
+			this->getMesh()->getSubMeshByIndex(0)->addIDtri(Cc3dIDTriangle(ID0, ID3, ID1));
+			continue;
+		}
 		//block中心vID
 		int vID_center=markmatW*imid+jmid;
 		//block上四分之一生成IDtri
@@ -654,6 +665,18 @@ void Cterrain::blocksToIDtris(){
 			int imid_right=imid;
             int jmid_right=jmid+(jmax-jmin);
 			rightDivided=(jmid_right<markmatW&&markmat[imid_right][jmid_right]);
+		}
+		if(upDivided==false&&dnDivided==false&&leftDivided==false&&rightDivided==false){//不再分
+			//   ID0-ID1
+			//    | \ | 
+			//   ID2-ID3
+			int ID0=markmatW*imin+jmin;
+			int ID1=markmatW*imin+jmax;
+			int ID2=markmatW*imax+jmin;
+			int ID3=markmatW*imax+jmax;
+			this->getMesh()->getSubMeshByIndex(0)->addIDtri(Cc3dIDTriangle(ID0, ID2, ID3));
+			this->getMesh()->getSubMeshByIndex(0)->addIDtri(Cc3dIDTriangle(ID0, ID3, ID1));
+			continue;
 		}
 		//block划分
 		//   ID0-ID1-ID2
