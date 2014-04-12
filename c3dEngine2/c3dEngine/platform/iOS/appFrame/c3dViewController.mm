@@ -7,7 +7,7 @@ using namespace std;
 #include "c3dAudioCache.h"
 #include "c3dCamera.h"
 #include "c3dModel.h"
-#include "c3dTimeCounter.h"
+#include "c3dGlobalTimer.h"
 
 
 @implementation Cc3dViewController
@@ -87,7 +87,7 @@ using namespace std;
     // Enumerate through all the touch objects.
 	for (UITouch *touch in touches) {
         CGPoint touchPoint=[touch locationInView:self.view] ;
-        Cc3dTouch c3dTouch=Cc3dTouch(touchPoint.x,touchPoint.y,e_c3dTouchBegan,Cc3dTimeCounter::sharedTimeCounter()->getCount());
+        Cc3dTouch c3dTouch=Cc3dTouch(touchPoint.x,touchPoint.y,e_c3dTouchBegan,Cc3dGlobalTimer::sharedGlobalTimer()->getTimeFromStart());
         Cc3dTouchSequence::sharedTouchSequence()->addTouch(c3dTouch);
         //     NSLog(@"touchesBegan:(%f,%f)",touchPoint.x,touchPoint.y);
 	}
@@ -101,7 +101,7 @@ using namespace std;
     // Enumerates through all touch objects
 	for (UITouch *touch in touches) {
 		CGPoint touchPoint=[touch locationInView:self.view] ;
-        Cc3dTouch c3dTouch=Cc3dTouch(touchPoint.x,touchPoint.y,e_c3dTouchMove,Cc3dTimeCounter::sharedTimeCounter()->getCount());
+        Cc3dTouch c3dTouch=Cc3dTouch(touchPoint.x,touchPoint.y,e_c3dTouchMove,Cc3dGlobalTimer::sharedGlobalTimer()->getTimeFromStart());
         Cc3dTouchSequence::sharedTouchSequence()->addTouch(c3dTouch);
         //       NSLog(@"touchesMoved:(%f,%f)",touchPoint.x,touchPoint.y);
 	}
@@ -113,7 +113,7 @@ using namespace std;
 	// Enumerates through all touch object
 	for (UITouch *touch in touches) {
 		CGPoint touchPoint=[touch locationInView:self.view] ;
-        Cc3dTouch c3dTouch=Cc3dTouch(touchPoint.x,touchPoint.y,e_c3dTouchEnd,Cc3dTimeCounter::sharedTimeCounter()->getCount());
+        Cc3dTouch c3dTouch=Cc3dTouch(touchPoint.x,touchPoint.y,e_c3dTouchEnd,Cc3dGlobalTimer::sharedGlobalTimer()->getTimeFromStart());
         Cc3dTouchSequence::sharedTouchSequence()->addTouch(c3dTouch);
         //  NSLog(@"touchesEnded:(%f,%f)",touchPoint.x,touchPoint.y);
 	}
