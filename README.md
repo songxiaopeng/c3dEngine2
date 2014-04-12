@@ -24,11 +24,8 @@ for win32 project:
 qq group: 338565878  
   
 screenshot:  
-![screenshot](https://raw.github.com/wantnon2/c3dEngine2/master/screenshot/screenshot1.png)  
+![screenshot](http://git.oschina.net/wantnon2/c3dEngine2/raw/master/screenshot/screenshot1.png)  
   
-![screenshot](https://raw.github.com/wantnon2/c3dEngine2/master/screenshot/screenshot2.png)  
+![screenshot](http://git.oschina.net/wantnon2/c3dEngine2/raw/master/screenshot/screenshot2.png)  
   
-![screenshot](https://raw.github.com/wantnon2/c3dEngine2/master/screenshot/screenshot3.png)  
-   
-
-
+![screenshot](http://git.oschina.net/wantnon2/c3dEngine2/raw/master/screenshot/screenshot3.png)
