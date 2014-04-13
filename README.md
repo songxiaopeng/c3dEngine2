@@ -7,13 +7,15 @@ c3dEngine2 is a cocos2d-x-like simple 3d engine.
 support platform: iOS, win32  
 language: c++  
   
-it is the upgrade version of c3dEngine.(c3dEngine, see: https://github.com/wantnon2/superSingleCell-c3dEngine)   
+it is the upgrade version of c3dEngine.(c3dEngine, see: http://git.oschina.net/wantnon2/c3dEngine-superSingleCell)   
   
 as i think c3dEngine is not very good in some aspects, so i am trying to make a better one. i removed the 'super single cell' game demo, instead, will write a series of small samples to show each feature of the engine, and at the same time, refine the engine.  
 now, the project is just start, so there is very few samples. but i will add more later.  
 currently, the fbxLoader is only available on win32.      
   
-document (now you can temporarily refer to the c3dEngine document, main concepts are same) : https://github.com/wantnon2/superSingleCell-c3dEngine/wiki  
+document:  
+you can temporarily refer to the old version document, main concepts are same:   
+http://git.oschina.net/wantnon2/c3dEngine-superSingleCell/wikis/home  
   
 How to run the project:  
 for iOS project, open .xcodeproj with Xcode and run.  
