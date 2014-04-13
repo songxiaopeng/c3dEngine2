@@ -2,7 +2,7 @@ c3dEngine2
 ==========
 by wantnon (yang chao) 2014-4-1  
   
-c3dEngine2 is a cocos2d-x-like simple 3d engine. it is the upgrade version of c3dEngine.  
+c3dEngine2 is a cocos2d-x-like simple 3d game engine. it is the upgrade version of c3dEngine.  
   
 support platform: iOS, win32  
 language: c++  
