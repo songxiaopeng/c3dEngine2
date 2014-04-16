@@ -61,7 +61,6 @@
 		571E912218E94610003EE2D9 /* c3dSubMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 571E90EB18E94610003EE2D9 /* c3dSubMesh.cpp */; };
 		571E912318E94610003EE2D9 /* c3dTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 571E90ED18E94610003EE2D9 /* c3dTexture.cpp */; };
 		571E912418E94610003EE2D9 /* c3dTextureCache.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 571E90EF18E94610003EE2D9 /* c3dTextureCache.cpp */; };
-		571E912518E94610003EE2D9 /* c3dTimeCounter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 571E90F118E94610003EE2D9 /* c3dTimeCounter.cpp */; };
 		571E912618E94610003EE2D9 /* c3dTouchSequence.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 571E90F318E94610003EE2D9 /* c3dTouchSequence.cpp */; };
 		571E912718E94610003EE2D9 /* c3dTransform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 571E90F518E94610003EE2D9 /* c3dTransform.cpp */; };
 		571E912818E94610003EE2D9 /* c3dVector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 571E90F718E94610003EE2D9 /* c3dVector.cpp */; };
@@ -195,8 +194,6 @@
 		571E90EE18E94610003EE2D9 /* c3dTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = c3dTexture.h; sourceTree = "<group>"; };
 		571E90EF18E94610003EE2D9 /* c3dTextureCache.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c3dTextureCache.cpp; sourceTree = "<group>"; };
 		571E90F018E94610003EE2D9 /* c3dTextureCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = c3dTextureCache.h; sourceTree = "<group>"; };
-		571E90F118E94610003EE2D9 /* c3dTimeCounter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c3dTimeCounter.cpp; sourceTree = "<group>"; };
-		571E90F218E94610003EE2D9 /* c3dTimeCounter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = c3dTimeCounter.h; sourceTree = "<group>"; };
 		571E90F318E94610003EE2D9 /* c3dTouchSequence.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c3dTouchSequence.cpp; sourceTree = "<group>"; };
 		571E90F418E94610003EE2D9 /* c3dTouchSequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = c3dTouchSequence.h; sourceTree = "<group>"; };
 		571E90F518E94610003EE2D9 /* c3dTransform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c3dTransform.cpp; sourceTree = "<group>"; };
@@ -415,8 +412,6 @@
 				571E90EE18E94610003EE2D9 /* c3dTexture.h */,
 				571E90EF18E94610003EE2D9 /* c3dTextureCache.cpp */,
 				571E90F018E94610003EE2D9 /* c3dTextureCache.h */,
-				571E90F118E94610003EE2D9 /* c3dTimeCounter.cpp */,
-				571E90F218E94610003EE2D9 /* c3dTimeCounter.h */,
 				571E90F318E94610003EE2D9 /* c3dTouchSequence.cpp */,
 				571E90F418E94610003EE2D9 /* c3dTouchSequence.h */,
 				571E90F518E94610003EE2D9 /* c3dTransform.cpp */,
@@ -651,7 +646,6 @@
 				571E90FF18E94610003EE2D9 /* c3dAppState.cpp in Sources */,
 				57C77BE618E45334009820B6 /* c3dPathPlatformDepend.mm in Sources */,
 				571E90FE18E94610003EE2D9 /* c3dALSource.cpp in Sources */,
-				571E912518E94610003EE2D9 /* c3dTimeCounter.cpp in Sources */,
 				571E913318E95358003EE2D9 /* c3dInitGame.cpp in Sources */,
 				571E911318E94610003EE2D9 /* c3dMath.cpp in Sources */,
 				571E911418E94610003EE2D9 /* c3dMatrix.cpp in Sources */,
