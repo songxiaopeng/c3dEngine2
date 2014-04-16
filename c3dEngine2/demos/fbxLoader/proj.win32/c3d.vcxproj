@@ -71,7 +71,7 @@
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>true</WholeProgramOptimization>
       <OmitFramePointers>true</OmitFramePointers>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\c3dEngine;$(ProjectDir)..\..\..\c3dEngine\core;$(ProjectDir)..\..\..\c3dEngine\common;$(ProjectDir)..\..\..\c3dEngine\shader;$(ProjectDir)..\..\..\c3dEngine\platform\win32;$(ProjectDir)..\..\..\c3dEngine\platform\win32\OGLES;$(ProjectDir);$(ProjectDir)..\..\..\extension;$(ProjectDir)..\..\..\extension\geometry;$(ProjectDir)..\..\..\extension\octree;$(ProjectDir)..\..\..\extension\terrain;$(ProjectDir)..\..\..\c3dExtension;$(ProjectDir)..\..\..\c3dExtension\fbxLoader;$(ProjectDir)..\projcode;$(ProjectDir)..\..\..\thirdPart\FBX\FBX_win32\FbxSdk\2013.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\c3dEngine;$(ProjectDir)..\..\..\c3dEngine\core;$(ProjectDir)..\..\..\c3dEngine\common;$(ProjectDir)..\..\..\c3dEngine\shader;$(ProjectDir)..\..\..\c3dEngine\platform\win32;$(ProjectDir)..\..\..\c3dEngine\platform\win32\OGLES;$(ProjectDir);$(ProjectDir)..\..\..\extension;$(ProjectDir)..\..\..\extension\geometry;$(ProjectDir)..\..\..\extension\octree;$(ProjectDir)..\..\..\extension\terrain;$(ProjectDir)..\..\..\c3dExtension;$(ProjectDir)..\..\..\c3dExtension\fbxLoader;$(ProjectDir)..\projcode;$(ProjectDir)..\..\..\thirdPart\FBX\FBX_win32\FbxSdk\2014.2.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MinimalRebuild>false</MinimalRebuild>
       <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
