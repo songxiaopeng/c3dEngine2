@@ -1,4 +1,8 @@
 #include "c3dFbxOneLoad.h"
+#ifdef IOS_REF
+	#undef  IOS_REF
+	#define IOS_REF (*(pManager->GetIOSettings()))
+#endif
 
 Cc3dMatrix4 FbxAMatrixToCc3dMatrix4(const FbxAMatrix&m){
 	//设m为FbxAMatrix
@@ -477,9 +481,14 @@ bool Cc3dFbxOneLoad::LoadScene(FbxManager* pManager, FbxDocument* pScene, const 
 				FbxVector2 uv0;
 				FbxVector2 uv1;
 				FbxVector2 uv2;
-				lMesh->GetPolygonVertexUV(i, 0, lUVName, uv0);
-				lMesh->GetPolygonVertexUV(i, 1, lUVName, uv1);
-				lMesh->GetPolygonVertexUV(i, 2, lUVName, uv2);
+				bool isUnmapped0;
+				bool isUnmapped1;
+				bool isUnmapped2;
+				//Added a new parameter to FbxMesh::GetPolygonVertexUV() to allow it to return an array of unmapped polygons. This is extremely useful to determine which vertex has no associated UV.
+				//see: http://docs.autodesk.com/FBX/2014/ENU/FBX-SDK-Documentation/index.html
+				lMesh->GetPolygonVertexUV(i, 0, lUVName, uv0,isUnmapped0);
+				lMesh->GetPolygonVertexUV(i, 1, lUVName, uv1,isUnmapped1);
+				lMesh->GetPolygonVertexUV(i, 2, lUVName, uv2,isUnmapped2);
 				//----获得法向量
 				FbxVector4 norm0;
 				FbxVector4 norm1;
@@ -697,7 +706,12 @@ void Cc3dFbxOneLoad::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool 
 				assert(false);
 			}
 			//设置当前AnimationStack为lCurrentAnimationStack
-			lScene->GetEvaluator()->SetContext(lCurrentAnimationStack);
+			//Now to retrieve the current animation stack, please use FbxScene::GetCurrentAnimationStack instead of FbxAnimEvaluator::GetContext.
+			//see fbxsdk2014.2.1 readme.txt
+			//and see fbxsdk2014.2.1/samples/viewScene/SceneContext.ccx
+			
+			///lScene->GetEvaluator()->SetContext(lCurrentAnimationStack);//fbxsdk 2013.1
+			lScene->SetCurrentAnimationStack(lCurrentAnimationStack);
 			//计算此动画的起止时间
 			FbxTime startTime,stopTime;
 			{

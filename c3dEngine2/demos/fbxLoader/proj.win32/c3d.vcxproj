@@ -97,10 +97,10 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <SubSystem>Windows</SubSystem>
       <OutputFile>.\Release\c3d.exe</OutputFile>
-      <AdditionalDependencies>fbxsdk-2013.1-mt.lib;wininet.lib;opengl32.lib;glu32.lib;glew32.lib;odbc32.lib;odbccp32.lib;openal32.lib;alut.lib;libzlib.lib;libpng.lib;GLAUX.LIB;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libfbxsdk-mt.lib;wininet.lib;opengl32.lib;glu32.lib;glew32.lib;odbc32.lib;odbccp32.lib;openal32.lib;alut.lib;libzlib.lib;libpng.lib;GLAUX.LIB;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
-      <AdditionalLibraryDirectories>$(ProjectDir)..\..\..\c3dEngine\platform\win32\libraries;$(ProjectDir)..\..\..\thirdPart\FBX\FBX_win32\FbxSdk\2013.1\lib\vs2010\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)..\..\..\c3dEngine\platform\win32\libraries;$(ProjectDir)..\..\..\thirdPart\FBX\FBX_win32\FbxSdk\2014.2.1\lib\vs2010\x86\release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PreLinkEvent>
       <Command>if not exist "$(OutDir)" mkdir "$(OutDir)"
@@ -205,7 +205,6 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\c3dEngine\platform\win32\libraries\*.*" "$(Ou
     <ClCompile Include="..\..\..\c3dEngine\core\c3dSubMesh.cpp" />
     <ClCompile Include="..\..\..\c3dEngine\core\c3dTexture.cpp" />
     <ClCompile Include="..\..\..\c3dEngine\core\c3dTextureCache.cpp" />
-    <ClCompile Include="..\..\..\c3dEngine\core\c3dTimeCounter.cpp" />
     <ClCompile Include="..\..\..\c3dEngine\core\c3dTouchSequence.cpp" />
     <ClCompile Include="..\..\..\c3dEngine\core\c3dTransform.cpp" />
     <ClCompile Include="..\..\..\c3dEngine\core\c3dVector.cpp" />
@@ -281,7 +280,6 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\c3dEngine\platform\win32\libraries\*.*" "$(Ou
     <ClInclude Include="..\..\..\c3dEngine\core\c3dSubMesh.h" />
     <ClInclude Include="..\..\..\c3dEngine\core\c3dTexture.h" />
     <ClInclude Include="..\..\..\c3dEngine\core\c3dTextureCache.h" />
-    <ClInclude Include="..\..\..\c3dEngine\core\c3dTimeCounter.h" />
     <ClInclude Include="..\..\..\c3dEngine\core\c3dTouchSequence.h" />
     <ClInclude Include="..\..\..\c3dEngine\core\c3dTransform.h" />
     <ClInclude Include="..\..\..\c3dEngine\core\c3dVector.h" />
