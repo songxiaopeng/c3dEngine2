@@ -59,7 +59,7 @@ public:
 		FbxPose* pPose,
 		int animStackIndex);
 	void InitializeSdkObjects(FbxManager*& pSdkManager, FbxScene*& pScene);
-	bool LoadScene(FbxManager* pSdkManager, FbxDocument* pScene,char* pFilename);
+	bool LoadScene(FbxManager* pManager, FbxDocument* pScene, const char* pFilename);
 	void DestroySdkObjects(FbxManager* &pSdkManager);
 	// Draw the vertices of a mesh.
 	void DrawMesh(FbxNode* pNode, FbxTime& pTime, FbxAnimLayer* pAnimLayer,int animStackIndex,

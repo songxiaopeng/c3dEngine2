@@ -1,4 +1,8 @@
 #include "c3dFbxOneLoad.h"
+#ifdef IOS_REF
+	#undef  IOS_REF
+	#define IOS_REF (*(pManager->GetIOSettings()))
+#endif
 
 Cc3dMatrix4 FbxAMatrixToCc3dMatrix4(const FbxAMatrix&m){
 	//设m为FbxAMatrix
@@ -59,7 +63,7 @@ Cc3dMatrix4 FbxAMatrixToCc3dMatrix4(const FbxAMatrix&m){
 		pScene = FbxScene::Create(pSdkManager,"");
 	}
 
-	bool Cc3dFbxOneLoad::LoadScene(FbxManager* pSdkManager, FbxDocument* pScene,char* pFilename)
+/*	bool Cc3dFbxOneLoad::LoadScene(FbxManager* pSdkManager, FbxDocument* pScene,char* pFilename)
 	{
 #ifdef IOS_REF
 #undef  IOS_REF
@@ -177,6 +181,121 @@ Cc3dMatrix4 FbxAMatrixToCc3dMatrix4(const FbxAMatrix&m){
 
 		return lStatus;
 	}
+	*/
+
+
+bool Cc3dFbxOneLoad::LoadScene(FbxManager* pManager, FbxDocument* pScene, const char* pFilename)
+{
+    int lFileMajor, lFileMinor, lFileRevision;
+    int lSDKMajor,  lSDKMinor,  lSDKRevision;
+    //int lFileFormat = -1;
+    int i, lAnimStackCount;
+    bool lStatus;
+    char lPassword[1024];
+
+    // Get the file version number generate by the FBX SDK.
+    FbxManager::GetFileFormatVersion(lSDKMajor, lSDKMinor, lSDKRevision);
+
+    // Create an importer.
+    FbxImporter* lImporter = FbxImporter::Create(pManager,"");
+
+    // Initialize the importer by providing a filename.
+    const bool lImportStatus = lImporter->Initialize(pFilename, -1, pManager->GetIOSettings());
+    lImporter->GetFileVersion(lFileMajor, lFileMinor, lFileRevision);
+
+    if( !lImportStatus )
+    {
+        FbxString error = lImporter->GetStatus().GetErrorString();
+        FBXSDK_printf("Call to FbxImporter::Initialize() failed.\n");
+        FBXSDK_printf("Error returned: %s\n\n", error.Buffer());
+
+        if (lImporter->GetStatus().GetCode() == FbxStatus::eInvalidFileVersion)
+        {
+            FBXSDK_printf("FBX file format version for this FBX SDK is %d.%d.%d\n", lSDKMajor, lSDKMinor, lSDKRevision);
+            FBXSDK_printf("FBX file format version for file '%s' is %d.%d.%d\n\n", pFilename, lFileMajor, lFileMinor, lFileRevision);
+        }
+
+        return false;
+    }
+
+    FBXSDK_printf("FBX file format version for this FBX SDK is %d.%d.%d\n", lSDKMajor, lSDKMinor, lSDKRevision);
+
+    if (lImporter->IsFBX())
+    {
+        FBXSDK_printf("FBX file format version for file '%s' is %d.%d.%d\n\n", pFilename, lFileMajor, lFileMinor, lFileRevision);
+
+        // From this point, it is possible to access animation stack information without
+        // the expense of loading the entire file.
+
+        FBXSDK_printf("Animation Stack Information\n");
+
+        lAnimStackCount = lImporter->GetAnimStackCount();
+
+        FBXSDK_printf("    Number of Animation Stacks: %d\n", lAnimStackCount);
+        FBXSDK_printf("    Current Animation Stack: \"%s\"\n", lImporter->GetActiveAnimStackName().Buffer());
+        FBXSDK_printf("\n");
+
+        for(i = 0; i < lAnimStackCount; i++)
+        {
+            FbxTakeInfo* lTakeInfo = lImporter->GetTakeInfo(i);
+
+            FBXSDK_printf("    Animation Stack %d\n", i);
+            FBXSDK_printf("         Name: \"%s\"\n", lTakeInfo->mName.Buffer());
+            FBXSDK_printf("         Description: \"%s\"\n", lTakeInfo->mDescription.Buffer());
+
+            // Change the value of the import name if the animation stack should be imported 
+            // under a different name.
+            FBXSDK_printf("         Import Name: \"%s\"\n", lTakeInfo->mImportName.Buffer());
+
+            // Set the value of the import state to false if the animation stack should be not
+            // be imported. 
+            FBXSDK_printf("         Import State: %s\n", lTakeInfo->mSelect ? "true" : "false");
+            FBXSDK_printf("\n");
+        }
+
+        // Set the import states. By default, the import states are always set to 
+        // true. The code below shows how to change these states.
+        IOS_REF.SetBoolProp(IMP_FBX_MATERIAL,        true);
+        IOS_REF.SetBoolProp(IMP_FBX_TEXTURE,         true);
+        IOS_REF.SetBoolProp(IMP_FBX_LINK,            true);
+        IOS_REF.SetBoolProp(IMP_FBX_SHAPE,           true);
+        IOS_REF.SetBoolProp(IMP_FBX_GOBO,            true);
+        IOS_REF.SetBoolProp(IMP_FBX_ANIMATION,       true);
+        IOS_REF.SetBoolProp(IMP_FBX_GLOBAL_SETTINGS, true);
+    }
+
+    // Import the scene.
+    lStatus = lImporter->Import(pScene);
+
+    if(lStatus == false && lImporter->GetStatus().GetCode() == FbxStatus::ePasswordError)
+    {
+        FBXSDK_printf("Please enter password: ");
+
+        lPassword[0] = '\0';
+
+        FBXSDK_CRT_SECURE_NO_WARNING_BEGIN
+        scanf("%s", lPassword);
+        FBXSDK_CRT_SECURE_NO_WARNING_END
+
+        FbxString lString(lPassword);
+
+        IOS_REF.SetStringProp(IMP_FBX_PASSWORD,      lString);
+        IOS_REF.SetBoolProp(IMP_FBX_PASSWORD_ENABLE, true);
+
+        lStatus = lImporter->Import(pScene);
+
+        if(lStatus == false && lImporter->GetStatus().GetCode() == FbxStatus::ePasswordError)
+        {
+            FBXSDK_printf("\nPassword is wrong, import aborted.\n");
+        }
+    }
+
+    // Destroy the importer.
+    lImporter->Destroy();
+
+    return lStatus;
+}
+
 
 	void Cc3dFbxOneLoad::DestroySdkObjects(FbxManager* &pSdkManager)//一定要传指针的引用，因为需要将指针置NULL
 	{
@@ -362,9 +481,14 @@ Cc3dMatrix4 FbxAMatrixToCc3dMatrix4(const FbxAMatrix&m){
 				FbxVector2 uv0;
 				FbxVector2 uv1;
 				FbxVector2 uv2;
-				lMesh->GetPolygonVertexUV(i, 0, lUVName, uv0);
-				lMesh->GetPolygonVertexUV(i, 1, lUVName, uv1);
-				lMesh->GetPolygonVertexUV(i, 2, lUVName, uv2);
+				bool isUnmapped0;
+				bool isUnmapped1;
+				bool isUnmapped2;
+				//Added a new parameter to FbxMesh::GetPolygonVertexUV() to allow it to return an array of unmapped polygons. This is extremely useful to determine which vertex has no associated UV.
+				//see: http://docs.autodesk.com/FBX/2014/ENU/FBX-SDK-Documentation/index.html
+				lMesh->GetPolygonVertexUV(i, 0, lUVName, uv0,isUnmapped0);
+				lMesh->GetPolygonVertexUV(i, 1, lUVName, uv1,isUnmapped1);
+				lMesh->GetPolygonVertexUV(i, 2, lUVName, uv2,isUnmapped2);
 				//----获得法向量
 				FbxVector4 norm0;
 				FbxVector4 norm1;
@@ -582,7 +706,12 @@ void Cc3dFbxOneLoad::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool 
 				assert(false);
 			}
 			//设置当前AnimationStack为lCurrentAnimationStack
-			lScene->GetEvaluator()->SetContext(lCurrentAnimationStack);
+			//Now to retrieve the current animation stack, please use FbxScene::GetCurrentAnimationStack instead of FbxAnimEvaluator::GetContext.
+			//see fbxsdk2014.2.1 readme.txt
+			//and see fbxsdk2014.2.1/samples/viewScene/SceneContext.ccx
+			
+			///lScene->GetEvaluator()->SetContext(lCurrentAnimationStack);//fbxsdk 2013.1
+			lScene->SetCurrentAnimationStack(lCurrentAnimationStack);
 			//计算此动画的起止时间
 			FbxTime startTime,stopTime;
 			{
