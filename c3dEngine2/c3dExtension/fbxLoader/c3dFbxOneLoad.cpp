@@ -315,7 +315,7 @@ bool Cc3dFbxOneLoad::LoadScene(FbxManager* pManager, FbxDocument* pScene, const 
 		Cc3dSkinMesh*mesh=new Cc3dSkinMesh();
 		mesh->autorelease();
 		mesh->setName(pNode->GetName());
-		mesh->setFbxMeshPtr(lMesh);
+		mesh->setFbxMeshPtr(lMesh);//save the mesh ptr is for reGet the mesh in the future
 		//制作mesh
 		//每个材质对应一个subMesh
 		{

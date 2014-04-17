@@ -20,6 +20,7 @@ protected:
     vector<Cc3dVertex> vlist; 
     vector<Cc3dIDTriangle> IDtriList;
 public:
+
     void addVertex(const Cc3dVertex&vertex);
 	void addIDtri(const Cc3dIDTriangle&IDtri);
 	Cc3dVertex getVertexByIndex(int index)const {

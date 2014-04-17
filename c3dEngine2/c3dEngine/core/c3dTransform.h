@@ -26,6 +26,7 @@ public:
         m_scaleX=m_scaleY=m_scaleZ=1;
     }
     virtual~Cc3dTransform(){}
+	void init(const Cc3dMatrix4&RTmat,float scaleX=1,float scaleY=1,float scaleZ=1){m_RTmat=RTmat;m_scaleX=scaleX;m_scaleY=scaleY;m_scaleZ=scaleZ;}
     Cc3dMatrix4 getRTmat()const{return m_RTmat;}
     void setRmat(const Cc3dMatrix4&Rmat);
     void setRTmat(const Cc3dMatrix4&RTmat);

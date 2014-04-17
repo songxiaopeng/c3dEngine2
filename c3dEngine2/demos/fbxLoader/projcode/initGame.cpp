@@ -68,7 +68,7 @@ void initGame(){
     actor->genVBOBuffers();
 	actor->submit(GL_STATIC_DRAW);
 
-    
+    actor->doExport("export/girl.c3dFbxConv");
 
 	//----add to scene
     Cc3dSceneManager::sharedSceneManager()->getRoot()->addChild(actor);

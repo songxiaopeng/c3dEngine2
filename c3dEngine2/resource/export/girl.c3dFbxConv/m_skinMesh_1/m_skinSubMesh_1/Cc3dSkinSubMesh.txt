@@ -1,0 +1,1 @@
+texFilePath fbxLoader_resource/girl/SDO_W1063_coat.png
