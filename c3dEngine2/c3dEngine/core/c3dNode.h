@@ -54,7 +54,6 @@ public:
             m_childList[i]->release();
         }
     }
-
     bool init();
     void setLight(Cc3dLight*light){
         assert(light);

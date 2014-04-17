@@ -50,7 +50,6 @@ public:
         if(m_material)m_material->release();
         if(m_indexVBO)m_indexVBO->release();
     }
-
 	void setIsWireMode(bool isWireMode){
 		m_indexVBO->setIsWireMode(isWireMode);
 	}

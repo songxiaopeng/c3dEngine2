@@ -32,8 +32,7 @@ public:
     }
     int getRetainCount()const {return m_retainCount;}
     virtual bool init(){return true;}
-  	virtual void doExport(string filePath){};
-	virtual void doImport(string filePath){};
+  
 protected:
     int m_retainCount;
 };

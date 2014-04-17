@@ -1,1 +1,0 @@
-texFilePath fbxLoader_resource/girl/W_Basic_Coat2.png
