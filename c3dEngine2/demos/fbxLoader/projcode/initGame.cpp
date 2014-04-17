@@ -68,7 +68,7 @@ void initGame(){
     actor->genVBOBuffers();
 	actor->submit(GL_STATIC_DRAW);
 
-    actor->doExport("export/girl_c3dFbxConv");
+    actor->doExport("export/girl_c3dFbxConv");//do not use girl.c3dFbxConv, namely do not use dot in folderName. because this can cause getFullPath fail on iOS(as on iOS, the getFullPath function is not implemented very well)
 
 	//----add to scene
     Cc3dSceneManager::sharedSceneManager()->getRoot()->addChild(actor);
