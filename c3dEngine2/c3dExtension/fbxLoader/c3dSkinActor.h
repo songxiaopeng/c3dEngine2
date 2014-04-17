@@ -3,7 +3,9 @@
 #include<vector>
 using namespace std;
 #include "c3dActor.h"
+#if (C3D_TARGET_PLATFORM == C3D_PLATFORM_WIN32)
 #include <direct.h>
+#endif
 static char tCharBuffer[1024]={0};
 static void fskipOneStr(FILE * fp){
 	fscanf(fp,"%s",tCharBuffer);
@@ -58,6 +60,7 @@ public:
 		assert(false);
 	}
 	void doExport(string filePath){
+#if (C3D_TARGET_PLATFORM == C3D_PLATFORM_WIN32)
 		//--------------use filePath as folder path
 		const string folderPath=filePath;
 		//-----------------------------------------
@@ -93,8 +96,9 @@ public:
 			fclose(fp);
 		}else{
 			cout<<string("")+"warning: create path: "+folderFullPath+ " failed!"<<endl;
+            assert(false);
 		}
-		
+#endif
 	}
 	void doImport(string filePath){
 		//--------------use filePath as folder path
@@ -102,8 +106,7 @@ public:
 		//-----------------------------------------
 		bool isFolderExist=Cc3dFileUtils::sharedFileUtils()->getIsFileOrClipExist(folderPath);
 		string folderFullPath=Cc3dFileUtils::sharedFileUtils()->getFullPath(folderPath);
-		//create a directory
-		if (isFolderExist||_mkdir(folderFullPath.c_str()) == 0){//success
+		if (isFolderExist){
 			//------------------full path of file
 			string fileFullPath=folderFullPath+"/Cc3dAniLayer.txt";
 			//open file
@@ -146,6 +149,7 @@ public:
 			
 		}else{
 			cout<<string("")+"warning: create path: "+folderFullPath+ " failed!"<<endl;
+            assert(false);
 		}
 
 	}
@@ -168,6 +172,7 @@ public:
 		}
 	}
 	void doExport(string filePath){
+#if (C3D_TARGET_PLATFORM == C3D_PLATFORM_WIN32)
 		//--------------use filePath as folder path
 		const string folderPath=filePath;
 		//-----------------------------------------
@@ -206,7 +211,9 @@ public:
 			}
 		}else{
 			cout<<string("")+"warning: create path: "+folderFullPath+ " failed!"<<endl;
+            assert(false);
 		}
+#endif
 		
 	}
 	void doImport(string filePath){
@@ -215,8 +222,7 @@ public:
 		//-----------------------------------------
 		bool isFolderExist=Cc3dFileUtils::sharedFileUtils()->getIsFileOrClipExist(folderPath);
 		string folderFullPath=Cc3dFileUtils::sharedFileUtils()->getFullPath(folderPath);
-		//create a directory
-		if (isFolderExist||_mkdir(folderFullPath.c_str()) == 0){//success
+		if (isFolderExist){
 			//------------------full path of file
 			string fileFullPath=folderFullPath+"/Cc3dSkinCluster.txt";
 			//open file
@@ -266,6 +272,7 @@ public:
 			}
 		}else{
 			cout<<string("")+"warning: create path: "+folderFullPath+ " failed!"<<endl;
+            assert(false);
 		}
 	}
 	void addAniLayer(Cc3dAniLayer*aniLayer){
@@ -322,6 +329,7 @@ public:
 		}
 	}
 	void doExport(string filePath){
+#if (C3D_TARGET_PLATFORM == C3D_PLATFORM_WIN32)
 		//--------------use filePath as folder path
 		const string folderPath=filePath;
 		//-----------------------------------------
@@ -351,7 +359,9 @@ public:
 			}
 		}else{
 			cout<<string("")+"warning: create path: "+folderFullPath+ " failed!"<<endl;
+            assert(false);
 		}
+#endif
 	}
 	void doImport(string filePath){
 		//--------------use filePath as folder path
@@ -359,8 +369,7 @@ public:
 		//-----------------------------------------
 		bool isFolderExist=Cc3dFileUtils::sharedFileUtils()->getIsFileOrClipExist(folderPath);
 		string folderFullPath=Cc3dFileUtils::sharedFileUtils()->getFullPath(folderPath);
-		//create a directory
-		if (isFolderExist||_mkdir(folderFullPath.c_str()) == 0){//success
+		if (isFolderExist){
 			//------------------full path of file
 			string fileFullPath=folderFullPath+"/Cc3dSkin.txt";
 			//open file
@@ -395,6 +404,7 @@ public:
 			}
 		}else{
 			cout<<string("")+"warning: create path: "+folderFullPath+ " failed!"<<endl;
+            assert(false);
 		}
 	}
 	void setSkinType(int skinType){m_skinType=skinType;} 
@@ -444,6 +454,7 @@ class Cc3dSkinSubMeshData:public Cc3dSubMeshData
 {
 public:
 	void doExport(string filePath){
+#if (C3D_TARGET_PLATFORM == C3D_PLATFORM_WIN32)
 		//--------------use filePath as folder path
 		const string folderPath=filePath;
 		//-----------------------------------------
@@ -487,7 +498,7 @@ public:
 		}else{
 			cout<<string("")+"warning: create path: "+folderFullPath+ " failed!"<<endl;
 		}
-		
+#endif
 	}
 	void doImport(string filePath){
 		//--------------use filePath as folder path
@@ -495,8 +506,7 @@ public:
 		//-----------------------------------------
 		bool isFolderExist=Cc3dFileUtils::sharedFileUtils()->getIsFileOrClipExist(folderPath);
 		string folderFullPath=Cc3dFileUtils::sharedFileUtils()->getFullPath(folderPath);
-		//create a directory
-		if (isFolderExist||_mkdir(folderFullPath.c_str()) == 0){//success
+		if (isFolderExist){
 			//------------------full path of file
 			string fileFullPath=folderFullPath+"/Cc3dSkinSubMeshData.txt";
 			//open file
@@ -569,6 +579,7 @@ public:
 			fclose(fp);
 		}else{
 			cout<<string("")+"warning: create path: "+folderFullPath+ " failed!"<<endl;
+            assert(false);
 		}
 	}
 };
@@ -584,6 +595,7 @@ public:
 		if(m_subMeshData_backup)m_subMeshData_backup->release();
 	}
 	void doExport(string filePath){
+#if (C3D_TARGET_PLATFORM == C3D_PLATFORM_WIN32)
 		//--------------use filePath as folder path
 		const string folderPath=filePath;
 		//-----------------------------------------
@@ -609,8 +621,9 @@ public:
 			m_subMeshData_backup->doExport(folderPath+"/m_subMeshData_backup");
 		}else{
 			cout<<string("")+"warning: create path: "+folderFullPath+ " failed!"<<endl;
+            assert(false);
 		}
-		
+#endif
 	}
 	void doImport(string filePath){
 		//--------------use filePath as folder path
@@ -618,8 +631,7 @@ public:
 		//-----------------------------------------
 		bool isFolderExist=Cc3dFileUtils::sharedFileUtils()->getIsFileOrClipExist(folderPath);
 		string folderFullPath=Cc3dFileUtils::sharedFileUtils()->getFullPath(folderPath);
-		//create a directory
-		if (isFolderExist||_mkdir(folderFullPath.c_str()) == 0){//success
+		if (isFolderExist){
 			//------------------full path of file
 			string fileFullPath=folderFullPath+"/Cc3dSkinSubMesh.txt";
 			//open file
@@ -653,6 +665,7 @@ public:
 			*subMeshData=*m_subMeshData_backup;
 		}else{
 			cout<<string("")+"warning: create path: "+folderFullPath+ " failed!"<<endl;
+            assert(false);
 		}
 	}
 	void backupSubMeshData(){//call after m_subMeshData has established
@@ -683,6 +696,7 @@ public:
 		if(m_skin)m_skin->release();
 	}
 	void doExport(string filePath){
+#if (C3D_TARGET_PLATFORM == C3D_PLATFORM_WIN32)
 		//--------------use filePath as folder path
 		const string folderPath=filePath;
 		//-----------------------------------------
@@ -738,8 +752,9 @@ public:
 			
 		}else{
 			cout<<string("")+"warning: create path: "+folderFullPath+ " failed!"<<endl;
+            assert(false);
 		}
-		
+#endif
 	}
 	void doImport(string filePath){
 		//--------------use filePath as folder path
@@ -747,8 +762,7 @@ public:
 		//-----------------------------------------
 		bool isFolderExist=Cc3dFileUtils::sharedFileUtils()->getIsFileOrClipExist(folderPath);
 		string folderFullPath=Cc3dFileUtils::sharedFileUtils()->getFullPath(folderPath);
-		//create a directory
-		if (isFolderExist||_mkdir(folderFullPath.c_str()) == 0){//success
+		if (isFolderExist){
 			//------------------full path of file
 			string fileFullPath=folderFullPath+"/Cc3dSkinMesh.txt";
 			//open file
@@ -825,6 +839,7 @@ public:
 			}
 		}else{
 			cout<<string("")+"warning: create path: "+folderFullPath+ " failed!"<<endl;
+            assert(false);
 		}
 	}
 	void setFbxMeshPtr(void*fbxMeshPtr){m_fbxMeshPtr=fbxMeshPtr;}
@@ -953,6 +968,7 @@ public:
 		m_curTime=0;
 	}
 	void doExport(string filePath){
+#if (C3D_TARGET_PLATFORM == C3D_PLATFORM_WIN32)
 		//--------------use filePath as folder path
 		const string folderPath=filePath;
 		//-----------------------------------------
@@ -980,17 +996,18 @@ public:
 			fclose(fp);
 		}else{
 			cout<<string("")+"warning: create path: "+folderFullPath+ " failed!"<<endl;
+            assert(false);
 		}
-		
+#endif
 	}
 	void doImport(string filePath){
+        
 		//--------------use filePath as folder path
 		const string folderPath=filePath;
 		//-----------------------------------------
 		bool isFolderExist=Cc3dFileUtils::sharedFileUtils()->getIsFileOrClipExist(folderPath);
 		string folderFullPath=Cc3dFileUtils::sharedFileUtils()->getFullPath(folderPath);
-		//create a directory
-		if (isFolderExist||_mkdir(folderFullPath.c_str()) == 0){//success
+		if (isFolderExist){
 			//------------------full path of file
 			string fileFullPath=folderFullPath+"/Cc3dAniLayerInfo.txt";
 			//open file
@@ -1023,6 +1040,7 @@ public:
 			fclose(fp);
 		}else{
 			cout<<string("")+"warning: create path: "+folderFullPath+ " failed!"<<endl;
+            assert(false);
 		}
 	  
 	}
@@ -1060,6 +1078,7 @@ public:
 		}
 	}
 	void doExport(string filePath){
+#if (C3D_TARGET_PLATFORM == C3D_PLATFORM_WIN32)
 		//--------------use filePath as folder path
 		const string folderPath=filePath;
 		//-----------------------------------------
@@ -1100,8 +1119,9 @@ public:
 			}
 		}else{
 			cout<<string("")+"warning: create path: "+folderFullPath+ " failed!"<<endl;
+            assert(false);
 		}
-		
+#endif
 	}
 	void doImport(string filePath){
 		//--------------use filePath as folder path
@@ -1109,8 +1129,7 @@ public:
 		//-----------------------------------------
 		bool isFolderExist=Cc3dFileUtils::sharedFileUtils()->getIsFileOrClipExist(folderPath);
 		string folderFullPath=Cc3dFileUtils::sharedFileUtils()->getFullPath(folderPath);
-		//create a directory
-		if (isFolderExist||_mkdir(folderFullPath.c_str()) == 0){//success
+		if (isFolderExist){
 			//------------------full path of file
 			string fileFullPath=folderFullPath+"/Cc3dSkinActor.txt";
 			//open file
@@ -1160,6 +1179,7 @@ public:
 			}
 		}else{
 			cout<<string("")+"warning: create path: "+folderFullPath+ " failed!"<<endl;
+            assert(false);
 		}
 	  
 	}

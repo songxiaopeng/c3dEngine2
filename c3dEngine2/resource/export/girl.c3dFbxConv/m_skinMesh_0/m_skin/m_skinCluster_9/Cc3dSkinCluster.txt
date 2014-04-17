@@ -1,5 +1,0 @@
-m_vertexIndexList.size 0
-
-m_vertexWeightList.size 0
-
-m_aniLayerList.size 1
