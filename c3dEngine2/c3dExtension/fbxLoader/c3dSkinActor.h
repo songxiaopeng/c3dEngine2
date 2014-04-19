@@ -7,9 +7,17 @@ using namespace std;
 #include <direct.h>
 #endif
 static char tCharBuffer[1024]={0};
-static void fskipOneStr(FILE * fp){
-	fscanf(fp,"%s",tCharBuffer);
+static void fskipOneStr(FILE * fp,bool valueOnly){
+	if(valueOnly==false){
+		fscanf(fp,"%s",tCharBuffer);
+	}
 }
+static void fprintKey(FILE * fp,bool valueOnly,const string&key){
+	if(valueOnly==false){
+		fprintf(fp,"%s",key.c_str());
+	}
+}
+
 class Cc3dAniFrame
 {
 protected:
@@ -75,8 +83,8 @@ public:
 		}
 		assert(false);
 	}
-	void doExport(string filePath);
-	void doImport(string filePath);
+	void doExport(string filePath,bool valueOnly);
+	void doImport(string filePath,bool valueOnly);
 
 };
 class Cc3dSkinCluster:public Cc3dObject
@@ -95,8 +103,8 @@ public:
 			if(aniLayer)aniLayer->release();
 		}
 	}
-	void doExport(string filePath);
-	void doImport(string filePath);
+	void doExport(string filePath,bool valueOnly);
+	void doImport(string filePath,bool valueOnly);
 	void addAniLayer(Cc3dAniLayer*aniLayer){
 		m_aniLayerList.push_back(aniLayer);
 		aniLayer->retain();
@@ -150,8 +158,8 @@ public:
 			m_clusterList[i]->release();
 		}
 	}
-	void doExport(string filePath);
-	void doImport(string filePath);
+	void doExport(string filePath,bool valueOnly);
+	void doImport(string filePath,bool valueOnly);
 	void setSkinType(int skinType){m_skinType=skinType;} 
 	int getSkinType()const{return m_skinType;}
 	void addCluster(Cc3dSkinCluster*cluster){
@@ -198,8 +206,8 @@ protected:
 class Cc3dSkinSubMeshData:public Cc3dSubMeshData
 {
 public:
-	void doExport(string filePath);
-	void doImport(string filePath);
+	void doExport(string filePath,bool valueOnly);
+	void doImport(string filePath,bool valueOnly);
 };
 class Cc3dSkinSubMesh:public Cc3dSubMesh
 {
@@ -212,8 +220,8 @@ public:
 	virtual ~Cc3dSkinSubMesh(){
 		if(m_subMeshData_backup)m_subMeshData_backup->release();
 	}
-	void doExport(string filePath);
-	void doImport(string filePath);
+	void doExport(string filePath,bool valueOnly);
+	void doImport(string filePath,bool valueOnly);
 	void backupSubMeshData(){//call after m_subMeshData has established
 		m_subMeshData_backup=new Cc3dSkinSubMeshData();
 		m_subMeshData_backup->autorelease();
@@ -241,8 +249,8 @@ public:
 	virtual ~Cc3dSkinMesh(){
 		if(m_skin)m_skin->release();
 	}
-	void doExport(string filePath);
-	void doImport(string filePath);
+	void doExport(string filePath,bool valueOnly);
+	void doImport(string filePath,bool valueOnly);
 	void setFbxMeshPtr(void*fbxMeshPtr){m_fbxMeshPtr=fbxMeshPtr;}
 	void* getFbxMeshPtr(){return m_fbxMeshPtr;}
 
@@ -368,8 +376,8 @@ public:
 		m_endTime=0;
 		m_curTime=0;
 	}
-	void doExport(string filePath);
-	void doImport(string filePath);
+	void doExport(string filePath,bool valueOnly);
+	void doImport(string filePath,bool valueOnly);
 	void setInterval(float interval){m_interval=interval;}
 	void setStartTime(float startTime){m_startTime=startTime;}
 	void setEndTime(float endTime){m_endTime=endTime;}
@@ -403,7 +411,7 @@ public:
 			if(aniLayerInfo)aniLayerInfo->release();
 		}
 	}
-	void doExport(string filePath);
+	void doExport(string filePath,bool valueOnly);
 	void doImport(string filePath);
 	void addAniLayerInfo(Cc3dAniLayerInfo*aniLayerInfo){
 		m_aniLayerInfoList.push_back(aniLayerInfo);

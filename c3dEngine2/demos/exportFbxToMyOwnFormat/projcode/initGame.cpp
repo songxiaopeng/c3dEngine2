@@ -59,9 +59,8 @@ void initGame(){
 
 	//load fbx
 	string fbxFilePath="fbxLoader_resource/girl/girl.fbx";
-	 float aniFrameInterval=1.0f/25;
+	float aniFrameInterval=1.0f/10;//1.0f/25;//frame interval value we want (second)
 	Cc3dSkinActor*actor=Cc3dFbxLoader::sharedFbxLoader()->load(fbxFilePath.c_str(),aniFrameInterval);
-
 	//actor is just for export, no need to fully set up and add to scene
 	// actor->setPos(Cc3dVector4(0,0,0,1));
 	// actor->setLight(light0);
@@ -73,16 +72,22 @@ void initGame(){
 	// Cc3dSceneManager::sharedSceneManager()->getRoot()->addChild(actor);
 
 	//export to my own format
-	string exportPath="export/girl_c3dFbxConv";//do not use girl.c3dFbxConv, namely do not use dot in folderName. because this can cause getFullPath fail on iOS(as on iOS, the getFullPath function is not implemented very well)
-	actor->doExport(exportPath.c_str());
+	bool valueOnly=true;//if you want the export result more readable (show keys), you can set this value to false. but the export size will bigger. 
+						   //besides readability, when valueOnly=false, it is easy to debug the import() functions with assert statements. 
+	string exportPath;//where to export the model
+	if(valueOnly){
+		exportPath="export/girl_cfc";//do not use girl.cfc (do not use dot in folderName), because it can cause getFullPath fail on iOS(on iOS, the getFullPath function is not implemented very well)
+	}else{
+		exportPath="export/girl_readable_cfc";
+	}
+	actor->doExport(exportPath.c_str(),valueOnly);
 	cout<<"----------------"<<endl;
 	cout<<"export done!"<<endl;
-	cout<<"export path: "<<exportPath<<endl;
+	cout<<"model has exported to: "<<exportPath<<endl;
 
 	//text
 	Cboard*text=new Cboard();
 	text->init(240,30,"exportFbxToMyOwnFormat_resource/text.png");
-
 	text->setPos(Cc3dVector4((screenRect.getMinX()+screenRect.getMaxX())/2,(screenRect.getMinY()+screenRect.getMaxY())/2,0,1));
 	text->setLight(light0);
     text->setCamera(camera2D);

@@ -8,6 +8,9 @@ using namespace std;
 #include "fbxsdk.h"
 #include "c3dMatrix.h"
 #include "c3dSkinActor.h"
+
+//about fbx skin animation principle, see: http://user.qzone.qq.com/350479720/blog/1349982989
+
 Cc3dMatrix4 FbxAMatrixToCc3dMatrix4(const FbxAMatrix&m);
 
 class Cc3dFbxOneLoad:public Cc3dObject

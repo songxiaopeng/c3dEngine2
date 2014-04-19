@@ -59,7 +59,8 @@ void initGame(){
 	//----fbx model
 	Cc3dSkinActor*actor=new Cc3dSkinActor();
 	actor->autorelease();
-	string path="export/girl_c3dFbxConv";
+	string path="export/girl_cfc";
+	//string path="export/girl_readable_cfc";
 	cout<<"loading from "<<path<<endl;
 	actor->doImport(path.c_str());
 	cout<<"loading done!"<<endl;

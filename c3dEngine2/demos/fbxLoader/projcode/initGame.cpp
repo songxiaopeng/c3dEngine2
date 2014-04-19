@@ -57,7 +57,7 @@ void initGame(){
     }
 
 	//----fbx model
-	Cc3dSkinActor*actor=Cc3dFbxLoader::sharedFbxLoader()->load("fbxLoader_resource/girl/girl.fbx");
+	Cc3dSkinActor*actor=Cc3dFbxLoader::sharedFbxLoader()->load("fbxLoader_resource/girl/girl.fbx",1.0f/10);
 	
 	actor->setPos(Cc3dVector4(0,0,0,1));
 	actor->setLight(light0);
