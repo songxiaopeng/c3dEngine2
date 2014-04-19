@@ -687,7 +687,8 @@ void Cc3dFbxOneLoad::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool 
 	void Cc3dFbxOneLoad::destroyManager(){
 		DestroySdkObjects(lSdkManager);//É¾³ýmanager
 	}
-	void Cc3dFbxOneLoad::bakeAnimation(){
+	void Cc3dFbxOneLoad::bakeAnimation(float aniFrameInterval){
+		m_actor->setInterval(aniFrameInterval);
 		//animStack
 		FbxArray<FbxString*> mAnimStackNameArray;
 		lScene->FillAnimStackNameArray(mAnimStackNameArray);
@@ -1027,6 +1028,10 @@ void Cc3dFbxOneLoad::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool 
 		if (lVertexCount == 0)
 		{
 			return;
+		}
+		const bool lHasShape = lMesh->GetShapeCount() > 0;
+		if(lHasShape){
+			cout<<"warning: not support shape deform yet!"<<endl;
 		}
 		//»ñµÃhasSkin
 		bool HasSkin=getHasDeformer(lMesh);

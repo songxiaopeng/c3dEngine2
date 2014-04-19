@@ -46,15 +46,31 @@ public:
 		return m_aniFrameList[index];
 	}
 	int getAniFrameCount()const {return (int)m_aniFrameList.size();}
-	const Cc3dAniFrame&getAniFrameByTime(float time){
+	Cc3dAniFrame getAniFrameByTime(float time){
+		assert(m_aniFrameList.empty()==false);
+		assert(time>=m_aniFrameList[0].getTime());
 		assert(time<=m_aniFrameList[(int)m_aniFrameList.size()-1].getTime());
+		Cc3dAniFrame aniFrameFoe;
+		Cc3dAniFrame aniFrameNxt;
 		int nAniFrame=(int)m_aniFrameList.size();
 		for(int i=0;i<nAniFrame;i++){
 			const Cc3dAniFrame&aniFrame=m_aniFrameList[i];
 			if(aniFrame.getTime()==time){
 				return aniFrame;
 			}else if(aniFrame.getTime()>time){
-				return m_aniFrameList[i-1];
+				assert(i-1>=0);
+				aniFrameFoe=m_aniFrameList[i-1];
+				aniFrameNxt=m_aniFrameList[i];
+				//calculate interpolated aniFrame
+				float timeFoe=aniFrameFoe.getTime();
+				const Cc3dMatrix4&vertexTransformMatFoe=aniFrameFoe.getVertexTransformMat();
+				float timeNxt=aniFrameNxt.getTime();
+				const Cc3dMatrix4&vertexTransformMatNxt=aniFrameNxt.getVertexTransformMat();
+				float weightFoe=(timeNxt-time)/(timeNxt-timeFoe);
+				float weightNxt=(time-timeFoe)/(timeNxt-timeFoe);
+				Cc3dMatrix4 vertexTransformMat=vertexTransformMatFoe*weightFoe+vertexTransformMatNxt*weightNxt;
+				Cc3dAniFrame aniFrame(vertexTransformMat,time);
+				return aniFrame;
 			}
 		}
 		assert(false);

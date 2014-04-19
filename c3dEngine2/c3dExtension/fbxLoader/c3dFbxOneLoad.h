@@ -34,19 +34,19 @@ public:
 		m_actor->release();
 		if(lSdkManager!=NULL)destroyManager();
 	}
-	Cc3dSkinActor* convertToSkinActor(){
+	Cc3dSkinActor* convertToSkinActor(float aniFrameInterval){
 		
 		//trianglulate
 		TriangulateRecursive(lScene->GetRootNode());// Convert mesh, NURBS and patch into triangle mesh
 		//makeSubMeshes
 		makeSubMeshSetForEachNode(lScene->GetRootNode());
 		//bake animation
-		bakeAnimation();
+		bakeAnimation(aniFrameInterval);
 		//m_actor done
 		return m_actor;
 		
 	}
-	void bakeAnimation();
+	void bakeAnimation(float aniFrameInterval);
 	void Init_and_load(const char* _fbxFileName);
 	void makeSubMeshSetForThisNode(FbxNode* pNode);
 	void makeSubMeshSetForEachNode(FbxNode* pNode);
