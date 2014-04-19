@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "c3d", "c3d.vcxproj", "{02FF2AA3-0C79-04E6-B7A3-2DBB26EAFFD3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{02FF2AA3-0C79-04E6-B7A3-2DBB26EAFFD3}.Debug|Win32.ActiveCfg = Debug|Win32
+		{02FF2AA3-0C79-04E6-B7A3-2DBB26EAFFD3}.Debug|Win32.Build.0 = Debug|Win32
+		{02FF2AA3-0C79-04E6-B7A3-2DBB26EAFFD3}.Release|Win32.ActiveCfg = Release|Win32
+		{02FF2AA3-0C79-04E6-B7A3-2DBB26EAFFD3}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

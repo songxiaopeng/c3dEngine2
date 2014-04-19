@@ -3,6 +3,21 @@
 #include<vector>
 using namespace std;
 #include "c3dActor.h"
+#if (C3D_TARGET_PLATFORM == C3D_PLATFORM_WIN32)
+#include <direct.h>
+#endif
+static char tCharBuffer[1024]={0};
+static void fskipOneStr(FILE * fp,bool valueOnly){
+	if(valueOnly==false){
+		fscanf(fp,"%s",tCharBuffer);
+	}
+}
+static void fprintKey(FILE * fp,bool valueOnly,const string&key){
+	if(valueOnly==false){
+		fprintf(fp,"%s",key.c_str());
+	}
+}
+
 class Cc3dAniFrame
 {
 protected:
@@ -39,19 +54,37 @@ public:
 		return m_aniFrameList[index];
 	}
 	int getAniFrameCount()const {return (int)m_aniFrameList.size();}
-	const Cc3dAniFrame&getAniFrameByTime(float time){
+	Cc3dAniFrame getAniFrameByTime(float time){
+		assert(m_aniFrameList.empty()==false);
+		assert(time>=m_aniFrameList[0].getTime());
 		assert(time<=m_aniFrameList[(int)m_aniFrameList.size()-1].getTime());
+		Cc3dAniFrame aniFrameFoe;
+		Cc3dAniFrame aniFrameNxt;
 		int nAniFrame=(int)m_aniFrameList.size();
 		for(int i=0;i<nAniFrame;i++){
 			const Cc3dAniFrame&aniFrame=m_aniFrameList[i];
 			if(aniFrame.getTime()==time){
 				return aniFrame;
 			}else if(aniFrame.getTime()>time){
-				return m_aniFrameList[i-1];
+				assert(i-1>=0);
+				aniFrameFoe=m_aniFrameList[i-1];
+				aniFrameNxt=m_aniFrameList[i];
+				//calculate interpolated aniFrame
+				float timeFoe=aniFrameFoe.getTime();
+				const Cc3dMatrix4&vertexTransformMatFoe=aniFrameFoe.getVertexTransformMat();
+				float timeNxt=aniFrameNxt.getTime();
+				const Cc3dMatrix4&vertexTransformMatNxt=aniFrameNxt.getVertexTransformMat();
+				float weightFoe=(timeNxt-time)/(timeNxt-timeFoe);
+				float weightNxt=(time-timeFoe)/(timeNxt-timeFoe);
+				Cc3dMatrix4 vertexTransformMat=vertexTransformMatFoe*weightFoe+vertexTransformMatNxt*weightNxt;
+				Cc3dAniFrame aniFrame(vertexTransformMat,time);
+				return aniFrame;
 			}
 		}
 		assert(false);
 	}
+	void doExport(string filePath,bool valueOnly);
+	void doImport(string filePath,bool valueOnly);
 
 };
 class Cc3dSkinCluster:public Cc3dObject
@@ -70,6 +103,8 @@ public:
 			if(aniLayer)aniLayer->release();
 		}
 	}
+	void doExport(string filePath,bool valueOnly);
+	void doImport(string filePath,bool valueOnly);
 	void addAniLayer(Cc3dAniLayer*aniLayer){
 		m_aniLayerList.push_back(aniLayer);
 		aniLayer->retain();
@@ -123,6 +158,8 @@ public:
 			m_clusterList[i]->release();
 		}
 	}
+	void doExport(string filePath,bool valueOnly);
+	void doImport(string filePath,bool valueOnly);
 	void setSkinType(int skinType){m_skinType=skinType;} 
 	int getSkinType()const{return m_skinType;}
 	void addCluster(Cc3dSkinCluster*cluster){
@@ -166,10 +203,16 @@ protected:
 	}
 
 };
+class Cc3dSkinSubMeshData:public Cc3dSubMeshData
+{
+public:
+	void doExport(string filePath,bool valueOnly);
+	void doImport(string filePath,bool valueOnly);
+};
 class Cc3dSkinSubMesh:public Cc3dSubMesh
 {
 protected:
-	Cc3dSubMeshData*m_subMeshData_backup;
+	Cc3dSkinSubMeshData*m_subMeshData_backup;
 public:
 	Cc3dSkinSubMesh(){
 		m_subMeshData_backup=NULL;
@@ -177,12 +220,14 @@ public:
 	virtual ~Cc3dSkinSubMesh(){
 		if(m_subMeshData_backup)m_subMeshData_backup->release();
 	}
+	void doExport(string filePath,bool valueOnly);
+	void doImport(string filePath,bool valueOnly);
 	void backupSubMeshData(){//call after m_subMeshData has established
-		m_subMeshData_backup=new Cc3dSubMeshData();
+		m_subMeshData_backup=new Cc3dSkinSubMeshData();
 		m_subMeshData_backup->autorelease();
 		m_subMeshData_backup->retain();
 		//copy m_subMeshData
-		*m_subMeshData_backup=*m_subMeshData;
+		*m_subMeshData_backup=*(Cc3dSkinSubMeshData*)m_subMeshData;
 	}
 	Cc3dVertex getBackupVertexByIndex(int index){
 		return m_subMeshData_backup->getVertexByIndex(index); 
@@ -193,7 +238,7 @@ public:
 class Cc3dSkinMesh:public Cc3dMesh
 {
 protected:
-	void* m_fbxMeshPtr;
+	void* m_fbxMeshPtr;//this pointer only used for loading fbx data from fbx
 	Cc3dSkin*m_skin;
 	vector<vector<_CmeshIDvID> > m_vertexDupList;//m_vertexDupList[meshVID] is duplicated to {(meshID,vID),(meshID,vID),...}
 public:
@@ -204,6 +249,8 @@ public:
 	virtual ~Cc3dSkinMesh(){
 		if(m_skin)m_skin->release();
 	}
+	void doExport(string filePath,bool valueOnly);
+	void doImport(string filePath,bool valueOnly);
 	void setFbxMeshPtr(void*fbxMeshPtr){m_fbxMeshPtr=fbxMeshPtr;}
 	void* getFbxMeshPtr(){return m_fbxMeshPtr;}
 
@@ -329,6 +376,8 @@ public:
 		m_endTime=0;
 		m_curTime=0;
 	}
+	void doExport(string filePath,bool valueOnly);
+	void doImport(string filePath,bool valueOnly);
 	void setInterval(float interval){m_interval=interval;}
 	void setStartTime(float startTime){m_startTime=startTime;}
 	void setEndTime(float endTime){m_endTime=endTime;}
@@ -362,6 +411,8 @@ public:
 			if(aniLayerInfo)aniLayerInfo->release();
 		}
 	}
+	void doExport(string filePath,bool valueOnly);
+	void doImport(string filePath);
 	void addAniLayerInfo(Cc3dAniLayerInfo*aniLayerInfo){
 		m_aniLayerInfoList.push_back(aniLayerInfo);
 		aniLayerInfo->retain();

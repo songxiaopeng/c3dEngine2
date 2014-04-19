@@ -1,0 +1,1 @@
+ fbxLoader_resource/girl/W_Basic_face.png
