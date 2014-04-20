@@ -430,6 +430,16 @@ void Cc3dSkinSubMesh::doExport(string filePath,bool valueOnly){
 		//------------------write file
 		string texFilePath=this->getTexture()->getFilePath();
 		fprintKey(fp,valueOnly,"texFilePath");fprintf(fp," %s\n",texFilePath.c_str());
+		Cc3dVector4 ambient=this->getMaterial()->getAmbient();
+		Cc3dVector4 diffuse=this->getMaterial()->getDiffuse();
+		Cc3dVector4 specular=this->getMaterial()->getSpecular();
+		float shininess=this->getMaterial()->getShininess();
+
+		fprintKey(fp,valueOnly,"ambient");fprintf(fp," %f %f %f %f\n",ambient.x(),ambient.y(),ambient.z(),ambient.w());
+		fprintKey(fp,valueOnly,"diffuse");fprintf(fp," %f %f %f %f\n",diffuse.x(),diffuse.y(),diffuse.z(),diffuse.w());
+		fprintKey(fp,valueOnly,"specular");fprintf(fp," %f %f %f %f\n",specular.x(),specular.y(),specular.z(),specular.w());
+		fprintKey(fp,valueOnly,"shininess");fprintf(fp," %f\n",shininess);
+
 		//--------------------------close file
 		fclose(fp);
 		//-----------------m_subMeshData_backup
@@ -465,6 +475,37 @@ void Cc3dSkinSubMesh::doImport(string filePath,bool valueOnly){
 		string texFilePath=string(t_texFilePath);
 		Cc3dTexture*texture=Cc3dTextureCache::sharedTextureCache()->addImage(texFilePath.c_str());
 		this->setTexture(texture);
+
+		Cc3dVector4 ambient;
+		Cc3dVector4 diffuse;
+		Cc3dVector4 specular;
+		float shininess;
+
+		fskipOneStr(fp,valueOnly);
+		if(!valueOnly)assert(string(tCharBuffer)=="ambient");
+		ambient=fscanVector4(fp);
+
+		fskipOneStr(fp,valueOnly);
+		if(!valueOnly)assert(string(tCharBuffer)=="diffuse");
+		diffuse=fscanVector4(fp);
+
+		fskipOneStr(fp,valueOnly);
+		if(!valueOnly)assert(string(tCharBuffer)=="specular");
+		specular=fscanVector4(fp);
+
+		fskipOneStr(fp,valueOnly);
+		if(!valueOnly)assert(string(tCharBuffer)=="shininess");
+		fscanf(fp,"%f",&shininess);
+
+		Cc3dMaterial*material=new Cc3dMaterial();
+		material->autorelease();
+		material->init();
+		material->setAmbient(ambient);
+		material->setDiffuse(diffuse);
+		material->setSpecular(specular);
+		material->setShininess(shininess);
+		this->setMaterial(material);
+
 		//--------------------------close file
 		fclose(fp);
 		//------------------m_subMeshData_backup

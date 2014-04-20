@@ -64,6 +64,10 @@ public:
     void setColor(float r,float g,float b,float a){
         m_color.init(r, g, b, a);
     }
+	void setSpecular(const Cc3dVector4&specular){m_specular=specular;}
+	void setDiffuse(const Cc3dVector4&diffuse){m_diffuse=diffuse;}
+	void setAmbient(const Cc3dVector4&ambient){m_ambient=ambient;}
+	void setColor(const Cc3dVector4&color){m_color=color;}
 };
 
 #endif /* defined(__HelloOpenGL__c3dMaterial__) */

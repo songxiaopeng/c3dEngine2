@@ -19,7 +19,7 @@ void initGame(){
 		light0->autorelease();
 		light0->retain();
 		light0->setPos(1000,5000,1000);//(50,200,500);
-		light0->setAmbient(0.5,0.5,0.5);
+		light0->setSpecular(0.4,0.4,0.4);
 	}
 	 //----camera2D
     {

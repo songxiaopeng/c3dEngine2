@@ -20,7 +20,7 @@ void initGame(){
 		light0->autorelease();
 		light0->retain();
 		light0->setPos(1000,5000,1000);//(50,200,500);
-		light0->setAmbient(0.5,0.5,0.5);
+		light0->setSpecular(0.4,0.4,0.4);
 	}
 	 //----camera2D
     {
@@ -72,18 +72,23 @@ void initGame(){
 	// Cc3dSceneManager::sharedSceneManager()->getRoot()->addChild(actor);
 
 	//export to my own format
-	bool valueOnly=true;//if you want the export result more readable (show keys), you can set this value to false. but the export size will bigger. 
-						   //besides readability, when valueOnly=false, it is easy to debug the import() functions with assert statements. 
-	string exportPath;//where to export the model
-	if(valueOnly){
-		exportPath="export/girl_cfc";//do not use girl.cfc (do not use dot in folderName), because it can cause getFullPath fail on iOS(on iOS, the getFullPath function is not implemented very well)
-	}else{
-		exportPath="export/girl_readable_cfc";
+	//do not use girl.cfc (do not use dot in folderName), because it can cause getFullPath fail on iOS(on iOS, the getFullPath function is not implemented very well)
+	//export values only
+	{
+		string exportPath="export/girl_cfc";
+		bool valueOnly=true;//export values only. small, but not very readable.
+		cout<<"export values only..."<<endl;
+		actor->doExport(exportPath,valueOnly);
+		cout<<"export done! model has exported to:"<<exportPath<<endl;
 	}
-	actor->doExport(exportPath.c_str(),valueOnly);
-	cout<<"----------------"<<endl;
-	cout<<"export done!"<<endl;
-	cout<<"model has exported to: "<<exportPath<<endl;
+	//export values and keys
+	{
+		string exportPath="export/girl_readable_cfc";
+		bool valueOnly=false;//export values and keys. big, but more readable. 
+		cout<<"export values and keys..."<<endl;
+		actor->doExport(exportPath,valueOnly);
+		cout<<"export done! model has exported to:"<<exportPath<<endl;
+	}
 
 	//text
 	Cboard*text=new Cboard();
