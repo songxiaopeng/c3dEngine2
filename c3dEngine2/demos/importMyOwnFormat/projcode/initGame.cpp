@@ -56,7 +56,7 @@ void initGame(){
         camera->updateFrustum();
     }
 
-	//----fbx model
+	//----import _cfc model
 	Cc3dSkinActor*actor=new Cc3dSkinActor();
 	actor->autorelease();
 	string path="export/girl_cfc";
