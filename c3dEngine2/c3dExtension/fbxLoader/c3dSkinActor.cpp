@@ -696,7 +696,6 @@ void Cc3dAniLayerInfo::doExport(string filePath,bool valueOnly){
 			fprintKey(fp,valueOnly,"m_interval");fprintf(fp," %f\n",m_interval);
 			fprintKey(fp,valueOnly,"m_startTime");fprintf(fp," %f\n",m_startTime);
 			fprintKey(fp,valueOnly,"m_endTime");fprintf(fp," %f\n",m_endTime);
-			fprintKey(fp,valueOnly,"m_curTime");fprintf(fp," %f\n",m_curTime);
 		}
 		//--------------------------close file
 		fclose(fp);
@@ -738,9 +737,8 @@ void Cc3dAniLayerInfo::doImport(string filePath,bool valueOnly){
 		fscanf(fp,"%f",&m_endTime);
 		if(!valueOnly)assert(string(tCharBuffer)=="m_endTime");
 
-		fskipOneStr(fp,valueOnly);
-		fscanf(fp,"%f",&m_curTime);
-		if(!valueOnly)assert(string(tCharBuffer)=="m_curTime");
+
+		m_curTime=0;
 
 		//--------------------------close file
 		fclose(fp);

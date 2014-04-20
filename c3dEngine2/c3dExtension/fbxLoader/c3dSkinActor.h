@@ -398,7 +398,7 @@ public:
 	void progress(float dt){
 		if((m_endTime>m_startTime)==false)return;
 		m_curTime+=dt;
-		if(m_curTime>m_endTime)m_curTime-=(m_endTime-m_startTime);//wrap
+		if(m_curTime>m_endTime)m_curTime=0;//m_curTime-=(m_endTime-m_startTime);//wrap
 	}
 
 
