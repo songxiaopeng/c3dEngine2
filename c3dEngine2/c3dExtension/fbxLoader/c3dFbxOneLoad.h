@@ -8,6 +8,9 @@ using namespace std;
 #include "fbxsdk.h"
 #include "c3dMatrix.h"
 #include "c3dSkinActor.h"
+
+//about fbx skin animation principle, see: http://user.qzone.qq.com/350479720/blog/1349982989
+
 Cc3dMatrix4 FbxAMatrixToCc3dMatrix4(const FbxAMatrix&m);
 
 class Cc3dFbxOneLoad:public Cc3dObject
@@ -34,19 +37,19 @@ public:
 		m_actor->release();
 		if(lSdkManager!=NULL)destroyManager();
 	}
-	Cc3dSkinActor* convertToSkinActor(){
+	Cc3dSkinActor* convertToSkinActor(float aniFrameInterval){
 		
 		//trianglulate
 		TriangulateRecursive(lScene->GetRootNode());// Convert mesh, NURBS and patch into triangle mesh
 		//makeSubMeshes
 		makeSubMeshSetForEachNode(lScene->GetRootNode());
 		//bake animation
-		bakeAnimation();
+		bakeAnimation(aniFrameInterval);
 		//m_actor done
 		return m_actor;
 		
 	}
-	void bakeAnimation();
+	void bakeAnimation(float aniFrameInterval);
 	void Init_and_load(const char* _fbxFileName);
 	void makeSubMeshSetForThisNode(FbxNode* pNode);
 	void makeSubMeshSetForEachNode(FbxNode* pNode);
@@ -59,7 +62,7 @@ public:
 		FbxPose* pPose,
 		int animStackIndex);
 	void InitializeSdkObjects(FbxManager*& pSdkManager, FbxScene*& pScene);
-	bool LoadScene(FbxManager* pSdkManager, FbxDocument* pScene,char* pFilename);
+	bool LoadScene(FbxManager* pManager, FbxDocument* pScene, const char* pFilename);
 	void DestroySdkObjects(FbxManager* &pSdkManager);
 	// Draw the vertices of a mesh.
 	void DrawMesh(FbxNode* pNode, FbxTime& pTime, FbxAnimLayer* pAnimLayer,int animStackIndex,

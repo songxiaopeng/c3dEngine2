@@ -22,7 +22,7 @@ void teardownOpenAL(){
 void c3dInitGame(){
 	//----start global timer
 	Cc3dGlobalTimer::sharedGlobalTimer()->start();
-	//----随机数
+	//----随机数--abc
     srand(time(0));
 	
 	//----初始化openal
@@ -31,11 +31,11 @@ void c3dInitGame(){
 	//----初始化opengl
 	initOpenGL();
 
-	//----openal状态
-	alDistanceModel(AL_INVERSE_DISTANCE_CLAMPED);//设置距离模型
+	//----openal状态--abc
+	alDistanceModel(AL_INVERSE_DISTANCE_CLAMPED);//设置距离模型--abc
     alListenerf(AL_GAIN, 1.0);//set listener gain
 
-    //----opengl状态
+    //----opengl状态--abc
     glEnable(GL_BLEND);
     glEnable(GL_DEPTH_TEST);
 	glEnable(GL_TEXTURE_2D);//on windows, do not forget this!!!
@@ -49,7 +49,7 @@ void c3dInitGame(){
     glEnableVertexAttribArray(ATTRIB_LOC_texCoord2);
 	//----show system info
     Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo()->showSystemInfo();
-	//----获取设备信息
+	//----获取设备信息--abc
     cout<<"screenSize: "<<Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo()->getScreenSize().x()<<" "<<Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo()->getScreenSize().y()<<endl;
     cout<<"resolution: "<<Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo()->getResolutionSize().x()<<" "<<Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo()->getResolutionSize().y()<<endl;
     //----创建默认shaderProgam

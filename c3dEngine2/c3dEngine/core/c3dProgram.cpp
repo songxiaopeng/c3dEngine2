@@ -28,6 +28,8 @@ bool Cc3dProgram::initWithFile(const string&vertShaderFilePath,const string&frag
         glBindAttribLocation(programHandle, ATTRIB_LOC_position, "a_position");
         glBindAttribLocation(programHandle, ATTRIB_LOC_texCoord, "a_texCoord");
         glBindAttribLocation(programHandle, ATTRIB_LOC_normal, "a_normal");
+        glBindAttribLocation(programHandle, ATTRIB_LOC_color, "a_color");
+        glBindAttribLocation(programHandle, ATTRIB_LOC_texCoord2, "a_texCoord2");
     }
     glLinkProgram(programHandle);//after link, the index get by glGet**Location became fixed
     //check and see if there were any link errors

@@ -23,7 +23,7 @@ class Cc3dMesh:public Cc3dNode
 {
 
 protected:
-    vector<Cc3dSubMesh*> m_subMeshList;//网格列表
+    vector<Cc3dSubMesh*> m_subMeshList;//网格列表--abc
     
 public:
     Cc3dMesh(){

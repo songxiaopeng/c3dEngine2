@@ -19,7 +19,7 @@ using namespace std;
 #include "c3dAppState.h"
 #include "c3dTextureCache.h"
 #include "c3dAudioCache.h"
-#include "c3dTimeCounter.h"
+#include "c3dGlobalTimer.h"
 #include "c3dAssert.h"
 #include "c3dProgramSetUp.h"
 //

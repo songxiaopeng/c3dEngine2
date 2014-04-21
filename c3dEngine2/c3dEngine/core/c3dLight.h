@@ -62,16 +62,21 @@ public:
         m_pos.setz(z);
      
     }
+	void setSpecular(const Cc3dVector4&specular){m_specular=specular;}
+	void setDiffuse(const Cc3dVector4&diffuse){m_diffuse=diffuse;}
+	void setAmbient(const Cc3dVector4&ambient){m_ambient=ambient;}
     void setSpecular(float r,float g,float b){
         m_specular.setr(r);
         m_specular.setg(g);
         m_specular.setb(b);
     }
+	
     void setDiffuse(float r,float g,float b){
         m_diffuse.setr(r);
         m_diffuse.setg(g);
         m_diffuse.setb(b);
     }
+	
     void setAmbient(float r,float g,float b){
         m_ambient.setr(r);
         m_ambient.setg(g);

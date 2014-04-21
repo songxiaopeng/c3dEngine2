@@ -1,4 +1,8 @@
 #include "c3dFbxOneLoad.h"
+#ifdef IOS_REF
+	#undef  IOS_REF
+	#define IOS_REF (*(pManager->GetIOSettings()))
+#endif
 
 Cc3dMatrix4 FbxAMatrixToCc3dMatrix4(const FbxAMatrix&m){
 	//设m为FbxAMatrix
@@ -14,7 +18,7 @@ Cc3dMatrix4 FbxAMatrixToCc3dMatrix4(const FbxAMatrix&m){
 	// FbxAMatrix m= m[1][0] m[1][1] m[1][2] m[1][3]= pm[4]  pm[5]  pm[6]  pm[7]
 	//				 m[2][0] m[2][1] m[2][2] m[2][3]  pm[8]  pm[9]  pm[10] pm[11]
 	//               m[3][0] m[3][1] m[3][2] m[3][3]  pm[12] pm[13] pm[14] pm[15]
-	//注意此处pm矩阵与上面的pm矩阵行列正好相反
+	//注意此处pm矩阵与上面的pm矩阵行列正好相反--abc
 	const double*pm=(const double*)m;
 	Cc3dMatrix4 mat(pm[0],pm[1],pm[2],pm[3],//col1
 					pm[4],pm[5],pm[6],pm[7],//col2
@@ -27,7 +31,7 @@ Cc3dMatrix4 FbxAMatrixToCc3dMatrix4(const FbxAMatrix&m){
 	void Cc3dFbxOneLoad::Init_and_load(const char* _fbxFileName){
 		fbxFileName=(char*)_fbxFileName;
 		cout<<"load "<<fbxFileName<<endl;
-		//加载fbx场景
+		//加载fbx场景--abc
 		InitializeSdkObjects(lSdkManager,lScene);
 		LoadScene(lSdkManager,lScene,fbxFileName);
 	}
@@ -59,7 +63,7 @@ Cc3dMatrix4 FbxAMatrixToCc3dMatrix4(const FbxAMatrix&m){
 		pScene = FbxScene::Create(pSdkManager,"");
 	}
 
-	bool Cc3dFbxOneLoad::LoadScene(FbxManager* pSdkManager, FbxDocument* pScene,char* pFilename)
+/*	bool Cc3dFbxOneLoad::LoadScene(FbxManager* pSdkManager, FbxDocument* pScene,char* pFilename)
 	{
 #ifdef IOS_REF
 #undef  IOS_REF
@@ -177,6 +181,121 @@ Cc3dMatrix4 FbxAMatrixToCc3dMatrix4(const FbxAMatrix&m){
 
 		return lStatus;
 	}
+	*/
+
+
+bool Cc3dFbxOneLoad::LoadScene(FbxManager* pManager, FbxDocument* pScene, const char* pFilename)
+{
+    int lFileMajor, lFileMinor, lFileRevision;
+    int lSDKMajor,  lSDKMinor,  lSDKRevision;
+    //int lFileFormat = -1;
+    int i, lAnimStackCount;
+    bool lStatus;
+    char lPassword[1024];
+
+    // Get the file version number generate by the FBX SDK.
+    FbxManager::GetFileFormatVersion(lSDKMajor, lSDKMinor, lSDKRevision);
+
+    // Create an importer.
+    FbxImporter* lImporter = FbxImporter::Create(pManager,"");
+
+    // Initialize the importer by providing a filename.
+    const bool lImportStatus = lImporter->Initialize(pFilename, -1, pManager->GetIOSettings());
+    lImporter->GetFileVersion(lFileMajor, lFileMinor, lFileRevision);
+
+    if( !lImportStatus )
+    {
+        FbxString error = lImporter->GetStatus().GetErrorString();
+        FBXSDK_printf("Call to FbxImporter::Initialize() failed.\n");
+        FBXSDK_printf("Error returned: %s\n\n", error.Buffer());
+
+        if (lImporter->GetStatus().GetCode() == FbxStatus::eInvalidFileVersion)
+        {
+            FBXSDK_printf("FBX file format version for this FBX SDK is %d.%d.%d\n", lSDKMajor, lSDKMinor, lSDKRevision);
+            FBXSDK_printf("FBX file format version for file '%s' is %d.%d.%d\n\n", pFilename, lFileMajor, lFileMinor, lFileRevision);
+        }
+
+        return false;
+    }
+
+    FBXSDK_printf("FBX file format version for this FBX SDK is %d.%d.%d\n", lSDKMajor, lSDKMinor, lSDKRevision);
+
+    if (lImporter->IsFBX())
+    {
+        FBXSDK_printf("FBX file format version for file '%s' is %d.%d.%d\n\n", pFilename, lFileMajor, lFileMinor, lFileRevision);
+
+        // From this point, it is possible to access animation stack information without
+        // the expense of loading the entire file.
+
+        FBXSDK_printf("Animation Stack Information\n");
+
+        lAnimStackCount = lImporter->GetAnimStackCount();
+
+        FBXSDK_printf("    Number of Animation Stacks: %d\n", lAnimStackCount);
+        FBXSDK_printf("    Current Animation Stack: \"%s\"\n", lImporter->GetActiveAnimStackName().Buffer());
+        FBXSDK_printf("\n");
+
+        for(i = 0; i < lAnimStackCount; i++)
+        {
+            FbxTakeInfo* lTakeInfo = lImporter->GetTakeInfo(i);
+
+            FBXSDK_printf("    Animation Stack %d\n", i);
+            FBXSDK_printf("         Name: \"%s\"\n", lTakeInfo->mName.Buffer());
+            FBXSDK_printf("         Description: \"%s\"\n", lTakeInfo->mDescription.Buffer());
+
+            // Change the value of the import name if the animation stack should be imported 
+            // under a different name.
+            FBXSDK_printf("         Import Name: \"%s\"\n", lTakeInfo->mImportName.Buffer());
+
+            // Set the value of the import state to false if the animation stack should be not
+            // be imported. 
+            FBXSDK_printf("         Import State: %s\n", lTakeInfo->mSelect ? "true" : "false");
+            FBXSDK_printf("\n");
+        }
+
+        // Set the import states. By default, the import states are always set to 
+        // true. The code below shows how to change these states.
+        IOS_REF.SetBoolProp(IMP_FBX_MATERIAL,        true);
+        IOS_REF.SetBoolProp(IMP_FBX_TEXTURE,         true);
+        IOS_REF.SetBoolProp(IMP_FBX_LINK,            true);
+        IOS_REF.SetBoolProp(IMP_FBX_SHAPE,           true);
+        IOS_REF.SetBoolProp(IMP_FBX_GOBO,            true);
+        IOS_REF.SetBoolProp(IMP_FBX_ANIMATION,       true);
+        IOS_REF.SetBoolProp(IMP_FBX_GLOBAL_SETTINGS, true);
+    }
+
+    // Import the scene.
+    lStatus = lImporter->Import(pScene);
+
+    if(lStatus == false && lImporter->GetStatus().GetCode() == FbxStatus::ePasswordError)
+    {
+        FBXSDK_printf("Please enter password: ");
+
+        lPassword[0] = '\0';
+
+        FBXSDK_CRT_SECURE_NO_WARNING_BEGIN
+        scanf("%s", lPassword);
+        FBXSDK_CRT_SECURE_NO_WARNING_END
+
+        FbxString lString(lPassword);
+
+        IOS_REF.SetStringProp(IMP_FBX_PASSWORD,      lString);
+        IOS_REF.SetBoolProp(IMP_FBX_PASSWORD_ENABLE, true);
+
+        lStatus = lImporter->Import(pScene);
+
+        if(lStatus == false && lImporter->GetStatus().GetCode() == FbxStatus::ePasswordError)
+        {
+            FBXSDK_printf("\nPassword is wrong, import aborted.\n");
+        }
+    }
+
+    // Destroy the importer.
+    lImporter->Destroy();
+
+    return lStatus;
+}
+
 
 	void Cc3dFbxOneLoad::DestroySdkObjects(FbxManager* &pSdkManager)//一定要传指针的引用，因为需要将指针置NULL
 	{
@@ -201,7 +320,7 @@ Cc3dMatrix4 FbxAMatrixToCc3dMatrix4(const FbxAMatrix&m){
 		//每个材质对应一个subMesh
 		{
 			
-			//获得材质索引表（各多边形对应的材质索引）
+			//获得材质索引表（各多边形对应的材质索引)
 			FbxLayerElementArrayTemplate<int>* lMaterialIndice = NULL;
 			{
 				if (lMesh->GetElementMaterial())
@@ -213,21 +332,21 @@ Cc3dMatrix4 FbxAMatrixToCc3dMatrix4(const FbxAMatrix&m){
 				cout<<"error: lMaterialIndice==NULL!"<<endl;
 				return;
 			}
-			//获得材质索引表长度
+			//获得材质索引表长度--abc
 			const int MaterialIndiceCount=lMaterialIndice->GetCount();
 			if(MaterialIndiceCount==0){
 				cout<<"error: MaterialIndiceCount==0 !"<<endl;
 				return;
 			}
-			//获得材质映射模式
+			//获得材质映射模式--abc
 			FbxGeometryElement::EMappingMode lMaterialMappingMode = FbxGeometryElement::eNone;
 			lMaterialMappingMode = lMesh->GetElementMaterial()->GetMappingMode();
 			
 	
 			//-------------------------------判断uv映射模式及获得lUVName
 			const char * lUVName = NULL;
-			FbxStringList lUVNames;//这个不能放到下面的括号里面去，因为将来lUVName是要指向lUVNames[0]的
-			//如果lUVNames放在了下面的括号里面，括号结束时lUVName被析构，造成lUVName成空引用
+			FbxStringList lUVNames;//这个不能放到下面的括号里面去，因为将来lUVName是要指向lUVNames[0]的--abc
+			//如果lUVNames放在了下面的括号里面，括号结束时lUVName被析构，造成lUVName成空引用--abc
 			{
 				//是否有uv
 				bool mHasUV = lMesh->GetElementUVCount() > 0;
@@ -235,14 +354,14 @@ Cc3dMatrix4 FbxAMatrixToCc3dMatrix4(const FbxAMatrix&m){
 					cout<<"error: there is no uv!"<<endl;
 					assert(false);
 				}else{
-					//uv映射模式
+					//uv映射模式--abc
 					const FbxGeometryElementUV * lUVElement = lMesh->GetElementUV(0);
 					FbxGeometryElement::EMappingMode lUVMappingMode=lUVElement->GetMappingMode();
 					if(lUVMappingMode!=FbxGeometryElement::eByPolygonVertex){
 						cout<<"error: currently, only uv mapping mode : eByPolygonVertex is supported!"<<endl;
 						assert(false);
 					}else{
-						//获得uvSet名称
+						//获得uvSet名称--abc
 						lMesh->GetUVSetNames(lUVNames);
 						if (lUVNames.GetCount())
 						{
@@ -255,7 +374,7 @@ Cc3dMatrix4 FbxAMatrixToCc3dMatrix4(const FbxAMatrix&m){
 				}
 			}//得到lUVName
 			//cout<<"lUVName:"<<lUVName<<endl;
-			//---------------------判断norm映射模式
+			//---------------------判断norm映射模式--abc
 			bool mHasNormal = lMesh->GetElementNormalCount() > 0;
 			if (mHasNormal)
 			{
@@ -272,7 +391,7 @@ Cc3dMatrix4 FbxAMatrixToCc3dMatrix4(const FbxAMatrix&m){
 				}
 			}
 			//-------------
-			//求材质索引集
+			//求材质索引集--abc
 			vector<int> materialIndexSet;
 			for(int i=0;i<MaterialIndiceCount;i++){
 				int MaterialIndex=lMaterialIndice->GetAt(i);
@@ -289,7 +408,7 @@ Cc3dMatrix4 FbxAMatrixToCc3dMatrix4(const FbxAMatrix&m){
 			}//got materialIndexSet
 			int materialIndexSetSize=(int)materialIndexSet.size();
 
-			//生成subMesh列表（每个材质生成一个subMesh）
+			//生成subMesh列表（每个材质生成一个subMesh)
 			vector<Cc3dSkinSubMesh*> subMeshList;
 			for(int i=0;i<materialIndexSetSize;i++){
 				Cc3dSkinSubMesh*subMesh=new Cc3dSkinSubMesh();
@@ -297,7 +416,7 @@ Cc3dMatrix4 FbxAMatrixToCc3dMatrix4(const FbxAMatrix&m){
 				subMesh->init();
 				subMeshList.push_back(subMesh);
 			}
-			//为各subMesh填充纹理
+			//为各subMesh填充纹理--abc
 			string modelFolderPath;
 			{
 				modelFolderPath=fbxFileName;
@@ -308,6 +427,59 @@ Cc3dMatrix4 FbxAMatrixToCc3dMatrix4(const FbxAMatrix&m){
 				int lMaterialIndex=materialIndexSet[i];
 				Cc3dTexture* texture=NULL;
 				const FbxSurfaceMaterial * lMaterial = pNode->GetMaterial(lMaterialIndex);
+				// Phong material 
+				//see: http://blog.csdn.net/bugrunner/article/details/7211515
+				if(lMaterial->GetClassId().Is(FbxSurfacePhong::ClassId)){
+				
+					// Ambient Color   
+					FbxDouble3 ambient= ((FbxSurfacePhong*)lMaterial)->Ambient;  
+					//cout<<"ambient:"<<ambient[0]<<" "<<ambient[1]<<" "<<ambient[2]<<endl; 
+
+					// Diffuse Color   
+					FbxDouble3 diffuse=((FbxSurfacePhong*)lMaterial)->Diffuse;  
+					//cout<<"diffuse:"<<diffuse[0]<<" "<<diffuse[1]<<" "<<diffuse[2]<<endl;
+
+					// Specular Color   
+					FbxDouble3 specular=((FbxSurfacePhong*)lMaterial)->Specular;  
+					//cout<<"specular:"<<specular[0]<<" "<<specular[1]<<" "<<specular[2]<<endl;
+
+					// Emissive Color   
+					FbxDouble3 emissive=((FbxSurfacePhong*)lMaterial)->Emissive;  
+					//cout<<"emissive:"<<emissive[0]<<" "<<emissive[1]<<" "<<emissive[2]<<endl;
+
+					// Opacity   
+					//0 = opaque, 1 = transparent
+					//see fbxsurfacelambert.h
+					FbxDouble transparencyFactor=((FbxSurfacePhong*)lMaterial)->TransparencyFactor;  
+					//cout<<"transparencyFactor:"<<transparencyFactor<<endl;
+
+					// Shininess   
+					FbxDouble shininess=((FbxSurfacePhong*)lMaterial)->Shininess;  
+					//cout<<"shininess:"<<shininess<<endl; 
+
+					// Reflectivity   
+					FbxDouble reflectionFactor=((FbxSurfacePhong*)lMaterial)->ReflectionFactor;  
+					//cout<<"reflectionFactor:"<<reflectionFactor<<endl;
+
+					Cc3dMaterial*material=new Cc3dMaterial();
+					material->autorelease();
+					material->init();
+					//not all material properties are used
+					material->setAmbient(ambient[0],ambient[1],ambient[2]);
+					material->setDiffuseRGB(diffuse[0],diffuse[1],diffuse[2]);
+					material->setSpecular(specular[0],specular[1],specular[2]);
+					material->setDiffuseAlpha(1-transparencyFactor);//note: should be alpha=1-fbxTransprencyFactor
+					material->setShininess(shininess);
+	         		subMeshList[lMaterialIndex]->setMaterial(material);
+					
+
+				}else if(lMaterial->GetClassId().Is(FbxSurfaceLambert::ClassId)){
+					cout<<"warning: the material type is lambert, currently we only support phong, will ignore."<<endl;
+				}else{
+					cout<<"warning: unknown material type, will ignore."<<endl;
+				}
+		
+				//texture
 				const char * pPropertyName=FbxSurfaceMaterial::sDiffuse;
 				const FbxProperty lProperty = lMaterial->FindProperty(pPropertyName);
 				if (lProperty.IsValid())
@@ -316,6 +488,7 @@ Cc3dMatrix4 FbxAMatrixToCc3dMatrix4(const FbxAMatrix&m){
 					if (lTextureCount)
 					{
 						const FbxFileTexture* lFileTexture = lProperty.GetSrcObject(FBX_TYPE(FbxFileTexture), 0);
+
 						// Try to load the texture from absolute path
 						string fullPath=lFileTexture->GetFileName();
 						vector<string> strList=splitStrInTwoByLastBar(fullPath);
@@ -323,7 +496,7 @@ Cc3dMatrix4 FbxAMatrixToCc3dMatrix4(const FbxAMatrix&m){
 						string texFileName=strList[1];
 						string texPath=modelFolderPath+"/"+texFileName;
 						//cout<<"texPath:"<<texPath<<endl;
-						//以texPath生成纹理
+						//以texPath生成纹理--abc
 						texture=Cc3dTextureCache::sharedTextureCache()->addImage(texPath.c_str());
 						if(texture==NULL){
 							cout<<"error: create texture failed! "<<endl;
@@ -343,7 +516,7 @@ Cc3dMatrix4 FbxAMatrixToCc3dMatrix4(const FbxAMatrix&m){
 			{
 				//当前多边形号：i
 				//...
-				//----顶点
+				//----顶点--abc
 				int controlPointID0=lMesh->GetPolygonVertex(i,0);
 				int controlPointID1=lMesh->GetPolygonVertex(i,1);
 				int controlPointID2=lMesh->GetPolygonVertex(i,2);
@@ -362,10 +535,15 @@ Cc3dMatrix4 FbxAMatrixToCc3dMatrix4(const FbxAMatrix&m){
 				FbxVector2 uv0;
 				FbxVector2 uv1;
 				FbxVector2 uv2;
-				lMesh->GetPolygonVertexUV(i, 0, lUVName, uv0);
-				lMesh->GetPolygonVertexUV(i, 1, lUVName, uv1);
-				lMesh->GetPolygonVertexUV(i, 2, lUVName, uv2);
-				//----获得法向量
+				bool isUnmapped0;
+				bool isUnmapped1;
+				bool isUnmapped2;
+				//Added a new parameter to FbxMesh::GetPolygonVertexUV() to allow it to return an array of unmapped polygons. This is extremely useful to determine which vertex has no associated UV.
+				//see: http://docs.autodesk.com/FBX/2014/ENU/FBX-SDK-Documentation/index.html
+				lMesh->GetPolygonVertexUV(i, 0, lUVName, uv0,isUnmapped0);
+				lMesh->GetPolygonVertexUV(i, 1, lUVName, uv1,isUnmapped1);
+				lMesh->GetPolygonVertexUV(i, 2, lUVName, uv2,isUnmapped2);
+				//----获得法向量--abc
 				FbxVector4 norm0;
 				FbxVector4 norm1;
 				FbxVector4 norm2;
@@ -375,7 +553,7 @@ Cc3dMatrix4 FbxAMatrixToCc3dMatrix4(const FbxAMatrix&m){
 				norm0[3]=0;
 				norm1[3]=0;
 				norm2[3]=0;
-				//当前多边形材质索引
+				//当前多边形材质索引--abc
 				//ref to "Layer element for mapping materials (FbxSurfaceMaterial) to a geometry" in fbxlayer.h
 				int lMaterialIndex=0;
 				if(lMaterialMappingMode == FbxGeometryElement::eByPolygon){
@@ -390,7 +568,7 @@ Cc3dMatrix4 FbxAMatrixToCc3dMatrix4(const FbxAMatrix&m){
 				int meshID=lMaterialIndex;
 				//当前subMesh
 				Cc3dSubMesh*subMesh=subMeshList[meshID];
-				//----由uv,norm,pos合成顶点
+				//----由uv,norm,pos合成顶点--abc
 				Cc3dVertex vertex0(Cc3dVector4(pos0[0],pos0[1],pos0[2],pos0[3]),Cc3dVector2(uv0[0],1-uv0[1]),Cc3dVector4(norm0[0],norm0[1],norm0[2],norm0[3]));
 				Cc3dVertex vertex1(Cc3dVector4(pos1[0],pos1[1],pos1[2],pos1[3]),Cc3dVector2(uv1[0],1-uv1[1]),Cc3dVector4(norm1[0],norm1[1],norm1[2],norm1[3]));
 				Cc3dVertex vertex2(Cc3dVector4(pos2[0],pos2[1],pos2[2],pos2[3]),Cc3dVector2(uv2[0],1-uv2[1]),Cc3dVector4(norm2[0],norm2[1],norm2[2],norm2[3]));
@@ -431,7 +609,7 @@ Cc3dMatrix4 FbxAMatrixToCc3dMatrix4(const FbxAMatrix&m){
 	void Cc3dFbxOneLoad::makeSubMeshSetForEachNode(FbxNode* pNode)
 	{
 		FbxNodeAttribute* lNodeAttribute = pNode->GetNodeAttribute();
-		if (lNodeAttribute//有属性节点
+		if (lNodeAttribute//有属性节点--abc
 			&&lNodeAttribute->GetAttributeType() == FbxNodeAttribute::eMesh//且属性节点为的类型为eMesh
 			)//为pNode制作并绑定idSubMeshSet
 		{	
@@ -563,7 +741,8 @@ void Cc3dFbxOneLoad::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool 
 	void Cc3dFbxOneLoad::destroyManager(){
 		DestroySdkObjects(lSdkManager);//删除manager
 	}
-	void Cc3dFbxOneLoad::bakeAnimation(){
+	void Cc3dFbxOneLoad::bakeAnimation(float aniFrameInterval){
+		m_actor->setInterval(aniFrameInterval);
 		//animStack
 		FbxArray<FbxString*> mAnimStackNameArray;
 		lScene->FillAnimStackNameArray(mAnimStackNameArray);
@@ -582,8 +761,13 @@ void Cc3dFbxOneLoad::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool 
 				assert(false);
 			}
 			//设置当前AnimationStack为lCurrentAnimationStack
-			lScene->GetEvaluator()->SetContext(lCurrentAnimationStack);
-			//计算此动画的起止时间
+			//Now to retrieve the current animation stack, please use FbxScene::GetCurrentAnimationStack instead of FbxAnimEvaluator::GetContext.
+			//see fbxsdk2014.2.1 readme.txt
+			//and see fbxsdk2014.2.1/samples/viewScene/SceneContext.ccx
+			
+			///lScene->GetEvaluator()->SetContext(lCurrentAnimationStack);//fbxsdk 2013.1
+			lScene->SetCurrentAnimationStack(lCurrentAnimationStack);
+			//计算此动画的起止时间--abc
 			FbxTime startTime,stopTime;
 			{
 				
@@ -593,7 +777,7 @@ void Cc3dFbxOneLoad::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool 
 					startTime = lCurrentTakeInfo->mLocalTimeSpan.GetStart();
 					stopTime = lCurrentTakeInfo->mLocalTimeSpan.GetStop();
 				}
-				if(lCurrentTakeInfo==NULL||startTime.GetMilliSeconds()<0)//没得到lCurrentTakeInfo或者由lCurrentTakeInfo中得到的Start为负值
+				if(lCurrentTakeInfo==NULL||startTime.GetMilliSeconds()<0)//没得到lCurrentTakeInfo或者由lCurrentTakeInfo中得到的Start为负值--abc
 				{
 					if(lCurrentTakeInfo==NULL){
 						cout<<"warning:no currentTakeInfo! take the time line value instead"<<endl;
@@ -668,7 +852,7 @@ void Cc3dFbxOneLoad::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool 
     }
 
 	void Cc3dFbxOneLoad::updateSkin(FbxTime&Time,FbxAnimStack *lCurrentAnimationStack,int animStackIndex){
-		//更新fbx场景
+		//更新fbx场景--abc
 
 		if(lCurrentAnimationStack!=NULL){
 			//获得mCurrentAnimLayer
@@ -683,7 +867,7 @@ void Cc3dFbxOneLoad::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool 
 				lPose = lScene->GetPose(mPoseIndex);
 			}
 			//定义lDummyGlobalPosition
-			FbxAMatrix lDummyGlobalPosition;//模型的世界位置（默认构造为单位矩阵）
+			FbxAMatrix lDummyGlobalPosition;//模型的世界位置（默认构造为单位矩阵)
 			DrawNodeRecursive(lScene->GetRootNode(), Time, mCurrentAnimLayer,animStackIndex, lDummyGlobalPosition,lPose);
 		}
 	
@@ -831,7 +1015,7 @@ void Cc3dFbxOneLoad::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool 
 				break;
 			case FbxNodeAttribute::eSkeleton:
 				{
-					//这个在调试模型时应开启，以便观察骨骼与蒙皮是否吻合，但最终显示时应关闭以节省计算量
+					//这个在调试模型时应开启，以便观察骨骼与蒙皮是否吻合，但最终显示时应关闭以节省计算量--abc
 					DrawSkeleton(pNode, pParentGlobalPosition, pGlobalPosition);
 				}
 				break;
@@ -899,6 +1083,10 @@ void Cc3dFbxOneLoad::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool 
 		{
 			return;
 		}
+		const bool lHasShape = lMesh->GetShapeCount() > 0;
+		if(lHasShape){
+			cout<<"warning: not support shape deform yet!"<<endl;
+		}
 		//获得hasSkin
 		bool HasSkin=getHasDeformer(lMesh);
 		//获得CLusterCount
@@ -954,7 +1142,7 @@ void Cc3dFbxOneLoad::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool 
 		
 
 			ComputeLinearDeformation_simplify(pGlobalPosition, pMesh, pTime, pPose,animStackIndex);
-		//	//如果想适用于最广的情况，应该用下面这句，但效率会有所降低
+		//	//如果想适用于最广的情况，应该用下面这句，但效率会有所降低--abc
 		//	ComputeLinearDeformation_unsimplify(pGlobalPosition, pMesh, pTime, pVertexArray,pNormalArray, pPose);
 			
 		}
@@ -1007,10 +1195,10 @@ void Cc3dFbxOneLoad::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool 
 				assert(false);
 				//  (1) lClusterMode == FbxCluster::eNormalize:
 				//	normalized link mode, a vertex is always totally influenced by the links.
-				//  所有link（骨骼）对此顶点的影响权重之和为1
+				//  所有link（骨骼)对此顶点的影响权重之和为1
 				//  (2) lClusterMode == FbxCluster::eTotalOne:
 				//	total 1 link mode, a vertex can be partially influenced by the links. 
-				//  所有link（骨骼）对此顶点的影响权重之和totalLinksWeight不足1，其余1-totalLinksWeight由自身贡献
+				//  所有link（骨骼)对此顶点的影响权重之和totalLinksWeight不足1，其余1-totalLinksWeight由自身贡献--abc
 				
 			}
 		}
@@ -1020,17 +1208,17 @@ void Cc3dFbxOneLoad::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool 
 		// For all skins and all clusters, accumulate their deformation and weight
 		// on each vertices and store them in lClusterDeformation and lClusterWeight.
 		int lSkinCount = pMesh->GetDeformerCount(FbxDeformer::eSkin);
-		//其实只处理第一个skin即可
-		if(lSkinCount>1){//如果多于一个skin，给一个警报
+		//其实只处理第一个skin即可--abc
+		if(lSkinCount>1){//如果多于一个skin，给一个警报--abc
 			cout<<"warning: here is more than one skin, only consider the first one."<<endl;
-			lSkinCount=1;//强制只处理第一个skin，这样节省计算量
+			lSkinCount=1;//强制只处理第一个skin，这样节省计算量--abc
 		}
 		
 		for ( int lSkinIndex=0; lSkinIndex<lSkinCount; ++lSkinIndex)
 		{
 			FbxSkin * lSkinDeformer = (FbxSkin *)pMesh->GetDeformer(lSkinIndex, FbxDeformer::eSkin);
 
-			int lClusterCount = lSkinDeformer->GetClusterCount();//每个cluster对应一个骨骼，所以此值也是骨骼数
+			int lClusterCount = lSkinDeformer->GetClusterCount();//每个cluster对应一个骨骼，所以此值也是骨骼数--abc
 			for ( int lClusterIndex=0; lClusterIndex<lClusterCount; ++lClusterIndex)
 			{
 				FbxCluster* lCluster = lSkinDeformer->GetCluster(lClusterIndex);
@@ -1041,8 +1229,8 @@ void Cc3dFbxOneLoad::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool 
 				ComputeClusterDeformation(pGlobalPosition, pMesh, lCluster, lVertexTransformMatrix, pTime, pPose);
 				
 				int lVertexIndexCount = lCluster->GetControlPointIndicesCount();
-				int* clusterControlPointIndices=lCluster->GetControlPointIndices();//cluster的顶点索引表
-				double* clusterControlPointWeights= lCluster->GetControlPointWeights();//cluster的顶点权重表
+				int* clusterControlPointIndices=lCluster->GetControlPointIndices();//cluster的顶点索引表--abc
+				double* clusterControlPointWeights= lCluster->GetControlPointWeights();//cluster的顶点权重表--abc
 
 				
 				Cc3dSkinMesh* mesh=(Cc3dSkinMesh*)m_actor->findSkinMeshByFbxMeshPtr(pMesh);

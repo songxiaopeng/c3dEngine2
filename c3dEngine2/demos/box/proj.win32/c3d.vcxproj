@@ -205,7 +205,6 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\c3dEngine\platform\win32\libraries\*.*" "$(Ou
     <ClCompile Include="..\..\..\c3dEngine\core\c3dSubMesh.cpp" />
     <ClCompile Include="..\..\..\c3dEngine\core\c3dTexture.cpp" />
     <ClCompile Include="..\..\..\c3dEngine\core\c3dTextureCache.cpp" />
-    <ClCompile Include="..\..\..\c3dEngine\core\c3dTimeCounter.cpp" />
     <ClCompile Include="..\..\..\c3dEngine\core\c3dTouchSequence.cpp" />
     <ClCompile Include="..\..\..\c3dEngine\core\c3dTransform.cpp" />
     <ClCompile Include="..\..\..\c3dEngine\core\c3dVector.cpp" />
@@ -279,7 +278,6 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\c3dEngine\platform\win32\libraries\*.*" "$(Ou
     <ClInclude Include="..\..\..\c3dEngine\core\c3dSubMesh.h" />
     <ClInclude Include="..\..\..\c3dEngine\core\c3dTexture.h" />
     <ClInclude Include="..\..\..\c3dEngine\core\c3dTextureCache.h" />
-    <ClInclude Include="..\..\..\c3dEngine\core\c3dTimeCounter.h" />
     <ClInclude Include="..\..\..\c3dEngine\core\c3dTouchSequence.h" />
     <ClInclude Include="..\..\..\c3dEngine\core\c3dTransform.h" />
     <ClInclude Include="..\..\..\c3dEngine\core\c3dVector.h" />

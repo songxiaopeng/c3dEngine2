@@ -21,7 +21,7 @@ Cc3dVector2 Cc3dDeviceAndOSInfo::getScreenSize(){
 Cc3dVector2 Cc3dDeviceAndOSInfo::getResolutionSize(){
     return getResolutionSize_plat();
 }
-void Cc3dDeviceAndOSInfo::getMemStatistics(int&memUsed,int&memFree,int&memTotal){//获得内存统计数据
+void Cc3dDeviceAndOSInfo::getMemStatistics(int&memUsed,int&memFree,int&memTotal){//获得内存统计数据--abc
     getMemStatistics_plat(memUsed, memFree, memTotal);
     
 }

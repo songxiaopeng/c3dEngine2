@@ -236,7 +236,7 @@ protected:
     string m_name;
     bool m_isIgnorTransform;//just ignore self's transform, but will not ignore parent's transform
     int m_tag;
-    Cc3dTransform m_transform;//变换
+    Cc3dTransform m_transform;//变换--abc
     float m_visitDrawOrder;
     float m_visitUpdateOrder;
     Cc3dProgram*m_program;

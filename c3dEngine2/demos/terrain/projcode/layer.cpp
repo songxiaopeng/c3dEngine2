@@ -9,7 +9,7 @@
 #include "layer.h"
 #include "globalVars.h"
 void Clayer::update(float dt){
-	 //backKey响应单击
+	 //backKey响应单击--abc
 	if(m_button->isContainPoint(Cc3dGestureAnalyzer::sharedGestureAnalyzer()->getPoint())&&Cc3dGestureAnalyzer::sharedGestureAnalyzer()->getIsTapOnce()){
 		m_isWireMode=!m_isWireMode;
 		if(m_isWireMode){
@@ -48,9 +48,9 @@ bool Clayer::init(){
 	m_ground->autorelease();
 	m_ground->setName("ground");
 
-	//加载数据并生成地形
+	//加载数据并生成地形--abc
 
-	//----地面
+	//----地面--abc
 	const float blockWidth=2872;
 	const float blockHeight=2872;
 	//加载texture
@@ -65,9 +65,9 @@ bool Clayer::init(){
 	m_ground->setLight(light0);
 	m_ground->setPassUnifoCallback(buildinProgramPassUnifoCallback_classicLighting);
 	m_ground->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("classicLighting"));
-	m_ground->setReso(20000);//
+	m_ground->setReso(20);//
 
-	//提交数据
+	//提交数据--abc
 	m_ground->submitVertex(GL_STATIC_DRAW);
 	m_ground->getMesh()->getSubMeshByIndex(0)->clearMeshData();
 

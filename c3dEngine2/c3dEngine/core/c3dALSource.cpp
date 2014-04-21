@@ -26,7 +26,7 @@ void Cc3dALSource::initSource(Cc3dALBuffer*buffer){
     alSourcef(m_source, AL_PITCH, 1.0f);
     alSourcef(m_source, AL_GAIN, 1.0f);
     alSourcei(m_source, AL_LOOPING, AL_FALSE);
-    // 设定距离模型参数
+    // 设定距离模型参数--abc
     alSourcef(m_source, AL_REFERENCE_DISTANCE, 30);
     alSourcef(m_source, AL_ROLLOFF_FACTOR,0.25);
 }

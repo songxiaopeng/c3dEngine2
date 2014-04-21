@@ -8,6 +8,6 @@ using namespace std;
 class Cc3dFbxLoader{
 public:
 	static Cc3dFbxLoader*sharedFbxLoader();
-	Cc3dSkinActor*load(string fbxFilePath);
+	Cc3dSkinActor*load(string fbxFilePath,float aniFrameInterval);
 };
 #endif

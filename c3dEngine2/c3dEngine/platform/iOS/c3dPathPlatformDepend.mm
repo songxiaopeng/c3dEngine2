@@ -7,7 +7,7 @@
 //
 
 #include "c3dPathPlatformDepend.h"
-
+//note: the getFullPath_plat function require the folderNames not contain dot character!
 string getFullPath_plat(const string&filePath){
     string fileName;//文件名
     string ext;//后缀
