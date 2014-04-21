@@ -25,6 +25,9 @@ for win32 project:
 possible issues and solution:  
 assert failure on windows xp: http://git.oschina.net/wantnon2/c3dEngine2/issues/1  
   
+i will update code to http://git.oschina.net/wantnon2/c3dEngine2.git and https://github.com/wantnon2/c3dEngine2    
+the former is the main site. github may be some days later than git.oschina.   
+  
 qq group: 338565878  
   
 screenshot:  
