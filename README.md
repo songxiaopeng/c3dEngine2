@@ -20,7 +20,8 @@ How to run the project:
 for iOS project, open .xcodeproj with Xcode and run.  
 for win32 project:  
 1, install OpenAL: run OpenAL11CoreSDK.exe under OpenAL_install folder.  
-2, open .sln with vs2010 and run (suggest to run under release mode).    
+2, open .sln with vs2010 and run (suggest to run under release mode).   
+i mainly debug under release mode, so sometimes may forget to configure the debug mode --!  
   
 possible issues and solution:  
 assert failure on windows xp: http://git.oschina.net/wantnon2/c3dEngine2/issues/1  
