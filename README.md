@@ -26,8 +26,7 @@ i mainly debug under release mode, so sometimes may forget to configure the debu
 possible issues and solution:  
 assert failure on windows xp: http://git.oschina.net/wantnon2/c3dEngine2/issues/1  
   
-i will update code to http://git.oschina.net/wantnon2/c3dEngine2.git and https://github.com/wantnon2/c3dEngine2    
-the former is the main site. github may be some days later than git.oschina.   
+i will update code to http://git.oschina.net/wantnon2/c3dEngine2.git and https://github.com/wantnon2/c3dEngine2, the former is the main site.     
   
 qq group: 338565878  
   
