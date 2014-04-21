@@ -7,7 +7,7 @@ c3dEngine2 is a cocos2d-x-like simple 3d game engine. it is the upgrade version 
 support platform: iOS, win32  
 language: c++  
   
-it is the upgrade version of c3dEngine.(c3dEngine, see: http://git.oschina.net/wantnon2/c3dEngine-superSingleCell or https://github.com/wantnon2/c3dEngine2 )   
+it is the upgrade version of c3dEngine.(c3dEngine, see: http://git.oschina.net/wantnon2/c3dEngine-superSingleCell or https://github.com/wantnon2/superSingleCell-c3dEngine )   
   
 as i think c3dEngine is not very good in some aspects, so i am trying to make a better one. i removed the 'super single cell' game demo, instead, will write a series of small samples to show each feature of the engine, and at the same time, refine the engine.  
 now, the project is just start, so there is very few samples. but i will add more later.        
