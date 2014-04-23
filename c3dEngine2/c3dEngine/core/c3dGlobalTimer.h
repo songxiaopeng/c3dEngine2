@@ -37,6 +37,7 @@ public:
 #if (C3D_TARGET_PLATFORM == C3D_PLATFORM_WIN32)
 		m_startTime=(double)clock()/CLOCKS_PER_SEC;
 #else
+        //ref to cocos2dx CCDirector::calculateDeltaTime
         struct timeval t_time;
         gettimeofday(&t_time,  0);
         m_startTime=t_time.tv_sec+t_time.tv_usec*0.000001;
