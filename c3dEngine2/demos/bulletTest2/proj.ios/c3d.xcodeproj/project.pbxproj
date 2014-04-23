@@ -17,7 +17,7 @@
 		35DF645E138C427700FF9459 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35DF645D138C427700FF9459 /* QuartzCore.framework */; };
 		35DF6460138C427E00FF9459 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35DF645F138C427E00FF9459 /* OpenGLES.framework */; };
 		570B9B6919074E370094D389 /* physicsActor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 570B9B6719074E370094D389 /* physicsActor.cpp */; };
-		571E909918E945DF003EE2D9 /* box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 571E909318E945DF003EE2D9 /* box.cpp */; };
+		570B9B7919079ED40094D389 /* layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 570B9B7719079ED40094D389 /* layer.cpp */; };
 		571E909A18E945DF003EE2D9 /* globalVars.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 571E909518E945DF003EE2D9 /* globalVars.cpp */; };
 		571E909B18E945DF003EE2D9 /* initGame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 571E909718E945DF003EE2D9 /* initGame.cpp */; };
 		571E90FB18E94610003EE2D9 /* c3dActor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 571E909D18E94610003EE2D9 /* c3dActor.cpp */; };
@@ -156,8 +156,8 @@
 		570B9B6719074E370094D389 /* physicsActor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = physicsActor.cpp; sourceTree = "<group>"; };
 		570B9B6819074E370094D389 /* physicsActor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = physicsActor.h; sourceTree = "<group>"; };
 		570B9B7019075B610094D389 /* decision_and_reason.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = decision_and_reason.h; sourceTree = "<group>"; };
-		571E909318E945DF003EE2D9 /* box.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = box.cpp; sourceTree = "<group>"; };
-		571E909418E945DF003EE2D9 /* box.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = box.h; sourceTree = "<group>"; };
+		570B9B7719079ED40094D389 /* layer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = layer.cpp; sourceTree = "<group>"; };
+		570B9B7819079ED40094D389 /* layer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = layer.h; sourceTree = "<group>"; };
 		571E909518E945DF003EE2D9 /* globalVars.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = globalVars.cpp; sourceTree = "<group>"; };
 		571E909618E945DF003EE2D9 /* globalVars.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = globalVars.h; sourceTree = "<group>"; };
 		571E909718E945DF003EE2D9 /* initGame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = initGame.cpp; sourceTree = "<group>"; };
@@ -376,8 +376,8 @@
 		571E909218E945DF003EE2D9 /* projcode */ = {
 			isa = PBXGroup;
 			children = (
-				571E909318E945DF003EE2D9 /* box.cpp */,
-				571E909418E945DF003EE2D9 /* box.h */,
+				570B9B7719079ED40094D389 /* layer.cpp */,
+				570B9B7819079ED40094D389 /* layer.h */,
 				571E909518E945DF003EE2D9 /* globalVars.cpp */,
 				571E909618E945DF003EE2D9 /* globalVars.h */,
 				571E909718E945DF003EE2D9 /* initGame.cpp */,
@@ -758,8 +758,8 @@
 				571E910C18E94610003EE2D9 /* c3dGLMath.cpp in Sources */,
 				571E911718E94610003EE2D9 /* c3dModel.cpp in Sources */,
 				571E911918E94610003EE2D9 /* c3dNode.cpp in Sources */,
-				571E909918E945DF003EE2D9 /* box.cpp in Sources */,
 				57C77BE918E45334009820B6 /* MyOpenALSupport.c in Sources */,
+				570B9B7919079ED40094D389 /* layer.cpp in Sources */,
 				571E912118E94610003EE2D9 /* c3dSpan.cpp in Sources */,
 				571E910018E94610003EE2D9 /* c3dAssert.cpp in Sources */,
 				571E909B18E945DF003EE2D9 /* initGame.cpp in Sources */,

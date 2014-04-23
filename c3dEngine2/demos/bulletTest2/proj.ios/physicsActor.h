@@ -30,13 +30,33 @@ public:
             delete m_shape;
         }
     }
+    void setBodyPos(const Cc3dVector4&pos){
+        if (m_body)
+        {
+            btTransform trans = m_body->getWorldTransform();
+            trans.setOrigin(btVector3(pos.x(), pos.y(), pos.z()));
+            m_body->setWorldTransform(trans);
+        }
+    }
+    Cc3dVector4 getBodyPos(){
+        btTransform trans;
+        m_body->getMotionState()->getWorldTransform(trans);
+        Cc3dVector4 pos(trans.getOrigin().getX(),trans.getOrigin().getY(),trans.getOrigin().getZ(),1);
+        return pos;
+    }
+    void setActorPos(const Cc3dVector4&pos){
+        Cc3dActor::setPos(pos);
+    }
+    Cc3dVector4 getActorPos(){
+        return getPos();
+    }
     bool init(){
         Cc3dActor::init();
         //----display
         //create box mesh
         this->setModel(makeBoxModel(0.5));
         //----physics
-        //rotation
+     /*   //rotation
         Cc3dTransform transform=getTransform();
         Cc3dMatrix4 RTmat=transform.getRTmat();
         btMatrix3x3 rotMatrix=btMatrix3x3(RTmat.getAt(0),RTmat.getAt(4),RTmat.getAt(8),//row0
@@ -50,17 +70,25 @@ public:
         //position
         btVector3 position = btVector3(transform.getPos().x(), transform.getPos().y(), transform.getPos().z());
         //shape
-        m_shape = new btBoxShape(btVector3(btScalar(0.5),btScalar(0.5),btScalar(0.5)));
+        /////m_shape = new btBoxShape(btVector3(btScalar(0.5),btScalar(0.5),btScalar(0.5)));
         createShapeWithSubMeshData(this->getMeshByIndex(0)->getSubMeshByIndex(0)->getSubMeshData(), true, m_shape);
         //motionState
         btDefaultMotionState* motionState = new btDefaultMotionState(btTransform(rotation, position));
+        */
+        
+        m_shape = new btSphereShape(btScalar(1.));
+        btTransform startTransform;
+		startTransform.setIdentity();
+        startTransform.setOrigin(btVector3(2,10,0));
+        btDefaultMotionState* motionState = new btDefaultMotionState(startTransform);
+        
         //body mass
-        btScalar bodyMass = 1.0;
+        btScalar	mass(1.f);
         //body inertia
         btVector3 bodyInertia;
-        m_shape->calculateLocalInertia(bodyMass, bodyInertia);
+        m_shape->calculateLocalInertia(mass, bodyInertia);
         //bodyCI
-        btRigidBody::btRigidBodyConstructionInfo bodyCI = btRigidBody::btRigidBodyConstructionInfo(bodyMass, motionState, m_shape, bodyInertia);
+        btRigidBody::btRigidBodyConstructionInfo bodyCI = btRigidBody::btRigidBodyConstructionInfo(mass, motionState, m_shape, bodyInertia);
         //body
         m_body=new btRigidBody(bodyCI);
         //save this to body
@@ -69,9 +97,10 @@ public:
         m_body->setLinearFactor(btVector3(1,1,1));//if want no action on z, use (1,1,0)
         return true;
     }
+    btRigidBody*getBody(){return m_body;}
 protected:
     static Cc3dModel* makeBoxModel(float d);
-    static void createShapeWithSubMeshData(const Cc3dSubMeshData*subMeshData,bool isConvex,btCollisionShape*shape){
+    static void createShapeWithSubMeshData(const Cc3dSubMeshData*subMeshData,bool isConvex,btCollisionShape*&shape){
         assert(shape==NULL);
         if (isConvex)
         {

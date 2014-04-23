@@ -14,7 +14,9 @@ using namespace std;
 #include <time.h>
 #include <assert.h>
 
-
+#if (C3D_TARGET_PLATFORM == C3D_PLATFORM_IOS)
+#include <sys/time.h>
+#endif
 
 class Cc3dGlobalTimer
 {
@@ -32,13 +34,25 @@ public:
     }
     virtual~Cc3dGlobalTimer(){};
 	void start(){
+#if (C3D_TARGET_PLATFORM == C3D_PLATFORM_WIN32)
 		m_startTime=(double)clock()/CLOCKS_PER_SEC;
+#else
+        struct timeval t_time;
+        gettimeofday(&t_time,  0);
+        m_startTime=t_time.tv_sec+t_time.tv_usec*0.000001;
+#endif
 		m_curTime=m_startTime;
 		m_isStarted=true;
 	}
     double getTimeFromStart(){
 		assert(m_isStarted);
+#if (C3D_TARGET_PLATFORM == C3D_PLATFORM_WIN32)
 		m_curTime=(double)clock()/CLOCKS_PER_SEC;
+#else
+        struct timeval t_time;
+        gettimeofday(&t_time,  0);
+        m_curTime=t_time.tv_sec+t_time.tv_usec*0.000001;
+#endif
         return max(0.0,m_curTime-m_startTime);//must use 0.0, not 0
     }
 };
