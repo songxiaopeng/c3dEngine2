@@ -207,9 +207,8 @@ public:
     Cc3dNode*getFather()const{return m_father;}
     void setIsIgnorTransform(bool value){m_isIgnorTransform=value;}
     bool getIsIgnorTransform()const{return m_isIgnorTransform;}
-    const Cc3dTransform&getTransform()const{return m_transform;}
+    Cc3dTransform getTransform()const{return m_transform;}
     void setTransform(const Cc3dTransform&transform){m_transform=transform;}
-    Cc3dTransform*getTransformPointer(){return &m_transform;};
     bool getIsRemoveOnNextFrame()const{return m_isRemoveOnNextFrame;}
     void setIsRemoveOnNextFrame(bool value){m_isRemoveOnNextFrame=value;};
 	void setRTSmat(const Cc3dMatrix4&RTSmat){m_transform.setRTSmat(RTSmat);}
@@ -236,7 +235,7 @@ protected:
     string m_name;
     bool m_isIgnorTransform;//just ignore self's transform, but will not ignore parent's transform
     int m_tag;
-    Cc3dTransform m_transform;//变换--abc
+    Cc3dTransform m_transform;//transform (see decision_and_reason.h -- decision 1)
     float m_visitDrawOrder;
     float m_visitUpdateOrder;
     Cc3dProgram*m_program;

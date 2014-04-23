@@ -35,6 +35,9 @@ public:
     float getScaleX()const{return m_scaleX;}
     float getScaleY()const{return m_scaleY;}
     float getScaleZ()const{return m_scaleZ;}
+    bool getIsHasScale(){
+        return (m_scaleX!=1||m_scaleY!=1||m_scaleZ!=1);
+    }
     void setScale(float scaleX,float scaleY,float scaleZ);
     void scale(float scaleX,float scaleY,float scaleZ);
     Cc3dMatrix4 getRTSmat()const;

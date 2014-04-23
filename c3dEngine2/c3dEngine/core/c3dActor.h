@@ -20,13 +20,7 @@ protected:
 public:
     Cc3dActor(){
         m_model=NULL;
-		assert(m_model==NULL);
-		Cc3dNode::init();
-		m_model = new Cc3dModel();
-		m_model->autorelease();
-		m_model->init();
-		addChild(m_model);
-    } 
+    }
     virtual~Cc3dActor(){ 
       
         int nSource=(int)m_alSourceList.size();
@@ -34,6 +28,25 @@ public:
             Cc3dALSource*source=m_alSourceList[i];
             source->release();
             //cout<<"release source name:"<<source->getName()<<endl;
+        }
+    }
+    bool init(){
+        Cc3dNode::init();
+        Cc3dModel*model=new Cc3dModel();
+		model->autorelease();
+		model->init();
+		setModel(model);
+
+        return true;
+    }
+    void setModel(Cc3dModel*model){
+        if(m_model==NULL){
+            m_model=model;
+            addChild(m_model);
+        }else{
+            m_model->removeFromParent();
+            m_model=model;
+            addChild(m_model);
         }
     }
 	Cc3dModel*getModel()const {return m_model;}
