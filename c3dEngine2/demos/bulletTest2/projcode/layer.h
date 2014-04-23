@@ -34,11 +34,9 @@ public:
 		Cc3dAudioCache::sharedAudioCache()->removeUnusedBuffersAndSourcesOnNextFrame();
     }
 	void update(float dt){
-        cout<<"dt:"<<dt<<endl;
-        cout<<"1.f/60:"<<1.f/60<<endl;
         count++;
         if(count==100)exit(0);
-        m_world->stepSimulation(1.f/60.f,10);
+        m_world->stepSimulation(dt,10);
 		
 		//print positions of all objects
 		for (int j=m_world->getNumCollisionObjects()-1; j>=0 ;j--)

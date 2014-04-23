@@ -35,7 +35,6 @@ void Cc3dNode::visitUpdate(){
 			double curTime=Cc3dGlobalTimer::sharedGlobalTimer()->getTimeFromStart();
 			double lastUpdateTime=m_lastUpdateTime;
 			double dt=maxf(0,curTime-lastUpdateTime);
-            cout<<"--------"<<dt<<endl;
             this->update(dt);
 			m_lastUpdateTime=curTime;
         }
