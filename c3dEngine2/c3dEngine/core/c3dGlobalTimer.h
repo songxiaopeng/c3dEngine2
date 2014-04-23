@@ -14,7 +14,8 @@ using namespace std;
 #include <time.h>
 #include <assert.h>
 
-#if (C3D_TARGET_PLATFORM == C3D_PLATFORM_IOS)
+#if (C3D_TARGET_PLATFORM == C3D_PLATFORM_WIN32)
+#else
 #include <sys/time.h>
 #endif
 
