@@ -24,7 +24,7 @@ public:
         m_dispatcher=NULL;
         m_solver=NULL;
         m_world=NULL;
-        count=0;
+
 	
     } 
     virtual~Clayer(){
@@ -34,8 +34,7 @@ public:
 		Cc3dAudioCache::sharedAudioCache()->removeUnusedBuffersAndSourcesOnNextFrame();
     }
 	void update(float dt){
-        count++;
-        if(count==100)exit(0);
+
         m_world->stepSimulation(dt,10);
 		
 		//print positions of all objects
@@ -47,7 +46,7 @@ public:
 			{
                 CphysicsActor*actor=(CphysicsActor*)body->getUserPointer();
                 actor->setActorPos(actor->getBodyPos());
-                cout<<"pos:"<<actor->getBodyPos().x()<<" "<<actor->getBodyPos().y()<<" "<<actor->getBodyPos().z()<<endl;
+               // cout<<"pos:"<<actor->getBodyPos().x()<<" "<<actor->getBodyPos().y()<<" "<<actor->getBodyPos().z()<<endl;
             }
 		}
     }
@@ -57,19 +56,39 @@ public:
         return true;
     }
     void initActors(){
-        CphysicsActor*actor=new CphysicsActor();
-        actor->autorelease();
-        actor->init();
-    //    actor->setBodyPos(Cc3dVector4(0,10,0,1));
-        actor->setLight(light0);
-        actor->setCamera(camera);
-        actor->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("classicLighting"));
-        actor->setPassUnifoCallback(buildinProgramPassUnifoCallback_classicLighting);
-        actor->genVBOBuffers();
-        actor->submit(GL_STATIC_DRAW);
-        m_actorList.push_back(actor);
-        this->addChild(actor);
-        m_world->addRigidBody(actor->getBody());
+        //----box
+        {
+            CphysicsActor*actor=new CphysicsActor();
+            actor->autorelease();
+            actor->init(1.0f,0.5);
+            actor->setBodyPos(Cc3dVector4(0,10,0,1));
+            actor->setLight(light0);
+            actor->setCamera(camera);
+            actor->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("classicLighting"));
+            actor->setPassUnifoCallback(buildinProgramPassUnifoCallback_classicLighting);
+            actor->genVBOBuffers();
+            actor->submit(GL_STATIC_DRAW);
+            m_actorList.push_back(actor);
+            this->addChild(actor);
+            m_world->addRigidBody(actor->getBody());
+        }
+        //----ground
+        {
+            CphysicsActor*actor=new CphysicsActor();
+            actor->autorelease();
+            actor->init(0.0f,2,Cc3dVector4(0,-5,0,1));
+           // actor->setBodyPos(Cc3dVector4(0,0,0,1));
+            actor->setLight(light0);
+            actor->setCamera(camera);
+            actor->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("classicLighting"));
+            actor->setPassUnifoCallback(buildinProgramPassUnifoCallback_classicLighting);
+            actor->genVBOBuffers();
+            actor->submit(GL_STATIC_DRAW);
+            m_actorList.push_back(actor);
+            this->addChild(actor);
+            m_world->addRigidBody(actor->getBody());
+        }
+        
 
     }
 	
@@ -103,7 +122,7 @@ protected:
     btDiscreteDynamicsWorld*                m_world;
 protected:
     vector<CphysicsActor*>m_actorList;
-    int count;
+
 };
 
 

@@ -50,13 +50,13 @@ public:
     Cc3dVector4 getActorPos(){
         return getPos();
     }
-    bool init(){
+    bool init(float bodyMass,float d,const Cc3dVector4&pos=Cc3dVector4(0, 0, 0, 1)){
         Cc3dActor::init();
         //----display
         //create box mesh
-        this->setModel(makeBoxModel(0.5));
+        this->setModel(makeBoxModel(d));
         //----physics
-     /*   //rotation
+        //rotation
         Cc3dTransform transform=getTransform();
         Cc3dMatrix4 RTmat=transform.getRTmat();
         btMatrix3x3 rotMatrix=btMatrix3x3(RTmat.getAt(0),RTmat.getAt(4),RTmat.getAt(8),//row0
@@ -68,22 +68,14 @@ public:
         btQuaternion rotation;
         rotation.setEulerZYX(yaw, pitch, roll);
         //position
-        btVector3 position = btVector3(transform.getPos().x(), transform.getPos().y(), transform.getPos().z());
+        btVector3 position = btVector3(pos.x(),pos.y(),pos.z());//btVector3(transform.getPos().x(), transform.getPos().y(), transform.getPos().z());
         //shape
-        /////m_shape = new btBoxShape(btVector3(btScalar(0.5),btScalar(0.5),btScalar(0.5)));
         createShapeWithSubMeshData(this->getMeshByIndex(0)->getSubMeshByIndex(0)->getSubMeshData(), true, m_shape);
         //motionState
         btDefaultMotionState* motionState = new btDefaultMotionState(btTransform(rotation, position));
-        */
-        
-        m_shape = new btSphereShape(btScalar(1.));
-        btTransform startTransform;
-		startTransform.setIdentity();
-        startTransform.setOrigin(btVector3(2,10,0));
-        btDefaultMotionState* motionState = new btDefaultMotionState(startTransform);
-        
+      
         //body mass
-        btScalar	mass(1.f);
+        btScalar	mass(bodyMass);
         //body inertia
         btVector3 bodyInertia;
         m_shape->calculateLocalInertia(mass, bodyInertia);
