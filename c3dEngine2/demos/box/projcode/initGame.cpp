@@ -59,6 +59,7 @@ void initGame(){
 	
     Cbox*box=new Cbox();
 	box->autorelease();
+    box->init();
 	box->setName("box");
 	box->makeBox(2,"box_resource/tex/box.png");
 

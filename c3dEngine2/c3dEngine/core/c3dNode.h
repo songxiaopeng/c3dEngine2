@@ -186,14 +186,19 @@ public:
 
     virtual void visitDraw();
     virtual void visitUpdate();
-    virtual Cc3dVector4 getPos()const{return getTransform().getPos();}//chance to override
-    virtual void setPos(const Cc3dVector4&pos){
+    Cc3dVector4 getPos()const{return getTransform().getPos();}
+    void setPos(const Cc3dVector4&pos){
         Cc3dTransform transform=getTransform();
         transform.setPos(pos);
         setTransform(transform);
     
-    }//chance to override
-    
+    }
+    Cc3dMatrix4 getRotation()const{return getTransform().getRotation();}
+    void setRotation(const Cc3dMatrix4&Rmat){
+        Cc3dTransform transform=getTransform();
+        transform.setRotation(Rmat);
+        setTransform(transform);
+    }
     vector<Cc3dNode*> getChildren(){return m_childList;};
     Cc3dNode* getChildByName(const string&name)const{
         int nChild=(int)m_childList.size();
