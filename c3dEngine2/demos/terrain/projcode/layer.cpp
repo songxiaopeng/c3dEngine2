@@ -57,7 +57,7 @@ bool Clayer::init(){
 	Cc3dTexture*texture=Cc3dTextureCache::sharedTextureCache()->addImage("terrain_resource/texture_2048x2048.png");
 	//³õÊ¼»¯ground
 	Cc3dRect rect(-blockWidth/2, -blockHeight/2, blockWidth, blockHeight);
-	m_ground->init("terrain_resource/heightMap.bmp",rect,0.3,9,texture);
+	m_ground->initWithFile("terrain_resource/heightMap.bmp",rect,0.3,9,texture);
 	m_ground->setUVScale(1);
 	m_ground->getMesh()->setDiffuseRGB(1, 1, 1);
 	m_ground->getMesh()->setAmbient(0.2, 0.2, 0.2);

@@ -11,7 +11,6 @@ void Cbox::makeBox(float d,string texFilePath){
 	//----subMesh
 	Cc3dSubMesh*subMesh=new Cc3dSubMesh();
 	subMesh->autorelease();
-	subMesh->init();
 	//--color
 	Cc3dVector4 color[8]={Cc3dVector4(1,0,0,1),Cc3dVector4(0,1,0,1),Cc3dVector4(0,0,1,1),Cc3dVector4(0,1,1,1),
 						  Cc3dVector4(1,0,1,1),Cc3dVector4(1,1,0,1),Cc3dVector4(1,0.5,0,1),Cc3dVector4(0,0.5,1,1)};

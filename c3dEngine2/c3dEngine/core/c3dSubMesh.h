@@ -43,6 +43,7 @@ public:
         m_isWriteDepthBuffer=true;
         m_isDoDepthTest=true;
 		m_isDrawWireBox=false;
+        init_dft();
     }
     virtual~Cc3dSubMesh(){
         if(m_subMeshData)m_subMeshData->release();
@@ -53,27 +54,22 @@ public:
 	void setIsWireMode(bool isWireMode){
 		m_indexVBO->setIsWireMode(isWireMode);
 	}
-    bool init(){
-        if(Cc3dNode::init()==false)return false;
+    void init_dft(){
 		//default texture
 		Cc3dTexture*texture=Cc3dTextureCache::sharedTextureCache()->addImage("c3dEngineResource/tex/white.png",GL_CLAMP_TO_EDGE,GL_CLAMP_TO_EDGE);
 		setTexture(texture);
 		//default material
         Cc3dMaterial*material=new Cc3dMaterial();
-        material->init();
         material->autorelease();
         setMaterial(material);
         //default subMeshData
         Cc3dSubMeshData*meshData=new Cc3dSubMeshData();
-        meshData->init();
         meshData->autorelease();
         setMeshData(meshData);
         //default indexVBO
         Cc3dIndexVBO*indexVBO=new Cc3dIndexVBO();
-        indexVBO->init();
         indexVBO->autorelease();
         setIndexVBO(indexVBO);
-        return true;
     }
     void setIndexVBO(Cc3dIndexVBO*indexVBO){
         assert(indexVBO);
@@ -90,6 +86,7 @@ public:
     Cc3dIndexVBO*getIndexVBO()const{return m_indexVBO;}
     void setMeshData(Cc3dSubMeshData*meshData){
         assert(meshData);
+        if(m_subMeshData==meshData)return;
         if(m_subMeshData==NULL){
             m_subMeshData=meshData;
             m_subMeshData->retain();

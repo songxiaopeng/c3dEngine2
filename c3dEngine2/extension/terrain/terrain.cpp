@@ -118,7 +118,7 @@ inline void Cterrain::fillNormalMat()//根据高程数据landMat填充法向数�
         }
     }
 }
-bool Cterrain::init(const string&heightMapFileName,const Cc3dRect&rect,float heightScale,int quadtreeDepth,
+bool Cterrain::initWithFile(const string&heightMapFileName,const Cc3dRect&rect,float heightScale,int quadtreeDepth,
                    Cc3dTexture*texture){
     assert(rect.getWidth()==rect.getHeight());
     m_heightScale=heightScale;
@@ -126,7 +126,6 @@ bool Cterrain::init(const string&heightMapFileName,const Cc3dRect&rect,float hei
     m_heightMapFileName=heightMapFileName;
     //生成mesh
     Cc3dMesh*mesh=new Cc3dMesh();
-    mesh->init();
     mesh->autorelease();
     addMesh(mesh);
     //读取高程数据--abc
@@ -162,7 +161,6 @@ bool Cterrain::init(const string&heightMapFileName,const Cc3dRect&rect,float hei
     //制作ground submesh
     Cc3dSubMesh*submesh=new Cc3dSubMesh();
     submesh->autorelease();
-    submesh->init();
     submesh->setTexture(texture);
     submesh->getIndexVBO()->genBuffers();
     this->getMesh()->addSubMesh(submesh);

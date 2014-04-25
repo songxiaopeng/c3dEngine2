@@ -8,27 +8,41 @@
 
 #include "c3dNode.h"
 
-
- bool Cc3dNode::init(){
-		Cc3dObject::init();
-        //default camera
-        Cc3dCamera*camera=new Cc3dCamera();
-        camera->init();
-        camera->autorelease();
-        setCamera(camera);
-        //default light
-        Cc3dLight*light=new Cc3dLight();
-        light->init();
-        light->autorelease();
-        setLight(light);
-        //default passUniformCallback
-        m_passUnifoCallback=buildinProgramPassUnifoCallback_texColorOnly;
-        //default program
-        Cc3dProgram*program=Cc3dProgramCache::sharedProgramCache()->getProgramByName("shader_texColorOnly");
-        setProgram(program);
-        return true;
-
+void Cc3dNode::init_dft(){
+    //default transform
+    Cc3dTransform*transform=new Cc3dTransform();
+    transform->autorelease();
+    setTransform(transform);
+    //default camera
+    Cc3dCamera*camera=new Cc3dCamera();
+    camera->autorelease();
+    setCamera(camera);
+    //default light
+    Cc3dLight*light=new Cc3dLight();
+    light->autorelease();
+    setLight(light);
+    //default passUniformCallback
+    m_passUnifoCallback=buildinProgramPassUnifoCallback_texColorOnly;
+   
+    //default program
+    Cc3dProgram*program=Cc3dProgramCache::sharedProgramCache()->getProgramByName("shader_texColorOnly");
+    setProgram(program);
+    
+}
+void Cc3dNode::setTransform(Cc3dTransform*transform){
+    assert(transform);
+    if(m_transform==transform)return;
+    if(m_transform==NULL){
+        m_transform=transform;
+        m_transform->retain();
+    }else{
+        m_transform->release();
+        m_transform=transform;
+        m_transform->retain();
     }
+   
+    
+}
 void Cc3dNode::visitUpdate(){
     if(this->getIsDoUpdateRecursively()){
         if(this->getIsDoUpdate()){
@@ -58,6 +72,7 @@ void Cc3dNode::visitDraw(){
  //   cout<<"enter node: "<<m_name<<endl;
     if(this->getIsVisibleRecursively()){
         Cc3dModelMatStack::sharedModelMatStack()->pushMatrix();
+       // cout<<"NAME:"<<this->getName()<<endl;
         if(!m_isIgnorTransform)this->transform();
         
         if(this->getIsVisible()){

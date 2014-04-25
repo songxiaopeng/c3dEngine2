@@ -36,16 +36,19 @@ public:
         m_program=NULL;
         m_light=NULL;
         m_camera=NULL;
+        m_transform=NULL;
         m_isRemoveOnNextFrame=false;
         m_isVisibleRecursively=true;
         m_isDoUpdateRecursively=true;
 		m_lastUpdateTime=0;
+        init_dft();
     }
     virtual~Cc3dNode(){
        // cout<<"析构:"<<m_name<<endl;
         if(m_program)m_program->release();
         if(m_light)m_light->release();
         if(m_camera)m_camera->release();
+        if(m_transform)m_transform->release();
         //call release for all direct children
         int nchild=(int)m_childList.size();
         for(int i=0;i<nchild;i++){
@@ -54,7 +57,7 @@ public:
             m_childList[i]->release();
         }
     }
-    bool init();
+    void init_dft();
     void setLight(Cc3dLight*light){
         assert(light);
         if(m_light==NULL){
@@ -142,7 +145,7 @@ public:
     bool getIsDoUpdate()const{return m_isDoUpdate;}
     bool getIsVisible()const{return m_isVisible;}
     void transform(){
-        Cc3dModelMatStack::sharedModelMatStack()->mulMatrix(m_transform.getRTSmat());
+        Cc3dModelMatStack::sharedModelMatStack()->mulMatrix(m_transform->getRTSmat());
     }
     void removeAllChild(){
         int nChild=(int)m_childList.size();
@@ -186,9 +189,21 @@ public:
 
     virtual void visitDraw();
     virtual void visitUpdate();
-    virtual Cc3dVector4 getPos()const{return getTransform().getPos();}//chance to override
-    virtual void setPos(const Cc3dVector4&pos){getTransformPointer()->setPos(pos);}//chance to override
+    Cc3dVector4 getPos(){return getTransform()->getPos();}
+    void setPos(const Cc3dVector4&pos){
+       /* Cc3dTransform*transform=getTransform();
+        transform->setPos(pos);
+        setTransform(transform);*/
+        getTransform()->setPos(pos);
     
+    }
+    Cc3dMatrix4 getRotation(){return getTransform()->getRotation();}
+    void setRotation(const Cc3dMatrix4&Rmat){
+      /*  Cc3dTransform*transform=getTransform();
+        transform->setRotation(Rmat);
+        setTransform(transform);*/
+        getTransform()->setRotation(Rmat);
+    }
     vector<Cc3dNode*> getChildren(){return m_childList;};
     Cc3dNode* getChildByName(const string&name)const{
         int nChild=(int)m_childList.size();
@@ -207,12 +222,11 @@ public:
     Cc3dNode*getFather()const{return m_father;}
     void setIsIgnorTransform(bool value){m_isIgnorTransform=value;}
     bool getIsIgnorTransform()const{return m_isIgnorTransform;}
-    const Cc3dTransform&getTransform()const{return m_transform;}
-    void setTransform(const Cc3dTransform&transform){m_transform=transform;}
-    Cc3dTransform*getTransformPointer(){return &m_transform;};
+    Cc3dTransform*getTransform(){return m_transform;}
+    void setTransform(Cc3dTransform*transform);
     bool getIsRemoveOnNextFrame()const{return m_isRemoveOnNextFrame;}
     void setIsRemoveOnNextFrame(bool value){m_isRemoveOnNextFrame=value;};
-	void setRTSmat(const Cc3dMatrix4&RTSmat){m_transform.setRTSmat(RTSmat);}
+	void setRTSmat(const Cc3dMatrix4&RTSmat){m_transform->setRTSmat(RTSmat);}
 protected:
     int getChildIndexInChildList(Cc3dNode*node){//return -1 if failed
         int nchild=(int)m_childList.size();
@@ -236,7 +250,7 @@ protected:
     string m_name;
     bool m_isIgnorTransform;//just ignore self's transform, but will not ignore parent's transform
     int m_tag;
-    Cc3dTransform m_transform;//变换--abc
+    Cc3dTransform*m_transform;//transform (see decision_and_reason.h -- decision 1)
     float m_visitDrawOrder;
     float m_visitUpdateOrder;
     Cc3dProgram*m_program;

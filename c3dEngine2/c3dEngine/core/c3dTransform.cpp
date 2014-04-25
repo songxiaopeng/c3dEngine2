@@ -7,11 +7,18 @@
 //
 #include <math.h>
 #include "c3dTransform.h"
+Cc3dMatrix4 RTmatToRmat(const Cc3dMatrix4&RTmat){
+    Cc3dMatrix4 Rmat=RTmat;
+    Rmat.setAt(12,0);
+    Rmat.setAt(13,0);
+    Rmat.setAt(14,0);
+    return Rmat;
+
+}
 void Cc3dTransform::setRmat(const Cc3dMatrix4&Rmat){
-    assert(Rmat.getAt(3)==0);
-    assert(Rmat.getAt(7)==0);
-    assert(Rmat.getAt(11)==0);
-    assert(Rmat.getAt(15)==1);
+    assert(Rmat.getAt(12)==0);
+    assert(Rmat.getAt(13)==0);
+    assert(Rmat.getAt(14)==0);
     float x=m_RTmat.getAt(12);
     float y=m_RTmat.getAt(13);
     float z=m_RTmat.getAt(14);
@@ -20,7 +27,9 @@ void Cc3dTransform::setRmat(const Cc3dMatrix4&Rmat){
     m_RTmat.setAt(13, y);
     m_RTmat.setAt(14, z);
 }
-
+void Cc3dTransform::setRotation(const Cc3dMatrix4&Rmat){
+    setRmat(Rmat);
+}
 void Cc3dTransform::setRTmat(const Cc3dMatrix4&RTmat){
     m_RTmat=RTmat;
 }
@@ -29,7 +38,6 @@ void Cc3dTransform::setRTSmat(const Cc3dMatrix4&RTSmat){
 	assert(scaleVector.x()!=0);
 	assert(scaleVector.y()!=0);
 	assert(scaleVector.z()!=0);
-	assert(scaleVector.w()==1);//assume no scale on w
 	Cc3dMatrix4 scaleReverse=calculateScaleMatrix(scaleVector.x(),scaleVector.y(),scaleVector.z(),scaleVector.w());
 	Cc3dMatrix4 RTmat=RTSmat*scaleReverse;
 	this->setRTmat(RTmat);

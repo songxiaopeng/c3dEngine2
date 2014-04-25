@@ -8,7 +8,7 @@
 
 #include "initGame.h"
 #include "c3d.h"
-#include "c3dExtension.h"
+#include "c3dSkinActor.h"
 #include "globalVars.h"
 void initGame(){
 	
@@ -31,7 +31,6 @@ void initGame(){
         float _far = 1;
         Cc3dRange range(left,right,bottom,top,_near,_far);
         camera2D=new Cc3dCamera();
-        camera2D->init();
         camera2D->autorelease();
         camera2D->retain();//must retain
         camera2D->setRange(range);
@@ -40,7 +39,6 @@ void initGame(){
     //----camera
     {
         camera=new Cc3dCamera();
-        camera->init();
         camera->autorelease();
         camera->retain();//must retain
         camera->setFovy(70);

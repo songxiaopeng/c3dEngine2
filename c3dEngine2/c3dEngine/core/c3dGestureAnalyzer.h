@@ -59,7 +59,7 @@ public:
 		double latestTouchBeganTime=Cc3dTouchSequence::sharedTouchSequence()->getLatestTouchTypeTime(e_c3dTouchBegan);
 		double latestTouchEndTime=Cc3dTouchSequence::sharedTouchSequence()->getLatestTouchTypeTime(e_c3dTouchEnd);
 		double spanTimeBetweenLatestBeganAndEnd=latestTouchEndTime-latestTouchBeganTime;
-		if(spanTimeBetweenLatestBeganAndEnd>=0&&spanTimeBetweenLatestBeganAndEnd<1.0&&curTime-latestTouchEndTime<0.1*1.0f/60){
+		if(spanTimeBetweenLatestBeganAndEnd>=0&&spanTimeBetweenLatestBeganAndEnd<1.5&&curTime-latestTouchEndTime<0.5*1.0f/60){
 			return true;
 		}else{
 			return false;

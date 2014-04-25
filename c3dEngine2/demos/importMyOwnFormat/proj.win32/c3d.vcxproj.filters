@@ -237,12 +237,6 @@
     <ClCompile Include="..\..\..\c3dEngine\platform\win32\c3dGLPlatformDepend.cpp">
       <Filter>c3dEngine\win32</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\c3dExtension\fbxLoader\c3dFbxLoader.cpp">
-      <Filter>c3dExtension\fbxLoader</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\c3dExtension\fbxLoader\c3dFbxOneLoad.cpp">
-      <Filter>c3dExtension\fbxLoader</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\c3dExtension\fbxLoader\c3dSkinActor.cpp">
       <Filter>c3dExtension\fbxLoader</Filter>
     </ClCompile>
@@ -503,17 +497,8 @@
     <ClInclude Include="..\..\..\c3dEngine\platform\win32\c3dGLPlatformDepend.h">
       <Filter>c3dEngine\win32</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\c3dExtension\fbxLoader\c3dFbxLoader.h">
-      <Filter>c3dExtension\fbxLoader</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\c3dExtension\fbxLoader\c3dFbxOneLoad.h">
-      <Filter>c3dExtension\fbxLoader</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\c3dExtension\fbxLoader\c3dSkinActor.h">
       <Filter>c3dExtension\fbxLoader</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\c3dExtension\c3dExtension.h">
-      <Filter>c3dExtension</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
