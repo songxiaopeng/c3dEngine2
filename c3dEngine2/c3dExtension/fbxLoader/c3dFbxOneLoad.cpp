@@ -413,7 +413,6 @@ bool Cc3dFbxOneLoad::LoadScene(FbxManager* pManager, FbxDocument* pScene, const 
 			for(int i=0;i<materialIndexSetSize;i++){
 				Cc3dSkinSubMesh*subMesh=new Cc3dSkinSubMesh();
 				subMesh->autorelease();
-				subMesh->init();
 				subMeshList.push_back(subMesh);
 			}
 			//Îª¸÷subMeshÌî³äÎÆÀí--abc
@@ -463,7 +462,6 @@ bool Cc3dFbxOneLoad::LoadScene(FbxManager* pManager, FbxDocument* pScene, const 
 
 					Cc3dMaterial*material=new Cc3dMaterial();
 					material->autorelease();
-					material->init();
 					//not all material properties are used
 					material->setAmbient(ambient[0],ambient[1],ambient[2]);
 					material->setDiffuseRGB(diffuse[0],diffuse[1],diffuse[2]);
