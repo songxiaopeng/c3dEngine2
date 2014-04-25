@@ -8,7 +8,7 @@
 
 #include "initGame.h"
 #include "c3d.h"
-#include "c3dExtension.h"
+#include "c3dSkinActor.h"
 #include "globalVars.h"
 void initGame(){
 	
