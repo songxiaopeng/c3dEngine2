@@ -16,11 +16,6 @@
 		35DF6445138C40D500FF9459 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35DF6444138C40D500FF9459 /* CoreGraphics.framework */; };
 		35DF645E138C427700FF9459 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35DF645D138C427700FF9459 /* QuartzCore.framework */; };
 		35DF6460138C427E00FF9459 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35DF645F138C427E00FF9459 /* OpenGLES.framework */; };
-		570B9B6919074E370094D389 /* physicsActor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 570B9B6719074E370094D389 /* physicsActor.cpp */; };
-		570B9B7919079ED40094D389 /* layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 570B9B7719079ED40094D389 /* layer.cpp */; };
-		571557B61908A68700708B9D /* physicsBody.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 571557B41908A68700708B9D /* physicsBody.cpp */; };
-		571E909A18E945DF003EE2D9 /* globalVars.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 571E909518E945DF003EE2D9 /* globalVars.cpp */; };
-		571E909B18E945DF003EE2D9 /* initGame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 571E909718E945DF003EE2D9 /* initGame.cpp */; };
 		571E90FB18E94610003EE2D9 /* c3dActor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 571E909D18E94610003EE2D9 /* c3dActor.cpp */; };
 		571E90FC18E94610003EE2D9 /* c3dALBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 571E909F18E94610003EE2D9 /* c3dALBuffer.cpp */; };
 		571E90FD18E94610003EE2D9 /* c3dALdebug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 571E90A118E94610003EE2D9 /* c3dALdebug.cpp */; };
@@ -96,6 +91,13 @@
 		57C77C3918E45362009820B6 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57C77C2E18E45362009820B6 /* Default@2x.png */; };
 		57C77C3E18E4538F009820B6 /* c3dEngineResource in Resources */ = {isa = PBXBuildFile; fileRef = 57C77C3C18E4538F009820B6 /* c3dEngineResource */; };
 		57CFA7A1190A51EA00B37125 /* bulletTest1_resource in Resources */ = {isa = PBXBuildFile; fileRef = 57CFA7A0190A51EA00B37125 /* bulletTest1_resource */; };
+		57CFA7B2190A862B00B37125 /* globalVars.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57CFA7A8190A862B00B37125 /* globalVars.cpp */; };
+		57CFA7B3190A862B00B37125 /* initGame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57CFA7AA190A862B00B37125 /* initGame.cpp */; };
+		57CFA7B4190A862B00B37125 /* layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57CFA7AC190A862B00B37125 /* layer.cpp */; };
+		57CFA7B5190A862B00B37125 /* physicsActor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57CFA7AE190A862B00B37125 /* physicsActor.cpp */; };
+		57CFA7B6190A862B00B37125 /* physicsBody.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57CFA7B0190A862B00B37125 /* physicsBody.cpp */; };
+		57CFA7CD190A875F00B37125 /* board.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57CFA7C5190A875F00B37125 /* board.cpp */; };
+		57CFA7CE190A875F00B37125 /* button.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57CFA7C7190A875F00B37125 /* button.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -154,17 +156,6 @@
 		35DF6444138C40D500FF9459 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		35DF645D138C427700FF9459 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		35DF645F138C427E00FF9459 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
-		570B9B6719074E370094D389 /* physicsActor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = physicsActor.cpp; sourceTree = "<group>"; };
-		570B9B6819074E370094D389 /* physicsActor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = physicsActor.h; sourceTree = "<group>"; };
-		570B9B7019075B610094D389 /* decision_and_reason.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = decision_and_reason.h; sourceTree = "<group>"; };
-		570B9B7719079ED40094D389 /* layer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = layer.cpp; sourceTree = "<group>"; };
-		570B9B7819079ED40094D389 /* layer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = layer.h; sourceTree = "<group>"; };
-		571557B41908A68700708B9D /* physicsBody.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = physicsBody.cpp; sourceTree = "<group>"; };
-		571557B51908A68700708B9D /* physicsBody.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = physicsBody.h; sourceTree = "<group>"; };
-		571E909518E945DF003EE2D9 /* globalVars.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = globalVars.cpp; sourceTree = "<group>"; };
-		571E909618E945DF003EE2D9 /* globalVars.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = globalVars.h; sourceTree = "<group>"; };
-		571E909718E945DF003EE2D9 /* initGame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = initGame.cpp; sourceTree = "<group>"; };
-		571E909818E945DF003EE2D9 /* initGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = initGame.h; sourceTree = "<group>"; };
 		571E909D18E94610003EE2D9 /* c3dActor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c3dActor.cpp; sourceTree = "<group>"; };
 		571E909E18E94610003EE2D9 /* c3dActor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = c3dActor.h; sourceTree = "<group>"; };
 		571E909F18E94610003EE2D9 /* c3dALBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c3dALBuffer.cpp; sourceTree = "<group>"; };
@@ -307,6 +298,20 @@
 		57C77C2E18E45362009820B6 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		57C77C3C18E4538F009820B6 /* c3dEngineResource */ = {isa = PBXFileReference; lastKnownFileType = folder; path = c3dEngineResource; sourceTree = "<group>"; };
 		57CFA7A0190A51EA00B37125 /* bulletTest1_resource */ = {isa = PBXFileReference; lastKnownFileType = folder; path = bulletTest1_resource; sourceTree = "<group>"; };
+		57CFA7A8190A862B00B37125 /* globalVars.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = globalVars.cpp; sourceTree = "<group>"; };
+		57CFA7A9190A862B00B37125 /* globalVars.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = globalVars.h; sourceTree = "<group>"; };
+		57CFA7AA190A862B00B37125 /* initGame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = initGame.cpp; sourceTree = "<group>"; };
+		57CFA7AB190A862B00B37125 /* initGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = initGame.h; sourceTree = "<group>"; };
+		57CFA7AC190A862B00B37125 /* layer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = layer.cpp; sourceTree = "<group>"; };
+		57CFA7AD190A862B00B37125 /* layer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = layer.h; sourceTree = "<group>"; };
+		57CFA7AE190A862B00B37125 /* physicsActor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = physicsActor.cpp; sourceTree = "<group>"; };
+		57CFA7AF190A862B00B37125 /* physicsActor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = physicsActor.h; sourceTree = "<group>"; };
+		57CFA7B0190A862B00B37125 /* physicsBody.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = physicsBody.cpp; sourceTree = "<group>"; };
+		57CFA7B1190A862B00B37125 /* physicsBody.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = physicsBody.h; sourceTree = "<group>"; };
+		57CFA7C5190A875F00B37125 /* board.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = board.cpp; sourceTree = "<group>"; };
+		57CFA7C6190A875F00B37125 /* board.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = board.h; sourceTree = "<group>"; };
+		57CFA7C7190A875F00B37125 /* button.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = button.cpp; sourceTree = "<group>"; };
+		57CFA7C8190A875F00B37125 /* button.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = button.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -335,11 +340,7 @@
 		35DF6431138C40D500FF9459 = {
 			isa = PBXGroup;
 			children = (
-				570B9B7019075B610094D389 /* decision_and_reason.h */,
-				570B9B6719074E370094D389 /* physicsActor.cpp */,
-				570B9B6819074E370094D389 /* physicsActor.h */,
-				571557B41908A68700708B9D /* physicsBody.cpp */,
-				571557B51908A68700708B9D /* physicsBody.h */,
+				57CFA7B8190A875F00B37125 /* extension */,
 				57A00BF619066DFC00BC9053 /* LinearMath.xcodeproj */,
 				57A00BF019066DEE00BC9053 /* BulletDynamics.xcodeproj */,
 				57A00BEA19066DDF00BC9053 /* BulletCollision.xcodeproj */,
@@ -379,12 +380,16 @@
 		571E909218E945DF003EE2D9 /* projcode */ = {
 			isa = PBXGroup;
 			children = (
-				570B9B7719079ED40094D389 /* layer.cpp */,
-				570B9B7819079ED40094D389 /* layer.h */,
-				571E909518E945DF003EE2D9 /* globalVars.cpp */,
-				571E909618E945DF003EE2D9 /* globalVars.h */,
-				571E909718E945DF003EE2D9 /* initGame.cpp */,
-				571E909818E945DF003EE2D9 /* initGame.h */,
+				57CFA7A8190A862B00B37125 /* globalVars.cpp */,
+				57CFA7A9190A862B00B37125 /* globalVars.h */,
+				57CFA7AA190A862B00B37125 /* initGame.cpp */,
+				57CFA7AB190A862B00B37125 /* initGame.h */,
+				57CFA7AC190A862B00B37125 /* layer.cpp */,
+				57CFA7AD190A862B00B37125 /* layer.h */,
+				57CFA7AE190A862B00B37125 /* physicsActor.cpp */,
+				57CFA7AF190A862B00B37125 /* physicsActor.h */,
+				57CFA7B0190A862B00B37125 /* physicsBody.cpp */,
+				57CFA7B1190A862B00B37125 /* physicsBody.h */,
 			);
 			name = projcode;
 			path = ../projcode;
@@ -648,6 +653,26 @@
 			path = defaultImage;
 			sourceTree = "<group>";
 		};
+		57CFA7B8190A875F00B37125 /* extension */ = {
+			isa = PBXGroup;
+			children = (
+				57CFA7C4190A875F00B37125 /* ui */,
+			);
+			name = extension;
+			path = ../../../extension;
+			sourceTree = "<group>";
+		};
+		57CFA7C4190A875F00B37125 /* ui */ = {
+			isa = PBXGroup;
+			children = (
+				57CFA7C5190A875F00B37125 /* board.cpp */,
+				57CFA7C6190A875F00B37125 /* board.h */,
+				57CFA7C7190A875F00B37125 /* button.cpp */,
+				57CFA7C8190A875F00B37125 /* button.h */,
+			);
+			path = ui;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -764,14 +789,14 @@
 				571E911718E94610003EE2D9 /* c3dModel.cpp in Sources */,
 				571E911918E94610003EE2D9 /* c3dNode.cpp in Sources */,
 				57C77BE918E45334009820B6 /* MyOpenALSupport.c in Sources */,
-				570B9B7919079ED40094D389 /* layer.cpp in Sources */,
 				571E912118E94610003EE2D9 /* c3dSpan.cpp in Sources */,
 				571E910018E94610003EE2D9 /* c3dAssert.cpp in Sources */,
-				571E909B18E945DF003EE2D9 /* initGame.cpp in Sources */,
 				571E911D18E94610003EE2D9 /* c3dProgramCache.cpp in Sources */,
 				571E910F18E94610003EE2D9 /* c3dIndexVBO.cpp in Sources */,
+				57CFA7CD190A875F00B37125 /* board.cpp in Sources */,
 				571E912318E94610003EE2D9 /* c3dTexture.cpp in Sources */,
 				571E910E18E94610003EE2D9 /* c3dIDtriangle.cpp in Sources */,
+				57CFA7B2190A862B00B37125 /* globalVars.cpp in Sources */,
 				571E910218E94610003EE2D9 /* c3dAutoreleasePool.cpp in Sources */,
 				571E911C18E94610003EE2D9 /* c3dProgram.cpp in Sources */,
 				57C77BE418E45334009820B6 /* c3dDeviceAndOSInfoPlatformDepend.mm in Sources */,
@@ -785,16 +810,18 @@
 				571E911418E94610003EE2D9 /* c3dMatrix.cpp in Sources */,
 				571E912218E94610003EE2D9 /* c3dSubMesh.cpp in Sources */,
 				57C77BB018E45334009820B6 /* c3dPathFunc.cpp in Sources */,
-				570B9B6919074E370094D389 /* physicsActor.cpp in Sources */,
 				571E910618E94610003EE2D9 /* c3dDocuments.cpp in Sources */,
+				57CFA7B5190A862B00B37125 /* physicsActor.cpp in Sources */,
 				571E911B18E94610003EE2D9 /* c3dPlane.cpp in Sources */,
 				571E911A18E94610003EE2D9 /* c3dObject.cpp in Sources */,
+				57CFA7B3190A862B00B37125 /* initGame.cpp in Sources */,
 				57C77AD818E45302009820B6 /* main.m in Sources */,
 				571E911E18E94610003EE2D9 /* c3dRange.cpp in Sources */,
-				571557B61908A68700708B9D /* physicsBody.cpp in Sources */,
+				57CFA7B6190A862B00B37125 /* physicsBody.cpp in Sources */,
 				571E910B18E94610003EE2D9 /* c3dGLdebug.cpp in Sources */,
 				57C77BAF18E45334009820B6 /* c3dCommonFunc.cpp in Sources */,
 				571E910418E94610003EE2D9 /* c3dDefine.cpp in Sources */,
+				57CFA7B4190A862B00B37125 /* layer.cpp in Sources */,
 				57C77BE518E45334009820B6 /* c3dDocumentsPlatformDepend.mm in Sources */,
 				571E912718E94610003EE2D9 /* c3dTransform.cpp in Sources */,
 				571E90FB18E94610003EE2D9 /* c3dActor.cpp in Sources */,
@@ -805,12 +832,12 @@
 				571E912918E94610003EE2D9 /* c3dVertex.cpp in Sources */,
 				57C77BE718E45334009820B6 /* c3dProgramPlatformDepend.mm in Sources */,
 				57C77BE818E45334009820B6 /* c3dTexturePlatformDepend.mm in Sources */,
+				57CFA7CE190A875F00B37125 /* button.cpp in Sources */,
 				571E911118E94610003EE2D9 /* c3dLog.cpp in Sources */,
 				571E912018E94610003EE2D9 /* c3dSceneManger.cpp in Sources */,
 				571E912F18E94627003EE2D9 /* c3dPassUnifoCallBack.cpp in Sources */,
 				571E911518E94610003EE2D9 /* c3dMesh.cpp in Sources */,
 				571E910918E94610003EE2D9 /* c3dGeoMath.cpp in Sources */,
-				571E909A18E945DF003EE2D9 /* globalVars.cpp in Sources */,
 				571E910A18E94610003EE2D9 /* c3dGestureAnalyzer.cpp in Sources */,
 				571E911018E94610003EE2D9 /* c3dLight.cpp in Sources */,
 				571E911218E94610003EE2D9 /* c3dMaterial.cpp in Sources */,

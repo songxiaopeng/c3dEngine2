@@ -14,6 +14,7 @@
 #include "btBulletDynamicsCommon.h"
 #include "physicsActor.h"
 #include "globalVars.h"
+#include "board.h"
 class Clayer:public Cc3dActor
 {
 
@@ -62,9 +63,22 @@ public:
         }
     }
 	bool init(){
+        initBoard();
         initPhysics();
         initGround();
+        addActor();
         return true;
+    }
+    void initBoard(){
+        Cc3dRect screenRect=Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo()->getScreenRect();
+        Cboard*text=new Cboard();
+        text->autorelease();
+        text->init(240, 30, "bulletTest1_resource/text.png");
+        text->setCamera(camera2D);
+        text->setPos(Cc3dVector4((screenRect.getMinX()+screenRect.getMaxX())/2,(screenRect.getMinY()+screenRect.getMaxY())/3*2,0,1));
+        text->genVBOBuffers();
+		text->submit(GL_STATIC_DRAW);
+        addChild(text);
     }
     void initGround(){
         //----ground
