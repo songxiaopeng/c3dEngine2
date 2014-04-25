@@ -31,6 +31,7 @@ public:
     Cc3dALSource(){
         m_source=0;
         m_buffer=NULL;
+        init_dft();
     }
     virtual~Cc3dALSource(){
         if(getIsValidSource()){
@@ -40,6 +41,7 @@ public:
         if(m_buffer)m_buffer->release();
         C3DCHECK_AL_ERROR_DEBUG();
     }
+    void init_dft(){};
     Cc3dALBuffer*getBuffer()const{return m_buffer;}
     
     

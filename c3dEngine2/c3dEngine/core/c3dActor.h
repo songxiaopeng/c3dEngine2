@@ -20,6 +20,7 @@ protected:
 public:
     Cc3dActor(){
         m_model=NULL;
+        init_dft();
     }
     virtual~Cc3dActor(){ 
       
@@ -30,14 +31,11 @@ public:
             //cout<<"release source name:"<<source->getName()<<endl;
         }
     }
-    bool init(){
-        Cc3dNode::init();
+    void init_dft(){
         Cc3dModel*model=new Cc3dModel();
 		model->autorelease();
-		model->init();
+        model->setName("model");
 		setModel(model);
-
-        return true;
     }
     void setModel(Cc3dModel*model){
         if(m_model==NULL){

@@ -499,7 +499,6 @@ void Cc3dSkinSubMesh::doImport(string filePath,bool valueOnly){
 
 		Cc3dMaterial*material=new Cc3dMaterial();
 		material->autorelease();
-		material->init();
 		material->setAmbient(ambient);
 		material->setDiffuse(diffuse);
 		material->setSpecular(specular);
@@ -648,8 +647,9 @@ void Cc3dSkinMesh::doImport(string filePath,bool valueOnly){
 		fscanf(fp,"%f",&scaleX);
 		fscanf(fp,"%f",&scaleY);
 		fscanf(fp,"%f",&scaleZ);
-		Cc3dTransform transform;
-		transform.init(RTmat,scaleX,scaleY,scaleZ);
+		Cc3dTransform*transform=new Cc3dTransform();
+        transform->autorelease();
+		transform->init(RTmat,scaleX,scaleY,scaleZ);
 		this->setTransform(transform);
 		//--------------------------close file
 		fclose(fp);
@@ -664,7 +664,6 @@ void Cc3dSkinMesh::doImport(string filePath,bool valueOnly){
 			string numStr=numberToStr(i);
 			Cc3dSkinSubMesh*p=new Cc3dSkinSubMesh();
 			p->autorelease();
-			p->init();
 			this->addSubMesh(p);
 			p->doImport(folderPath+"/m_skinSubMesh_"+numStr,valueOnly);
 		}
@@ -865,7 +864,6 @@ void Cc3dSkinActor::doImport(string filePath){
 			string numStr=numberToStr(i);
 			Cc3dSkinMesh*p=new Cc3dSkinMesh();
 			p->autorelease();
-			p->init();
 			this->addMesh(p);
 			p->doImport(folderPath+"/m_skinMesh_"+numStr,valueOnly);
 		}

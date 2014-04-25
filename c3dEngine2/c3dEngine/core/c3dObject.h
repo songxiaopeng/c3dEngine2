@@ -31,7 +31,6 @@ public:
     
     }
     int getRetainCount()const {return m_retainCount;}
-    virtual bool init(){return true;}
   
 protected:
     int m_retainCount;

@@ -94,7 +94,7 @@ public:
 		reso=10;
         m_heightScale=1;
 	}
-    bool init(const string&fileNameWithExt,const Cc3dRect&rect,float heightScale,int depth,Cc3dTexture*texture);
+    bool initWithFile(const string&fileNameWithExt,const Cc3dRect&rect,float heightScale,int depth,Cc3dTexture*texture);
     Cc3dMesh*getMesh(){
         assert((int)getModel()->getMeshCount()==1);
         return getModel()->getMeshByIndex(0);

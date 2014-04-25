@@ -26,14 +26,20 @@ public:
     Cc3dTransform(){
         m_RTmat=unitMat();
         m_scaleX=m_scaleY=m_scaleZ=1;
+        
     }
+    void init_dft(){}
     virtual~Cc3dTransform(){}
-    void init(const Cc3dMatrix4&RTmat,float scaleX=1,float scaleY=1,float scaleZ=1){m_RTmat=RTmat;m_scaleX=scaleX;m_scaleY=scaleY;m_scaleZ=scaleZ;}
+    bool init(const Cc3dMatrix4&RTmat,float scaleX=1,float scaleY=1,float scaleZ=1){
+        m_RTmat=RTmat;
+        m_scaleX=scaleX;m_scaleY=scaleY;m_scaleZ=scaleZ;
+        return true;
+    }
     //----scale
     float getScaleX()const{return m_scaleX;}
     float getScaleY()const{return m_scaleY;}
     float getScaleZ()const{return m_scaleZ;}
-    bool getIsHasScale(){
+    bool getIsHasScale()const {
         return (m_scaleX!=1||m_scaleY!=1||m_scaleZ!=1);
     }
     void setScale(float scaleX,float scaleY,float scaleZ);

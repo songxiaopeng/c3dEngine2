@@ -46,8 +46,10 @@ public:
         const float h=568;
         m_range.init(-w/2, -w/2+w, -h/2, -h/2+h, -1024, 1024);
         m_projectionMode=ec3dPerspectiveMode;
+        init_dft();
     }
     ~Cc3dCamera(){};
+    void init_dft(){};
     Cc3dFrustum getFrustum()const{return m_frustum;}
     void updateFrustum();
     void setEyePos(const Cc3dVector4&eyePos){m_eyePos=eyePos;};

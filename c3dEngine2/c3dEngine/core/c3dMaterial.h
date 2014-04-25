@@ -30,7 +30,9 @@ public:
         m_specular.init(0,0,0,1);
         m_color.init(1, 1, 1, 1);
         m_shininess=0;
+        init_dft();
     }
+    void init_dft(){};
     Cc3dVector4 getColor()const{return m_color;}
     Cc3dVector4 getSpecular()const{return m_specular;}
     float getShininess()const{return m_shininess;}

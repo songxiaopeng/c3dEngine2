@@ -21,7 +21,6 @@ bool Cbutton::init(float width,float height,string imagePath_up,string imagePath
 		//----subMesh
 		Cc3dSubMesh* subMesh=new Cc3dSubMesh();
 		subMesh->autorelease();
-		subMesh->init();
 		//--color
 		Cc3dVector4 color[4]={Cc3dVector4(1,1,1,1),Cc3dVector4(1,1,1,1),Cc3dVector4(1,1,1,1),Cc3dVector4(1,1,1,1)};
 		//--vertex

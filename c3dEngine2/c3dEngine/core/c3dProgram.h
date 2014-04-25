@@ -26,10 +26,12 @@ class Cc3dProgram:public Cc3dObject
 public:
     Cc3dProgram(){
         m_program=0;
+        init_dft();
     }
     virtual~Cc3dProgram(){
         if(m_program!=0)glDeleteProgram( m_program );
     }
+    void init_dft(){};
     void useProgram(){
         glUseProgram(m_program);
     }
