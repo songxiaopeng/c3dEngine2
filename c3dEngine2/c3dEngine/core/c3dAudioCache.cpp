@@ -34,7 +34,6 @@ Cc3dALBuffer* Cc3dAudioCache::createBuffer(const string&_filePathShort)
     //???buffer
     pBuffer=new Cc3dALBuffer();
     pBuffer->autorelease();
-	pBuffer->init();
     pBuffer->retain();
     //cout<<"_filePathShort:"<<_filePathShort<<endl;
     pBuffer->initBuffer(_filePathShort);
@@ -66,7 +65,6 @@ Cc3dALSource* Cc3dAudioCache::createSource( Cc3dALBuffer*buffer,const string&nam
     //???source
     Cc3dALSource*source=new Cc3dALSource();
     source->autorelease();
-	source->init();
     source->retain();
     source->setName(name);
     source->initSource(buffer);

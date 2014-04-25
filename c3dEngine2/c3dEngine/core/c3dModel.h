@@ -18,11 +18,12 @@ protected:
     vector<Cc3dMesh*> m_meshList;
 public:
     Cc3dModel(){
-        
+        init_dft();
     }
     virtual~Cc3dModel(){
    
     }
+    void init_dft(){};
     int getMeshCount()const{return (int)m_meshList.size();}
     Cc3dMesh*getMeshByIndex(int index){
         assert(index>=0&&index<(int)m_meshList.size());

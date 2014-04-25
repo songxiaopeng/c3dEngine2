@@ -26,16 +26,16 @@ public:
         m_depthTex=NULL;
         m_colorTex=NULL;
         m_fbo=0;
+        init_dft();
     }
     ~Cc3dFbo(){
         if(m_fbo!=0)glDeleteFramebuffers(1, &m_fbo);
         if(m_depthTex)m_depthTex->release();
         if(m_colorTex)m_colorTex->release();
     }
-    bool init(){
+    void init_dft(){
         glGenFramebuffers(1, &m_fbo);
 		assert(m_fbo>0);
-        return true;
     }
     GLuint getID()const{return m_fbo;}
     void attachDepthTex(Cc3dTexture*depthTexture);

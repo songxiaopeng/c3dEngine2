@@ -25,6 +25,7 @@ public:
     Cc3dALBuffer(){
         m_data=NULL;
         m_buffer=0;
+        init_dft();
     }
     virtual~Cc3dALBuffer(){
 		
@@ -35,6 +36,7 @@ public:
         
         C3DCHECK_AL_ERROR_DEBUG();
     }
+    void init_dft(){};
     bool getIsValidBuffer()const{
         bool isValid=(m_buffer!=0&&alIsBuffer(m_buffer));//seems alIsBuffer(m_buffer)==AL_TRUE include m_buffer!=0, test this later
         return isValid;

@@ -27,6 +27,7 @@ public:
         m_diffuse.init(1,1,1,1);
         m_ambient.init(1,1,1,1);
         m_specular.init(0,0,0,1);
+        init_dft();
     }
     ~Cc3dLight(){
         int nLightViewCamera=(int)m_lightViewCameraList.size();
@@ -34,6 +35,7 @@ public:
             m_lightViewCameraList[i]->release();
         }
     }
+    void init_dft(){};
     void addLightViewCamera(Cc3dCamera*lightViewCamera){
         m_lightViewCameraList.push_back(lightViewCamera);
         lightViewCamera->retain();
