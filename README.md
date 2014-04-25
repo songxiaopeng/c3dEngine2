@@ -35,4 +35,6 @@ screenshot:
   
 ![screenshot](http://git.oschina.net/wantnon2/c3dEngine2/raw/master/screenshot/screenshot2.png)  
   
-![screenshot](http://git.oschina.net/wantnon2/c3dEngine2/raw/master/screenshot/screenshot3.png)
+![screenshot](http://git.oschina.net/wantnon2/c3dEngine2/raw/master/screenshot/screenshot3.png)  
+  
+![screenshot](http://git.oschina.net/wantnon2/c3dEngine2/raw/master/screenshot/screenshot4.png)
