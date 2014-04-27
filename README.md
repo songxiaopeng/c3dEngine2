@@ -34,11 +34,11 @@ i will update code to http://git.oschina.net/wantnon2/c3dEngine2.git and https:/
 qq group: 338565878  
   
 screenshot:  
-draw a simple box
+draw a simple box  
 ![screenshot](http://git.oschina.net/wantnon2/c3dEngine2/raw/master/screenshot/screenshot1.png)  
-quadtree LOD terrain  
-![screenshot](http://git.oschina.net/wantnon2/c3dEngine2/raw/master/screenshot/screenshot2.png)  
 fbx skin animation and convert fox to user-defined format  
+![screenshot](http://git.oschina.net/wantnon2/c3dEngine2/raw/master/screenshot/screenshot2.png)  
+quadtree LOD terrain   
 ![screenshot](http://git.oschina.net/wantnon2/c3dEngine2/raw/master/screenshot/screenshot3.png)  
 bullet integration  
 ![screenshot](http://git.oschina.net/wantnon2/c3dEngine2/raw/master/screenshot/screenshot4.png)
