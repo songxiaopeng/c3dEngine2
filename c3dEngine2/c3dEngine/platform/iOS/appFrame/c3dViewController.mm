@@ -84,10 +84,11 @@ using namespace std;
 // Handles the start of a touch
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
+   
     // Enumerate through all the touch objects.
 	for (UITouch *touch in touches) {
         CGPoint touchPoint=[touch locationInView:self.view] ;
-        Cc3dTouch c3dTouch=Cc3dTouch(touchPoint.x,touchPoint.y,e_c3dTouchBegan,Cc3dGlobalTimer::sharedGlobalTimer()->getTimeFromStart());
+        Cc3dTouch c3dTouch=Cc3dTouch(touchPoint.x,touchPoint.y,e_c3dTouchBegan,Cc3dTimeCounter::sharedTimeCounter()->getCount());
         Cc3dTouchSequence::sharedTouchSequence()->addTouch(c3dTouch);
         //     NSLog(@"touchesBegan:(%f,%f)",touchPoint.x,touchPoint.y);
 	}
@@ -101,22 +102,25 @@ using namespace std;
     // Enumerates through all touch objects
 	for (UITouch *touch in touches) {
 		CGPoint touchPoint=[touch locationInView:self.view] ;
-        Cc3dTouch c3dTouch=Cc3dTouch(touchPoint.x,touchPoint.y,e_c3dTouchMove,Cc3dGlobalTimer::sharedGlobalTimer()->getTimeFromStart());
+        Cc3dTouch c3dTouch=Cc3dTouch(touchPoint.x,touchPoint.y,e_c3dTouchMove,Cc3dTimeCounter::sharedTimeCounter()->getCount());
         Cc3dTouchSequence::sharedTouchSequence()->addTouch(c3dTouch);
         //       NSLog(@"touchesMoved:(%f,%f)",touchPoint.x,touchPoint.y);
 	}
+    
+
 
 }
 // Handles the end of a touch event.
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-	// Enumerates through all touch object
+    // Enumerates through all touch object
 	for (UITouch *touch in touches) {
 		CGPoint touchPoint=[touch locationInView:self.view] ;
-        Cc3dTouch c3dTouch=Cc3dTouch(touchPoint.x,touchPoint.y,e_c3dTouchEnd,Cc3dGlobalTimer::sharedGlobalTimer()->getTimeFromStart());
+        Cc3dTouch c3dTouch=Cc3dTouch(touchPoint.x,touchPoint.y,e_c3dTouchEnd,Cc3dTimeCounter::sharedTimeCounter()->getCount());
         Cc3dTouchSequence::sharedTouchSequence()->addTouch(c3dTouch);
         //  NSLog(@"touchesEnded:(%f,%f)",touchPoint.x,touchPoint.y);
 	}
+    
 }
 
 /*
