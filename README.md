@@ -1,5 +1,8 @@
 c3dEngine2
-==========
+==========  
+  
+![screenshot](http://git.oschina.net/wantnon2/c3dEngine2/raw/master/screenshot/logo.png)    
+  
 by wantnon (yang chao) 2014-4-1  
   
 c3dEngine2 is a cocos2d-x-like simple 3d game engine. it is the upgrade version of c3dEngine.  
