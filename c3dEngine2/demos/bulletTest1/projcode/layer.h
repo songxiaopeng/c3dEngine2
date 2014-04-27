@@ -23,7 +23,7 @@ public:
         m_broadphase=NULL;
         m_collisionConfiguration=NULL;
         m_dispatcher=NULL;
-        m_solver=NULL;
+        m_solver=NULL; 
         m_world=NULL;
 
 	
