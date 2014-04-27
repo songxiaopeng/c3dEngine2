@@ -83,7 +83,7 @@ void render(HDC hDC){
     C3DCHECK_GL_ERROR_DEBUG() ;
     
     C3DCHECK_AL_ERROR_DEBUG();
- //   Cc3dTimeCounter::sharedTimeCounter()->doCount();//要放在最后，以便touchSequence时间与本帧时间一致--abc
+    Cc3dTimeCounter::sharedTimeCounter()->doCount();//要放在最后，以便touchSequence时间与本帧时间一致--abc
 	
 }
 
@@ -177,7 +177,7 @@ BOOL CALLBACK DlgProc (HWND hDlg, UINT message,WPARAM wParam, LPARAM lParam)
 	 float y=HIWORD(lParam);
 	 //y+=captionHeight+frameBoarder*2;
 	 //cout<<"mos down:"<<x<<" "<<y<<endl;
-	 Cc3dTouch c3dTouch=Cc3dTouch(x,y,e_c3dTouchBegan,Cc3dGlobalTimer::sharedGlobalTimer()->getTimeFromStart());
+	 Cc3dTouch c3dTouch=Cc3dTouch(x,y,e_c3dTouchBegan,Cc3dTimeCounter::sharedTimeCounter()->getCount());
 	 Cc3dTouchSequence::sharedTouchSequence()->addTouch(c3dTouch);
 	 //     NSLog(@"touchesBegan:(%f,%f)",touchPoint.x,touchPoint.y);
  }
@@ -189,7 +189,7 @@ BOOL CALLBACK DlgProc (HWND hDlg, UINT message,WPARAM wParam, LPARAM lParam)
 	 float y=HIWORD(lParam);
 	 //y+=captionHeight+frameBoarder*2;
 	 //cout<<"mos up:"<<x<<" "<<y<<endl;
-	 Cc3dTouch c3dTouch=Cc3dTouch(x,y,e_c3dTouchEnd,Cc3dGlobalTimer::sharedGlobalTimer()->getTimeFromStart());
+	 Cc3dTouch c3dTouch=Cc3dTouch(x,y,e_c3dTouchEnd,Cc3dTimeCounter::sharedTimeCounter()->getCount());
 	 Cc3dTouchSequence::sharedTouchSequence()->addTouch(c3dTouch);
 	 //  NSLog(@"touchesEnded:(%f,%f)",touchPoint.x,touchPoint.y);
  }
@@ -201,7 +201,7 @@ BOOL CALLBACK DlgProc (HWND hDlg, UINT message,WPARAM wParam, LPARAM lParam)
 		 float y=HIWORD(lParam);
 		 //y+=captionHeight+frameBoarder*2;
 		 //cout<<"mos move:"<<x<<" "<<y<<endl;
-		 Cc3dTouch c3dTouch=Cc3dTouch(x,y,e_c3dTouchMove,Cc3dGlobalTimer::sharedGlobalTimer()->getTimeFromStart());
+		 Cc3dTouch c3dTouch=Cc3dTouch(x,y,e_c3dTouchMove,Cc3dTimeCounter::sharedTimeCounter()->getCount());
 		 Cc3dTouchSequence::sharedTouchSequence()->addTouch(c3dTouch);
 		 //       NSLog(@"touchesMoved:(%f,%f)",touchPoint.x,touchPoint.y);
 	 }
@@ -226,7 +226,7 @@ BOOL CALLBACK DlgProc (HWND hDlg, UINT message,WPARAM wParam, LPARAM lParam)
 	 float y=HIWORD(lParam);
 	 //y+=captionHeight+frameBoarder*2;
 	 //cout<<"mos up:"<<x<<" "<<y<<endl;
-	 Cc3dTouch c3dTouch=Cc3dTouch(x,y,e_c3dTouchEnd,Cc3dGlobalTimer::sharedGlobalTimer()->getTimeFromStart());
+	 Cc3dTouch c3dTouch=Cc3dTouch(x,y,e_c3dTouchEnd,Cc3dTimeCounter::sharedTimeCounter()->getCount());
 	 Cc3dTouchSequence::sharedTouchSequence()->addTouch(c3dTouch);
 	 //  NSLog(@"touchesEnded:(%f,%f)",touchPoint.x,touchPoint.y);
 

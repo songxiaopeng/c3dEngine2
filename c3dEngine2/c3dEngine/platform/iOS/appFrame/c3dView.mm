@@ -118,7 +118,7 @@ using namespace std;
     C3DCHECK_GL_ERROR_DEBUG() ;
     
     C3DCHECK_AL_ERROR_DEBUG();
- //   Cc3dTimeCounter::sharedTimeCounter()->doCount();//要放在最后，以便touchSequence时间与本帧时间一致
+    Cc3dTimeCounter::sharedTimeCounter()->doCount();//要放在最后，以便touchSequence时间与本帧时间一致
 }
 
 

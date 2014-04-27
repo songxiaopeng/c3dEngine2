@@ -838,12 +838,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "c3d/c3d-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"/Users/ck02-084/Documents/superSingleCell-c3dEngine-win32/superSingleCell-c3dEngine/c3dEngine/platform/win32/libraries",
-					"/Users/ck02-084/Documents/superSingleCell-c3dEngine-win32副本\\ 2/superSingleCell-c3dEngine/c3dEngine/platform/win32/libraries",
-					"/Users/ck02-084/Documents/c3dEngine2/c3dEngine2/c3dEngine/platform/win32/libraries",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				New_Setting = "";
 				OTHER_CFLAGS = "";
 				PRODUCT_NAME = "super single cell";
@@ -869,12 +864,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "c3d/c3d-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"/Users/ck02-084/Documents/superSingleCell-c3dEngine-win32/superSingleCell-c3dEngine/c3dEngine/platform/win32/libraries",
-					"/Users/ck02-084/Documents/superSingleCell-c3dEngine-win32副本\\ 2/superSingleCell-c3dEngine/c3dEngine/platform/win32/libraries",
-					"/Users/ck02-084/Documents/c3dEngine2/c3dEngine2/c3dEngine/platform/win32/libraries",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				New_Setting = "";
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PRODUCT_NAME = "super single cell";
