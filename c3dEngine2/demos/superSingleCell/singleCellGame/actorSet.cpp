@@ -1,9 +1,9 @@
 //
-//  c3dActorSet.cpp
+//  actorSet.cpp
 //  HelloOpenGL
 //
 //  Created by wantnon (yang chao) on 14-2-21.
 //
 //
 
-#include "c3dActorSet.h"
+#include "actorSet.h"

@@ -576,7 +576,7 @@ public:
     }
 
 };
-class CmobilePlatformSet:public Cc3dActorSet
+class CmobilePlatformSet:public CactorSet
 {
 public:
      

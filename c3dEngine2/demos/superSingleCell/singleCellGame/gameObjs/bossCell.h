@@ -349,7 +349,7 @@ public:
         }
     }
 };
-class CbossCellSet:public Cc3dActorSet
+class CbossCellSet:public CactorSet
 {
 public:
     int getLiveBossCount()const{

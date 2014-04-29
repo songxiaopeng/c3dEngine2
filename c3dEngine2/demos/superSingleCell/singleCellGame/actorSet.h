@@ -1,18 +1,18 @@
 //
-//  c3dActorSet.h
+//  actorSet.h
 //  HelloOpenGL
 //
 //  Created by wantnon (yang chao) on 14-2-21.
 //
 //
 
-#ifndef __HelloOpenGL__c3dActorSet__
-#define __HelloOpenGL__c3dActorSet__
+#ifndef __HelloOpenGL__actorSet__
+#define __HelloOpenGL__actorSet__
 
 #include <iostream>
 using namespace std;
 #include "c3dNode.h"
-class Cc3dActorSet{
+class CactorSet{
 protected:
     vector<Cc3dNode*> actorList;
 public:
@@ -34,4 +34,4 @@ public:
 };
 
 
-#endif /* defined(__HelloOpenGL__c3dActorSet__) */
+#endif /* defined(__HelloOpenGL__actorSet__) */

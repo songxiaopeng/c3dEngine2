@@ -436,7 +436,7 @@ public:
     }
     
 };
-class CshipSet:public Cc3dActorSet{
+class CshipSet:public CactorSet{
 public:
     void calRange(float &xmin,float &xmax,float &ymin,float &ymax,float &zmin,float &zmax){
         int n=(int)actorList.size();

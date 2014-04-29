@@ -138,7 +138,7 @@
 		577D819E190F4DDF003546DB /* MyOpenALSupport.c in Sources */ = {isa = PBXBuildFile; fileRef = 577D8111190F4DDE003546DB /* MyOpenALSupport.c */; };
 		577D81C5190F4DDF003546DB /* c3dPassUnifoCallBack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577D815E190F4DDF003546DB /* c3dPassUnifoCallBack.cpp */; };
 		577D81C6190F4DDF003546DB /* c3dProgramSetUp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577D8160190F4DDF003546DB /* c3dProgramSetUp.cpp */; };
-		577D81C9190F4E36003546DB /* c3dActorSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577D81C7190F4E36003546DB /* c3dActorSet.cpp */; };
+		577D81C9190F4E36003546DB /* actorSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577D81C7190F4E36003546DB /* actorSet.cpp */; };
 		577D81DB190F54EA003546DB /* geoMath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577D81CC190F54EA003546DB /* geoMath.cpp */; };
 		577D81DC190F54EA003546DB /* octree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577D81CF190F54EA003546DB /* octree.cpp */; };
 		577D81DD190F54EA003546DB /* triangleWithNorm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577D81D1190F54EA003546DB /* triangleWithNorm.cpp */; };
@@ -413,8 +413,8 @@
 		577D815F190F4DDF003546DB /* c3dPassUnifoCallBack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = c3dPassUnifoCallBack.h; sourceTree = "<group>"; };
 		577D8160190F4DDF003546DB /* c3dProgramSetUp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c3dProgramSetUp.cpp; sourceTree = "<group>"; };
 		577D8161190F4DDF003546DB /* c3dProgramSetUp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = c3dProgramSetUp.h; sourceTree = "<group>"; };
-		577D81C7190F4E36003546DB /* c3dActorSet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c3dActorSet.cpp; sourceTree = "<group>"; };
-		577D81C8190F4E36003546DB /* c3dActorSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = c3dActorSet.h; sourceTree = "<group>"; };
+		577D81C7190F4E36003546DB /* actorSet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = actorSet.cpp; path = ../actorSet.cpp; sourceTree = "<group>"; };
+		577D81C8190F4E36003546DB /* actorSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = actorSet.h; path = ../actorSet.h; sourceTree = "<group>"; };
 		577D81CC190F54EA003546DB /* geoMath.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = geoMath.cpp; sourceTree = "<group>"; };
 		577D81CD190F54EA003546DB /* geoMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = geoMath.h; sourceTree = "<group>"; };
 		577D81CF190F54EA003546DB /* octree.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = octree.cpp; sourceTree = "<group>"; };
@@ -528,8 +528,6 @@
 		5714283A18D8578E00FD3A59 /* singleCellGame */ = {
 			isa = PBXGroup;
 			children = (
-				577D81C7190F4E36003546DB /* c3dActorSet.cpp */,
-				577D81C8190F4E36003546DB /* c3dActorSet.h */,
 				5714283B18D8578E00FD3A59 /* funcs */,
 				5714284C18D8578E00FD3A59 /* gameObjs */,
 				5714287318D8578E00FD3A59 /* global */,
@@ -566,6 +564,8 @@
 		5714284C18D8578E00FD3A59 /* gameObjs */ = {
 			isa = PBXGroup;
 			children = (
+				577D81C7190F4E36003546DB /* actorSet.cpp */,
+				577D81C8190F4E36003546DB /* actorSet.h */,
 				5714284D18D8578E00FD3A59 /* archScene.cpp */,
 				5714284E18D8578E00FD3A59 /* archScene.h */,
 				5714284F18D8578E00FD3A59 /* backGroundMusicCube.cpp */,
@@ -1079,7 +1079,7 @@
 				577D8168190F4DDF003546DB /* c3dAppState.cpp in Sources */,
 				577D81DD190F54EA003546DB /* triangleWithNorm.cpp in Sources */,
 				5714293D18D8578F00FD3A59 /* playingPageLogic.cpp in Sources */,
-				577D81C9190F4E36003546DB /* c3dActorSet.cpp in Sources */,
+				577D81C9190F4E36003546DB /* actorSet.cpp in Sources */,
 				577D818A190F4DDF003546DB /* c3dRect.cpp in Sources */,
 				577D8197190F4DDF003546DB /* c3dALPlatformDepend.mm in Sources */,
 				577D8191190F4DDF003546DB /* c3dTransform.cpp in Sources */,

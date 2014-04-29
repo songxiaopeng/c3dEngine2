@@ -12,7 +12,7 @@
 #include <iostream>
 #include "c3dMesh.h"
 #include "c3dActor.h"
-#include "c3dActorSet.h"
+#include "actorSet.h"
 class Csprite:public Cc3dActor
 {
 protected:
@@ -248,7 +248,7 @@ public:
 
     
 };
-class CspriteSet:public Cc3dActorSet
+class CspriteSet:public CactorSet
 {
 public:
     void adjustFaceAndSubmitVertex(const Cc3dVector4&eyePos,const vector<bool>&maskList){

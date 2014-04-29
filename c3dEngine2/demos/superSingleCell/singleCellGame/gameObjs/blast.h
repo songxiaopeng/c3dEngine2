@@ -44,7 +44,7 @@ public:
         return blastType;
     }
 };
-class CblastSet:public Cc3dActorSet
+class CblastSet:public CactorSet
 {
 public:
     
