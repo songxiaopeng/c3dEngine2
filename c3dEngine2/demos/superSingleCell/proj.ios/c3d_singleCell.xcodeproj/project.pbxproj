@@ -12,6 +12,7 @@
 		1870661616C4662A00CDA573 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1870661516C4662A00CDA573 /* OpenAL.framework */; };
 		1870661816C466F100CDA573 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1870661716C466F100CDA573 /* AudioToolbox.framework */; };
 		1894170D190FABAC00609AEC /* singleCellGameResource in Resources */ = {isa = PBXBuildFile; fileRef = 1894170C190FABAC00609AEC /* singleCellGameResource */; };
+		1894171019100AA400609AEC /* actorSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1894170E19100AA400609AEC /* actorSet.cpp */; };
 		18FC286C1666AFAA008C2222 /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18FC286A1666AFAA008C2222 /* MainWindow-iPad.xib */; };
 		35DF6441138C40D500FF9459 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35DF6440138C40D500FF9459 /* UIKit.framework */; };
 		35DF6443138C40D500FF9459 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35DF6442138C40D500FF9459 /* Foundation.framework */; };
@@ -138,7 +139,6 @@
 		577D819E190F4DDF003546DB /* MyOpenALSupport.c in Sources */ = {isa = PBXBuildFile; fileRef = 577D8111190F4DDE003546DB /* MyOpenALSupport.c */; };
 		577D81C5190F4DDF003546DB /* c3dPassUnifoCallBack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577D815E190F4DDF003546DB /* c3dPassUnifoCallBack.cpp */; };
 		577D81C6190F4DDF003546DB /* c3dProgramSetUp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577D8160190F4DDF003546DB /* c3dProgramSetUp.cpp */; };
-		577D81C9190F4E36003546DB /* actorSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577D81C7190F4E36003546DB /* actorSet.cpp */; };
 		577D81DB190F54EA003546DB /* geoMath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577D81CC190F54EA003546DB /* geoMath.cpp */; };
 		577D81DC190F54EA003546DB /* octree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577D81CF190F54EA003546DB /* octree.cpp */; };
 		577D81DD190F54EA003546DB /* triangleWithNorm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577D81D1190F54EA003546DB /* triangleWithNorm.cpp */; };
@@ -163,6 +163,8 @@
 		1870661516C4662A00CDA573 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		1870661716C466F100CDA573 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		1894170C190FABAC00609AEC /* singleCellGameResource */ = {isa = PBXFileReference; lastKnownFileType = folder; path = singleCellGameResource; sourceTree = "<group>"; };
+		1894170E19100AA400609AEC /* actorSet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = actorSet.cpp; sourceTree = "<group>"; };
+		1894170F19100AA400609AEC /* actorSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = actorSet.h; sourceTree = "<group>"; };
 		18FC286B1666AFAA008C2222 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "iPad/en.lproj/MainWindow-iPad.xib"; sourceTree = "<group>"; };
 		35DF643C138C40D500FF9459 /* super single cell.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "super single cell.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		35DF6440138C40D500FF9459 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -413,8 +415,6 @@
 		577D815F190F4DDF003546DB /* c3dPassUnifoCallBack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = c3dPassUnifoCallBack.h; sourceTree = "<group>"; };
 		577D8160190F4DDF003546DB /* c3dProgramSetUp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c3dProgramSetUp.cpp; sourceTree = "<group>"; };
 		577D8161190F4DDF003546DB /* c3dProgramSetUp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = c3dProgramSetUp.h; sourceTree = "<group>"; };
-		577D81C7190F4E36003546DB /* actorSet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = actorSet.cpp; path = ../actorSet.cpp; sourceTree = "<group>"; };
-		577D81C8190F4E36003546DB /* actorSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = actorSet.h; path = ../actorSet.h; sourceTree = "<group>"; };
 		577D81CC190F54EA003546DB /* geoMath.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = geoMath.cpp; sourceTree = "<group>"; };
 		577D81CD190F54EA003546DB /* geoMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = geoMath.h; sourceTree = "<group>"; };
 		577D81CF190F54EA003546DB /* octree.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = octree.cpp; sourceTree = "<group>"; };
@@ -564,8 +564,8 @@
 		5714284C18D8578E00FD3A59 /* gameObjs */ = {
 			isa = PBXGroup;
 			children = (
-				577D81C7190F4E36003546DB /* actorSet.cpp */,
-				577D81C8190F4E36003546DB /* actorSet.h */,
+				1894170E19100AA400609AEC /* actorSet.cpp */,
+				1894170F19100AA400609AEC /* actorSet.h */,
 				5714284D18D8578E00FD3A59 /* archScene.cpp */,
 				5714284E18D8578E00FD3A59 /* archScene.h */,
 				5714284F18D8578E00FD3A59 /* backGroundMusicCube.cpp */,
@@ -1079,7 +1079,6 @@
 				577D8168190F4DDF003546DB /* c3dAppState.cpp in Sources */,
 				577D81DD190F54EA003546DB /* triangleWithNorm.cpp in Sources */,
 				5714293D18D8578F00FD3A59 /* playingPageLogic.cpp in Sources */,
-				577D81C9190F4E36003546DB /* actorSet.cpp in Sources */,
 				577D818A190F4DDF003546DB /* c3dRect.cpp in Sources */,
 				577D8197190F4DDF003546DB /* c3dALPlatformDepend.mm in Sources */,
 				577D8191190F4DDF003546DB /* c3dTransform.cpp in Sources */,
@@ -1142,6 +1141,7 @@
 				577D8184190F4DDF003546DB /* c3dNode.cpp in Sources */,
 				5714291A18D8578E00FD3A59 /* fakeLight.cpp in Sources */,
 				5714292F18D8578E00FD3A59 /* shadowMapInfo.cpp in Sources */,
+				1894171019100AA400609AEC /* actorSet.cpp in Sources */,
 				577D8199190F4DDF003546DB /* c3dDocumentsPlatformDepend.mm in Sources */,
 				577D8169190F4DDF003546DB /* c3dAssert.cpp in Sources */,
 				5714293018D8578E00FD3A59 /* timeCounter.cpp in Sources */,
