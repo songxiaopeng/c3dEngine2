@@ -145,4 +145,17 @@ void Cc3dMesh::releasevList()//释放subMeshList中各submesh的vlist
 }
 
 
+void Cc3dMesh::scale_modifyVertexDirectly(float kx,float ky,float kz){//以直接修改顶点的方式进行放缩--abc
+    int nSubMesh=(int)m_subMeshList.size();
+    for(int i=0;i<nSubMesh;i++){
+        int nv=(int)m_subMeshList[i]->getSubMeshData()->getVertexCount();
+        for(int j=0;j<nv;j++){
+            Cc3dVertex v=m_subMeshList[i]->getSubMeshData()->getVertexByIndex(j);
+            const Cc3dVector4 pos=v.getPos();
+            v.setPos(Cc3dVector4(pos.x()*kx, pos.y()*ky, pos.z()*kz,1));
+            m_subMeshList[i]->getSubMeshData()->setVertexByIndex(j, v);
+        }
+    }
+}
+
 
