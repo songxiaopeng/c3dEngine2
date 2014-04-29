@@ -60,7 +60,7 @@ bool CstartPage::init(){
     this->getALSourceByName("startMusic")->play();
     return true;
 }
-void CstartPage::update(){
+void CstartPage::update(float dt){
     //----quad_startPage_backGround
     //quad_startPage_backGround响应单击--abc
   /*  Cc3dTouch touch=Cc3dTouchSequence::sharedTouchSequence()->getLatestTouches()[0];

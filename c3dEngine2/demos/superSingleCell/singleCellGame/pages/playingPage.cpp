@@ -118,7 +118,7 @@ void  CplayingPage::debugSwitch(){
 
 
 }
-void  CplayingPage::update(){
+void  CplayingPage::update(float dt){
     //---------------------logic
     //必须将logic放在这里，不要将logic放在update里!!!，否则造成卡顿--abc
     this->logic();

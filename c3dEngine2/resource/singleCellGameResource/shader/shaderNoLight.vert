@@ -2,8 +2,8 @@
 // do not use chinese in comment
 //-------------------------------------
 //attribute pass from vbo or va
-attribute vec3 position_local;
-attribute vec2 texCoordIn;
+attribute vec4 a_position;
+attribute vec2 a_texCoord;
 
 //matrixs pass from outside
 uniform mat4 projectionModelview;
@@ -12,6 +12,6 @@ uniform mat4 projectionModelview;
 varying vec2 texCoordOut;
 
 void main(void) {
-    gl_Position = projectionModelview* vec4(position_local,1);
-    texCoordOut = texCoordIn;
+gl_Position = projectionModelview* a_position;
+    texCoordOut = a_texCoord;
 }

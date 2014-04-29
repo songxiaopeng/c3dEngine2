@@ -19,7 +19,7 @@ class CdescPage3:public Cc3dActor//public Cc3dNode
 public:
     
     bool init();
-    void update();
+    void update(float dt);
     CdescPage3();
     virtual ~CdescPage3();
 protected:

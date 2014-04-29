@@ -121,7 +121,7 @@ bool CpausePage::init(){
     this->addALSource(pALSource_switchPage);
     return true;
 }
-void CpausePage::update(){
+void CpausePage::update(float dt){
     //----continueKey
     //continueKey响应单击--abc
     if(m_continueKey->isContainPoint(Cc3dGestureAnalyzer::sharedGestureAnalyzer()->getPoint())&&Cc3dGestureAnalyzer::sharedGestureAnalyzer()->getIsTapOnce()){

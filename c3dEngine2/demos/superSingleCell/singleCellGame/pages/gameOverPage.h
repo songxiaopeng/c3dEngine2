@@ -20,7 +20,7 @@ class CgameOverPage:public Cc3dActor//public Cc3dNode
 public:
     
     bool init();
-    void update();
+    void update(float dt);
     CgameOverPage();
     virtual ~CgameOverPage();
 

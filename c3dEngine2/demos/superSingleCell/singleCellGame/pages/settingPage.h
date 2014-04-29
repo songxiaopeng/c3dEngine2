@@ -19,7 +19,7 @@ class CsettingPage:public Cc3dActor//public Cc3dNode
 public:
     
     bool init();
-    void update();
+    void update(float dt);
     CsettingPage();
     virtual ~CsettingPage();
     void draw();

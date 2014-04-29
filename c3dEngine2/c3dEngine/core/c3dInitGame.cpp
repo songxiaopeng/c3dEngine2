@@ -24,21 +24,19 @@ void c3dInitGame(){
 	Cc3dGlobalTimer::sharedGlobalTimer()->start();
 	//----随机数--abc
     srand(time(0));
-	
 	//----初始化openal
 	initOpenAL();
-	
 	//----初始化opengl
 	initOpenGL();
-
 	//----openal状态--abc
 	alDistanceModel(AL_INVERSE_DISTANCE_CLAMPED);//设置距离模型--abc
     alListenerf(AL_GAIN, 1.0);//set listener gain
-
     //----opengl状态--abc
     glEnable(GL_BLEND);
     glEnable(GL_DEPTH_TEST);
+#if (C3D_TARGET_PLATFORM == C3D_PLATFORM_WIN32)
 	glEnable(GL_TEXTURE_2D);//on windows, do not forget this!!!
+#endif
     ////glEnable(GL_VERTEX_PROGRAM_POINT_SIZE);// Enable point size by default on windows.(wait, it is not support on iOS!)
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glClearColor(0, 0, 0, 0);//指定清理color buffers时所用的颜色，默认值为(0,0,0,0),见:http://msdn.microsoft.com/en-us/library/windows/desktop/dd318377(v=vs.85).aspx

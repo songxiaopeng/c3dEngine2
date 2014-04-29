@@ -50,7 +50,7 @@ bool CviewingTipPage::init(){
     this->addALSource(pALSource_switchPage);
     return true;
 }
-void CviewingTipPage::update(){
+void CviewingTipPage::update(float dt){
     //----quad_tipTex响应单击--abc
     if(m_quad_tipTex->isContainPoint(Cc3dGestureAnalyzer::sharedGestureAnalyzer()->getPoint())&&Cc3dGestureAnalyzer::sharedGestureAnalyzer()->getIsTapOnce()){
         this->getALSourceByName("switchPage")->play();

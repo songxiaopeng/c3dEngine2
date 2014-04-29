@@ -118,7 +118,7 @@ bool CendPage::init(){
 
     return true;
 }
-void CendPage::update(){
+void CendPage::update(float dt){
     //----homeKey
     if(this->getALSourceByName("endMusic")->getIsPlaying()==false){//如果音乐停止则响应按键--abc
         //homeKey响应单击--abc

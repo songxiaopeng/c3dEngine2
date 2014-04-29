@@ -106,7 +106,7 @@ bool CgameOverPage::init(){
     
     return true;
 }
-void CgameOverPage::update(){
+void CgameOverPage::update(float dt){
     //----restartKey
     if(m_restartKey->isContainPoint(Cc3dGestureAnalyzer::sharedGestureAnalyzer()->getPoint())&&Cc3dGestureAnalyzer::sharedGestureAnalyzer()->getIsTapOnce()){
         CloadingPage*loadingPage=new CloadingPage();

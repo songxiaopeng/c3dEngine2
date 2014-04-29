@@ -19,7 +19,7 @@ class CloadingPage:public Cc3dActor//public Cc3dNode
 public:
     
     bool init();
-    void update();
+    void update(float dt);
     CloadingPage();
     virtual ~CloadingPage();
 protected:

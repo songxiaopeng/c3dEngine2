@@ -104,7 +104,7 @@ bool CdescPage::init(){
     this->addALSource(pALSource_switchPage);
     return true;
 }
-void CdescPage::update(){
+void CdescPage::update(float dt){
     //----foeKey
     {
         //foeKey响应单击--abc

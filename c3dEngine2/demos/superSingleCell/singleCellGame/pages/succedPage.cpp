@@ -374,7 +374,7 @@ bool CsuccedPage::init(int nStar,int nEnemyKilled,int nCoinEaten){
     this->addALSource(pALSource_switchPage);
     return true;
 }
-void CsuccedPage::update(){
+void CsuccedPage::update(float dt){
     //----nextLevelKey
     //nextLevelKey响应单击--abc
     if(m_nextLevelKey->isContainPoint(Cc3dGestureAnalyzer::sharedGestureAnalyzer()->getPoint())&&Cc3dGestureAnalyzer::sharedGestureAnalyzer()->getIsTapOnce()){

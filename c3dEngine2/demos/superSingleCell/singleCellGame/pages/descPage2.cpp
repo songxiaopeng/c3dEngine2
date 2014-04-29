@@ -102,7 +102,7 @@ bool CdescPage2::init(){
     this->addALSource(pALSource_switchPage);
     return true;
 }
-void CdescPage2::update(){
+void CdescPage2::update(float dt){
 
     //----foeKey
     {

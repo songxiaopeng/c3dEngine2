@@ -136,7 +136,7 @@ bool CsettingPage::init(){
     this->addALSource(pALSource_switchPage);
     return true;
 }
-void CsettingPage::update(){
+void CsettingPage::update(float dt){
 
     //----backKey
 

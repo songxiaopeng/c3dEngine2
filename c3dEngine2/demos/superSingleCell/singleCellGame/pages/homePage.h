@@ -20,7 +20,7 @@ class ChomePage:public Cc3dActor//public Cc3dNode
 public:
     
     bool init();
-    void update();
+    void update(float dt);
     ChomePage();
     virtual ~ChomePage();
     int getLevelCount()const{return m_levelCount;}

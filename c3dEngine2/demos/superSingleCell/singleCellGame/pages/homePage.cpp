@@ -289,7 +289,7 @@ bool ChomePage::init(){
 void ChomePage::debugSwitch(){
     CgameSettings::sharedGameSettings()->setUnlockAll(!CgameSettings::sharedGameSettings()->getUnlockAll());
 }
-void ChomePage::update(){
+void ChomePage::update(float dt){
     float screenwidth=Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo()->getScreenSize().x();
     float screenheight=Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo()->getScreenSize().y();
    

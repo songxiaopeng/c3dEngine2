@@ -19,7 +19,7 @@ class CpausePage:public Cc3dActor//public Cc3dNode
 public:
     
     bool init();
-    void update();
+    void update(float dt);
     CpausePage();
     virtual ~CpausePage();
     

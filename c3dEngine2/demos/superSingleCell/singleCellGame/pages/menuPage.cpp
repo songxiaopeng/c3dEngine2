@@ -155,7 +155,7 @@ bool CmenuPage::init(){
     this->addALSource(pALSource_switchPage);
     return true;
 }
-void CmenuPage::update(){
+void CmenuPage::update(float dt){
     //----playKey
     {
       

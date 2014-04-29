@@ -74,7 +74,7 @@ bool CaboutPage::init(){
     this->addALSource(pALSource_switchPage);
     return true;
 }
-void CaboutPage::update(){
+void CaboutPage::update(float dt){
     //----backKey
     {
         //backKey响应单击--abc

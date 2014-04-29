@@ -75,7 +75,7 @@ bool CloadingPage::init(){
     }
     return true;
 }
-void CloadingPage::update(){
+void CloadingPage::update(float dt){
     CplayingPage*playingPage=new  CplayingPage();
     playingPage->autorelease();
     playingPage->init(CgameState::sharedGameState()->getCurrentLevel());

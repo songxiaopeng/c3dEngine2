@@ -30,7 +30,7 @@ class  CplayingPage:public Cc3dActor//public Cc3dNode
 public:
     void visitDraw();
     bool init(int level);
-    void update();
+    void update(float dt);
      CplayingPage();
     virtual~CplayingPage();
 

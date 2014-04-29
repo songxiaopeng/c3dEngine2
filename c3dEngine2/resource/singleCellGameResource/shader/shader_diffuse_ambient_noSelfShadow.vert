@@ -2,9 +2,9 @@
 // do not use chinese in comment
 //-------------------------------------
 //attribute pass from vbo or va
-attribute vec3 position_local;
-attribute vec3 normal_local;
-attribute vec2 texCoordIn; 
+attribute vec4 a_position;
+attribute vec4 a_normal;
+attribute vec2 a_texCoord;
 
 //matrixs pass from outside
 uniform mat4 projectionModelview;
@@ -25,9 +25,9 @@ varying vec4 lightViewportTexCoordDivW;
 void main(void) {
 //----get normal in world space
     //suppose no scaling, then we can spare normalize
-    vec3 norm_world = vec3(normMat_toWorld*vec4(normal_local,0));
+    vec3 norm_world = vec3(normMat_toWorld*a_normal);
     //----get pos in world space
-    vec3 pos_world = vec3(modelMat*vec4(position_local,1));
+    vec3 pos_world = vec3(modelMat*a_position);
     //----cal diffuse color
     vec3 posToLight=normalize(lightPos_world-pos_world);
     float normDotPosToLight = max(0.0, dot(norm_world, posToLight));
@@ -37,8 +37,8 @@ void main(void) {
     //----set varying
     //the final alpha is equal to diffuseML.a(and is equal to diffuse_material.a)
     mainColor = vec4(vec3(ambientML)+diffuseColor,diffuseML.a);
-    gl_Position = projectionModelview* vec4(position_local,1);
-    texCoordOut = texCoordIn; 
+    gl_Position = projectionModelview* a_position;
+    texCoordOut = a_texCoord;
     vec4 t=worldToLightViewportTexCoord*vec4(pos_world,1);//note: use pos_world
 
    lightViewportTexCoordDivW=t/t.w;

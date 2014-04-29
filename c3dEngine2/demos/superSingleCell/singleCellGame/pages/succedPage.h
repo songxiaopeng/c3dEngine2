@@ -20,7 +20,7 @@ class CsuccedPage:public Cc3dActor//public Cc3dNode
 public:
     
     bool init(int nStar,int nEnemyKilled,int nCoinEaten);
-    void update();
+    void update(float dt);
     CsuccedPage();
     virtual ~CsuccedPage();
 protected:
