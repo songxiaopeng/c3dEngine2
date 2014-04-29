@@ -115,7 +115,7 @@ void  CplayingPage::debugSwitch(){
     CgameSettings::sharedGameSettings()->setShowMusicCube(!CgameSettings::sharedGameSettings()->getShowMusicCube());
     
     m_levelBackGroundMusicCube->setIsVisible(!m_levelBackGroundMusicCube->getIsVisible());
-
+	if(m_ground)m_ground->setIsWireMode(!m_ground->getModel()->getMeshByIndex(0)->getSubMeshByIndex(0)->getIndexVBO()->getIsWireMode());
 
 }
 void  CplayingPage::update(float dt){

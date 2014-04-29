@@ -71,7 +71,7 @@
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>true</WholeProgramOptimization>
       <OmitFramePointers>true</OmitFramePointers>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\c3dEngine;$(ProjectDir)..\..\..\c3dEngine\core;$(ProjectDir)..\..\..\c3dEngine\common;$(ProjectDir)..\..\..\c3dEngine\platform\win32;$(ProjectDir)..\..\..\c3dEngine\platform\win32\OGLES;$(ProjectDir);$(ProjectDir)..\..\..\extension;$(ProjectDir)..\..\..\extension\geometry;$(ProjectDir)..\..\..\extension\octree;$(ProjectDir)..\..\..\extension\terrain;$(ProjectDir)..\singleCellGame;$(ProjectDir)..\singleCellGame\funcs;$(ProjectDir)..\singleCellGame\gameObjs;$(ProjectDir)..\singleCellGame\global;$(ProjectDir)..\singleCellGame\otherObjs;$(ProjectDir)..\singleCellGame\pages;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\c3dEngine;$(ProjectDir)..\..\..\c3dEngine\core;$(ProjectDir)..\..\..\c3dEngine\common;$(ProjectDir)..\..\..\c3dEngine\shader;$(ProjectDir)..\..\..\c3dEngine\platform\win32;$(ProjectDir)..\..\..\c3dEngine\platform\win32\OGLES;$(ProjectDir);$(ProjectDir)..\..\..\extension;$(ProjectDir)..\..\..\extension\geometry;$(ProjectDir)..\..\..\extension\octree;$(ProjectDir)..\..\..\extension\terrain;$(ProjectDir)..\singleCellGame;$(ProjectDir)..\singleCellGame\funcs;$(ProjectDir)..\singleCellGame\gameObjs;$(ProjectDir)..\singleCellGame\global;$(ProjectDir)..\singleCellGame\otherObjs;$(ProjectDir)..\singleCellGame\pages;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MinimalRebuild>false</MinimalRebuild>
       <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
@@ -163,7 +163,6 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\c3dEngine\platform\win32\libraries\*.*" "$(Ou
     <ClCompile Include="..\..\..\c3dEngine\common\c3dCommonFunc.cpp" />
     <ClCompile Include="..\..\..\c3dEngine\common\c3dPathFunc.cpp" />
     <ClCompile Include="..\..\..\c3dEngine\core\c3dActor.cpp" />
-    <ClCompile Include="..\..\..\c3dEngine\core\c3dActorSet.cpp" />
     <ClCompile Include="..\..\..\c3dEngine\core\c3dALBuffer.cpp" />
     <ClCompile Include="..\..\..\c3dEngine\core\c3dALdebug.cpp" />
     <ClCompile Include="..\..\..\c3dEngine\core\c3dALSource.cpp" />
@@ -181,8 +180,11 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\c3dEngine\platform\win32\libraries\*.*" "$(Ou
     <ClCompile Include="..\..\..\c3dEngine\core\c3dGestureAnalyzer.cpp" />
     <ClCompile Include="..\..\..\c3dEngine\core\c3dGLdebug.cpp" />
     <ClCompile Include="..\..\..\c3dEngine\core\c3dGLMath.cpp" />
+    <ClCompile Include="..\..\..\c3dEngine\core\c3dGlobalTimer.cpp" />
+    <ClCompile Include="..\..\..\c3dEngine\core\c3dIDline.cpp" />
     <ClCompile Include="..\..\..\c3dEngine\core\c3dIDtriangle.cpp" />
     <ClCompile Include="..\..\..\c3dEngine\core\c3dIndexVBO.cpp" />
+    <ClCompile Include="..\..\..\c3dEngine\core\c3dInitGame.cpp" />
     <ClCompile Include="..\..\..\c3dEngine\core\c3dLight.cpp" />
     <ClCompile Include="..\..\..\c3dEngine\core\c3dLog.cpp" />
     <ClCompile Include="..\..\..\c3dEngine\core\c3dMaterial.cpp" />
@@ -204,7 +206,6 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\c3dEngine\platform\win32\libraries\*.*" "$(Ou
     <ClCompile Include="..\..\..\c3dEngine\core\c3dSubMesh.cpp" />
     <ClCompile Include="..\..\..\c3dEngine\core\c3dTexture.cpp" />
     <ClCompile Include="..\..\..\c3dEngine\core\c3dTextureCache.cpp" />
-    <ClCompile Include="..\..\..\c3dEngine\core\c3dTimeCounter.cpp" />
     <ClCompile Include="..\..\..\c3dEngine\core\c3dTouchSequence.cpp" />
     <ClCompile Include="..\..\..\c3dEngine\core\c3dTransform.cpp" />
     <ClCompile Include="..\..\..\c3dEngine\core\c3dVector.cpp" />
@@ -215,10 +216,13 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\c3dEngine\platform\win32\libraries\*.*" "$(Ou
     <ClCompile Include="..\..\..\c3dEngine\platform\win32\c3dALPlatformDepend.cpp" />
     <ClCompile Include="..\..\..\c3dEngine\platform\win32\c3dDeviceAndOSInfoPlatformDepend.cpp" />
     <ClCompile Include="..\..\..\c3dEngine\platform\win32\c3dDocumentsPlatformDepend.cpp" />
+    <ClCompile Include="..\..\..\c3dEngine\platform\win32\c3dGLPlatformDepend.cpp" />
     <ClCompile Include="..\..\..\c3dEngine\platform\win32\c3dImage.cpp" />
     <ClCompile Include="..\..\..\c3dEngine\platform\win32\c3dPathPlatformDepend.cpp" />
     <ClCompile Include="..\..\..\c3dEngine\platform\win32\c3dProgramPlatformDepend.cpp" />
     <ClCompile Include="..\..\..\c3dEngine\platform\win32\c3dTexturePlatformDepend.cpp" />
+    <ClCompile Include="..\..\..\c3dEngine\shader\c3dPassUnifoCallBack.cpp" />
+    <ClCompile Include="..\..\..\c3dEngine\shader\c3dProgramSetUp.cpp" />
     <ClCompile Include="..\..\..\extension\geometry\geoMath.cpp" />
     <ClCompile Include="..\..\..\extension\octree\octree.cpp" />
     <ClCompile Include="..\..\..\extension\octree\triangleWithNorm.cpp" />
@@ -282,12 +286,12 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\c3dEngine\platform\win32\libraries\*.*" "$(Ou
     <ResourceCompile Include="Script1.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\c3dEngine\c3d.h" />
     <ClInclude Include="..\..\..\c3dEngine\common\c3dAL.h" />
     <ClInclude Include="..\..\..\c3dEngine\common\c3dCommonFunc.h" />
     <ClInclude Include="..\..\..\c3dEngine\common\c3dGL.h" />
     <ClInclude Include="..\..\..\c3dEngine\common\c3dPathFunc.h" />
     <ClInclude Include="..\..\..\c3dEngine\core\c3dActor.h" />
-    <ClInclude Include="..\..\..\c3dEngine\core\c3dActorSet.h" />
     <ClInclude Include="..\..\..\c3dEngine\core\c3dALBuffer.h" />
     <ClInclude Include="..\..\..\c3dEngine\core\c3dALdebug.h" />
     <ClInclude Include="..\..\..\c3dEngine\core\c3dALSource.h" />
@@ -305,8 +309,11 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\c3dEngine\platform\win32\libraries\*.*" "$(Ou
     <ClInclude Include="..\..\..\c3dEngine\core\c3dGestureAnalyzer.h" />
     <ClInclude Include="..\..\..\c3dEngine\core\c3dGLdebug.h" />
     <ClInclude Include="..\..\..\c3dEngine\core\c3dGLMath.h" />
+    <ClInclude Include="..\..\..\c3dEngine\core\c3dGlobalTimer.h" />
+    <ClInclude Include="..\..\..\c3dEngine\core\c3dIDline.h" />
     <ClInclude Include="..\..\..\c3dEngine\core\c3dIDtriangle.h" />
     <ClInclude Include="..\..\..\c3dEngine\core\c3dIndexVBO.h" />
+    <ClInclude Include="..\..\..\c3dEngine\core\c3dInitGame.h" />
     <ClInclude Include="..\..\..\c3dEngine\core\c3dLight.h" />
     <ClInclude Include="..\..\..\c3dEngine\core\c3dLog.h" />
     <ClInclude Include="..\..\..\c3dEngine\core\c3dMaterial.h" />
@@ -328,7 +335,6 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\c3dEngine\platform\win32\libraries\*.*" "$(Ou
     <ClInclude Include="..\..\..\c3dEngine\core\c3dSubMesh.h" />
     <ClInclude Include="..\..\..\c3dEngine\core\c3dTexture.h" />
     <ClInclude Include="..\..\..\c3dEngine\core\c3dTextureCache.h" />
-    <ClInclude Include="..\..\..\c3dEngine\core\c3dTimeCounter.h" />
     <ClInclude Include="..\..\..\c3dEngine\core\c3dTouchSequence.h" />
     <ClInclude Include="..\..\..\c3dEngine\core\c3dTransform.h" />
     <ClInclude Include="..\..\..\c3dEngine\core\c3dVector.h" />
@@ -345,6 +351,7 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\c3dEngine\platform\win32\libraries\*.*" "$(Ou
     <ClInclude Include="..\..\..\c3dEngine\platform\win32\c3dALPlatformDepend.h" />
     <ClInclude Include="..\..\..\c3dEngine\platform\win32\c3dDeviceAndOSInfoPlatformDepend.h" />
     <ClInclude Include="..\..\..\c3dEngine\platform\win32\c3dDocumentsPlatformDepend.h" />
+    <ClInclude Include="..\..\..\c3dEngine\platform\win32\c3dGLPlatformDepend.h" />
     <ClInclude Include="..\..\..\c3dEngine\platform\win32\c3dImage.h" />
     <ClInclude Include="..\..\..\c3dEngine\platform\win32\c3dPathPlatformDepend.h" />
     <ClInclude Include="..\..\..\c3dEngine\platform\win32\c3dProgramPlatformDepend.h" />
@@ -358,6 +365,8 @@ xcopy /Y /Q "$(ProjectDir)..\..\..\c3dEngine\platform\win32\libraries\*.*" "$(Ou
     <ClInclude Include="..\..\..\c3dEngine\platform\win32\OGLES\GL\wglew.h" />
     <ClInclude Include="..\..\..\c3dEngine\platform\win32\zlib\zconf.h" />
     <ClInclude Include="..\..\..\c3dEngine\platform\win32\zlib\zlib.h" />
+    <ClInclude Include="..\..\..\c3dEngine\shader\c3dPassUnifoCallBack.h" />
+    <ClInclude Include="..\..\..\c3dEngine\shader\c3dProgramSetUp.h" />
     <ClInclude Include="..\..\..\extension\geometry\geoMath.h" />
     <ClInclude Include="..\..\..\extension\octree\octree.h" />
     <ClInclude Include="..\..\..\extension\octree\triangleWithNorm.h" />
