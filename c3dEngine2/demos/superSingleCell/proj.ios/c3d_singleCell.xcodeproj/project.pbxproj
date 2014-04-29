@@ -11,6 +11,7 @@
 		181FD39818C2147A00F2C204 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 181FD39718C2147A00F2C204 /* AVFoundation.framework */; };
 		1870661616C4662A00CDA573 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1870661516C4662A00CDA573 /* OpenAL.framework */; };
 		1870661816C466F100CDA573 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1870661716C466F100CDA573 /* AudioToolbox.framework */; };
+		1894170D190FABAC00609AEC /* singleCellGameResource in Resources */ = {isa = PBXBuildFile; fileRef = 1894170C190FABAC00609AEC /* singleCellGameResource */; };
 		18FC286C1666AFAA008C2222 /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18FC286A1666AFAA008C2222 /* MainWindow-iPad.xib */; };
 		35DF6441138C40D500FF9459 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35DF6440138C40D500FF9459 /* UIKit.framework */; };
 		35DF6443138C40D500FF9459 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35DF6442138C40D500FF9459 /* Foundation.framework */; };
@@ -145,7 +146,6 @@
 		577D81DF190F54EA003546DB /* board.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577D81D7190F54EA003546DB /* board.cpp */; };
 		577D81E0190F54EA003546DB /* button.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 577D81D9190F54EA003546DB /* button.cpp */; };
 		577D81E6190F86E4003546DB /* c3dEngineResource in Resources */ = {isa = PBXBuildFile; fileRef = 577D81E4190F86E4003546DB /* c3dEngineResource */; };
-		577D81E7190F86E4003546DB /* singleCellGameResource in Resources */ = {isa = PBXBuildFile; fileRef = 577D81E5190F86E4003546DB /* singleCellGameResource */; };
 		577D81F3190F86F0003546DB /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 577D81E9190F86F0003546DB /* Default-568h@2x.png */; };
 		577D81F4190F86F0003546DB /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 577D81EA190F86F0003546DB /* Default.png */; };
 		577D81F5190F86F0003546DB /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 577D81EB190F86F0003546DB /* Default@2x.png */; };
@@ -162,6 +162,7 @@
 		181FD39718C2147A00F2C204 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		1870661516C4662A00CDA573 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		1870661716C466F100CDA573 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		1894170C190FABAC00609AEC /* singleCellGameResource */ = {isa = PBXFileReference; lastKnownFileType = folder; path = singleCellGameResource; sourceTree = "<group>"; };
 		18FC286B1666AFAA008C2222 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "iPad/en.lproj/MainWindow-iPad.xib"; sourceTree = "<group>"; };
 		35DF643C138C40D500FF9459 /* super single cell.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "super single cell.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		35DF6440138C40D500FF9459 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -427,7 +428,6 @@
 		577D81D9190F54EA003546DB /* button.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = button.cpp; sourceTree = "<group>"; };
 		577D81DA190F54EA003546DB /* button.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = button.h; sourceTree = "<group>"; };
 		577D81E4190F86E4003546DB /* c3dEngineResource */ = {isa = PBXFileReference; lastKnownFileType = folder; path = c3dEngineResource; sourceTree = "<group>"; };
-		577D81E5190F86E4003546DB /* singleCellGameResource */ = {isa = PBXFileReference; lastKnownFileType = folder; path = singleCellGameResource; sourceTree = "<group>"; };
 		577D81E9190F86F0003546DB /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		577D81EA190F86F0003546DB /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		577D81EB190F86F0003546DB /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
@@ -955,10 +955,10 @@
 		57B4F60E18E2E5C700EE685C /* resource */ = {
 			isa = PBXGroup;
 			children = (
+				1894170C190FABAC00609AEC /* singleCellGameResource */,
 				577D81E8190F86F0003546DB /* defaultImage */,
 				577D81EC190F86F0003546DB /* icon */,
 				577D81E4190F86E4003546DB /* c3dEngineResource */,
-				577D81E5190F86E4003546DB /* singleCellGameResource */,
 			);
 			name = resource;
 			path = ../../../resource;
@@ -1016,10 +1016,10 @@
 			files = (
 				577D81F5190F86F0003546DB /* Default@2x.png in Resources */,
 				577D81F8190F86F0003546DB /* Icon-Small.png in Resources */,
+				1894170D190FABAC00609AEC /* singleCellGameResource in Resources */,
 				35DF644B138C40D500FF9459 /* InfoPlist.strings in Resources */,
 				577D81F6190F86F0003546DB /* Icon-72.png in Resources */,
 				577D81E6190F86E4003546DB /* c3dEngineResource in Resources */,
-				577D81E7190F86E4003546DB /* singleCellGameResource in Resources */,
 				35DF6454138C40D500FF9459 /* MainWindow.xib in Resources */,
 				577D81FA190F86F0003546DB /* Icon.png in Resources */,
 				577D81F4190F86F0003546DB /* Default.png in Resources */,

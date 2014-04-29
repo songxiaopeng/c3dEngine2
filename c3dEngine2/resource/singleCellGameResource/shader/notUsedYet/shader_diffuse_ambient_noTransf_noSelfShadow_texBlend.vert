@@ -1,13 +1,13 @@
 //-------------------------------------
-// do not use chinese in comment
-//-------------------------------------
-//attribute pass from vbo or va
-attribute vec3 position_local;
-attribute vec3 normal_local;
-attribute vec2 texCoordIn;
-attribute vec2 texCoordIn2;
 
-//matrixs pass from outside
+//-------------------------------------
+//attribute
+attribute vec4 a_position;
+attribute vec4 a_normal;
+attribute vec2 a_texCoord;
+attribute vec2 a_texCoord2;
+
+//uniform
 uniform mat4 projectionModelview;
 uniform mat4 worldToLightViewportTexCoord;
 uniform mat4 worldToLightViewportTexCoord2;
@@ -17,7 +17,7 @@ uniform vec3 lightPos_world;
 uniform vec4 diffuseML;//diffuseML=vec4(vec3(diffuse_material)*vec3(diffuse_light),diffuse_material.a)
 uniform vec4 ambientML;//ambientML=vec4(vec3(ambient_material)*vec3(ambient_light),0)
 
-//pass to fragment shader
+//varying
 varying vec4 mainColor;
 varying vec2 texCoordOut;
 varying vec2 texCoordOut2;
@@ -36,11 +36,11 @@ void main(void) {
     //----set varying
     //the final alpha is equal to diffuseML.a(and is equal to diffuse_material.a)
     mainColor = vec4(vec3(ambientML)+diffuseColor,diffuseML.a);
-    gl_Position = projectionModelview* vec4(position_local,1);
-    texCoordOut = texCoordIn;
-    texCoordOut2= texCoordIn2;
-    vec4 t=worldToLightViewportTexCoord*vec4(position_local,1);
+    gl_Position = projectionModelview* a_position;
+    texCoordOut = a_texCoord;
+    texCoordOut2= a_texCoord2;
+    vec4 t=worldToLightViewportTexCoord*a_position;
     lightViewportTexCoordDivW=vec3(t)/t.w;
-    vec4 t2=worldToLightViewportTexCoord2*vec4(position_local,1);
+    vec4 t2=worldToLightViewportTexCoord2*a_position;
     lightViewportTexCoordDivW2=vec3(t2)/t2.w;
 }

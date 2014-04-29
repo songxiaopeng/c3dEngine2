@@ -1,20 +1,20 @@
 
 //-------------------------------------
-// do not use chinese in comment
+
 //-------------------------------------
-//attribute pass from vbo or va
-attribute vec3 position_local;
-attribute vec2 texCoordIn;
+//attribute
+attribute vec4 a_position;
+attribute vec2 a_texCoord;
 
 //uniform
 uniform mat4 projectionModelview;
 uniform float pointSize;
 
-//pass to fragment shader
+//varying
 varying vec2 texCoordOut;
 
 void main(void) {
     gl_PointSize=pointSize;//gl_PointSize is float, see: http://www.opengl.org/sdk/docs/manglsl/xhtml/gl_PointSize.xml
-    gl_Position = projectionModelview* vec4(position_local,1);
-    texCoordOut = texCoordIn;
+    gl_Position = projectionModelview* a_position;
+    texCoordOut = a_texCoord;
 }

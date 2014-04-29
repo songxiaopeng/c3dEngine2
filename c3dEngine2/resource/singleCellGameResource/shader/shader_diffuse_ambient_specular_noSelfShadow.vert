@@ -1,13 +1,13 @@
 //-------------------------------------
-// do not use chinese in comment
+
 //-------------------------------------
-//attribute pass from vbo or va
-attribute vec3 position_local;
-attribute vec3 normal_local;
-attribute vec2 texCoordIn;
+//attribute
+attribute vec4 a_position;
+attribute vec4 a_normal;
+attribute vec2 a_texCoord;
 
 
-//matrixs pass from outside
+//uniform
 uniform mat4 modelMat;
 uniform mat4 projectionModelview;
 uniform mat4 normMat_toWorld;
@@ -22,7 +22,7 @@ uniform vec4 specularML;//specularML=vec4(vec3(specular_material)*vec3(specular_
 uniform float shininess;
 uniform bool isHighlightUntransp;
 
-//pass to fragment shader
+//varying
 varying vec4 mainColor;
 varying vec4 secondaryColor;
 varying vec2 texCoordOut;
@@ -32,9 +32,9 @@ varying vec4 lightViewportTexCoordDivW;
 void main(void) {
     //----get normal in world space
     //suppose no scaling, then we can spare normalize
-    vec3 norm_world = vec3(normMat_toWorld*vec4(normal_local,0));
+    vec3 norm_world = vec3(normMat_toWorld*a_normal);
     //----get pos in world space
-    vec3 pos_world = vec3(modelMat*vec4(position_local,1));
+    vec3 pos_world = vec3(modelMat*a_position);
     //lightPos already in world space
     //----cal diffuse color
     vec3 posToLight=normalize(lightPos_world-pos_world);
@@ -53,8 +53,8 @@ void main(void) {
     mainColor = vec4(vec3(ambientML)+diffuseColor+specularColor,diffuseML.a);
     float secondaryColorAlpha=isHighlightUntransp?pf:0.0;
     secondaryColor=vec4(specularColor,secondaryColorAlpha);
-    gl_Position = projectionModelview* vec4(position_local,1);
-    texCoordOut = texCoordIn;
+    gl_Position = projectionModelview* a_position;
+    texCoordOut = a_texCoord;
     vec4 t=worldToLightViewportTexCoord*vec4(pos_world,1);//note: use pos_world
     lightViewportTexCoordDivW=t/t.w;
 }

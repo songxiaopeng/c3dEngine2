@@ -57,9 +57,6 @@ class CmobilePlatform:public Cc3dActor
 protected:
     bool m_isDied;//是否已死亡--abc
 public:
-  //  Cc3dALSource*pALSource_plat_motion;
-  //  Cc3dALSource*pALSource_plat_bouncing;
-  //  Cc3dALSource*pALSource_destroySound;
     string fileName_motionSoundAfterTrigger;//可能为"null"
     bool motionSoundAfterTrigger_looping;//是否循环--abc
 public:
@@ -351,13 +348,6 @@ public:
             speedvec_forth=normalize(speedvec_forth);
             speedvec_forth=speedvec_forth*movSpeed;
             
-         /*   Cc3dVector4 t_speedvec_forth;
-            t_speedvec_forth=speedvec_forth;
-            t_speedvec_forth=normalize(t_speedvec_forth);
-            t_speedvec_forth=t_speedvec_forth*movSpeed;
-            speedvec_forth[0]=t_speedvec_forth.x();
-            speedvec_forth[1]=t_speedvec_forth.y();
-            speedvec_forth[2]=t_speedvec_forth.z();*/
         }
     
     }

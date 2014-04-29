@@ -30,6 +30,10 @@ public:
         return m_isDoTexBlend;
         
     }
+    void update(float dt){
+        this->updateTerrain(*this->getCamera());
+        this->submitIndex(GL_DYNAMIC_DRAW);
+    }
     
 
 };

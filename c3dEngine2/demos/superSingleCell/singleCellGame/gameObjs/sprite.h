@@ -112,7 +112,7 @@ public:
         c[1]=pos.y();
         c[2]=pos.z();
     }
-    Cc3dVector4 getPos()const {
+    Cc3dVector4 getPos() {
         return Cc3dVector3(c).toV4(1);
     }
     void adjustFaceAndSubmitVertex(const Cc3dVector4&eyePos){

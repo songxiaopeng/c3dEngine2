@@ -189,15 +189,9 @@ public:
 
     virtual void visitDraw();
     virtual void visitUpdate();
-    Cc3dVector4 getPos(){return getTransform()->getPos();}
-    void setPos(const Cc3dVector4&pos){
-       /* Cc3dTransform*transform=getTransform();
-        transform->setPos(pos);
-        setTransform(transform);*/
-        getTransform()->setPos(pos);
-    
-    }
-    Cc3dMatrix4 getRotation(){return getTransform()->getRotation();}
+    virtual Cc3dVector4 getPos(){return getTransform()->getPos();}//chance to override
+    virtual void setPos(const Cc3dVector4&pos){getTransform()->setPos(pos);}//chance to override
+    virtual Cc3dMatrix4 getRotation(){return getTransform()->getRotation();}
     void setRotation(const Cc3dMatrix4&Rmat){
       /*  Cc3dTransform*transform=getTransform();
         transform->setRotation(Rmat);

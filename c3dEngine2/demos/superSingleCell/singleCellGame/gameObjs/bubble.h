@@ -111,6 +111,10 @@ public:
         }
         return count;
     }
+    Cbubble*getCoinBubbleByIndex(int index){
+        assert(index>=0&&index<getCoinBubbleCount());
+        return (Cbubble*)actorList[index];
+    }
 
     void calRange(float &xmin,float &xmax,float &ymin,float &ymax,float &zmin,float &zmax){
         int n=(int)actorList.size();

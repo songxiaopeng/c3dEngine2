@@ -1040,10 +1040,7 @@ void  CplayingPage::logic(){
 //        m_water->maxAlpha=max(0.45,0.68-(cellpos.y()-m_water->Horizon)*0.0005);
     }
     
-    //更新ground
-   // if(m_ground)m_ground->update(*camera);//2014-4-29 mask?
-    if(m_ground)m_ground->submitIndex(GL_STREAM_DRAW);//ground->submitStream_ground();
-    //更新collisionGrid_boss，并将出界的boss标记为died
+  //更新collisionGrid_boss，并将出界的boss标记为died
     {
         //制作屏蔽列表--abc
         int n=(int)m_bossCellSet.getActorCount();
@@ -1543,6 +1540,7 @@ void  CplayingPage::logic(){
                 if(centerDis2<square(bubble.getRc()+cell->getRc())
                    &&fabs(bubblepos.y()-cellpos.y())<bubble.getRc()+cell->Rc_small)//考虑主角是扁的--abc
                 {//碰撞--abc
+                    
                     if(bubble.getMolecule()->funcID==MOLECULE_FUNC_transport){
                         //传送门不消失--abc
                     }else{

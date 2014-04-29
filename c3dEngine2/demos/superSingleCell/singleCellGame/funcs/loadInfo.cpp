@@ -70,7 +70,7 @@ void loadInfo_subMesh(Cc3dSubMesh*submesh,const string&meshFilePathShort,const s
         for(int i=0;i<nv;i++){
             
             //提取pos
-            float pos[3];
+            float pos[4]={0,0,0,1};
             fscanf(fp, "%f",&pos[0]);
             fscanf(fp, "%f",&pos[1]);
             fscanf(fp, "%f",&pos[2]);
@@ -79,19 +79,19 @@ void loadInfo_subMesh(Cc3dSubMesh*submesh,const string&meshFilePathShort,const s
             fscanf(fp, "%f",&texCoord[0]);
             fscanf(fp, "%f",&texCoord[1]);
             //提取norm
-            float norm[3];
+            float norm[4]={0,0,0,0};
             fscanf(fp, "%f",&norm[0]);
             fscanf(fp, "%f",&norm[1]);
             fscanf(fp, "%f",&norm[2]);
             //将texCoord原点由左下角变为左上角--abc
             texCoord[1]=1-texCoord[1];
             //对顶点进行放缩--abc
-            Cc3dVector4 posWithScale=Cc3dVector3(pos).toV4(1)*scale;
+            Cc3dVector4 posWithScale=Cc3dVector4(pos)*scale;
             posWithScale.setw(1);
             //对缩放后的顶点进行偏移（注意，一定要放在缩放后面)
             posWithScale=posWithScale+offsetVec;
             //组成顶点--abc
-            Cc3dVertex vertex(posWithScale.getArray(),texCoord,norm);
+            Cc3dVertex vertex(posWithScale,Cc3dVector2(texCoord),Cc3dVector4(norm));
             //将此顶点加入vlist
             submesh->getSubMeshData()->addVertex(vertex);
         }

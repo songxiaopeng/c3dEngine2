@@ -88,6 +88,21 @@ public:
         }
     
     }
+    
+    void print(){
+        int m1=grid.size();
+        int m2=grid[0].size();
+        int m3=grid[0][0].size();
+        for(int i=0;i<m1;i++){
+            for(int j=0;j<m2;j++){
+                for(int k=0;k<m3;k++){
+                    cout<<(int)grid[i][j][k].pModelList.size()<<" ";
+                }
+                cout<<endl;
+            }
+            cout<<endl;
+        }
+    }
     vector<Cc3dNode*> fillGrid(const vector<Cc3dNode*>&pModelBaseList,const vector<bool>&maskList)
     //maskList为屏蔽列表，如果maskList[i]==false，则跳过第i个model，不填充到grid
     //返回未mask且出界的元素列表--abc

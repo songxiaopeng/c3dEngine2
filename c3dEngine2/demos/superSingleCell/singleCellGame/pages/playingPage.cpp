@@ -942,7 +942,6 @@ bool  CplayingPage::init(int level){
         m_ground->setCamera(camera);
         m_ground->setLight(&light0);
         m_ground->setPassUnifoCallback(passUnifoCallback_diffuse_ambient_noTransf_noSelfShadow);
-        m_ground->setCamera(camera);
         m_ground->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shader_diffuse_ambient_noTransf_noSelfShadow"));
         //提交数据--abc
         m_ground->submitVertex(GL_STATIC_DRAW);
@@ -1634,12 +1633,13 @@ bool  CplayingPage::init(int level){
             int n=(int)m_bubbleSet.getActorCount();
             vector<bool> maskList(n);//屏蔽列表--abc
             for(int i=0;i<n;i++)maskList[i]=false;
+          /*  cout<<"actorCount:"<<m_bubbleSet.getActorCount()<<endl;
+            for(int i=0;i<m_bubbleSet.getActorCount();i++){
+                m_bubbleSet.getActorByIndex(i)->getPos().print();
+            }*/
             m_collisionGrid_bubble.fillGrid(m_bubbleSet.getActorList(),maskList);
-            /*   for(int i=0;i<bubbleSet.getMeshCount();i++){
-             Cbubble*bubble=(Cbubble*)bubbleSet.getMeshByIndex(i);
-             bubble->getPos().print();
-             }*/
         }
+        //m_collisionGrid_bubble.print();
         
     }
     

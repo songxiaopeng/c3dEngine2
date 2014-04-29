@@ -1,14 +1,14 @@
 //-------------------------------------
-// do not use chinese in comment
+
 //-------------------------------------
-//attribute pass from vbo or va
+//attribute
 attribute vec4 a_position;
 attribute vec2 a_texCoord;
 
-//matrixs pass from outside
+//uniform
 uniform mat4 projectionModelview;
 
-//pass to fragment shader
+//varying
 varying vec2 texCoordOut;
 
 void main(void) {
