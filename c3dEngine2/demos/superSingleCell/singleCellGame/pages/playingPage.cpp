@@ -951,6 +951,7 @@ bool  CplayingPage::init(int level){
         m_ground->setLight(&light0);
         m_ground->setPassUnifoCallback(passUnifoCallback_diffuse_ambient_noTransf_noSelfShadow);
         m_ground->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("shader_diffuse_ambient_noTransf_noSelfShadow"));
+        m_ground->setReso(10);
         //提交数据--abc
         m_ground->submitVertex(GL_STATIC_DRAW);
         m_ground->getMesh()->getSubMeshByIndex(0)->clearMeshData();
