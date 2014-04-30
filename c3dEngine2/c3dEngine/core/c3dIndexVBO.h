@@ -40,6 +40,7 @@ public:
 	void setIsWireMode(bool isWireMode){
 		m_isWireMode=isWireMode;
 	}
+	bool getIsWireMode()const{return m_isWireMode;}
     void genBuffers(){
         assert(vertexbuffer==0);
         assert(indexbuffer==0);

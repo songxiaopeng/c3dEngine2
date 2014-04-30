@@ -6,7 +6,7 @@ uniform mat4 projMat;
 uniform mat4 modelMat;
 uniform mat4 viewMat;
 
-//pass to fragment shader
+//varying
 varying vec2 v_texCoord;
 
 void main(void) {

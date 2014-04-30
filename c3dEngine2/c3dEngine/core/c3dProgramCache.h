@@ -16,6 +16,7 @@ class Cc3dProgramCache{
 public:
     static Cc3dProgramCache* sharedProgramCache();
     Cc3dProgram*createProgram(const string&vertShaderFilePath,const string&fragShaderFilePath,const string&name){
+        cout<<"create program: "<<"vsh: "<<vertShaderFilePath<<" "<<"fsh: "<<fragShaderFilePath<<endl;
         for(int i=0;i<(int)m_programList.size();i++){
             Cc3dProgram*program=m_programList[i];
             if(program->getVertShaderFilePath()==vertShaderFilePath
