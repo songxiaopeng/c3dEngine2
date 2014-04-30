@@ -12,7 +12,7 @@ language: c++
   
 c3dEngine2 is the upgrade version of c3dEngine.(c3dEngine, see: http://git.oschina.net/wantnon2/c3dEngine-superSingleCell or https://github.com/wantnon2/superSingleCell-c3dEngine )   
   
-as i think c3dEngine is not very good in some aspects, so i am trying to make a better one. i removed the 'super single cell' game demo, instead, will write a series of small samples to show each feature of the engine, and at the same time, refine the engine.  
+as i think c3dEngine is not very good in some aspects, so i am trying to make a better one. i will write a series of small samples to show each feature of the engine, and at the same time, refine the engine.  
 now, the project is just start, so there is very few samples. but i will add more later.        
   
 document:  
