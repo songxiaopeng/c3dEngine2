@@ -60,6 +60,8 @@ void  CplayingPage::unloadGame(){
     m_ground=NULL;
     m_water=NULL;
     m_seabed=NULL;
+	//恢复gameSetting
+	CgameSettings::sharedGameSettings()->reset();
     //恢复备份或重置--abc
     //  *cell=*cell_backup;
     m_quad_halfFuelHaveBeenUsed->haveBeenDisplayed=false;//以便下一关还能再display
@@ -112,10 +114,16 @@ void  CplayingPage::debugSwitch(){
         m_quad_depthTex2->setIsVisible(CgameSettings::sharedGameSettings()->getShowDepthTexs());
     }
     
-    CgameSettings::sharedGameSettings()->setShowMusicCube(!CgameSettings::sharedGameSettings()->getShowMusicCube());
+	CgameSettings::sharedGameSettings()->setShowMusicCube(!CgameSettings::sharedGameSettings()->getShowMusicCube());
+	{
+		m_levelBackGroundMusicCube->setIsVisible(CgameSettings::sharedGameSettings()->getShowMusicCube());
+	}
+    CgameSettings::sharedGameSettings()->setGroundIsWireMode(!CgameSettings::sharedGameSettings()->getGroundIsWireMode());
+	{
+		if(m_ground)m_ground->setIsWireMode(CgameSettings::sharedGameSettings()->getGroundIsWireMode());
+	}
     
-    m_levelBackGroundMusicCube->setIsVisible(!m_levelBackGroundMusicCube->getIsVisible());
-	if(m_ground)m_ground->setIsWireMode(!m_ground->getModel()->getMeshByIndex(0)->getSubMeshByIndex(0)->getIndexVBO()->getIsWireMode());
+	
 
 }
 void  CplayingPage::update(float dt){

@@ -13,12 +13,7 @@
 class CgameSettings{
 public:
     CgameSettings(){
-        m_showBubbleID=false;
-        m_showMobilePlatformID=false;
-        m_showDepthTexs=false;
-        m_showMusicCube=false;
-        m_unlockAll=false;
-        m_audioOn=true;
+        reset();
     }
     static CgameSettings*sharedGameSettings();
     void setShowBubbleID(bool value){m_showBubbleID=value;}
@@ -33,6 +28,17 @@ public:
     bool getUnlockAll()const{return m_unlockAll;}
     void setAudioOn(bool value){m_audioOn=value;}
     bool getAudioOn()const{return m_audioOn;}
+	void setGroundIsWireMode(bool value){m_groundIsWireMode=value;}
+	bool getGroundIsWireMode()const{return m_groundIsWireMode;}
+	void reset(){
+		m_showBubbleID=false;
+        m_showMobilePlatformID=false;
+        m_showDepthTexs=false;
+        m_showMusicCube=false;
+        m_unlockAll=false;
+        m_audioOn=true;
+		m_groundIsWireMode=false;
+	}
 protected:
     bool m_showBubbleID;
     bool m_showMobilePlatformID;
@@ -40,6 +46,7 @@ protected:
     bool m_showMusicCube;
     bool m_unlockAll;
     bool m_audioOn;
+	bool m_groundIsWireMode;
 
 };
 #endif /* defined(__HelloOpenGL__gameSettings__) */
