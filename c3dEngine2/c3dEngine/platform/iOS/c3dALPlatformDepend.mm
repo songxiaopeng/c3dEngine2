@@ -24,15 +24,14 @@ void initBuffer_plat(const string&fileNameFull,void*&data,ALuint&buffer)
         CFRelease(fileURL);
         
         if((error = alGetError()) != AL_NO_ERROR) {
-            printf("error loading sound: %x\n", error);
-            exit(1);
+            printf("warning: error loading sound: %x\n", error);
         }
         
         // use the static buffer data API
         alBufferDataStaticProc(buffer, format, data, size, freq);
         
         if((error = alGetError()) != AL_NO_ERROR) {
-            printf("error attaching audio to buffer: %x\n", error);
+            printf("warning: error attaching audio to buffer: %x\n", error);
         }
     }
     else
