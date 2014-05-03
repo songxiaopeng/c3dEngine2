@@ -165,7 +165,6 @@
   <ItemGroup>
     <ClInclude Include="..\projcode\funcs\changeNodeComponents.h" />
     <ClInclude Include="..\projcode\funcs\collisionWithModelAtTriLevel.h" />
-    <ClInclude Include="..\projcode\funcs\initGame.h" />
     <ClInclude Include="..\projcode\funcs\loadInfo.h" />
     <ClInclude Include="..\projcode\funcs\makeTemplate.h" />
     <ClInclude Include="..\projcode\funcs\myFunc.h" />
@@ -224,7 +223,6 @@
   <ItemGroup>
     <ClCompile Include="..\projcode\funcs\changeNodeComponents.cpp" />
     <ClCompile Include="..\projcode\funcs\collisionWithModelAtTriLevel.cpp" />
-    <ClCompile Include="..\projcode\funcs\initGame.cpp" />
     <ClCompile Include="..\projcode\funcs\loadInfo.cpp" />
     <ClCompile Include="..\projcode\funcs\makeTemplate.cpp" />
     <ClCompile Include="..\projcode\funcs\myFunc.cpp" />
@@ -255,7 +253,6 @@
     <ClCompile Include="..\projcode\global\gameState.cpp" />
     <ClCompile Include="..\projcode\global\globalVars.cpp" />
     <ClCompile Include="..\projcode\initGame.cpp" />
-    <ClCompile Include="..\projcode\mainWindow.cpp" />
     <ClCompile Include="..\projcode\otherObjs\checkPoint.cpp" />
     <ClCompile Include="..\projcode\otherObjs\collisonGrid.cpp" />
     <ClCompile Include="..\projcode\otherObjs\environmentInfo.cpp" />

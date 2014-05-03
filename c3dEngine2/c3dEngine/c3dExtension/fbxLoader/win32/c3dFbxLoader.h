@@ -2,8 +2,8 @@
 #define _c3dFbxLoader__
 #include <string>
 using namespace std;
-#include "c3dSkinActor.h"
-#include "c3dFbxOneLoad.h"
+#include "fbxLoader/c3dSkinActor.h"
+#include "fbxLoader/win32/c3dFbxOneLoad.h"
 
 class Cc3dFbxLoader{
 public:

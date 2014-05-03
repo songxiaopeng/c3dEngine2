@@ -10,7 +10,7 @@
 #define __HelloOpenGL__c3dExtension__
 #include "fbxLoader/c3dSkinActor.h"
 #if (C3D_TARGET_PLATFORM == C3D_PLATFORM_WIN32)
-#include "fbxLoader/c3dFbxLoader.h"
+#include "fbxLoader/win32/c3dFbxLoader.h"
 #endif
 #include "btBulletCollisionCommon.h"
 

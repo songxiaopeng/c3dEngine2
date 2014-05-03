@@ -50,9 +50,6 @@
     <ClInclude Include="..\projcode\funcs\collisionWithModelAtTriLevel.h">
       <Filter>projcode\funcs</Filter>
     </ClInclude>
-    <ClInclude Include="..\projcode\funcs\initGame.h">
-      <Filter>projcode\funcs</Filter>
-    </ClInclude>
     <ClInclude Include="..\projcode\funcs\loadInfo.h">
       <Filter>projcode\funcs</Filter>
     </ClInclude>
@@ -214,16 +211,10 @@
     <ClCompile Include="..\projcode\initGame.cpp">
       <Filter>projcode</Filter>
     </ClCompile>
-    <ClCompile Include="..\projcode\mainWindow.cpp">
-      <Filter>projcode</Filter>
-    </ClCompile>
     <ClCompile Include="..\projcode\funcs\changeNodeComponents.cpp">
       <Filter>projcode\funcs</Filter>
     </ClCompile>
     <ClCompile Include="..\projcode\funcs\collisionWithModelAtTriLevel.cpp">
-      <Filter>projcode\funcs</Filter>
-    </ClCompile>
-    <ClCompile Include="..\projcode\funcs\initGame.cpp">
       <Filter>projcode\funcs</Filter>
     </ClCompile>
     <ClCompile Include="..\projcode\funcs\loadInfo.cpp">

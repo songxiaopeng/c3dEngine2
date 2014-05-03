@@ -70,6 +70,9 @@
     <Filter Include="c3dExtension\fbxLoader">
       <UniqueIdentifier>{60a20b94-31eb-45d7-b535-f648331ca297}</UniqueIdentifier>
     </Filter>
+    <Filter Include="c3dExtension\fbxLoader\win32">
+      <UniqueIdentifier>{8ca6aaf3-b4ad-4b88-a5f1-2fd9a27d9a24}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\c3dEngine\common\c3dAL.h">
@@ -318,12 +321,6 @@
     <ClInclude Include="..\..\..\c3dEngine\c3d.h">
       <Filter>c3dEngine</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\c3dExtension\fbxLoader\c3dFbxLoader.h">
-      <Filter>c3dExtension\fbxLoader</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\c3dExtension\fbxLoader\c3dFbxOneLoad.h">
-      <Filter>c3dExtension\fbxLoader</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\c3dExtension\fbxLoader\c3dSkinActor.h">
       <Filter>c3dExtension\fbxLoader</Filter>
     </ClInclude>
@@ -350,6 +347,12 @@
     </ClInclude>
     <ClInclude Include="..\..\..\extension\extension.h">
       <Filter>extension</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\c3dExtension\fbxLoader\win32\c3dFbxLoader.h">
+      <Filter>c3dExtension\fbxLoader\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\c3dExtension\fbxLoader\win32\c3dFbxOneLoad.h">
+      <Filter>c3dExtension\fbxLoader\win32</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -539,12 +542,6 @@
     <ClCompile Include="..\..\..\c3dEngine\platform\win32\c3dTexturePlatformDepend.cpp">
       <Filter>c3dEngine\platform\win32</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\c3dExtension\fbxLoader\c3dFbxLoader.cpp">
-      <Filter>c3dExtension\fbxLoader</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\c3dExtension\fbxLoader\c3dFbxOneLoad.cpp">
-      <Filter>c3dExtension\fbxLoader</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\c3dExtension\fbxLoader\c3dSkinActor.cpp">
       <Filter>c3dExtension\fbxLoader</Filter>
     </ClCompile>
@@ -565,6 +562,12 @@
     </ClCompile>
     <ClCompile Include="..\..\..\extension\ui\button.cpp">
       <Filter>extension\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\c3dExtension\fbxLoader\win32\c3dFbxLoader.cpp">
+      <Filter>c3dExtension\fbxLoader\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\c3dExtension\fbxLoader\win32\c3dFbxOneLoad.cpp">
+      <Filter>c3dExtension\fbxLoader\win32</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

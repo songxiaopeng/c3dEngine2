@@ -14,7 +14,7 @@
 #if (C3D_TARGET_PLATFORM == C3D_PLATFORM_WIN32)
 #include "platform/win32/appFrame/mainWindowGlobal.h"
 #include "platform/win32/appFrame/mainWindowFuncs.h"
-#elseif
+#else
 #include "platform/iOS/appFrame/mainWindowGlobal.h"
 #include "platform/iOS/appFrame/mainWindowFuncs.h"
 #endif

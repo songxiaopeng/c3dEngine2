@@ -94,9 +94,9 @@
     <ClInclude Include="..\..\..\c3dEngine\shader\c3dPassUnifoCallBack.h" />
     <ClInclude Include="..\..\..\c3dEngine\shader\c3dProgramSetUp.h" />
     <ClInclude Include="..\..\..\c3dExtension\c3dExtension.h" />
-    <ClInclude Include="..\..\..\c3dExtension\fbxLoader\c3dFbxLoader.h" />
-    <ClInclude Include="..\..\..\c3dExtension\fbxLoader\c3dFbxOneLoad.h" />
     <ClInclude Include="..\..\..\c3dExtension\fbxLoader\c3dSkinActor.h" />
+    <ClInclude Include="..\..\..\c3dExtension\fbxLoader\win32\c3dFbxLoader.h" />
+    <ClInclude Include="..\..\..\c3dExtension\fbxLoader\win32\c3dFbxOneLoad.h" />
     <ClInclude Include="..\..\..\extension\extension.h" />
     <ClInclude Include="..\..\..\extension\geometry\geoMath.h" />
     <ClInclude Include="..\..\..\extension\octree\octree.h" />
@@ -168,9 +168,9 @@
     <ClCompile Include="..\..\..\c3dEngine\platform\win32\c3dTexturePlatformDepend.cpp" />
     <ClCompile Include="..\..\..\c3dEngine\shader\c3dPassUnifoCallBack.cpp" />
     <ClCompile Include="..\..\..\c3dEngine\shader\c3dProgramSetUp.cpp" />
-    <ClCompile Include="..\..\..\c3dExtension\fbxLoader\c3dFbxLoader.cpp" />
-    <ClCompile Include="..\..\..\c3dExtension\fbxLoader\c3dFbxOneLoad.cpp" />
     <ClCompile Include="..\..\..\c3dExtension\fbxLoader\c3dSkinActor.cpp" />
+    <ClCompile Include="..\..\..\c3dExtension\fbxLoader\win32\c3dFbxLoader.cpp" />
+    <ClCompile Include="..\..\..\c3dExtension\fbxLoader\win32\c3dFbxOneLoad.cpp" />
     <ClCompile Include="..\..\..\extension\geometry\geoMath.cpp" />
     <ClCompile Include="..\..\..\extension\octree\octree.cpp" />
     <ClCompile Include="..\..\..\extension\octree\triangleWithNorm.cpp" />
