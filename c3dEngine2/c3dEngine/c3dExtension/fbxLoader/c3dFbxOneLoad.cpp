@@ -503,7 +503,10 @@ bool Cc3dFbxOneLoad::LoadScene(FbxManager* pManager, FbxDocument* pScene, const 
 
 					}
 				}//got texture
-				assert(texture);
+				if(texture==NULL){
+					cout<<"warning: texture==NULL, use default texture instead"<<endl;
+					texture=Cc3dTextureCache::sharedTextureCache()->addImage("c3dEngineResource/tex/white.png",GL_CLAMP_TO_EDGE,GL_CLAMP_TO_EDGE);
+				}
 				subMeshList[lMaterialIndex]->setTexture(texture);
 			}
 			//遍历各多边形,填充到subMesh
@@ -739,12 +742,24 @@ void Cc3dFbxOneLoad::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool 
 	void Cc3dFbxOneLoad::destroyManager(){
 		DestroySdkObjects(lSdkManager);//删除manager
 	}
-	void Cc3dFbxOneLoad::bakeAnimation(float aniFrameInterval){
+	void Cc3dFbxOneLoad::bakeAnimation(float aniFrameInterval)
+	//if set aniFrameInterval to ZERO, will bake static model (the very first frame)
+	{
 		m_actor->setInterval(aniFrameInterval);
 		//animStack
 		FbxArray<FbxString*> mAnimStackNameArray;
 		lScene->FillAnimStackNameArray(mAnimStackNameArray);
 		const int lAnimStackCount = mAnimStackNameArray.GetCount();
+		if(aniFrameInterval==0){
+			//bake static model (the very first frame)
+			assert(lAnimStackCount>0);
+			int animStackIndex=0;
+			FbxAnimStack *lCurrentAnimationStack;
+			lCurrentAnimationStack = lScene->FindMember(FBX_TYPE(FbxAnimStack), mAnimStackNameArray[animStackIndex]->Buffer());
+			this->updateSkin(FbxTime(0),lCurrentAnimationStack,animStackIndex);
+
+			return;
+		}
 		for(int i=0;i<lAnimStackCount;i++){
 			int animStackIndex=i;
 	
@@ -1074,6 +1089,11 @@ void Cc3dFbxOneLoad::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool 
 		FbxAMatrix& pGlobalPosition, FbxPose* pPose)
 	{
 		FbxMesh* lMesh = pNode->GetMesh();
+		{
+			Cc3dSkinMesh* mesh=(Cc3dSkinMesh*)m_actor->findSkinMeshByFbxMeshPtr(lMesh);
+			Cc3dMatrix4 globalPositionMat=FbxAMatrixToCc3dMatrix4(pGlobalPosition);
+			mesh->setRTSmat(globalPositionMat);
+		}
 		const int lVertexCount = lMesh->GetControlPointsCount();
 		const int triangleCount = lMesh->GetPolygonCount();
 		// No vertex to draw.
@@ -1128,8 +1148,6 @@ void Cc3dFbxOneLoad::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool 
 			Cc3dSkinMesh* mesh=(Cc3dSkinMesh*)m_actor->findSkinMeshByFbxMeshPtr(pMesh);
 			assert(mesh);
 			if(mesh->getSkin()==NULL){
-				Cc3dMatrix4 globalPositionMat=FbxAMatrixToCc3dMatrix4(pGlobalPosition);
-				mesh->setRTSmat(globalPositionMat);
 				Cc3dSkin*skin=new Cc3dSkin();
 				skin->autorelease();
 				skin->setSkinType(lSkinningType);

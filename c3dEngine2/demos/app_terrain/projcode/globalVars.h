@@ -11,8 +11,7 @@
 
 #include <iostream>
 using namespace std;
-#include "c3dLight.h"
-#include "c3dCamera.h"
+#include "c3d.h"
 
 extern Cc3dLight*light0;
 extern Cc3dCamera*camera;

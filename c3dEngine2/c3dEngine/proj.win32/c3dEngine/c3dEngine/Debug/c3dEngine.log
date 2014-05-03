@@ -1,4 +1,4 @@
-﻿生成启动时间为 2014/5/3 1:34:59。
+﻿生成启动时间为 2014/5/3 13:46:04。
      1>项目“C:\Users\Administrator\Desktop\myProj\c3dEngine2_oschina\c3dEngine2\c3dEngine\proj.win32\c3dEngine\c3dEngine\c3dEngine.vcxproj”在节点 2 上(build 个目标)。
      1>PrepareForBuild:
          正在创建目录“C:\Users\Administrator\Desktop\myProj\c3dEngine2_oschina\c3dEngine2\demos\allDemos\proj.win32\Debug\”。
@@ -20,7 +20,7 @@
          :VCEnd
          复制了 24 个文件
          复制了 3 个文件
-         复制了 5 个文件
+         复制了 1 个文件
        Lib:
          D:\Program Files\Microsoft Visual Studio 10.0\VC\bin\Lib.exe /OUT:"C:\Users\Administrator\Desktop\myProj\c3dEngine2_oschina\c3dEngine2\demos\allDemos\proj.win32\Debug\c3dEngine.lib" BulletCollision_vs2010_debug.lib BulletDynamics_vs2010_debug.lib LinearMath_vs2010_debug.lib "libfbxsdk-mt.lib" wininet.lib opengl32.lib glu32.lib glew32.lib odbc32.lib odbccp32.lib openal32.lib alut.lib libzlib.lib libpng.lib /LIBPATH:C:\Users\Administrator\Desktop\myProj\c3dEngine2_oschina\c3dEngine2\c3dEngine\proj.win32\c3dEngine\c3dEngine\..\..\..\c3dEngine\platform\win32\libraries /LIBPATH:"C:\Users\Administrator\Desktop\myProj\c3dEngine2_oschina\c3dEngine2\c3dEngine\proj.win32\c3dEngine\c3dEngine\..\..\..\thirdPart\bullet\bullet-2.82-r2704\lib_win32\debug" /LIBPATH:C:\Users\Administrator\Desktop\myProj\c3dEngine2_oschina\c3dEngine2\c3dEngine\proj.win32\c3dEngine\c3dEngine\..\..\..\thirdPart\FBX\FBX_win32\FbxSdk\2014.2.1\lib\vs2010\x86\debug /NOLOGO Debug\c3dCommonFunc.obj
          Debug\c3dPathFunc.obj
@@ -130,4 +130,4 @@
 
 生成成功。
 
-已用时间 00:00:18.13
+已用时间 00:00:14.50

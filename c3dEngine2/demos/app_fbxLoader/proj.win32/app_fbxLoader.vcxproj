@@ -71,7 +71,7 @@
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>true</WholeProgramOptimization>
       <OmitFramePointers>true</OmitFramePointers>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\c3dEngine;$(ProjectDir)..\..\..\c3dEngine\core;$(ProjectDir)..\..\..\c3dEngine\shader;$(ProjectDir)..\..\..\c3dEngine\common;$(ProjectDir)..\..\..\c3dEngine\platform\win32;$(ProjectDir)..\..\..\c3dEngine\platform\win32\OGLES;$(ProjectDir);$(ProjectDir)..\projcode;$(ProjectDir)..\..\..\c3dEngine\platform\win32\appFrame;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\c3dEngine\c3dEngine;$(ProjectDir)..\..\..\c3dEngine\c3dExtension;$(ProjectDir)..\..\..\c3dEngine\extension;$(ProjectDir)..\..\..\c3dEngine\thirdPart\FBX\FBX_win32\FbxSdk\2014.2.1\include;$(ProjectDir)..\..\..\c3dEngine\thirdPart\bullet\bullet-2.82-r2704\src;$(ProjectDir)..\projcode;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MinimalRebuild>false</MinimalRebuild>
       <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
       <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
@@ -98,7 +98,7 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <SubSystem>Windows</SubSystem>
       <OutputFile>$(OutDir)$(ProjectName).exe</OutputFile>
-      <AdditionalDependencies>c3dEngine.lib;wininet.lib;opengl32.lib;glu32.lib;glew32.lib;odbc32.lib;odbccp32.lib;openal32.lib;alut.lib;libzlib.lib;libpng.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>c3dEngine.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
       <AdditionalLibraryDirectories>$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>

@@ -411,7 +411,7 @@ protected:
 	vector<Cc3dAniLayerInfo*> m_aniLayerInfoList;
 public:
 	Cc3dSkinActor(){
-		m_interval=1.0/60;
+		m_interval=1.0f/10; //1.0/60;
 		m_aniLayerIndex=0;
 	}
 	virtual ~Cc3dSkinActor(){
@@ -432,6 +432,13 @@ public:
 	}
 	void update(float dt){
 	//	cout<<"dt:"<<dt<<endl;
+		if(m_interval>0){
+			playAnimation(dt);
+		}
+		
+
+	}
+	void playAnimation(float dt){
 		if((int)m_aniLayerInfoList.size()==0)return;
 		//update current aniLayerInfo
 		Cc3dAniLayerInfo*curAniLayerInfo=m_aniLayerInfoList[m_aniLayerIndex];
@@ -441,7 +448,6 @@ public:
 		//deform
 		deform(m_aniLayerIndex,time);
 		this->submitVertex(GL_DYNAMIC_DRAW);//only need to submitVertex (actually only pos and norm)
-
 	}
 	void setAniLayerIndex(int aniLayerIndex){m_aniLayerIndex=aniLayerIndex;}
 	int getAniLayerIndex()const{return m_aniLayerIndex;}

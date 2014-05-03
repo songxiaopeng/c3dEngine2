@@ -39,8 +39,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>.\Release\</OutDir>
-    <IntDir>.\Release\</IntDir>
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>$(IncludePath)</IncludePath>
     <LibraryPath>$(LibraryPath)</LibraryPath>
@@ -71,11 +71,11 @@
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>true</WholeProgramOptimization>
       <OmitFramePointers>true</OmitFramePointers>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\c3dEngine;$(ProjectDir)..\..\..\c3dEngine\core;$(ProjectDir)..\..\..\c3dEngine\shader;$(ProjectDir)..\..\..\c3dEngine\common;$(ProjectDir)..\..\..\c3dEngine\platform\win32;$(ProjectDir)..\..\..\c3dEngine\platform\win32\OGLES;$(ProjectDir);$(ProjectDir)..\..\..\extension;$(ProjectDir)..\..\..\extension\geometry;$(ProjectDir)..\..\..\extension\octree;$(ProjectDir)..\..\..\extension\terrain;$(ProjectDir)..\..\..\extension\ui;$(ProjectDir)..\projcode;$(ProjectDir)..\..\..\thirdPart\bullet\bullet-2.82-r2704\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\c3dEngine\c3dEngine;$(ProjectDir)..\..\..\c3dEngine\c3dExtension;$(ProjectDir)..\..\..\c3dEngine\extension;$(ProjectDir)..\..\..\c3dEngine\thirdPart\FBX\FBX_win32\FbxSdk\2014.2.1\include;$(ProjectDir)..\..\..\c3dEngine\thirdPart\bullet\bullet-2.82-r2704\src;$(ProjectDir)..\projcode;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MinimalRebuild>false</MinimalRebuild>
       <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
-      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
-      <FloatingPointModel>Fast</FloatingPointModel>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <FloatingPointModel>Precise</FloatingPointModel>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Midl>
@@ -96,17 +96,15 @@
     <Link>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <SubSystem>Windows</SubSystem>
-      <OutputFile>.\Release\app_bulletTest1.exe</OutputFile>
-      <AdditionalDependencies>BulletCollision_vs2010.lib;BulletDynamics_vs2010.lib;LinearMath_vs2010.lib;wininet.lib;opengl32.lib;glu32.lib;glew32.lib;odbc32.lib;odbccp32.lib;openal32.lib;alut.lib;libzlib.lib;libpng.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(ProjectName).exe</OutputFile>
+      <AdditionalDependencies>c3dEngine.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
-      <AdditionalLibraryDirectories>$(ProjectDir)..\..\..\c3dEngine\platform\win32\libraries;$(ProjectDir)..\..\..\thirdPart\bullet\bullet-2.82-r2704\lib_win32\release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PreLinkEvent>
-      <Command>if not exist "$(OutDir)" mkdir "$(OutDir)"
-xcopy /Y /Q "$(ProjectDir)..\..\..\c3dEngine\platform\win32\libraries\*.*" "$(OutDir)"
-
-</Command>
+      <Command>
+      </Command>
     </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

@@ -11,7 +11,7 @@
 
 #include <iostream>
 #include "c3d.h"
-#include "terrain.h"
+#include "extension.h"
 class Cground:public Cterrain
 {
 protected:
