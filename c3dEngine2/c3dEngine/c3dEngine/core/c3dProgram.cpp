@@ -8,7 +8,11 @@
 
 #include "core/c3dProgram.h"
 #include "core/c3dAssert.h"
+#if (C3D_TARGET_PLATFORM == C3D_PLATFORM_WIN32)
 #include "platform/win32/c3dProgramPlatformDepend.h"
+#else
+#include "platform/iOS/c3dProgramPlatformDepend.h"
+#endif
 bool Cc3dProgram::initWithFile(const string&vertShaderFilePath,const string&fragShaderFilePath){
     m_vertShaderFilePath=vertShaderFilePath;
     m_fragShaderFilePath=fragShaderFilePath;

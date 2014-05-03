@@ -7,7 +7,11 @@
 //
 
 #include "core/c3dTexture.h"
+#if (C3D_TARGET_PLATFORM == C3D_PLATFORM_WIN32)
 #include "platform/win32/c3dTexturePlatformDepend.h"
+#else
+#include "platform/iOS/c3dTexturePlatformDepend.h"
+#endif
 bool Cc3dTexture::initDepthTexture(int width,int height,int wrapS,int wrapT,GLint minFilter,GLint magFilter)
 //note, if used as target of render to texture, then wrapS and wrapT should be GL_CLAMP_TO_EDGE
 {

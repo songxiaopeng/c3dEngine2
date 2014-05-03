@@ -7,8 +7,13 @@
 //
 
 #include "core/c3dInitGame.h"
+#if (C3D_TARGET_PLATFORM == C3D_PLATFORM_WIN32)
 #include "platform/win32/c3dALPlatformDepend.h"
 #include "platform/win32/c3dGLPlatformDepend.h"
+#else
+#include "platform/iOS/c3dALPlatformDepend.h"
+#include "platform/iOS/c3dGLPlatformDepend.h"
+#endif
 //
 void initOpenGL(){
 	initOpenGL_plat();

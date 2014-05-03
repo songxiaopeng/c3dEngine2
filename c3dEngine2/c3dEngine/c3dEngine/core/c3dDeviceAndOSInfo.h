@@ -19,7 +19,11 @@
 
 #include "core/c3dVector.h"
 #include "core/c3dRect.h"
+#if (C3D_TARGET_PLATFORM == C3D_PLATFORM_WIN32)
 #include "platform/win32/c3dDeviceAndOSInfoPlatformDepend.h"
+#else
+#include "platform/iOS/c3dDeviceAndOSInfoPlatformDepend.h"
+#endif
 class Cc3dDeviceAndOSInfo
 {
 public:

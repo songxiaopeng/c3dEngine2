@@ -2,22 +2,12 @@
 //
 #include <iostream>
 using namespace std;
-#include <OpenGLES/ES2/gl.h>
-#include <OpenGLES/ES2/glext.h>
-#import <OpenAL/al.h>
-#import <OpenAL/alc.h>
-#import <AudioToolbox/AudioToolbox.h>
-//
-#include "c3dSceneManger.h"
-#include "c3dAutoreleasePool.h"
-#include "c3dDeviceAndOSInfo.h"
-#include "c3dAppState.h"
-#include "c3dTextureCache.h"
-#include "c3dAudioCache.h"
-#include "c3dGlobalTimer.h"
-#include "c3dProgramSetUp.h"
-#include "c3dInitGame.h"
 
+#include "c3d.h"
+//
+#include "mainWindowFuncs.h"
+//
+#include "initGame.h"
 
 
 
@@ -87,38 +77,7 @@ using namespace std;
 
 
 - (void)render:(CADisplayLink*)displayLink {
-   
-    //switch back to screen fbo
-    glBindFramebuffer(GL_FRAMEBUFFER, _frameBuffer);
-    glClear(GL_COLOR_BUFFER_BIT| GL_DEPTH_BUFFER_BIT);//tile-base architecture要求bind之后立即clear更快些
-    glViewport(Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo()->getScreenRect().getMinX(),
-               Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo()->getScreenRect().getMinY(),
-               Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo()->getScreenRect().getWidth() ,
-               Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo()->getScreenRect().getHeight());//屏幕窗口
-    
-    if(Cc3dAppState::sharedAppState()->getIsInBackGround())return;
-
-    
-    //remove nodes marked as isRemoveOnNextFrame
-    Cc3dSceneManager::sharedSceneManager()->performDelayRemove();
-    //remove unused resource in caches (must after performDelayRemove)
-    Cc3dTextureCache::sharedTextureCache()->performDelayRemoveUnusedTextures();
-    Cc3dAudioCache::sharedAudioCache()->performDelayRemoveUnusedBuffersAndSources();
-    //visitUpdate
-    Cc3dSceneManager::sharedSceneManager()->getRoot()->visitUpdate();
-    //visitDraw
-    Cc3dSceneManager::sharedSceneManager()->getRoot()->visitDraw();
-    //autorelease
-    Cc3dAutoreleasePool::sharedAutoreleasePool()->releaseAll();
-    //refresh
-    //[self discardDepthBuffer];
-    glBindRenderbuffer(GL_RENDERBUFFER, _colorRenderBuffer);
-    [_context presentRenderbuffer:GL_RENDERBUFFER];
-    
-    C3DCHECK_GL_ERROR_DEBUG() ;
-    
-    C3DCHECK_AL_ERROR_DEBUG();
-    Cc3dTimeCounter::sharedTimeCounter()->doCount();//要放在最后，以便touchSequence时间与本帧时间一致
+    render(_context,_frameBuffer,_colorRenderBuffer);
 }
 
 
@@ -133,7 +92,9 @@ using namespace std;
     [self setupFrameBuffer];
     [self setupDisplayLink];//其中定义了render回调
     
-    c3dInitGame();
+    initWithFrame();
+    //initGame
+    initGame();
     
     return self;
 }
@@ -146,8 +107,7 @@ using namespace std;
 }
 - (void)dealloc
 {
-    
-    [self cleanUpOpenAL];
+    teardownOpenAL();
     [_context release];
     _context = nil;
     [super dealloc];

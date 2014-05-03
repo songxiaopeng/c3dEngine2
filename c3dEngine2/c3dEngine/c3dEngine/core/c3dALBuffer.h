@@ -16,8 +16,11 @@ using namespace std;
 #include "core/c3dALdebug.h"
 #include "core/c3dObject.h"
 #include "core/c3dFileUtils.h"
-
+#if (C3D_TARGET_PLATFORM == C3D_PLATFORM_WIN32)
 #include "platform/win32/c3dALPlatformDepend.h"
+#else
+#include "platform/iOS/c3dALPlatformDepend.h"
+#endif
 
 class Cc3dALBuffer:public Cc3dObject
 {

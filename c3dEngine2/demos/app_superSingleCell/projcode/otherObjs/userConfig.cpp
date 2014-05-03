@@ -15,11 +15,8 @@ CuserConfig*CuserConfig::sharedUserConfig(){
     }
     return s_userConfig;
 }
-bool CuserConfig::getIsConfigFileExistInDocuments(const string&filePath){
-    string fileFullPath=Cc3dDocuments::sharedDocuments()->getDocumentsPath()+"/"+filePath;
-   // bool isExist=isFileExistsAtPath_plat(fileFullPath);//2014-5-9 change
-	 bool isExist=Cc3dFileUtils::sharedFileUtils()->getIsFileOrClipExist(fileFullPath);
-    return isExist;
+bool CuserConfig::getIsConfigFileExistInDocuments(const string&filePathInDoc){
+    return  Cc3dDocuments::sharedDocuments()->getIsFileOrClipExistInDocument(filePathInDoc);
 
 }
 void CuserConfig::writeToConfigFileInDocuments(const string&filePath)

@@ -22,7 +22,10 @@ string getFullPath_plat(const string&filePath){
     }else{
         fullPath_NS= [[NSBundle mainBundle] pathForResource:fileName_NS ofType:ext_NS];
     }
-    assert(fullPath_NS!=nil);
+    if(fullPath_NS==nil){
+        cout<<"error: got nil fullPath, the path may be out of bundle. is it in ios Documents?"<<endl;
+        assert(false);
+    }
     string fullPath=[fullPath_NS cStringUsingEncoding:NSASCIIStringEncoding];
     return fullPath;
 }

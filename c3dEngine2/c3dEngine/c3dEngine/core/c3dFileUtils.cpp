@@ -8,7 +8,11 @@
 
 #include "core/c3dFileUtils.h"
 #include "common/c3dPathFunc.h"
+#if (C3D_TARGET_PLATFORM == C3D_PLATFORM_WIN32)
 #include "platform/win32/c3dPathPlatformDepend.h"
+#else
+#include "platform/iOS/c3dPathPlatformDepend.h"
+#endif
 #include "core/c3dAssert.h"
 static Cc3dFileUtils*s_fileUtils=NULL;
 Cc3dFileUtils*Cc3dFileUtils::sharedFileUtils(){
@@ -41,6 +45,7 @@ bool Cc3dFileUtils::getIsFileOrClipExistUnderPath(const string&path,const string
         return isExist;
     }
 }
+
 bool Cc3dFileUtils::getIsFileOrClipExist(const string&fileOrClipPath)
 {
     assert(fileOrClipPath.empty()==false);
