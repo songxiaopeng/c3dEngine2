@@ -170,7 +170,7 @@
   <ItemGroup>
     <ClCompile Include="..\projcode\globalVars.cpp" />
     <ClCompile Include="..\projcode\initGame.cpp" />
-    <ClCompile Include="..\projcode\mainWindow.cpp" />
+    <ClCompile Include="mainWindow.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

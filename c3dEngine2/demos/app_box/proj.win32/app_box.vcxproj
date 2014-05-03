@@ -163,7 +163,7 @@
     <ClCompile Include="..\projcode\box.cpp" />
     <ClCompile Include="..\projcode\globalVars.cpp" />
     <ClCompile Include="..\projcode\initGame.cpp" />
-    <ClCompile Include="..\projcode\mainWindow.cpp" />
+    <ClCompile Include="mainWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Script1.rc" />

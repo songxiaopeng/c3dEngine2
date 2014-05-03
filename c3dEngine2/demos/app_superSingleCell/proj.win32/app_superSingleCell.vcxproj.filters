@@ -382,5 +382,8 @@
     <ClCompile Include="..\projcode\pages\viewingTipPage.cpp">
       <Filter>projcode\pages</Filter>
     </ClCompile>
+    <ClCompile Include="mainWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

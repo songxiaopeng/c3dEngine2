@@ -160,9 +160,9 @@
     <ClCompile Include="..\projcode\globalVars.cpp" />
     <ClCompile Include="..\projcode\initGame.cpp" />
     <ClCompile Include="..\projcode\layer.cpp" />
-    <ClCompile Include="..\projcode\mainWindow.cpp" />
     <ClCompile Include="..\projcode\physicsActor.cpp" />
     <ClCompile Include="..\projcode\physicsBody.cpp" />
+    <ClCompile Include="mainWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Script1.rc" />

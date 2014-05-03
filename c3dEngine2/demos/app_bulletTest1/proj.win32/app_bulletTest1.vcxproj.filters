@@ -33,8 +33,8 @@
     <ClCompile Include="..\projcode\physicsBody.cpp">
       <Filter>projcode</Filter>
     </ClCompile>
-    <ClCompile Include="..\projcode\mainWindow.cpp">
-      <Filter>projcode</Filter>
+    <ClCompile Include="mainWindow.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
