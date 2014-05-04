@@ -354,6 +354,12 @@
     <ClInclude Include="..\..\..\c3dExtension\fbxLoader\win32\c3dFbxOneLoad.h">
       <Filter>c3dExtension\fbxLoader\win32</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\c3dEngine\platform\win32\OGLES\GL\GL.h">
+      <Filter>c3dEngine\platform\win32\OGLES\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\c3dEngine\platform\win32\OGLES\GL\GLU.h">
+      <Filter>c3dEngine\platform\win32\OGLES\GL</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\c3dEngine\common\c3dCommonFunc.cpp">

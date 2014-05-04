@@ -16,9 +16,9 @@
 	#include <stdlib.h>
 	#include "platform/win32/OGLES/GL/glut.h"
 //----------------------------	
-	#include <GL/gl.h>
+	#include "platform/win32/OGLES/GL/gl.h"
 	#include "platform/win32/OGLES/GL/glext.h"
-	#include <GL/glu.h>
+	#include "platform/win32/OGLES/GL/glu.h"
 	#include "platform/win32/OGLES/GL/GLAUX.H"
 
 #else

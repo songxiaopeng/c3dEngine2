@@ -83,9 +83,11 @@
     <ClInclude Include="..\..\..\c3dEngine\platform\win32\c3dTexturePlatformDepend.h" />
     <ClInclude Include="..\..\..\c3dEngine\platform\win32\libpng\png.h" />
     <ClInclude Include="..\..\..\c3dEngine\platform\win32\libpng\pngconf.h" />
+    <ClInclude Include="..\..\..\c3dEngine\platform\win32\OGLES\GL\GL.h" />
     <ClInclude Include="..\..\..\c3dEngine\platform\win32\OGLES\GL\GLAUX.H" />
     <ClInclude Include="..\..\..\c3dEngine\platform\win32\OGLES\GL\glew.h" />
     <ClInclude Include="..\..\..\c3dEngine\platform\win32\OGLES\GL\glext.h" />
+    <ClInclude Include="..\..\..\c3dEngine\platform\win32\OGLES\GL\GLU.h" />
     <ClInclude Include="..\..\..\c3dEngine\platform\win32\OGLES\GL\glut.h" />
     <ClInclude Include="..\..\..\c3dEngine\platform\win32\OGLES\GL\glxew.h" />
     <ClInclude Include="..\..\..\c3dEngine\platform\win32\OGLES\GL\wglew.h" />
