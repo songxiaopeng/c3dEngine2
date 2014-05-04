@@ -6,8 +6,9 @@ win32:
 note: 
 better to run under release mode (as i mainly debug under release mode and may forget to configure debug mode sometimes).
 iOS:
-1, open allDemos/proj.ios folder.
-2, chose the project (link) you want to run, open it with Xcode.
+for example you want run app_box demo:
+1, open app_box/proj.ios folder.
+2, open .xcodeproj file with Xcode.
 3, run.
 
 
@@ -16,8 +17,9 @@ win32:
 1, 进入allDemos/proj.win32目录, 用vs2010打开allDemos.sln.
 2, 在解决方案管理器中选择想运行的工程, 将其设为“启动项目”.
 3, 运行.
-建议在release模式下运行 (我主要在release下调式,偶尔会忘记配debug).
+建议在release模式下运行 (我主要在release下调试,偶尔会忘记配debug).
 iOS:
-1, 进入allDemos/proj.ios目录.
-2, 选择想运行的工程替身文件, 用Xcode打开。
+例如想运行app_box这个demo：
+1, 进入app_box/proj.ios目录。
+2, 用Xcode打开.xcodeproj文件。
 3, 运行.
