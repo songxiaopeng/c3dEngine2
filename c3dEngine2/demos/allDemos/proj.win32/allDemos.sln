@@ -11,6 +11,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "app_box", "..\..\app_box\pr
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "app_bulletTest1", "..\..\app_bulletTest1\proj.win32\app_bulletTest1.vcxproj", "{AF8C89EF-5E87-3ACA-E8B1-D2003B94D115}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7E79B6E6-7673-4B42-9688-DF01F0E13F0E} = {7E79B6E6-7673-4B42-9688-DF01F0E13F0E}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "app_exportFbxToMyOwnFormat", "..\..\app_exportFbxToMyOwnFormat\proj.win32\app_exportFbxToMyOwnFormat.vcxproj", "{7DD669C5-3422-5A29-C02B-472BF9A82994}"
 	ProjectSection(ProjectDependencies) = postProject
