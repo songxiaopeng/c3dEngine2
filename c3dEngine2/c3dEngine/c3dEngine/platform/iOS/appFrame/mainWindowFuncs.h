@@ -11,7 +11,6 @@
 
 #include <iostream>
 using namespace std;
-//
 #include "c3dSceneManger.h"
 #include "c3dAutoreleasePool.h"
 #include "c3dDeviceAndOSInfo.h"
@@ -21,6 +20,9 @@ using namespace std;
 #include "c3dGlobalTimer.h"
 #include "c3dProgramSetUp.h"
 #include "c3dInitGame.h"
-void render(EAGLContext*context, GLuint frameBuffer,GLuint colorRenderBuffer);
+//note:
+//EAGLContext is object-c class, can not use in c++ headers
+//#include <OpenGLES/EAGL.h> also can not write in c++ headers, because OpenGLES/EAGL.h is object-c file
+void render(void*_context, GLuint frameBuffer,GLuint colorRenderBuffer);
 void initWithFrame();
 #endif /* defined(__c3d__mainWindowFuncs__) */

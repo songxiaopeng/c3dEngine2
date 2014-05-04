@@ -15,7 +15,7 @@
 #include "platform/win32/appFrame/mainWindowGlobal.h"
 #include "platform/win32/appFrame/mainWindowFuncs.h"
 #else
-#include "platform/iOS/appFrame/mainWindowGlobal.h"
+//#include "platform/iOS/appFrame/mainWindowGlobal.h"
 #include "platform/iOS/appFrame/mainWindowFuncs.h"
 #endif
 #include "core/c3dGlobalTimer.h"

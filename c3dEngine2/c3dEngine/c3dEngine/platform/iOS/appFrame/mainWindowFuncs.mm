@@ -10,8 +10,8 @@
 void initWithFrame(){
     c3dInitGame();
 }
-void render(EAGLContext*context, GLuint frameBuffer,GLuint colorRenderBuffer){
-    
+void render(void*_context, GLuint frameBuffer,GLuint colorRenderBuffer){
+    EAGLContext* context=(EAGLContext*)_context;
     //switch back to screen fbo
     glBindFramebuffer(GL_FRAMEBUFFER, frameBuffer);
     glClear(GL_COLOR_BUFFER_BIT| GL_DEPTH_BUFFER_BIT);//tile-base architecture要求bind之后立即clear更快些
