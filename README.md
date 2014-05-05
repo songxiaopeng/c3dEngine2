@@ -24,6 +24,7 @@ please see how_to_run_demos.txt under c3dEngine2/demos folder.
   
 possible issues and solution:  
 assert failure on windows xp: http://git.oschina.net/wantnon2/c3dEngine2/issues/1  
+install OpenAL before run demos on win32: http://git.oschina.net/wantnon2/c3dEngine2/issues/2    
   
 i will update code to http://git.oschina.net/wantnon2/c3dEngine2.git and https://github.com/wantnon2/c3dEngine2, the former is the main site.     
   
