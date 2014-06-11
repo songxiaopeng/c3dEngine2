@@ -310,6 +310,7 @@ bool Cc3dFbxOneLoad::LoadScene(FbxManager* pManager, FbxDocument* pScene, const 
 		const int lVertexCount = lMesh->GetControlPointsCount();
 		if(!lMesh){
 			cout<<"error: lMesh==NULL!"<<endl;
+			assert(false);
 			return;
 		}
 		Cc3dSkinMesh*mesh=new Cc3dSkinMesh();
@@ -879,9 +880,11 @@ void Cc3dFbxOneLoad::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool 
 			{
 				lPose = lScene->GetPose(mPoseIndex);
 			}
+			//cout<<"lPose:"<<lPose<<endl;
 			//定义lDummyGlobalPosition
 			FbxAMatrix lDummyGlobalPosition;//模型的世界位置（默认构造为单位矩阵)
 			DrawNodeRecursive(lScene->GetRootNode(), Time, mCurrentAnimLayer,animStackIndex, lDummyGlobalPosition,lPose);
+		
 		}
 	
 	}
@@ -911,7 +914,10 @@ void Cc3dFbxOneLoad::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool 
 		const int lChildCount = pNode->GetChildCount();
 		for (int lChildIndex = 0; lChildIndex < lChildCount; ++lChildIndex)
 		{
-			DrawNodeRecursive(pNode->GetChild(lChildIndex), pTime, pAnimLayer,animStackIndex, lGlobalPosition,pPose);
+	//		cout<<"lChildIndex:"<<lChildIndex<<endl;
+			FbxNode* pChild=pNode->GetChild(lChildIndex);
+			assert(pChild);
+			DrawNodeRecursive(pChild, pTime, pAnimLayer,animStackIndex, lGlobalPosition,pPose);
 		}
 	}
 	
@@ -1089,10 +1095,13 @@ void Cc3dFbxOneLoad::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool 
 		FbxAMatrix& pGlobalPosition, FbxPose* pPose)
 	{
 		FbxMesh* lMesh = pNode->GetMesh();
+		assert(lMesh);
 		{
 			Cc3dSkinMesh* mesh=(Cc3dSkinMesh*)m_actor->findSkinMeshByFbxMeshPtr(lMesh);
-			Cc3dMatrix4 globalPositionMat=FbxAMatrixToCc3dMatrix4(pGlobalPosition);
-			mesh->setRTSmat(globalPositionMat);
+			if(mesh){
+				Cc3dMatrix4 globalPositionMat=FbxAMatrixToCc3dMatrix4(pGlobalPosition);
+				mesh->setRTSmat(globalPositionMat);
+			}
 		}
 		const int lVertexCount = lMesh->GetControlPointsCount();
 		const int triangleCount = lMesh->GetPolygonCount();

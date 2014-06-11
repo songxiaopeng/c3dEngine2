@@ -38,7 +38,8 @@ void Cc3dTransform::setRTSmat(const Cc3dMatrix4&RTSmat){
 	assert(scaleVector.x()!=0);
 	assert(scaleVector.y()!=0);
 	assert(scaleVector.z()!=0);
-	Cc3dMatrix4 scaleReverse=calculateScaleMatrix(scaleVector.x(),scaleVector.y(),scaleVector.z(),scaleVector.w());
+	assert(scaleVector.w()!=0);
+	Cc3dMatrix4 scaleReverse=calculateScaleMatrix(1.0/scaleVector.x(),1.0/scaleVector.y(),1.0/scaleVector.z(),1.0/scaleVector.w());
 	Cc3dMatrix4 RTmat=RTSmat*scaleReverse;
 	this->setRTmat(RTmat);
 	this->setScale(scaleVector.x(),scaleVector.y(),scaleVector.z());

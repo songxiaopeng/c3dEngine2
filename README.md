@@ -24,6 +24,7 @@ please see how_to_run_demos.txt under c3dEngine2/demos folder.
   
 possible issues and solution:  
 assert failure on windows xp: http://git.oschina.net/wantnon2/c3dEngine2/issues/1  
+install OpenAL before run demos on win32: http://git.oschina.net/wantnon2/c3dEngine2/issues/2    
   
 i will update code to http://git.oschina.net/wantnon2/c3dEngine2.git and https://github.com/wantnon2/c3dEngine2, the former is the main site.     
   
@@ -39,4 +40,13 @@ quadtree LOD terrain
 bullet integration  
 ![screenshot](http://git.oschina.net/wantnon2/c3dEngine2/raw/master/screenshot/screenshot4.png)  
 a whole game: super single cell  
+tips:   
+after entered the level selecting page, press the debug button at the right down corner, all the levels will be unlocked.   
+进入选关页面后点右下角debug按钮可以解锁所有关卡。  
+操纵方法(game control):  
+run forward:        press screen.  
+run back:           sweep down.  
+turn left/right:    sweep left/right.  
+jump:               sweep up.  
+jump forward:       drag up.  
 ![screenshot](http://git.oschina.net/wantnon2/c3dEngine2/raw/master/screenshot/screenshot5.png)  
