@@ -24,7 +24,6 @@ public:
     virtual~Cboard(){ 
     }
 	bool init(float width,float height,string imagePath);
-	bool init(float width,float height,Cc3dTexture*texture);
 
 };
 

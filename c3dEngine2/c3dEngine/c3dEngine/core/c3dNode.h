@@ -220,10 +220,7 @@ public:
     void setTransform(Cc3dTransform*transform);
     bool getIsRemoveOnNextFrame()const{return m_isRemoveOnNextFrame;}
     void setIsRemoveOnNextFrame(bool value){m_isRemoveOnNextFrame=value;};
-	void setRTSmat(const Cc3dMatrix4&RTSmat){
-		assert(m_transform);
-		m_transform->setRTSmat(RTSmat);
-	}
+	void setRTSmat(const Cc3dMatrix4&RTSmat){m_transform->setRTSmat(RTSmat);}
 protected:
     int getChildIndexInChildList(Cc3dNode*node){//return -1 if failed
         int nchild=(int)m_childList.size();
