@@ -30,6 +30,7 @@
 #include "pages/viewingTipPage.h"
 
 bool initGame(){
+
 	//---------------------------------to do: initialize your game
     //----初始化shader
     programSetUp();//new

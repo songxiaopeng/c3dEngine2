@@ -2,7 +2,7 @@
 //  initGame.h
 //  HelloOpenGL
 //
-//  Created by wantnon (yang chao) on 14-2-23.
+//  Created by wantnon (yang chao) on 12-12-20.
 //
 //
 
@@ -10,6 +10,8 @@
 #define __HelloOpenGL__initGame__
 
 #include <iostream>
+using namespace std;
 
-bool initGame();
+void initGame();
+
 #endif /* defined(__HelloOpenGL__initGame__) */

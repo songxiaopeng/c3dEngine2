@@ -95,6 +95,8 @@ Cc3dVector4 extractScaleFromRTSmat(const Cc3dMatrix4&mat){
 	float scaleZ=getLength(Cc3dVector4(mat.getAt(8),mat.getAt(9),mat.getAt(10),mat.getAt(11)));
 	float scaleW=mat.getAt(15);
 	return Cc3dVector4(scaleX,scaleY,scaleZ,scaleW);
+	
+
 }
 
 Cc3dMatrix4 calculateTranslateMatrix(const Cc3dVector4&translate){
