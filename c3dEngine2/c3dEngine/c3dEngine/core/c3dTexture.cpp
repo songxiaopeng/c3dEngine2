@@ -74,3 +74,61 @@ bool Cc3dTexture::init(const string&filePath,int wrapS,int wrapT,GLint minFilter
     return true;
 
 }
+bool Cc3dTexture::initCubeTexture(const vector<string>&filePathList,int wrapS,int wrapT,GLint minFilter,GLint magFilter){
+	m_isCubeTexture=true;
+	//get the images' data
+	vector<unsigned char*> imageDataList;
+	vector<CCTexture2DPixelFormat> pixelFormatList;
+	vector<float> widthList;
+	vector<float> heightList;
+	int nPath=(int)filePathList.size();
+	for(int i=0;i<nPath;i++){
+		string filePath=filePathList[i];
+		CCTexture2DPixelFormat pixelFormat;
+		float width,height;
+		unsigned char* imageData=getImageData_plat(filePath,pixelFormat,width,height);
+		imageDataList.push_back(imageData);
+		pixelFormatList.push_back(pixelFormat);
+		widthList.push_back(width);
+		heightList.push_back(height);
+	}
+	for(int i=0;i<nPath-1;i++){
+		C3DASSERT(widthList[i]==widthList[i+1]);
+		C3DASSERT(heightList[i]==heightList[i+1]);
+	}
+	//create cubemap
+	
+	GLuint textureObject;
+    glGenTextures(1, &textureObject);
+    glBindTexture(GL_TEXTURE_CUBE_MAP, textureObject);
+    for (int f = 0; f < 6; ++f) {
+        GLenum face = GL_TEXTURE_CUBE_MAP_POSITIVE_X + f;
+		unsigned char* imageData=imageDataList[f];
+		CCTexture2DPixelFormat pixelFormat=pixelFormatList[f];
+		float width=widthList[f];
+		float height=heightList[f];
+		if(pixelFormat==kCCTexture2DPixelFormat_RGB888){
+		
+			glTexImage2D(face, 0, GL_RGB, (GLsizei)width, (GLsizei)height, 0, GL_RGB, GL_UNSIGNED_BYTE, imageData);
+		
+		}else if(pixelFormat==kCCTexture2DPixelFormat_RGBA8888){
+		
+			glTexImage2D(face, 0, GL_RGBA,(GLsizei)width, (GLsizei)height, 0, GL_RGBA, GL_UNSIGNED_BYTE, imageData);
+		
+		}else{
+			C3DASSERT(false);
+		}
+    }
+    glTexParameteri(GL_TEXTURE_CUBE_MAP, 
+                    GL_TEXTURE_MIN_FILTER, 
+                    GL_LINEAR_MIPMAP_LINEAR); 
+    glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glGenerateMipmap(GL_TEXTURE_CUBE_MAP);
+
+	m_texture=textureObject;
+    m_width=widthList[0];
+    m_height=heightList[0];
+    m_filePath="";
+	return true;
+
+}

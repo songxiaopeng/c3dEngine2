@@ -1,19 +1,10 @@
-﻿Build started 2014/6/11 11:12:14.
+﻿Build started 2014/7/8 21:18:24.
      1>Project "E:\oscGitProject\c3dEngine2_osc\c3dEngine2\c3dEngine\proj.win32\c3dEngine\c3dEngine\c3dEngine.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "Debug\c3dEngine.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
-         d:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /IE:\oscGitProject\c3dEngine2_osc\c3dEngine2\c3dEngine\proj.win32\c3dEngine\c3dEngine\..\..\..\c3dEngine /IE:\oscGitProject\c3dEngine2_osc\c3dEngine2\c3dEngine\proj.win32\c3dEngine\c3dEngine\..\..\..\c3dExtension /IE:\oscGitProject\c3dEngine2_osc\c3dEngine2\c3dEngine\proj.win32\c3dEngine\c3dEngine\..\..\..\extension /IE:\oscGitProject\c3dEngine2_osc\c3dEngine2\c3dEngine\proj.win32\c3dEngine\c3dEngine\..\..\..\thirdPart\FBX\FBX_win32\FbxSdk\2014.2.1\include /I"E:\oscGitProject\c3dEngine2_osc\c3dEngine2\c3dEngine\proj.win32\c3dEngine\c3dEngine\..\..\..\thirdPart\bullet\bullet-2.82-r2704\src" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _USRDLL /D C3DENGINE_EXPORTS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\..\c3dEngine\core\c3dFbo.cpp ..\..\..\c3dExtension\fbxLoader\win32\c3dFbxOneLoad.cpp
-         c3dFbxOneLoad.cpp
-     1>e:\oscgitproject\c3dengine2_osc\c3dengine2\c3dengine\thirdpart\fbx\fbx_win32\fbxsdk\2014.2.1\include\fbxsdk\core\fbxproperty.h(837): warning C4996: 'fbxsdk_2014_2_1::FbxProperty::GetSrcObject': was declared deprecated
-                 e:\oscgitproject\c3dengine2_osc\c3dengine2\c3dengine\thirdpart\fbx\fbx_win32\fbxsdk\2014.2.1\include\fbxsdk\core\fbxproperty.h(755) : see declaration of 'fbxsdk_2014_2_1::FbxProperty::GetSrcObject'
-                 e:\oscgitproject\c3dengine2_osc\c3dengine2\c3dengine\c3dextension\fbxloader\win32\c3dfbxoneload.cpp(489) : see reference to function template instantiation 'T *fbxsdk_2014_2_1::FbxProperty::GetSrcObject<fbxsdk_2014_2_1::FbxFileTexture>(const T *,int) const' being compiled
-                 with
-                 [
-                     T=fbxsdk_2014_2_1::FbxFileTexture
-                 ]
-         c3dFbo.cpp
-         Generating Code...
+         d:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /IE:\oscGitProject\c3dEngine2_osc\c3dEngine2\c3dEngine\proj.win32\c3dEngine\c3dEngine\..\..\..\c3dEngine /IE:\oscGitProject\c3dEngine2_osc\c3dEngine2\c3dEngine\proj.win32\c3dEngine\c3dEngine\..\..\..\c3dExtension /IE:\oscGitProject\c3dEngine2_osc\c3dEngine2\c3dEngine\proj.win32\c3dEngine\c3dEngine\..\..\..\extension /IE:\oscGitProject\c3dEngine2_osc\c3dEngine2\c3dEngine\proj.win32\c3dEngine\c3dEngine\..\..\..\thirdPart\FBX\FBX_win32\FbxSdk\2014.2.1\include /I"E:\oscGitProject\c3dEngine2_osc\c3dEngine2\c3dEngine\proj.win32\c3dEngine\c3dEngine\..\..\..\thirdPart\bullet\bullet-2.82-r2704\src" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _USRDLL /D C3DENGINE_EXPORTS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\..\c3dEngine\core\c3dTexture.cpp
+         c3dTexture.cpp
        PreLinkEvent:
          if not exist "E:\oscGitProject\c3dEngine2_osc\c3dEngine2\demos\allDemos\proj.win32\Debug\" mkdir "E:\oscGitProject\c3dEngine2_osc\c3dEngine2\demos\allDemos\proj.win32\Debug\"
          xcopy /Y /Q "E:\oscGitProject\c3dEngine2_osc\c3dEngine2\c3dEngine\proj.win32\c3dEngine\c3dEngine\..\..\..\c3dEngine\platform\win32\libraries\*.*" "E:\oscGitProject\c3dEngine2_osc\c3dEngine2\demos\allDemos\proj.win32\Debug\"
@@ -138,4 +129,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:06.21
+Time Elapsed 00:00:02.50

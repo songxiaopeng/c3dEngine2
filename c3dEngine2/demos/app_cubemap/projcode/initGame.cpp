@@ -27,13 +27,6 @@ void initGame(){
         program->attachUniform("texture");
         program->attachUniform("lightPos_world");
 		program->attachUniform("eyePos_world");
-        program->attachUniform("diffuseMaterial");
-		program->attachUniform("diffuseLight");
-		program->attachUniform("ambientMaterial");
-		program->attachUniform("ambientLight");
-		program->attachUniform("specularMaterial");
-		program->attachUniform("specularLight");
-        program->attachUniform("shininess");
         
 
     }
