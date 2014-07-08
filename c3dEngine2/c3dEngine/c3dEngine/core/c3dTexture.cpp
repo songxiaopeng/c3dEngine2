@@ -97,10 +97,17 @@ bool Cc3dTexture::initCubeTexture(const vector<string>&filePathList,int wrapS,in
 		C3DASSERT(heightList[i]==heightList[i+1]);
 	}
 	//create cubemap
-	
+
 	GLuint textureObject;
     glGenTextures(1, &textureObject);
     glBindTexture(GL_TEXTURE_CUBE_MAP, textureObject);
+	glTexParameteri( GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S,  GL_CLAMP_TO_EDGE );
+
+	glTexParameteri( GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T,  GL_CLAMP_TO_EDGE );
+
+	glTexParameteri( GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R,  GL_CLAMP_TO_EDGE );
+
+	//glTexEnvf( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE );
     for (int f = 0; f < 6; ++f) {
         GLenum face = GL_TEXTURE_CUBE_MAP_POSITIVE_X + f;
 		unsigned char* imageData=imageDataList[f];
@@ -119,11 +126,17 @@ bool Cc3dTexture::initCubeTexture(const vector<string>&filePathList,int wrapS,in
 			C3DASSERT(false);
 		}
     }
-    glTexParameteri(GL_TEXTURE_CUBE_MAP, 
-                    GL_TEXTURE_MIN_FILTER, 
-                    GL_LINEAR_MIPMAP_LINEAR); 
+    glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR); 
     glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glGenerateMipmap(GL_TEXTURE_CUBE_MAP);
+	glBindTexture(GL_TEXTURE_CUBE_MAP, 0);
+    C3DCHECK_GL_ERROR_DEBUG();
+
+	int nImageData=(int)imageDataList.size();
+	for(int i=0;i<nImageData;i++){
+		delete []imageDataList[i];
+	}
+
 
 	m_texture=textureObject;
     m_width=widthList[0];

@@ -72,24 +72,20 @@ bool Cc3dImage::initWithImageFile(const char * strPath)
 
 
 bool Cc3dImage::initWithImageData(void * pData, 
-                                int nDataLen, 
-                                int nWidth/* = 0*/,
-                                int nHeight/* = 0*/,
-                                int nBitsPerComponent/* = 8*/)
+                                int nDataLen)
 {
     bool bRet = false;
     do 
     {
 		if(! pData || nDataLen <= 0)break;
 
-       
+		
             bRet = _initWithPngData(pData, nDataLen);
             break;
+
     } while (0);
     return bRet;
 }
-
-
 
 bool Cc3dImage::_initWithPngData(void * pData, int nDatalen)
 {

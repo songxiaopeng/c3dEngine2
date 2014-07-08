@@ -41,6 +41,7 @@ void c3dInitGame(){
     glEnable(GL_DEPTH_TEST);
 #if (C3D_TARGET_PLATFORM == C3D_PLATFORM_WIN32)
 	glEnable(GL_TEXTURE_2D);//on windows, do not forget this!!!
+	glEnable(GL_TEXTURE_CUBE_MAP);
 #endif
     ////glEnable(GL_VERTEX_PROGRAM_POINT_SIZE);// Enable point size by default on windows.(wait, it is not support on iOS!)
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);

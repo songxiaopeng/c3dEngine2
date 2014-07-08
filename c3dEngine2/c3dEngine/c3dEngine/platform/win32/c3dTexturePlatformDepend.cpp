@@ -267,7 +267,8 @@ GLuint createGLTexture_plat(const string&filePath,int wrapS,int wrapT,GLint minF
 
 
 
-unsigned char*  getImageData_plat(const string&filePath,CCTexture2DPixelFormat&_pixelFormat,float&_imageWidth,float&_imageHeight)
+unsigned char*   getImageData_plat(const string&filePath,CCTexture2DPixelFormat&_pixelFormat,float&_imageWidth,float&_imageHeight)
+	//the return object is autoreleased object
 {
 	//cout<<"filePath:"<<filePath<<endl;
 	Cc3dImage* pImage = NULL;
@@ -453,10 +454,20 @@ unsigned char*  getImageData_plat(const string&filePath,CCTexture2DPixelFormat&_
 		return tempData;
 	}else{
 		//it must be RGBA8888
-		tempData = new unsigned char[imageWidth * imageHeight * 4];
-		memcpy(tempData,pImage->getData(),sizeof(tempData));
+		int pixelPerByte;
+		if(pixelFormat == kCCTexture2DPixelFormat_RGBA8888){
+			pixelPerByte=4;
+		}else if(pixelFormat == kCCTexture2DPixelFormat_RGB888){
+			pixelPerByte=3;
+		}else{
+			C3DASSERT(false);
+		}
+		tempData = new unsigned char[imageWidth * imageHeight * pixelPerByte];
+		memcpy(tempData,pImage->getData(),imageWidth * imageHeight * pixelPerByte);
+	//	cout<<"data size:"<<sizeof(pImage->getData())<<endl;
+	//	cout<<"temp size:"<<sizeof(tempData)<<endl;
+		pImage->release();
 		return tempData;
-	
 	}
 
  

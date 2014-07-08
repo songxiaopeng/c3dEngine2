@@ -23,10 +23,7 @@ public:
     @return true if loaded correctly.
     */
     bool initWithImageData(void * pData, 
-                           int nDataLen, 
-                           int nWidth = 0,
-                           int nHeight = 0,
-                           int nBitsPerComponent = 8);
+                           int nDataLen);
 
 
     unsigned char *   getData()               { return m_pData; }

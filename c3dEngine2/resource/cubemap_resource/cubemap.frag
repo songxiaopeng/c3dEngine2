@@ -6,4 +6,5 @@ uniform samplerCube texture;
 
 void main(void) {
     gl_FragColor =textureCube(texture, v_reflectDir_world.xyz);
+	//gl_FragColor =vec4(v_reflectDir_world.xyz,1.0);
 }

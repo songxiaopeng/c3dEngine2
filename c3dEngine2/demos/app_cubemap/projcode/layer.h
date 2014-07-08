@@ -187,8 +187,14 @@ public:
 		m_actor->submit(GL_STATIC_DRAW);
 		addChild(m_actor);
 
-		cout<<"modelCount:"<<m_actor->getModel()->getMeshCount()<<endl;
-		m_actor->getModel()->getMeshByIndex(0)->getSubMeshByIndex(0)->setTexture(cubeTex);
+		int nMesh=(int)m_actor->getModel()->getMeshCount();
+		for(int i=0;i<nMesh;i++){
+			int nSubMesh=(int)m_actor->getModel()->getMeshByIndex(i)->getSubMeshCount();
+			for(int j=0;j<nSubMesh;j++){
+				m_actor->getModel()->getMeshByIndex(i)->getSubMeshByIndex(j)->setTexture(cubeTex);
+			}
+		}
+		
 	
         return true;
     }
