@@ -137,13 +137,13 @@ void buildinProgramPassUnifoCallback_cubemap(Cc3dNode*node, Cc3dProgram*program)
 	
 	Cc3dVector4 lightPos=submesh->getLight()->getPos();
 	Cc3dVector4 eyePos=submesh->getCamera()->getEyePos();
-    Cc3dVector4 diffuseMaterial=submesh->getMaterial()->getDiffuse();
+  /*  Cc3dVector4 diffuseMaterial=submesh->getMaterial()->getDiffuse();
     Cc3dVector4 diffuseLight=submesh->getLight()->getDiffuse();
     Cc3dVector4 ambientMaterial=submesh->getMaterial()->getAmbient();
     Cc3dVector4 ambientLight=submesh->getLight()->getAmbient();
 	Cc3dVector4 specularMaterial=submesh->getMaterial()->getSpecular();
 	Cc3dVector4 specularLight=submesh->getLight()->getSpecular();
-	float shininess=submesh->getMaterial()->getShininess();
+	float shininess=submesh->getMaterial()->getShininess();*/
     //
     Cc3dMatrix4 PVMmat=projMat*viewMat*modelMat;
    

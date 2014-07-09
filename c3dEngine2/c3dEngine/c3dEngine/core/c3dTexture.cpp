@@ -125,6 +125,8 @@ bool Cc3dTexture::initCubeTexture(const vector<string>&filePathList,int wrapS,in
 	glTexParameteri( GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S,  wrapS );
 	glTexParameteri( GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T,  wrapT );
 #if (C3D_TARGET_PLATFORM == C3D_PLATFORM_WIN32)
+    //there is no GL_TEXTURE_WRAP_R defined on mac opengles
+    //http://www.gamedev.net/topic/520540-gl_texture_cube_map/
 	glTexParameteri( GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R,  wrapR );
 #endif
     glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, minFilter); 
