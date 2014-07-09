@@ -32,7 +32,7 @@
     <ClInclude Include="..\projcode\initGame.h">
       <Filter>projcode</Filter>
     </ClInclude>
-    <ClInclude Include="..\projcode\layer.h">
+    <ClInclude Include="..\projcode\ball.h">
       <Filter>projcode</Filter>
     </ClInclude>
   </ItemGroup>
@@ -46,7 +46,7 @@
     <ClCompile Include="mainWindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\projcode\layer.cpp">
+    <ClCompile Include="..\projcode\ball.cpp">
       <Filter>projcode</Filter>
     </ClCompile>
   </ItemGroup>
