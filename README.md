@@ -33,6 +33,8 @@ qq group: 338565878
 screenshot:  
 draw a simple box  
 ![screenshot](http://git.oschina.net/wantnon2/c3dEngine2/raw/master/screenshot/screenshot1.png)  
+cube mapping  
+![screenshot](http://git.oschina.net/wantnon2/c3dEngine2/raw/master/screenshot/screenshot6.png)   
 fbx skin animation and convert fbx to user-defined format  
 ![screenshot](http://git.oschina.net/wantnon2/c3dEngine2/raw/master/screenshot/screenshot2.png)  
 quadtree LOD terrain   
