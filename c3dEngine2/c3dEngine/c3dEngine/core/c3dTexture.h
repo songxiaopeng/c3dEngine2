@@ -18,6 +18,7 @@ using namespace std;
 #include "core/c3dObject.h"
 #include "core/c3dGLdebug.h"
 #include "core/c3dAssert.h"
+
 class Cc3dTexture:public Cc3dObject
 {
 protected:
