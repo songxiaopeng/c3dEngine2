@@ -74,7 +74,7 @@ bool Cc3dTexture::init(const string&filePath,int wrapS,int wrapT,GLint minFilter
     return true;
 
 }
-bool Cc3dTexture::initCubeTexture(const vector<string>&filePathList,int wrapS,int wrapT,GLint minFilter,GLint magFilter){
+bool Cc3dTexture::initCubeTexture(const vector<string>&filePathList,int wrapS,int wrapT,int wrapR,GLint minFilter,GLint magFilter,bool isGenMipmap){
 	m_isCubeTexture=true;
 	//get the images' data
 	vector<unsigned char*> imageDataList;
@@ -101,11 +101,7 @@ bool Cc3dTexture::initCubeTexture(const vector<string>&filePathList,int wrapS,in
 	GLuint textureObject;
     glGenTextures(1, &textureObject);
     glBindTexture(GL_TEXTURE_CUBE_MAP, textureObject);
-	glTexParameteri( GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S,  GL_CLAMP_TO_EDGE );
 
-	glTexParameteri( GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T,  GL_CLAMP_TO_EDGE );
-
-	glTexParameteri( GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R,  GL_CLAMP_TO_EDGE );
 
 	//glTexEnvf( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE );
     for (int f = 0; f < 6; ++f) {
@@ -126,9 +122,14 @@ bool Cc3dTexture::initCubeTexture(const vector<string>&filePathList,int wrapS,in
 			C3DASSERT(false);
 		}
     }
-    glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR); 
-    glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    glGenerateMipmap(GL_TEXTURE_CUBE_MAP);
+	glTexParameteri( GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S,  wrapS );
+	glTexParameteri( GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T,  wrapT );
+	glTexParameteri( GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R,  wrapR );
+    glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, minFilter); 
+    glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, magFilter);
+	if(isGenMipmap){
+	   glGenerateMipmap(GL_TEXTURE_CUBE_MAP);
+	}
 	glBindTexture(GL_TEXTURE_CUBE_MAP, 0);
     C3DCHECK_GL_ERROR_DEBUG();
 

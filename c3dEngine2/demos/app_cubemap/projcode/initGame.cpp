@@ -62,7 +62,8 @@ void initGame(){
         camera->setAspect((float)Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo()->getScreenRect().getWidth()/Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo()->getScreenRect().getHeight());
         camera->setzNear(0.5);
         camera->setzFar(10000);
-		float eyePos[3]={0,100,100};//{0,10,50};
+		const float A=145;
+		float eyePos[3]={100*sinf(A*c3d_PI/180),90,100*cosf(A*c3d_PI/180)};//{0,100,100};//{0,10,50};
         float eyeTg[3]={0,10,0};
         float up[3]={0,1,0};
         camera->setEyePos(Cc3dVector3(eyePos).toV4(1));

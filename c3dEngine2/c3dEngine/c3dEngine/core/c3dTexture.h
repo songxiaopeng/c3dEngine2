@@ -56,7 +56,7 @@ public:
     bool init( const string&filePath,int wrapS=GL_REPEAT,int wrapT=GL_REPEAT,GLint minFilter=GL_LINEAR,GLint magFilter=GL_LINEAR);
     bool initDepthTexture(int width,int height,int wrapS,int wrapT,GLint minFilter,GLint magFilter);
     bool initColorTexture(int width,int height,int wrapS,int wrapT,GLint minFilter,GLint magFilter);
-	bool initCubeTexture(const vector<string>&filePathList,int wrapS=GL_REPEAT,int wrapT=GL_REPEAT,GLint minFilter=GL_LINEAR,GLint magFilter=GL_LINEAR);
+	bool initCubeTexture(const vector<string>&filePathList,int wrapS=GL_CLAMP_TO_EDGE,int wrapT=GL_CLAMP_TO_EDGE,int wrapR=GL_CLAMP_TO_EDGE,GLint minFilter=GL_LINEAR_MIPMAP_LINEAR,GLint magFilter=GL_LINEAR,bool isGenMipmap=true);
 };
 
 #endif /* defined(__HelloOpenGL__c3dTexture__) */
