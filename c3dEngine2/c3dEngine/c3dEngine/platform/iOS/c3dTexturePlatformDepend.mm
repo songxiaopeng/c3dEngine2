@@ -8,9 +8,8 @@
 
 #include "c3dTexturePlatformDepend.h"
 GLuint createGLTexture_plat(const string&filePath,int wrapS,int wrapT,GLint minFilter,GLint magFilter,float&textureWidth,float&textureHeight)
-//只支持2的幂的贴图
+
 {
-    //生成纹理
     // 1
     NSString *fileName_NS=[[[NSString alloc] initWithUTF8String:filePath.c_str()] autorelease];
     CGImageRef spriteImage = [UIImage imageNamed:fileName_NS].CGImage;
@@ -54,4 +53,36 @@ GLuint createGLTexture_plat(const string&filePath,int wrapS,int wrapT,GLint minF
     C3DCHECK_GL_ERROR_DEBUG();
     return texture;
     
+}
+unsigned char* getImageData_plat(const string&filePath,CCTexture2DPixelFormat&_pixelFormat,float&_imageWidth,float&_imageHeight){
+    // 1
+    NSString *fileName_NS=[[[NSString alloc] initWithUTF8String:filePath.c_str()] autorelease];
+    CGImageRef spriteImage = [UIImage imageNamed:fileName_NS].CGImage;
+    if (!spriteImage) {
+        NSLog(@"Failed to load image %@", fileName_NS);
+        exit(1);
+    }
+    
+    // 2
+    size_t width = CGImageGetWidth(spriteImage);
+    size_t height = CGImageGetHeight(spriteImage);
+    
+    
+    
+    GLubyte * spriteData = (GLubyte *) calloc(width*height*4, sizeof(GLubyte));
+    
+    CGContextRef spriteContext = CGBitmapContextCreate(spriteData, width, height, 8, width*4, CGImageGetColorSpace(spriteImage), kCGImageAlphaPremultipliedLast);
+    
+    // 3
+    CGContextDrawImage(spriteContext, CGRectMake(0, 0, width, height), spriteImage);
+    
+    CGContextRelease(spriteContext);
+    
+    //
+    _pixelFormat=kCCTexture2DPixelFormat_RGBA8888;
+    _imageWidth=width;
+    _imageHeight=height;
+    assert(sizeof(GLubyte)==sizeof(unsigned char));
+    return spriteData;
+
 }
