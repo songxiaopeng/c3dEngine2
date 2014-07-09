@@ -1,20 +1,37 @@
-﻿生成启动时间为 2014/5/3 13:46:04。
-     1>项目“C:\Users\Administrator\Desktop\myProj\c3dEngine2_oschina\c3dEngine2\c3dEngine\proj.win32\c3dEngine\c3dEngine\c3dEngine.vcxproj”在节点 2 上(build 个目标)。
-     1>PrepareForBuild:
-         正在创建目录“C:\Users\Administrator\Desktop\myProj\c3dEngine2_oschina\c3dEngine2\demos\allDemos\proj.win32\Debug\”。
-       InitializeBuildStatus:
-         正在创建“Debug\c3dEngine.unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+﻿Build started 2014/7/9 13:52:19.
+     1>Project "E:\oscGitProject\c3dEngine2_osc\c3dEngine2\c3dEngine\proj.win32\c3dEngine\c3dEngine\c3dEngine.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
+         Creating "Debug\c3dEngine.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
-         所有输出均为最新。
+         d:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /IE:\oscGitProject\c3dEngine2_osc\c3dEngine2\c3dEngine\proj.win32\c3dEngine\c3dEngine\..\..\..\c3dEngine /IE:\oscGitProject\c3dEngine2_osc\c3dEngine2\c3dEngine\proj.win32\c3dEngine\c3dEngine\..\..\..\c3dExtension /IE:\oscGitProject\c3dEngine2_osc\c3dEngine2\c3dEngine\proj.win32\c3dEngine\c3dEngine\..\..\..\extension /IE:\oscGitProject\c3dEngine2_osc\c3dEngine2\c3dEngine\proj.win32\c3dEngine\c3dEngine\..\..\..\thirdPart\FBX\FBX_win32\FbxSdk\2014.2.1\include /I"E:\oscGitProject\c3dEngine2_osc\c3dEngine2\c3dEngine\proj.win32\c3dEngine\c3dEngine\..\..\..\thirdPart\bullet\bullet-2.82-r2704\src" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _USRDLL /D C3DENGINE_EXPORTS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\..\c3dEngine\core\c3dActor.cpp ..\..\..\c3dEngine\core\c3dFbo.cpp ..\..\..\c3dEngine\core\c3dInitGame.cpp ..\..\..\c3dEngine\core\c3dMesh.cpp ..\..\..\c3dEngine\core\c3dModel.cpp ..\..\..\c3dEngine\core\c3dSubMesh.cpp ..\..\..\c3dEngine\core\c3dTexture.cpp ..\..\..\c3dEngine\core\c3dTextureCache.cpp ..\..\..\c3dEngine\platform\win32\appFrame\mainWindowFuncs.cpp ..\..\..\c3dEngine\shader\c3dPassUnifoCallBack.cpp ..\..\..\c3dExtension\fbxLoader\c3dSkinActor.cpp ..\..\..\c3dExtension\fbxLoader\win32\c3dFbxLoader.cpp ..\..\..\c3dExtension\fbxLoader\win32\c3dFbxOneLoad.cpp ..\..\..\extension\octree\octree.cpp ..\..\..\extension\terrain\terrain.cpp ..\..\..\extension\ui\board.cpp ..\..\..\extension\ui\button.cpp
+         c3dTexture.cpp
+         Generating Code...
+         Skipping... (no relevant changes detected)
+         button.cpp
+         board.cpp
+         terrain.cpp
+         octree.cpp
+         c3dFbxOneLoad.cpp
+         c3dFbxLoader.cpp
+         c3dSkinActor.cpp
+         c3dPassUnifoCallBack.cpp
+         mainWindowFuncs.cpp
+         c3dTextureCache.cpp
+         c3dSubMesh.cpp
+         c3dModel.cpp
+         c3dMesh.cpp
+         c3dInitGame.cpp
+         c3dFbo.cpp
+         c3dActor.cpp
        PreLinkEvent:
-         if not exist "C:\Users\Administrator\Desktop\myProj\c3dEngine2_oschina\c3dEngine2\demos\allDemos\proj.win32\Debug\" mkdir "C:\Users\Administrator\Desktop\myProj\c3dEngine2_oschina\c3dEngine2\demos\allDemos\proj.win32\Debug\"
-         xcopy /Y /Q "C:\Users\Administrator\Desktop\myProj\c3dEngine2_oschina\c3dEngine2\c3dEngine\proj.win32\c3dEngine\c3dEngine\..\..\..\c3dEngine\platform\win32\libraries\*.*" "C:\Users\Administrator\Desktop\myProj\c3dEngine2_oschina\c3dEngine2\demos\allDemos\proj.win32\Debug\"
+         if not exist "E:\oscGitProject\c3dEngine2_osc\c3dEngine2\demos\allDemos\proj.win32\Debug\" mkdir "E:\oscGitProject\c3dEngine2_osc\c3dEngine2\demos\allDemos\proj.win32\Debug\"
+         xcopy /Y /Q "E:\oscGitProject\c3dEngine2_osc\c3dEngine2\c3dEngine\proj.win32\c3dEngine\c3dEngine\..\..\..\c3dEngine\platform\win32\libraries\*.*" "E:\oscGitProject\c3dEngine2_osc\c3dEngine2\demos\allDemos\proj.win32\Debug\"
            
-         if not exist "C:\Users\Administrator\Desktop\myProj\c3dEngine2_oschina\c3dEngine2\demos\allDemos\proj.win32\Debug\" mkdir "C:\Users\Administrator\Desktop\myProj\c3dEngine2_oschina\c3dEngine2\demos\allDemos\proj.win32\Debug\"
-         xcopy /Y /Q "C:\Users\Administrator\Desktop\myProj\c3dEngine2_oschina\c3dEngine2\c3dEngine\proj.win32\c3dEngine\c3dEngine\..\..\..\thirdPart\bullet\bullet-2.82-r2704\lib_win32\debug\*.*" "C:\Users\Administrator\Desktop\myProj\c3dEngine2_oschina\c3dEngine2\demos\allDemos\proj.win32\Debug\"
+         if not exist "E:\oscGitProject\c3dEngine2_osc\c3dEngine2\demos\allDemos\proj.win32\Debug\" mkdir "E:\oscGitProject\c3dEngine2_osc\c3dEngine2\demos\allDemos\proj.win32\Debug\"
+         xcopy /Y /Q "E:\oscGitProject\c3dEngine2_osc\c3dEngine2\c3dEngine\proj.win32\c3dEngine\c3dEngine\..\..\..\thirdPart\bullet\bullet-2.82-r2704\lib_win32\debug\*.*" "E:\oscGitProject\c3dEngine2_osc\c3dEngine2\demos\allDemos\proj.win32\Debug\"
            
-         if not exist "C:\Users\Administrator\Desktop\myProj\c3dEngine2_oschina\c3dEngine2\demos\allDemos\proj.win32\Debug\" mkdir "C:\Users\Administrator\Desktop\myProj\c3dEngine2_oschina\c3dEngine2\demos\allDemos\proj.win32\Debug\"
-         xcopy /Y /Q "C:\Users\Administrator\Desktop\myProj\c3dEngine2_oschina\c3dEngine2\c3dEngine\proj.win32\c3dEngine\c3dEngine\..\..\..\thirdPart\FBX\FBX_win32\FbxSdk\2014.2.1\lib\vs2010\x86\debug\*.*" "C:\Users\Administrator\Desktop\myProj\c3dEngine2_oschina\c3dEngine2\demos\allDemos\proj.win32\Debug\"
+         if not exist "E:\oscGitProject\c3dEngine2_osc\c3dEngine2\demos\allDemos\proj.win32\Debug\" mkdir "E:\oscGitProject\c3dEngine2_osc\c3dEngine2\demos\allDemos\proj.win32\Debug\"
+         xcopy /Y /Q "E:\oscGitProject\c3dEngine2_osc\c3dEngine2\c3dEngine\proj.win32\c3dEngine\c3dEngine\..\..\..\thirdPart\FBX\FBX_win32\FbxSdk\2014.2.1\lib\vs2010\x86\debug\*.*" "E:\oscGitProject\c3dEngine2_osc\c3dEngine2\demos\allDemos\proj.win32\Debug\"
          
          
          :VCEnd
@@ -22,7 +39,7 @@
          复制了 3 个文件
          复制了 1 个文件
        Lib:
-         D:\Program Files\Microsoft Visual Studio 10.0\VC\bin\Lib.exe /OUT:"C:\Users\Administrator\Desktop\myProj\c3dEngine2_oschina\c3dEngine2\demos\allDemos\proj.win32\Debug\c3dEngine.lib" BulletCollision_vs2010_debug.lib BulletDynamics_vs2010_debug.lib LinearMath_vs2010_debug.lib "libfbxsdk-mt.lib" wininet.lib opengl32.lib glu32.lib glew32.lib odbc32.lib odbccp32.lib openal32.lib alut.lib libzlib.lib libpng.lib /LIBPATH:C:\Users\Administrator\Desktop\myProj\c3dEngine2_oschina\c3dEngine2\c3dEngine\proj.win32\c3dEngine\c3dEngine\..\..\..\c3dEngine\platform\win32\libraries /LIBPATH:"C:\Users\Administrator\Desktop\myProj\c3dEngine2_oschina\c3dEngine2\c3dEngine\proj.win32\c3dEngine\c3dEngine\..\..\..\thirdPart\bullet\bullet-2.82-r2704\lib_win32\debug" /LIBPATH:C:\Users\Administrator\Desktop\myProj\c3dEngine2_oschina\c3dEngine2\c3dEngine\proj.win32\c3dEngine\c3dEngine\..\..\..\thirdPart\FBX\FBX_win32\FbxSdk\2014.2.1\lib\vs2010\x86\debug /NOLOGO Debug\c3dCommonFunc.obj
+         d:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\Lib.exe /OUT:"E:\oscGitProject\c3dEngine2_osc\c3dEngine2\demos\allDemos\proj.win32\Debug\c3dEngine.lib" BulletCollision_vs2010_debug.lib BulletDynamics_vs2010_debug.lib LinearMath_vs2010_debug.lib "libfbxsdk-mt.lib" wininet.lib opengl32.lib glu32.lib glew32.lib odbc32.lib odbccp32.lib openal32.lib alut.lib libzlib.lib libpng.lib /LIBPATH:E:\oscGitProject\c3dEngine2_osc\c3dEngine2\c3dEngine\proj.win32\c3dEngine\c3dEngine\..\..\..\c3dEngine\platform\win32\libraries /LIBPATH:"E:\oscGitProject\c3dEngine2_osc\c3dEngine2\c3dEngine\proj.win32\c3dEngine\c3dEngine\..\..\..\thirdPart\bullet\bullet-2.82-r2704\lib_win32\debug" /LIBPATH:E:\oscGitProject\c3dEngine2_osc\c3dEngine2\c3dEngine\proj.win32\c3dEngine\c3dEngine\..\..\..\thirdPart\FBX\FBX_win32\FbxSdk\2014.2.1\lib\vs2010\x86\debug /NOLOGO Debug\c3dCommonFunc.obj
          Debug\c3dPathFunc.obj
          Debug\c3dActor.obj
          Debug\c3dALBuffer.obj
@@ -84,50 +101,50 @@
          Debug\c3dTexturePlatformDepend.obj
          Debug\c3dPassUnifoCallBack.obj
          Debug\c3dProgramSetUp.obj
+         Debug\c3dSkinActor.obj
          Debug\c3dFbxLoader.obj
          Debug\c3dFbxOneLoad.obj
-         Debug\c3dSkinActor.obj
          Debug\geoMath.obj
          Debug\octree.obj
          Debug\triangleWithNorm.obj
          Debug\terrain.obj
          Debug\board.obj
          Debug\button.obj
-     1>BulletCollision_vs2010_debug.lib(btBroadphaseProxy.obj) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
-     1>opengl32.lib(OPENGL32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR 已在 wininet.lib(WININET.dll) 中定义；已忽略第二个定义
-     1>opengl32.lib(OPENGL32.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
-     1>glu32.lib(GLU32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR 已在 wininet.lib(WININET.dll) 中定义；已忽略第二个定义
-     1>glu32.lib(GLU32.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
-     1>glew32.lib(glew32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR 已在 wininet.lib(WININET.dll) 中定义；已忽略第二个定义
-     1>glew32.lib(glew32.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
-     1>odbc32.lib(ODBC32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR 已在 wininet.lib(WININET.dll) 中定义；已忽略第二个定义
-     1>odbc32.lib(ODBC32.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
-     1>openal32.lib(OpenAL32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR 已在 wininet.lib(WININET.dll) 中定义；已忽略第二个定义
-     1>openal32.lib(OpenAL32.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
-     1>alut.lib(alut.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR 已在 wininet.lib(WININET.dll) 中定义；已忽略第二个定义
-     1>alut.lib(alut.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
-     1>libzlib.lib(zlib1.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR 已在 wininet.lib(WININET.dll) 中定义；已忽略第二个定义
-     1>libzlib.lib(zlib1.dll) : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
-     1>triangleWithNorm.obj : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
-     1>geoMath.obj : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
-     1>c3dVertex.obj : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
-     1>c3dSpan.obj : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
-     1>c3dRect.obj : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
-     1>c3dRange.obj : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
-     1>c3dPlane.obj : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
-     1>c3dMaterial.obj : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
-     1>c3dLight.obj : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
-     1>c3dIndexVBO.obj : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
-     1>c3dIDtriangle.obj : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
-     1>c3dIDline.obj : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
-     1>c3dGLdebug.obj : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
-     1>c3dDefine.obj : warning LNK4221: 此对象文件未定义任何之前未定义的公共符号，因此任何耗用此库的链接操作都不会使用此文件
-         c3dEngine.vcxproj -> C:\Users\Administrator\Desktop\myProj\c3dEngine2_oschina\c3dEngine2\demos\allDemos\proj.win32\Debug\c3dEngine.lib
+     1>BulletCollision_vs2010_debug.lib(btBroadphaseProxy.obj) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
+     1>opengl32.lib(OPENGL32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in wininet.lib(WININET.dll); second definition ignored
+     1>opengl32.lib(OPENGL32.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
+     1>glu32.lib(GLU32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in wininet.lib(WININET.dll); second definition ignored
+     1>glu32.lib(GLU32.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
+     1>glew32.lib(glew32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in wininet.lib(WININET.dll); second definition ignored
+     1>glew32.lib(glew32.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
+     1>odbc32.lib(ODBC32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in wininet.lib(WININET.dll); second definition ignored
+     1>odbc32.lib(ODBC32.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
+     1>openal32.lib(OpenAL32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in wininet.lib(WININET.dll); second definition ignored
+     1>openal32.lib(OpenAL32.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
+     1>alut.lib(alut.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in wininet.lib(WININET.dll); second definition ignored
+     1>alut.lib(alut.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
+     1>libzlib.lib(zlib1.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in wininet.lib(WININET.dll); second definition ignored
+     1>libzlib.lib(zlib1.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
+     1>triangleWithNorm.obj : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
+     1>geoMath.obj : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
+     1>c3dVertex.obj : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
+     1>c3dSpan.obj : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
+     1>c3dRect.obj : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
+     1>c3dRange.obj : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
+     1>c3dPlane.obj : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
+     1>c3dMaterial.obj : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
+     1>c3dLight.obj : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
+     1>c3dIndexVBO.obj : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
+     1>c3dIDtriangle.obj : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
+     1>c3dIDline.obj : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
+     1>c3dGLdebug.obj : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
+     1>c3dDefine.obj : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
+         c3dEngine.vcxproj -> E:\oscGitProject\c3dEngine2_osc\c3dEngine2\demos\allDemos\proj.win32\Debug\c3dEngine.lib
        FinalizeBuildStatus:
-         正在删除文件“Debug\c3dEngine.unsuccessfulbuild”。
-         正在对“Debug\c3dEngine.lastbuildstate”执行 Touch 任务。
-     1>已完成生成项目“C:\Users\Administrator\Desktop\myProj\c3dEngine2_oschina\c3dEngine2\c3dEngine\proj.win32\c3dEngine\c3dEngine\c3dEngine.vcxproj”(build 个目标)的操作。
+         Deleting file "Debug\c3dEngine.unsuccessfulbuild".
+         Touching "Debug\c3dEngine.lastbuildstate".
+     1>Done Building Project "E:\oscGitProject\c3dEngine2_osc\c3dEngine2\c3dEngine\proj.win32\c3dEngine\c3dEngine\c3dEngine.vcxproj" (build target(s)).
 
-生成成功。
+Build succeeded.
 
-已用时间 00:00:14.50
+Time Elapsed 00:00:03.34

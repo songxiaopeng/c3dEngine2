@@ -45,7 +45,7 @@ void initGame(){
         camera->setAspect((float)Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo()->getScreenRect().getWidth()/Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo()->getScreenRect().getHeight());
         camera->setzNear(0.5);
         camera->setzFar(10000);
-        float eyePos[3]={0,10,50};
+        float eyePos[3]={0,80,150};
         float eyeTg[3]={0,10,0};
         float up[3]={0,1,0};
         camera->setEyePos(Cc3dVector3(eyePos).toV4(1));
@@ -55,7 +55,7 @@ void initGame(){
     }
 
 	//----fbx model
-	Cc3dSkinActor*actor=Cc3dFbxLoader::sharedFbxLoader()->load("fbxLoader_static_resource/lion.fbx",0);//set the last parameter to ZERO to read static model
+	Cc3dSkinActor*actor=Cc3dFbxLoader::sharedFbxLoader()->load("fbxLoader_static_resource/apple.fbx",0);//set the last parameter to ZERO to read static model
 	
 	actor->setPos(Cc3dVector4(0,0,0,1));
 	actor->setLight(light0);

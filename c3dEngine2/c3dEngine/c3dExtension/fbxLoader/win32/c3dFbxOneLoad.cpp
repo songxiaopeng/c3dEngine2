@@ -880,7 +880,6 @@ void Cc3dFbxOneLoad::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool 
 			{
 				lPose = lScene->GetPose(mPoseIndex);
 			}
-			//cout<<"lPose:"<<lPose<<endl;
 			//定义lDummyGlobalPosition
 			FbxAMatrix lDummyGlobalPosition;//模型的世界位置（默认构造为单位矩阵)
 			DrawNodeRecursive(lScene->GetRootNode(), Time, mCurrentAnimLayer,animStackIndex, lDummyGlobalPosition,lPose);
@@ -914,7 +913,6 @@ void Cc3dFbxOneLoad::GetSmoothing(FbxManager* pSdkManager, FbxNode* pNode, bool 
 		const int lChildCount = pNode->GetChildCount();
 		for (int lChildIndex = 0; lChildIndex < lChildCount; ++lChildIndex)
 		{
-	//		cout<<"lChildIndex:"<<lChildIndex<<endl;
 			FbxNode* pChild=pNode->GetChild(lChildIndex);
 			assert(pChild);
 			DrawNodeRecursive(pChild, pTime, pAnimLayer,animStackIndex, lGlobalPosition,pPose);

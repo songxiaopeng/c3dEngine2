@@ -157,7 +157,11 @@ public:
         m_program->useProgram();
         m_passUnifoCallback(this,m_program);
         glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, m_texture->getID());
+		if(m_texture->getIsCubeTexture()){
+			glBindTexture(GL_TEXTURE_CUBE_MAP, m_texture->getID());
+		}else{
+			glBindTexture(GL_TEXTURE_2D, m_texture->getID());
+		}
         m_indexVBO->bindVertexBuffer();
         Cc3dIndexVBO::setPointers();
         m_indexVBO->bindIndexBuffer();
