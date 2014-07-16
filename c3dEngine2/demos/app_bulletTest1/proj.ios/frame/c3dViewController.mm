@@ -8,7 +8,7 @@ using namespace std;
 #include "c3dCamera.h"
 #include "c3dModel.h"
 #include "c3dGlobalTimer.h"
-
+#include "c3dSceneManger.h"
 
 @implementation Cc3dViewController
 @synthesize accelerometer;
@@ -80,49 +80,57 @@ using namespace std;
 */
 
 
-
 // Handles the start of a touch
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-   
+    
     // Enumerate through all the touch objects.
+    vector<Cc3dVector2> points;
 	for (UITouch *touch in touches) {
         CGPoint touchPoint=[touch locationInView:self.view] ;
         Cc3dTouch c3dTouch=Cc3dTouch(touchPoint.x,touchPoint.y,e_c3dTouchBegan,Cc3dTimeCounter::sharedTimeCounter()->getCount());
         Cc3dTouchSequence::sharedTouchSequence()->addTouch(c3dTouch);
         //     NSLog(@"touchesBegan:(%f,%f)",touchPoint.x,touchPoint.y);
+        points.push_back(Cc3dVector2(touchPoint.x,touchPoint.y));
 	}
-
     
-   
+    Cc3dSceneManager::sharedSceneManager()->getRoot()->visitTouchesBegan(points);
+    
 }
 // Handles the continuation of a touch.
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
     // Enumerates through all touch objects
+    vector<Cc3dVector2> points;
 	for (UITouch *touch in touches) {
 		CGPoint touchPoint=[touch locationInView:self.view] ;
         Cc3dTouch c3dTouch=Cc3dTouch(touchPoint.x,touchPoint.y,e_c3dTouchMove,Cc3dTimeCounter::sharedTimeCounter()->getCount());
         Cc3dTouchSequence::sharedTouchSequence()->addTouch(c3dTouch);
         //       NSLog(@"touchesMoved:(%f,%f)",touchPoint.x,touchPoint.y);
+        
+        points.push_back(Cc3dVector2(touchPoint.x,touchPoint.y));
 	}
     
-
-
+    Cc3dSceneManager::sharedSceneManager()->getRoot()->visitTouchesMoved(points);
+    
+    
+    
 }
 // Handles the end of a touch event.
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
     // Enumerates through all touch object
+    vector<Cc3dVector2> points;
 	for (UITouch *touch in touches) {
 		CGPoint touchPoint=[touch locationInView:self.view] ;
         Cc3dTouch c3dTouch=Cc3dTouch(touchPoint.x,touchPoint.y,e_c3dTouchEnd,Cc3dTimeCounter::sharedTimeCounter()->getCount());
         Cc3dTouchSequence::sharedTouchSequence()->addTouch(c3dTouch);
         //  NSLog(@"touchesEnded:(%f,%f)",touchPoint.x,touchPoint.y);
+        points.push_back(Cc3dVector2(touchPoint.x,touchPoint.y));
 	}
+    Cc3dSceneManager::sharedSceneManager()->getRoot()->visitTouchesEnded(points);
     
 }
-
 /*
  //-------------------实现landscape
  // -------------------------------------------------------------------------------
