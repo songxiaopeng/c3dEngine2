@@ -61,7 +61,7 @@ public:
             m_touchPointFoe=m_touchPoint;
             m_touchPoint=point;
             float dAngleX=m_touchPoint.x()-m_touchPointFoe.x();
-            float dAngleY=-(m_touchPoint.y()-m_touchPointFoe.y());
+            float dAngleY=m_touchPoint.y()-m_touchPointFoe.y();
             m_CamAngleX+=dAngleX;
             m_CamAngleY+=dAngleY;
             if(m_CamAngleY<=0||m_CamAngleY>=180){
