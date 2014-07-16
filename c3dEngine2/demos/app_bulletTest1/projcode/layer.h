@@ -53,14 +53,16 @@ public:
             }
 		}
         
-        //----control
-        control();
     }
-    void control(){
-        if(Cc3dGestureAnalyzer::sharedGestureAnalyzer()->getIsTapOnce()){
-            //cout<<"hi"<<endl;
-            addActor();
-        }
+
+	 void touchesBegan(const vector<Cc3dVector2>&points){
+
+    }
+    void touchesMoved(const vector<Cc3dVector2>&points){
+       
+    }
+    void touchesEnded(const vector<Cc3dVector2>&points){
+       addActor();
     }
 	bool init(){
         initBoard();

@@ -166,12 +166,14 @@
     <ClInclude Include="..\projcode\ball.h" />
     <ClInclude Include="..\projcode\globalVars.h" />
     <ClInclude Include="..\projcode\initGame.h" />
+    <ClInclude Include="..\projcode\layer.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\projcode\ball.cpp" />
     <ClCompile Include="..\projcode\globalVars.cpp" />
     <ClCompile Include="..\projcode\initGame.cpp" />
+    <ClCompile Include="..\projcode\layer.cpp" />
     <ClCompile Include="mainWindow.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
