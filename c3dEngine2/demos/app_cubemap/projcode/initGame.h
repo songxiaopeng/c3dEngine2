@@ -12,7 +12,7 @@
 #include <iostream>
 using namespace std;
 #include "c3d.h"
-void buildinProgramPassUnifoCallback_cubemap(Cc3dNode*node, Cc3dProgram*program);
+
 void initGame();
 
 #endif /* defined(__HelloOpenGL__initGame__) */
