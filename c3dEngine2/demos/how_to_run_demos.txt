@@ -10,7 +10,8 @@ for example you want run app_box demo:
 1, open app_box/proj.ios folder.
 2, open .xcodeproj file with Xcode.
 3, run.
-
+note:
+some demos may do not have iOS version.
 
 如何运行demos:
 win32:
@@ -23,3 +24,4 @@ iOS:
 1, 进入app_box/proj.ios目录。
 2, 用Xcode打开.xcodeproj文件。
 3, 运行.
+有些demo可能没有iOS版本。
