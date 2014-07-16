@@ -57,6 +57,7 @@ public:
             m_childList[i]->release();
         }
     }
+
     void init_dft();
     void setLight(Cc3dLight*light){
         assert(light);
@@ -189,6 +190,12 @@ public:
 
     virtual void visitDraw();
     virtual void visitUpdate();
+    virtual void visitTouchesBegan(const vector<Cc3dVector2>&points);
+    virtual void visitTouchesMoved(const vector<Cc3dVector2>&points);
+    virtual void visitTouchesEnded(const vector<Cc3dVector2>&points);
+    virtual void touchesBegan(const vector<Cc3dVector2>&points){}
+    virtual void touchesMoved(const vector<Cc3dVector2>&points){}
+    virtual void touchesEnded(const vector<Cc3dVector2>&points){}
     virtual Cc3dVector4 getPos(){return getTransform()->getPos();}//chance to override
     virtual void setPos(const Cc3dVector4&pos){getTransform()->setPos(pos);}//chance to override
     virtual Cc3dMatrix4 getRotation(){return getTransform()->getRotation();}

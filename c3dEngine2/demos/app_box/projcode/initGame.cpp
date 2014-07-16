@@ -11,7 +11,7 @@
 #include "c3d.h"
 #include "box.h"
 #include "globalVars.h"
-
+#include "layer.h"
 void initGame(){
     //--------------------------to do: initialize your game
 	//----light
@@ -55,23 +55,12 @@ void initGame(){
         camera->updateFrustum();
     }
 
-	//----box
-	
-    Cbox*box=new Cbox();
-	box->autorelease();
-	box->setName("box");
-	box->makeBox(2,"box_resource/tex/box.png");
-
-	box->setPos(Cc3dVector4(0,0,0,1));
-	box->setLight(light0);
-    box->setCamera(camera);
-	box->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("classicLighting"));
-    box->setPassUnifoCallback(buildinProgramPassUnifoCallback_classicLighting);
-
-    box->genVBOBuffers();
-	box->submit(GL_STATIC_DRAW);
+    //----layer
+    Clayer*layer=new Clayer();
+    layer->autorelease();
+    layer->init();
     
 
 	//----add to scene
-    Cc3dSceneManager::sharedSceneManager()->getRoot()->addChild(box);
+    Cc3dSceneManager::sharedSceneManager()->getRoot()->addChild(layer);
 }

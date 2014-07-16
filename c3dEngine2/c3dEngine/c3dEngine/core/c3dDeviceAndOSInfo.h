@@ -45,5 +45,9 @@ public:
         return screenRect;
     }
     void showSystemInfo();
+    Cc3dVector2 convertScreenToGL(const Cc3dVector2&positionInScreenSpace){
+        Cc3dVector2 winSize=getScreenSize();
+        return Cc3dVector2(positionInScreenSpace.x(),winSize.y()-positionInScreenSpace.y());
+    }
 };
 #endif /* defined(__HelloOpenGL__c3dDeviceAndOSInfo__) */

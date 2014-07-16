@@ -85,6 +85,7 @@
 		35DF6445138C40D500FF9459 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35DF6444138C40D500FF9459 /* CoreGraphics.framework */; };
 		35DF645E138C427700FF9459 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35DF645D138C427700FF9459 /* QuartzCore.framework */; };
 		35DF6460138C427E00FF9459 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35DF645F138C427E00FF9459 /* OpenGLES.framework */; };
+		5717D37A197613E200CF53F7 /* layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5717D378197613E200CF53F7 /* layer.cpp */; };
 		571E909918E945DF003EE2D9 /* box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 571E909318E945DF003EE2D9 /* box.cpp */; };
 		571E909A18E945DF003EE2D9 /* globalVars.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 571E909518E945DF003EE2D9 /* globalVars.cpp */; };
 		571E909B18E945DF003EE2D9 /* initGame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 571E909718E945DF003EE2D9 /* initGame.cpp */; };
@@ -244,6 +245,8 @@
 		35DF6444138C40D500FF9459 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		35DF645D138C427700FF9459 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		35DF645F138C427E00FF9459 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		5717D378197613E200CF53F7 /* layer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = layer.cpp; sourceTree = "<group>"; };
+		5717D379197613E200CF53F7 /* layer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = layer.h; sourceTree = "<group>"; };
 		571E909318E945DF003EE2D9 /* box.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = box.cpp; sourceTree = "<group>"; };
 		571E909418E945DF003EE2D9 /* box.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = box.h; sourceTree = "<group>"; };
 		571E909518E945DF003EE2D9 /* globalVars.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = globalVars.cpp; sourceTree = "<group>"; };
@@ -543,6 +546,8 @@
 			children = (
 				571E909318E945DF003EE2D9 /* box.cpp */,
 				571E909418E945DF003EE2D9 /* box.h */,
+				5717D378197613E200CF53F7 /* layer.cpp */,
+				5717D379197613E200CF53F7 /* layer.h */,
 				571E909518E945DF003EE2D9 /* globalVars.cpp */,
 				571E909618E945DF003EE2D9 /* globalVars.h */,
 				571E909718E945DF003EE2D9 /* initGame.cpp */,
@@ -704,6 +709,7 @@
 				187E95FE1914D8A80016A373 /* c3dViewController.mm in Sources */,
 				187E95AC1914C7BA0016A373 /* c3dModel.cpp in Sources */,
 				187E95A61914C7BA0016A373 /* c3dLog.cpp in Sources */,
+				5717D37A197613E200CF53F7 /* layer.cpp in Sources */,
 				187E95901914C7BA0016A373 /* c3dALdebug.cpp in Sources */,
 				187E95A31914C7BA0016A373 /* c3dIndexVBO.cpp in Sources */,
 				187E958D1914C7BA0016A373 /* c3dPathFunc.cpp in Sources */,

@@ -40,7 +40,7 @@ public:
     float y()const {return m_array[1];}
     void setx(float x) { m_array[0]=x;}
     void sety(float y) { m_array[1]=y;}
-    void print();
+    void print()const;
     Cc3dVector3 toV3(float z)const;
     Cc3dVector4 toV4(float z,float w)const;
 protected:
@@ -49,6 +49,7 @@ protected:
     float m_array[2];
     
 };
+
 
 class Cc3dVector4 USED_FOR_SUBMIT_TO_VBO
 {

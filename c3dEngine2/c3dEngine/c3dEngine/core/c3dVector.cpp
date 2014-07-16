@@ -8,6 +8,7 @@
 
 #include "c3dVector.h"
 //--------Cc3dVector2
+
 void Cc3dVector2::initMembers(){
     memset(&m_array, 0, sizeof(m_array));
 }
@@ -44,7 +45,7 @@ void Cc3dVector2::init(const float array[2]){
         m_array[i]=array[i];
     }
 }
-void Cc3dVector2::print(){
+void Cc3dVector2::print()const{
     c3dLog("Cc3dVector2: %f,%f",m_array[0],m_array[1]);
 }
 Cc3dVector3 Cc3dVector2::toV3(float z)const{

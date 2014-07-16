@@ -43,6 +43,50 @@ void Cc3dNode::setTransform(Cc3dTransform*transform){
    
     
 }
+void Cc3dNode::visitTouchesBegan(const vector<Cc3dVector2>&points){
+    this->touchesBegan(points);
+    //sort children by their visitUpdateOrder
+    int nchild=(int)m_childList.size();
+    if(nchild!=0){
+        //sort
+        stable_sort(m_childList.begin(), m_childList.end(),comp_smallervisitUpdateOrder());
+        for(int i=0;i<nchild;i++){
+            assert(m_childList[i]);
+            m_childList[i]->visitTouchesBegan(points);
+        }
+        
+    }
+
+}
+void Cc3dNode::visitTouchesMoved(const vector<Cc3dVector2>&points){
+    this->touchesMoved(points);
+    //sort children by their visitUpdateOrder
+    int nchild=(int)m_childList.size();
+    if(nchild!=0){
+        //sort
+        stable_sort(m_childList.begin(), m_childList.end(),comp_smallervisitUpdateOrder());
+        for(int i=0;i<nchild;i++){
+            assert(m_childList[i]);
+            m_childList[i]->visitTouchesMoved(points);
+        }
+        
+    }
+}
+void Cc3dNode::visitTouchesEnded(const vector<Cc3dVector2>&points){
+    this->touchesEnded(points);
+    //sort children by their visitUpdateOrder
+    int nchild=(int)m_childList.size();
+    if(nchild!=0){
+        //sort
+        stable_sort(m_childList.begin(), m_childList.end(),comp_smallervisitUpdateOrder());
+        for(int i=0;i<nchild;i++){
+            assert(m_childList[i]);
+            m_childList[i]->visitTouchesEnded(points);
+        }
+        
+    }
+    
+}
 void Cc3dNode::visitUpdate(){
     if(this->getIsDoUpdateRecursively()){
         if(this->getIsDoUpdate()){
@@ -52,8 +96,7 @@ void Cc3dNode::visitUpdate(){
             this->update(dt);
 			m_lastUpdateTime=curTime;
         }
-        
-        //sort children by their visitDrawOrder
+        //sort children by their visitUpdateOrder
         int nchild=(int)m_childList.size();
         if(nchild!=0){
             //sort
