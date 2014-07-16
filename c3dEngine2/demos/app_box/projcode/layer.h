@@ -21,8 +21,8 @@ class Clayer:public Cc3dActor
 public:
     Clayer(){
         m_box=NULL;
-        m_CamAngleX=90;
-        m_CamAngleY=90;
+        m_CamAngleX=90-45;
+        m_CamAngleY=90-30;
         m_CamDisToTarget=15;
         m_CamTarget=Cc3dVector4(0,0,0,1);
     } 
