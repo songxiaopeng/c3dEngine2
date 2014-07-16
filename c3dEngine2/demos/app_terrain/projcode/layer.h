@@ -33,7 +33,29 @@ public:
 
       
     }
-	void update(float dt);
+	void touchesBegan(const vector<Cc3dVector2>&points){
+        
+    }
+    void touchesMoved(const vector<Cc3dVector2>&points){
+       
+    }
+	void touchesEnded(const vector<Cc3dVector2>&points){
+		if(points.empty()==false){
+			//backKeyÏìÓ¦µ¥»÷--abc
+			Cc3dVector2 point=Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo()->convertScreenToGL(points[0]);
+			if(m_button->isContainPoint(point)){
+				m_isWireMode=!m_isWireMode;
+				if(m_isWireMode){
+					m_button->setText("terrain_resource/text2.png");
+				}else{
+					m_button->setText("terrain_resource/text1.png");
+
+				}
+				m_ground->setIsWireMode(m_isWireMode);//glPolygonMode(GL_FRONT_AND_BACK,GL_LINE) not available on iOS
+			}
+		}
+
+	}
 	bool init();
 	
 

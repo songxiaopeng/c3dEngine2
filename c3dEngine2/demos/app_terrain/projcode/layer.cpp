@@ -8,20 +8,6 @@
 
 #include "layer.h"
 #include "globalVars.h"
-void Clayer::update(float dt){
-	 //backKeyÏìÓ¦µ¥»÷--abc
-	if(m_button->isContainPoint(Cc3dGestureAnalyzer::sharedGestureAnalyzer()->getPoint())&&Cc3dGestureAnalyzer::sharedGestureAnalyzer()->getIsTapOnce()){
-		m_isWireMode=!m_isWireMode;
-		if(m_isWireMode){
-			m_button->setText("terrain_resource/text2.png");
-		}else{
-			m_button->setText("terrain_resource/text1.png");
-		
-		}
-		m_ground->setIsWireMode(m_isWireMode);//glPolygonMode(GL_FRONT_AND_BACK,GL_LINE) not available on iOS
-		
-	}
-}
 bool Clayer::init(){
 	//----button
 	m_button=new Cbutton();

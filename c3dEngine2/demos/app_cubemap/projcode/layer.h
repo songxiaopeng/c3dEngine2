@@ -50,14 +50,16 @@ public:
     }
     void touchesBegan(const vector<Cc3dVector2>&points){
         if(points.empty()==false){
+			Cc3dVector2 point=Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo()->convertScreenToGL(points[0]);
             m_touchPointFoe=m_touchPoint;
-            m_touchPoint=points[0];
+            m_touchPoint=point;
         }
     }
     void touchesMoved(const vector<Cc3dVector2>&points){
         if(points.empty()==false){
+			Cc3dVector2 point=Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo()->convertScreenToGL(points[0]);
             m_touchPointFoe=m_touchPoint;
-            m_touchPoint=points[0];
+            m_touchPoint=point;
             float dAngleX=m_touchPoint.x()-m_touchPointFoe.x();
             float dAngleY=-(m_touchPoint.y()-m_touchPointFoe.y());
             m_CamAngleX+=dAngleX;
@@ -69,8 +71,9 @@ public:
     }
     void touchesEnded(const vector<Cc3dVector2>&points){
         if(points.empty()==false){
+			Cc3dVector2 point=Cc3dDeviceAndOSInfo::sharedDeviceAndOSInfo()->convertScreenToGL(points[0]);
             m_touchPointFoe=m_touchPoint;
-            m_touchPoint=points[0];
+            m_touchPoint=point;
         }
     }
 
