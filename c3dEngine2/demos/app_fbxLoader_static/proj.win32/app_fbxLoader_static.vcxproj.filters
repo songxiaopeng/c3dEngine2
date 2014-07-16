@@ -32,6 +32,9 @@
     <ClInclude Include="..\projcode\initGame.h">
       <Filter>projcode</Filter>
     </ClInclude>
+    <ClInclude Include="..\projcode\layer.h">
+      <Filter>projcode</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\projcode\globalVars.cpp">
@@ -42,6 +45,9 @@
     </ClCompile>
     <ClCompile Include="mainWindow.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\projcode\layer.cpp">
+      <Filter>projcode</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

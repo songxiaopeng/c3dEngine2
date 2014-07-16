@@ -34,11 +34,11 @@ public:
 		Cc3dAudioCache::sharedAudioCache()->removeUnusedBuffersAndSourcesOnNextFrame();
     }
 	void update(float dt){
-        Cc3dVector4 eyePos(m_CamDisToTarget*sinf(m_CamAngleY*c3d_PI/180)*cosf(m_CamAngleX*c3d_PI/180),
-                           m_CamDisToTarget*cosf(m_CamAngleY*c3d_PI/180),
-                           m_CamDisToTarget*sinf(m_CamAngleY*c3d_PI/180)*sinf(m_CamAngleX*c3d_PI/180),
+        Cc3dVector4 eyePos(m_CamTarget.x()+m_CamDisToTarget*sinf(m_CamAngleY*c3d_PI/180)*cosf(m_CamAngleX*c3d_PI/180),
+                           m_CamTarget.y()+m_CamDisToTarget*cosf(m_CamAngleY*c3d_PI/180),
+                           m_CamTarget.z()+m_CamDisToTarget*sinf(m_CamAngleY*c3d_PI/180)*sinf(m_CamAngleX*c3d_PI/180),
                            1);
-        Cc3dVector4 eyeTg(0,0,0,1);
+        Cc3dVector4 eyeTg=m_CamTarget;
         Cc3dVector4 up(0,1,0,0);
         camera->setEyePos(eyePos);
         camera->setCenter(eyeTg);

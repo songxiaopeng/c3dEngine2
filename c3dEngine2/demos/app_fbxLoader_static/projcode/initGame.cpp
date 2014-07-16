@@ -10,6 +10,7 @@
 #include "c3d.h"
 #include "c3dExtension.h"
 #include "globalVars.h"
+#include "layer.h"
 void initGame(){
 	
 
@@ -18,8 +19,8 @@ void initGame(){
 		light0=new Cc3dLight();
 		light0->autorelease();
 		light0->retain();
-		light0->setPos(1000,5000,1000);//(50,200,500);
-		light0->setSpecular(0.4,0.4,0.4);
+		light0->setPos(1000,1000,1000);//(50,200,500);
+		light0->setSpecular(0.05,0.05,0.05);
 	}
 	 //----camera2D
     {
@@ -54,18 +55,13 @@ void initGame(){
         camera->updateFrustum();
     }
 
-	//----fbx model
-	Cc3dSkinActor*actor=Cc3dFbxLoader::sharedFbxLoader()->load("fbxLoader_static_resource/apple.fbx",0);//set the last parameter to ZERO to read static model
-	
-	actor->setPos(Cc3dVector4(0,0,0,1));
-	actor->setLight(light0);
-    actor->setCamera(camera);
-	actor->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("classicLighting"));
-    actor->setPassUnifoCallback(buildinProgramPassUnifoCallback_classicLighting);
 
-    actor->genVBOBuffers();
-	actor->submit(GL_STATIC_DRAW);
+	//----layer
+	Clayer*layer=new Clayer();
+	layer->autorelease();
+	layer->init();
+
 
 	//----add to scene
-    Cc3dSceneManager::sharedSceneManager()->getRoot()->addChild(actor);
+    Cc3dSceneManager::sharedSceneManager()->getRoot()->addChild(layer);
 }

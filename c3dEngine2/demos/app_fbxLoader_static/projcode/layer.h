@@ -13,18 +13,17 @@
 using namespace std;
 #include "c3d.h"
 #include "globalVars.h"
-//#include "extension.h"
-#include "box.h"
+#include "c3dExtension.h"
 class Clayer:public Cc3dActor
 {
 
 public:
     Clayer(){
-        m_box=NULL;
+        m_actor=NULL;
         m_CamAngleX=90-45;
         m_CamAngleY=90-30;
-        m_CamDisToTarget=15;
-        m_CamTarget=Cc3dVector4(0,0,0,1);
+        m_CamDisToTarget=150;
+        m_CamTarget=Cc3dVector4(0,20,0,1);
     } 
     virtual~Clayer(){
         
@@ -77,26 +76,24 @@ public:
     }
 
     bool init(){
-        //----box
-        m_box=new Cbox();
-        m_box->autorelease();
-        m_box->setName("box");
-        m_box->makeBox(2,"box_resource/tex/box.png");
-        
-        m_box->setPos(Cc3dVector4(0,0,0,1));
-        m_box->setLight(light0);
-        m_box->setCamera(camera);
-        m_box->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("classicLighting"));
-        m_box->setPassUnifoCallback(buildinProgramPassUnifoCallback_classicLighting);
-        
-        m_box->genVBOBuffers();
-        m_box->submit(GL_STATIC_DRAW);
-        addChild(m_box);
+		//----fbx model
+		m_actor=Cc3dFbxLoader::sharedFbxLoader()->load("fbxLoader_static_resource/apple.fbx",0);//set the last parameter to ZERO to read static model
+	
+		m_actor->setPos(Cc3dVector4(0,0,0,1));
+		m_actor->setLight(light0);
+		m_actor->setCamera(camera);
+		m_actor->setProgram(Cc3dProgramCache::sharedProgramCache()->getProgramByName("classicLighting"));
+	    m_actor->setPassUnifoCallback(buildinProgramPassUnifoCallback_classicLighting);
+
+		m_actor->genVBOBuffers();
+		m_actor->submit(GL_STATIC_DRAW);
+		addChild(m_actor);
+
 
         return true;
     }
 protected:
-    Cbox*m_box;
+    Cc3dSkinActor*m_actor;
     float m_CamAngleX;
     float m_CamAngleY;
     float m_CamDisToTarget;
