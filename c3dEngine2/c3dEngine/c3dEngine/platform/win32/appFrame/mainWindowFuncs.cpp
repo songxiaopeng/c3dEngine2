@@ -180,6 +180,9 @@ BOOL CALLBACK DlgProc (HWND hDlg, UINT message,WPARAM wParam, LPARAM lParam)
 	 Cc3dTouch c3dTouch=Cc3dTouch(x,y,e_c3dTouchBegan,Cc3dTimeCounter::sharedTimeCounter()->getCount());
 	 Cc3dTouchSequence::sharedTouchSequence()->addTouch(c3dTouch);
 	 //     NSLog(@"touchesBegan:(%f,%f)",touchPoint.x,touchPoint.y);
+	 vector<Cc3dVector2> points;
+	 points.push_back(Cc3dVector2(x,y));
+	 Cc3dSceneManager::sharedSceneManager()->getRoot()->visitTouchesBegan(points);
  }
  void lbuttonUp(HWND hWnd,UINT uMsg,WPARAM wParam,LPARAM lParam){
 	 isTouching=false;
@@ -192,6 +195,9 @@ BOOL CALLBACK DlgProc (HWND hDlg, UINT message,WPARAM wParam, LPARAM lParam)
 	 Cc3dTouch c3dTouch=Cc3dTouch(x,y,e_c3dTouchEnd,Cc3dTimeCounter::sharedTimeCounter()->getCount());
 	 Cc3dTouchSequence::sharedTouchSequence()->addTouch(c3dTouch);
 	 //  NSLog(@"touchesEnded:(%f,%f)",touchPoint.x,touchPoint.y);
+	 vector<Cc3dVector2> points;
+	 points.push_back(Cc3dVector2(x,y));
+	 Cc3dSceneManager::sharedSceneManager()->getRoot()->visitTouchesEnded(points);
  }
  void mouseMove(HWND hWnd,UINT uMsg,WPARAM wParam,LPARAM lParam){
 	 if(isTouching){
@@ -204,6 +210,9 @@ BOOL CALLBACK DlgProc (HWND hDlg, UINT message,WPARAM wParam, LPARAM lParam)
 		 Cc3dTouch c3dTouch=Cc3dTouch(x,y,e_c3dTouchMove,Cc3dTimeCounter::sharedTimeCounter()->getCount());
 		 Cc3dTouchSequence::sharedTouchSequence()->addTouch(c3dTouch);
 		 //       NSLog(@"touchesMoved:(%f,%f)",touchPoint.x,touchPoint.y);
+		 vector<Cc3dVector2> points;
+		 points.push_back(Cc3dVector2(x,y));
+		 Cc3dSceneManager::sharedSceneManager()->getRoot()->visitTouchesMoved(points);
 	 }
 	 //below code is for WM_MOUSELEAVE
 	 //if we want WM_MOUSELEAVE works, we should call TrackMouseEvent

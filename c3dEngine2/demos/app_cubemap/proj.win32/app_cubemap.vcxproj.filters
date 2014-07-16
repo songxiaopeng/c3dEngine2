@@ -35,6 +35,9 @@
     <ClInclude Include="..\projcode\ball.h">
       <Filter>projcode</Filter>
     </ClInclude>
+    <ClInclude Include="..\projcode\layer.h">
+      <Filter>projcode</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\projcode\globalVars.cpp">
@@ -47,6 +50,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\projcode\ball.cpp">
+      <Filter>projcode</Filter>
+    </ClCompile>
+    <ClCompile Include="..\projcode\layer.cpp">
       <Filter>projcode</Filter>
     </ClCompile>
   </ItemGroup>
